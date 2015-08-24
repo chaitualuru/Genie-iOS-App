@@ -15,8 +15,9 @@
 		FF01A7071B8980E800F54273 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FF01A7051B8980E800F54273 /* LaunchScreen.storyboard */; };
 		FF01A7121B8980E800F54273 /* GenieTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF01A7111B8980E800F54273 /* GenieTests.swift */; };
 		FF01A71D1B8980E800F54273 /* GenieUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF01A71C1B8980E800F54273 /* GenieUITests.swift */; };
+		FF151F0F1B8B048100861746 /* splash_image.png in Resources */ = {isa = PBXBuildFile; fileRef = FF151F0E1B8B048100861746 /* splash_image.png */; };
+		FF151F111B8B04AF00861746 /* close.png in Resources */ = {isa = PBXBuildFile; fileRef = FF151F101B8B04AF00861746 /* close.png */; };
 		FF2AF5941B8ACCEB00C6F899 /* back.png in Resources */ = {isa = PBXBuildFile; fileRef = FF2AF5931B8ACCEB00C6F899 /* back.png */; };
-		FF2AF5A61B8AF5F400C6F899 /* close.png in Resources */ = {isa = PBXBuildFile; fileRef = FF2AF5A51B8AF5F400C6F899 /* close.png */; };
 		FF3314821B8A52FB008B1B9E /* SF-UI-Display-Black.otf in Resources */ = {isa = PBXBuildFile; fileRef = FF33146D1B8A52E4008B1B9E /* SF-UI-Display-Black.otf */; };
 		FF3314831B8A52FE008B1B9E /* SF-UI-Display-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = FF33146E1B8A52E4008B1B9E /* SF-UI-Display-Bold.otf */; };
 		FF3314841B8A5302008B1B9E /* SF-UI-Display-Heavy.otf in Resources */ = {isa = PBXBuildFile; fileRef = FF33146F1B8A52E4008B1B9E /* SF-UI-Display-Heavy.otf */; };
@@ -38,7 +39,6 @@
 		FF3314941B8A5309008B1B9E /* SF-UI-Text-RegularItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = FF33147F1B8A52E4008B1B9E /* SF-UI-Text-RegularItalic.otf */; };
 		FF3314951B8A5309008B1B9E /* SF-UI-Text-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = FF3314801B8A52E4008B1B9E /* SF-UI-Text-Semibold.otf */; };
 		FF3314961B8A5309008B1B9E /* SF-UI-Text-SemiboldItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = FF3314811B8A52E4008B1B9E /* SF-UI-Text-SemiboldItalic.otf */; };
-		FF3314981B8AC2DD008B1B9E /* splash_image.png in Resources */ = {isa = PBXBuildFile; fileRef = FF3314971B8AC2DD008B1B9E /* splash_image.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,8 +73,9 @@
 		FF01A7181B8980E800F54273 /* GenieUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GenieUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FF01A71C1B8980E800F54273 /* GenieUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenieUITests.swift; sourceTree = "<group>"; };
 		FF01A71E1B8980E800F54273 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FF151F0E1B8B048100861746 /* splash_image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = splash_image.png; sourceTree = "<group>"; };
+		FF151F101B8B04AF00861746 /* close.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = close.png; sourceTree = "<group>"; };
 		FF2AF5931B8ACCEB00C6F899 /* back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back.png; sourceTree = "<group>"; };
-		FF2AF5A51B8AF5F400C6F899 /* close.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = close.png; sourceTree = "<group>"; };
 		FF33146D1B8A52E4008B1B9E /* SF-UI-Display-Black.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-UI-Display-Black.otf"; sourceTree = "<group>"; };
 		FF33146E1B8A52E4008B1B9E /* SF-UI-Display-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-UI-Display-Bold.otf"; sourceTree = "<group>"; };
 		FF33146F1B8A52E4008B1B9E /* SF-UI-Display-Heavy.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-UI-Display-Heavy.otf"; sourceTree = "<group>"; };
@@ -96,7 +97,6 @@
 		FF33147F1B8A52E4008B1B9E /* SF-UI-Text-RegularItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-UI-Text-RegularItalic.otf"; sourceTree = "<group>"; };
 		FF3314801B8A52E4008B1B9E /* SF-UI-Text-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-UI-Text-Semibold.otf"; sourceTree = "<group>"; };
 		FF3314811B8A52E4008B1B9E /* SF-UI-Text-SemiboldItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-UI-Text-SemiboldItalic.otf"; sourceTree = "<group>"; };
-		FF3314971B8AC2DD008B1B9E /* splash_image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = splash_image.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -201,9 +201,9 @@
 				FF33147F1B8A52E4008B1B9E /* SF-UI-Text-RegularItalic.otf */,
 				FF3314801B8A52E4008B1B9E /* SF-UI-Text-Semibold.otf */,
 				FF3314811B8A52E4008B1B9E /* SF-UI-Text-SemiboldItalic.otf */,
-				FF3314971B8AC2DD008B1B9E /* splash_image.png */,
+				FF151F0E1B8B048100861746 /* splash_image.png */,
+				FF151F101B8B04AF00861746 /* close.png */,
 				FF2AF5931B8ACCEB00C6F899 /* back.png */,
-				FF2AF5A51B8AF5F400C6F899 /* close.png */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -311,13 +311,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FF2AF5A61B8AF5F400C6F899 /* close.png in Resources */,
+				FF151F111B8B04AF00861746 /* close.png in Resources */,
 				FF3314951B8A5309008B1B9E /* SF-UI-Text-Semibold.otf in Resources */,
 				FF3314821B8A52FB008B1B9E /* SF-UI-Display-Black.otf in Resources */,
 				FF3314921B8A5309008B1B9E /* SF-UI-Text-MediumItalic.otf in Resources */,
 				FF3314871B8A5309008B1B9E /* SF-UI-Display-Regular.otf in Resources */,
 				FF3314851B8A5304008B1B9E /* SF-UI-Display-Light.otf in Resources */,
-				FF3314981B8AC2DD008B1B9E /* splash_image.png in Resources */,
 				FF2AF5941B8ACCEB00C6F899 /* back.png in Resources */,
 				FF33148A1B8A5309008B1B9E /* SF-UI-Display-Ultralight.otf in Resources */,
 				FF3314891B8A5309008B1B9E /* SF-UI-Display-Thin.otf in Resources */,
@@ -337,6 +336,7 @@
 				FF33148C1B8A5309008B1B9E /* SF-UI-Text-BoldItalic.otf in Resources */,
 				FF3314901B8A5309008B1B9E /* SF-UI-Text-LightItalic.otf in Resources */,
 				FF33148F1B8A5309008B1B9E /* SF-UI-Text-Light.otf in Resources */,
+				FF151F0F1B8B048100861746 /* splash_image.png in Resources */,
 				FF3314881B8A5309008B1B9E /* SF-UI-Display-Semibold.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
