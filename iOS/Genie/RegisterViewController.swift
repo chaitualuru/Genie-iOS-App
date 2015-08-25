@@ -79,6 +79,24 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
             presentViewController(alertController, animated: true, completion: nil)
 
         }
+        else if password.text?.characters.count < 5 {
+            let alertController = UIAlertController(title: "", message: "The password must be at least 5 characters long.", preferredStyle: .Alert)
+            
+            let okAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
+            
+            alertController.addAction(okAction)
+            
+            presentViewController(alertController, animated: true, completion: nil)
+        }
+        else if mobileNumber.text?.characters.count < 10 {
+            let alertController = UIAlertController(title: "", message: "The mobile number must be 10 characters long.", preferredStyle: .Alert)
+            
+            let okAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
+            
+            alertController.addAction(okAction)
+            
+            presentViewController(alertController, animated: true, completion: nil)
+        }
         else {
             self.ref.createUser(emailAddress.text!, password: password.text!,
                 withValueCompletionBlock: { error, result in

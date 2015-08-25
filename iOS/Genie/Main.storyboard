@@ -255,7 +255,7 @@
                                     <constraint firstAttribute="height" constant="30" id="TsA-hV-PRQ"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                             </textField>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="line.png" translatesAutoresizingMaskIntoConstraints="NO" id="xze-tZ-YaY">
                                 <rect key="frame" x="0.0" y="262" width="600" height="1"/>
