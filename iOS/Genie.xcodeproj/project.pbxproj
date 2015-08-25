@@ -9,15 +9,11 @@
 /* Begin PBXBuildFile section */
 		FF01A6FA1B8980E800F54273 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF01A6F91B8980E800F54273 /* AppDelegate.swift */; };
 		FF01A6FC1B8980E800F54273 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF01A6FB1B8980E800F54273 /* ViewController.swift */; };
-		FF01A6FF1B8980E800F54273 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FF01A6FD1B8980E800F54273 /* Main.storyboard */; };
 		FF01A7021B8980E800F54273 /* Genie.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FF01A7001B8980E800F54273 /* Genie.xcdatamodeld */; };
 		FF01A7041B8980E800F54273 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FF01A7031B8980E800F54273 /* Assets.xcassets */; };
 		FF01A7071B8980E800F54273 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FF01A7051B8980E800F54273 /* LaunchScreen.storyboard */; };
 		FF01A7121B8980E800F54273 /* GenieTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF01A7111B8980E800F54273 /* GenieTests.swift */; };
 		FF01A71D1B8980E800F54273 /* GenieUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF01A71C1B8980E800F54273 /* GenieUITests.swift */; };
-		FF151F0F1B8B048100861746 /* splash_image.png in Resources */ = {isa = PBXBuildFile; fileRef = FF151F0E1B8B048100861746 /* splash_image.png */; };
-		FF151F111B8B04AF00861746 /* close.png in Resources */ = {isa = PBXBuildFile; fileRef = FF151F101B8B04AF00861746 /* close.png */; };
-		FF2AF5941B8ACCEB00C6F899 /* back.png in Resources */ = {isa = PBXBuildFile; fileRef = FF2AF5931B8ACCEB00C6F899 /* back.png */; };
 		FF3314821B8A52FB008B1B9E /* SF-UI-Display-Black.otf in Resources */ = {isa = PBXBuildFile; fileRef = FF33146D1B8A52E4008B1B9E /* SF-UI-Display-Black.otf */; };
 		FF3314831B8A52FE008B1B9E /* SF-UI-Display-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = FF33146E1B8A52E4008B1B9E /* SF-UI-Display-Bold.otf */; };
 		FF3314841B8A5302008B1B9E /* SF-UI-Display-Heavy.otf in Resources */ = {isa = PBXBuildFile; fileRef = FF33146F1B8A52E4008B1B9E /* SF-UI-Display-Heavy.otf */; };
@@ -39,6 +35,20 @@
 		FF3314941B8A5309008B1B9E /* SF-UI-Text-RegularItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = FF33147F1B8A52E4008B1B9E /* SF-UI-Text-RegularItalic.otf */; };
 		FF3314951B8A5309008B1B9E /* SF-UI-Text-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = FF3314801B8A52E4008B1B9E /* SF-UI-Text-Semibold.otf */; };
 		FF3314961B8A5309008B1B9E /* SF-UI-Text-SemiboldItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = FF3314811B8A52E4008B1B9E /* SF-UI-Text-SemiboldItalic.otf */; };
+		FF4A3FA01B8BCF5A00F59B4E /* cancel@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = FF4A3F9D1B8BCF5A00F59B4E /* cancel@1x.png */; };
+		FF4A3FA11B8BCF5A00F59B4E /* cancel@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FF4A3F9E1B8BCF5A00F59B4E /* cancel@2x.png */; };
+		FF4A3FA21B8BCF5A00F59B4E /* cancel@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = FF4A3F9F1B8BCF5A00F59B4E /* cancel@3x.png */; };
+		FF4A3FA41B8BD66C00F59B4E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FF4A3FA31B8BD66C00F59B4E /* Main.storyboard */; };
+		FF85C9F51B8BDC3400F8E371 /* line@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = FF85C9F21B8BDC3400F8E371 /* line@1x.png */; };
+		FF85C9F61B8BDC3400F8E371 /* line@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FF85C9F31B8BDC3400F8E371 /* line@2x.png */; };
+		FF85C9F71B8BDC3400F8E371 /* line@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = FF85C9F41B8BDC3400F8E371 /* line@3x.png */; };
+		FF85CA071B8BE54500F8E371 /* confirm@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = FF85CA041B8BE54500F8E371 /* confirm@1x.png */; };
+		FF85CA081B8BE54500F8E371 /* confirm@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FF85CA051B8BE54500F8E371 /* confirm@2x.png */; };
+		FF85CA091B8BE54500F8E371 /* confirm@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = FF85CA061B8BE54500F8E371 /* confirm@3x.png */; };
+		FFAFBEC01B8BB7DE008D2A2F /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFAFBEBF1B8BB7DE008D2A2F /* RegisterViewController.swift */; };
+		FFAFBECC1B8BBEA7008D2A2F /* genie@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = FFAFBEC61B8BBEA7008D2A2F /* genie@1x.png */; };
+		FFAFBECD1B8BBEA7008D2A2F /* genie@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FFAFBEC71B8BBEA7008D2A2F /* genie@2x.png */; };
+		FFAFBECE1B8BBEA7008D2A2F /* genie@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = FFAFBEC81B8BBEA7008D2A2F /* genie@3x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,7 +72,6 @@
 		FF01A6F61B8980E800F54273 /* Genie.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Genie.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FF01A6F91B8980E800F54273 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FF01A6FB1B8980E800F54273 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		FF01A6FE1B8980E800F54273 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		FF01A7011B8980E800F54273 /* Genie.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Genie.xcdatamodel; sourceTree = "<group>"; };
 		FF01A7031B8980E800F54273 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FF01A7061B8980E800F54273 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -73,9 +82,6 @@
 		FF01A7181B8980E800F54273 /* GenieUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GenieUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FF01A71C1B8980E800F54273 /* GenieUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenieUITests.swift; sourceTree = "<group>"; };
 		FF01A71E1B8980E800F54273 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		FF151F0E1B8B048100861746 /* splash_image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = splash_image.png; sourceTree = "<group>"; };
-		FF151F101B8B04AF00861746 /* close.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = close.png; sourceTree = "<group>"; };
-		FF2AF5931B8ACCEB00C6F899 /* back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back.png; sourceTree = "<group>"; };
 		FF33146D1B8A52E4008B1B9E /* SF-UI-Display-Black.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-UI-Display-Black.otf"; sourceTree = "<group>"; };
 		FF33146E1B8A52E4008B1B9E /* SF-UI-Display-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-UI-Display-Bold.otf"; sourceTree = "<group>"; };
 		FF33146F1B8A52E4008B1B9E /* SF-UI-Display-Heavy.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-UI-Display-Heavy.otf"; sourceTree = "<group>"; };
@@ -97,6 +103,20 @@
 		FF33147F1B8A52E4008B1B9E /* SF-UI-Text-RegularItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-UI-Text-RegularItalic.otf"; sourceTree = "<group>"; };
 		FF3314801B8A52E4008B1B9E /* SF-UI-Text-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-UI-Text-Semibold.otf"; sourceTree = "<group>"; };
 		FF3314811B8A52E4008B1B9E /* SF-UI-Text-SemiboldItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-UI-Text-SemiboldItalic.otf"; sourceTree = "<group>"; };
+		FF4A3F9D1B8BCF5A00F59B4E /* cancel@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cancel@1x.png"; sourceTree = "<group>"; };
+		FF4A3F9E1B8BCF5A00F59B4E /* cancel@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cancel@2x.png"; sourceTree = "<group>"; };
+		FF4A3F9F1B8BCF5A00F59B4E /* cancel@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cancel@3x.png"; sourceTree = "<group>"; };
+		FF4A3FA31B8BD66C00F59B4E /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		FF85C9F21B8BDC3400F8E371 /* line@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "line@1x.png"; sourceTree = "<group>"; };
+		FF85C9F31B8BDC3400F8E371 /* line@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "line@2x.png"; sourceTree = "<group>"; };
+		FF85C9F41B8BDC3400F8E371 /* line@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "line@3x.png"; sourceTree = "<group>"; };
+		FF85CA041B8BE54500F8E371 /* confirm@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "confirm@1x.png"; sourceTree = "<group>"; };
+		FF85CA051B8BE54500F8E371 /* confirm@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "confirm@2x.png"; sourceTree = "<group>"; };
+		FF85CA061B8BE54500F8E371 /* confirm@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "confirm@3x.png"; sourceTree = "<group>"; };
+		FFAFBEBF1B8BB7DE008D2A2F /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		FFAFBEC61B8BBEA7008D2A2F /* genie@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "genie@1x.png"; sourceTree = "<group>"; };
+		FFAFBEC71B8BBEA7008D2A2F /* genie@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "genie@2x.png"; sourceTree = "<group>"; };
+		FFAFBEC81B8BBEA7008D2A2F /* genie@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "genie@3x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -150,7 +170,8 @@
 				FF3314681B8A51E2008B1B9E /* Resources */,
 				FF01A6F91B8980E800F54273 /* AppDelegate.swift */,
 				FF01A6FB1B8980E800F54273 /* ViewController.swift */,
-				FF01A6FD1B8980E800F54273 /* Main.storyboard */,
+				FFAFBEBF1B8BB7DE008D2A2F /* RegisterViewController.swift */,
+				FF4A3FA31B8BD66C00F59B4E /* Main.storyboard */,
 				FF01A7051B8980E800F54273 /* LaunchScreen.storyboard */,
 				FF01A7081B8980E800F54273 /* Info.plist */,
 				FF01A7001B8980E800F54273 /* Genie.xcdatamodeld */,
@@ -180,6 +201,15 @@
 		FF3314681B8A51E2008B1B9E /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				FFAFBEC21B8BBE5B008D2A2F /* Images */,
+				FFAFBEC11B8BBE45008D2A2F /* Fonts */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		FFAFBEC11B8BBE45008D2A2F /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
 				FF33146D1B8A52E4008B1B9E /* SF-UI-Display-Black.otf */,
 				FF33146E1B8A52E4008B1B9E /* SF-UI-Display-Bold.otf */,
 				FF33146F1B8A52E4008B1B9E /* SF-UI-Display-Heavy.otf */,
@@ -201,11 +231,27 @@
 				FF33147F1B8A52E4008B1B9E /* SF-UI-Text-RegularItalic.otf */,
 				FF3314801B8A52E4008B1B9E /* SF-UI-Text-Semibold.otf */,
 				FF3314811B8A52E4008B1B9E /* SF-UI-Text-SemiboldItalic.otf */,
-				FF151F0E1B8B048100861746 /* splash_image.png */,
-				FF151F101B8B04AF00861746 /* close.png */,
-				FF2AF5931B8ACCEB00C6F899 /* back.png */,
 			);
-			name = Resources;
+			name = Fonts;
+			sourceTree = "<group>";
+		};
+		FFAFBEC21B8BBE5B008D2A2F /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				FF85C9F21B8BDC3400F8E371 /* line@1x.png */,
+				FF85C9F31B8BDC3400F8E371 /* line@2x.png */,
+				FF85C9F41B8BDC3400F8E371 /* line@3x.png */,
+				FF4A3F9D1B8BCF5A00F59B4E /* cancel@1x.png */,
+				FF4A3F9E1B8BCF5A00F59B4E /* cancel@2x.png */,
+				FF4A3F9F1B8BCF5A00F59B4E /* cancel@3x.png */,
+				FFAFBEC61B8BBEA7008D2A2F /* genie@1x.png */,
+				FFAFBEC71B8BBEA7008D2A2F /* genie@2x.png */,
+				FFAFBEC81B8BBEA7008D2A2F /* genie@3x.png */,
+				FF85CA041B8BE54500F8E371 /* confirm@1x.png */,
+				FF85CA051B8BE54500F8E371 /* confirm@2x.png */,
+				FF85CA061B8BE54500F8E371 /* confirm@3x.png */,
+			);
+			name = Images;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -311,14 +357,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FF151F111B8B04AF00861746 /* close.png in Resources */,
 				FF3314951B8A5309008B1B9E /* SF-UI-Text-Semibold.otf in Resources */,
 				FF3314821B8A52FB008B1B9E /* SF-UI-Display-Black.otf in Resources */,
 				FF3314921B8A5309008B1B9E /* SF-UI-Text-MediumItalic.otf in Resources */,
 				FF3314871B8A5309008B1B9E /* SF-UI-Display-Regular.otf in Resources */,
 				FF3314851B8A5304008B1B9E /* SF-UI-Display-Light.otf in Resources */,
-				FF2AF5941B8ACCEB00C6F899 /* back.png in Resources */,
+				FFAFBECD1B8BBEA7008D2A2F /* genie@2x.png in Resources */,
 				FF33148A1B8A5309008B1B9E /* SF-UI-Display-Ultralight.otf in Resources */,
+				FF4A3FA01B8BCF5A00F59B4E /* cancel@1x.png in Resources */,
+				FF85CA071B8BE54500F8E371 /* confirm@1x.png in Resources */,
 				FF3314891B8A5309008B1B9E /* SF-UI-Display-Thin.otf in Resources */,
 				FF3314861B8A5309008B1B9E /* SF-UI-Display-Medium.otf in Resources */,
 				FF01A7071B8980E800F54273 /* LaunchScreen.storyboard in Resources */,
@@ -327,17 +374,25 @@
 				FF01A7041B8980E800F54273 /* Assets.xcassets in Resources */,
 				FF3314831B8A52FE008B1B9E /* SF-UI-Display-Bold.otf in Resources */,
 				FF33148D1B8A5309008B1B9E /* SF-UI-Text-Heavy.otf in Resources */,
+				FF85C9F61B8BDC3400F8E371 /* line@2x.png in Resources */,
 				FF3314941B8A5309008B1B9E /* SF-UI-Text-RegularItalic.otf in Resources */,
+				FF4A3FA11B8BCF5A00F59B4E /* cancel@2x.png in Resources */,
 				FF3314931B8A5309008B1B9E /* SF-UI-Text-Regular.otf in Resources */,
 				FF3314961B8A5309008B1B9E /* SF-UI-Text-SemiboldItalic.otf in Resources */,
+				FFAFBECE1B8BBEA7008D2A2F /* genie@3x.png in Resources */,
+				FF85C9F71B8BDC3400F8E371 /* line@3x.png in Resources */,
+				FF4A3FA41B8BD66C00F59B4E /* Main.storyboard in Resources */,
 				FF3314841B8A5302008B1B9E /* SF-UI-Display-Heavy.otf in Resources */,
-				FF01A6FF1B8980E800F54273 /* Main.storyboard in Resources */,
 				FF33148E1B8A5309008B1B9E /* SF-UI-Text-HeavyItalic.otf in Resources */,
 				FF33148C1B8A5309008B1B9E /* SF-UI-Text-BoldItalic.otf in Resources */,
+				FF4A3FA21B8BCF5A00F59B4E /* cancel@3x.png in Resources */,
+				FFAFBECC1B8BBEA7008D2A2F /* genie@1x.png in Resources */,
+				FF85CA091B8BE54500F8E371 /* confirm@3x.png in Resources */,
+				FF85C9F51B8BDC3400F8E371 /* line@1x.png in Resources */,
 				FF3314901B8A5309008B1B9E /* SF-UI-Text-LightItalic.otf in Resources */,
 				FF33148F1B8A5309008B1B9E /* SF-UI-Text-Light.otf in Resources */,
-				FF151F0F1B8B048100861746 /* splash_image.png in Resources */,
 				FF3314881B8A5309008B1B9E /* SF-UI-Display-Semibold.otf in Resources */,
+				FF85CA081B8BE54500F8E371 /* confirm@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -365,6 +420,7 @@
 				FF01A7021B8980E800F54273 /* Genie.xcdatamodeld in Sources */,
 				FF01A6FC1B8980E800F54273 /* ViewController.swift in Sources */,
 				FF01A6FA1B8980E800F54273 /* AppDelegate.swift in Sources */,
+				FFAFBEC01B8BB7DE008D2A2F /* RegisterViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -400,14 +456,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		FF01A6FD1B8980E800F54273 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				FF01A6FE1B8980E800F54273 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		FF01A7051B8980E800F54273 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (

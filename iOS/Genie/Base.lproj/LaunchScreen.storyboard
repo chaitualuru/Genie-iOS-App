@@ -2,7 +2,16 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8152.3" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" initialViewController="01J-lp-oVM">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8124.4"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <mutableArray key="SF-UI-Display-Regular.otf">
+            <string>SFUIDisplay-Regular</string>
+        </mutableArray>
+        <mutableArray key="SF-UI-Text-Regular.otf">
+            <string>SFUIText-Regular</string>
+        </mutableArray>
+    </customFonts>
     <scenes>
         <!--View Controller-->
         <scene sceneID="EHf-IW-A2E">
@@ -16,19 +25,43 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="splash_image.png" translatesAutoresizingMaskIntoConstraints="NO" id="f6D-fT-roC">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="genie.png" translatesAutoresizingMaskIntoConstraints="NO" id="f6D-fT-roC">
                                 <rect key="frame" x="165" y="129" width="270" height="342"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="342" id="Rjj-V3-hZ8"/>
                                     <constraint firstAttribute="width" constant="270" id="Tjt-9h-YZ8"/>
                                 </constraints>
                             </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your personal assistant" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7ae-vJ-G1B">
+                                <rect key="frame" x="42" y="539" width="165" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="165" id="7zd-VU-ArJ"/>
+                                    <constraint firstAttribute="height" constant="21" id="QEV-xu-EFJ"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="14"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Genie" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9w2-bZ-QAW">
+                                <rect key="frame" x="40" y="511" width="68" height="27"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="27" id="Bkl-2O-pAh"/>
+                                    <constraint firstAttribute="width" constant="68" id="Z90-ir-tdD"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="SFUIDisplay-Regular" family="SF UI Display" pointSize="25"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" red="0.10588235294117647" green="0.6470588235294118" blue="0.8666666666666667" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="f6D-fT-roC" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="SKI-tc-nhK"/>
                             <constraint firstItem="f6D-fT-roC" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="Tpc-3l-WAL"/>
+                            <constraint firstItem="9w2-bZ-QAW" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leadingMargin" constant="20" id="dvU-X0-LuU"/>
+                            <constraint firstItem="7ae-vJ-G1B" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leadingMargin" constant="22" id="tWM-7Q-ecb"/>
+                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="7ae-vJ-G1B" secondAttribute="bottom" constant="40" id="wij-IG-f5r"/>
+                            <constraint firstItem="7ae-vJ-G1B" firstAttribute="top" secondItem="9w2-bZ-QAW" secondAttribute="bottom" constant="1" id="yE8-kr-FNt"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -38,6 +71,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="splash_image.png" width="646" height="776"/>
+        <image name="genie.png" width="323" height="388"/>
     </resources>
 </document>
