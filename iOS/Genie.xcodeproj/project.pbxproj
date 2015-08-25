@@ -45,6 +45,7 @@
 		FF85CA071B8BE54500F8E371 /* confirm@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = FF85CA041B8BE54500F8E371 /* confirm@1x.png */; };
 		FF85CA081B8BE54500F8E371 /* confirm@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FF85CA051B8BE54500F8E371 /* confirm@2x.png */; };
 		FF85CA091B8BE54500F8E371 /* confirm@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = FF85CA061B8BE54500F8E371 /* confirm@3x.png */; };
+		FF9F75EB1B8C062E008CAAD6 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF9F75EA1B8C062E008CAAD6 /* SignInViewController.swift */; };
 		FFAFBEC01B8BB7DE008D2A2F /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFAFBEBF1B8BB7DE008D2A2F /* RegisterViewController.swift */; };
 		FFAFBECC1B8BBEA7008D2A2F /* genie@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = FFAFBEC61B8BBEA7008D2A2F /* genie@1x.png */; };
 		FFAFBECD1B8BBEA7008D2A2F /* genie@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FFAFBEC71B8BBEA7008D2A2F /* genie@2x.png */; };
@@ -113,6 +114,7 @@
 		FF85CA041B8BE54500F8E371 /* confirm@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "confirm@1x.png"; sourceTree = "<group>"; };
 		FF85CA051B8BE54500F8E371 /* confirm@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "confirm@2x.png"; sourceTree = "<group>"; };
 		FF85CA061B8BE54500F8E371 /* confirm@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "confirm@3x.png"; sourceTree = "<group>"; };
+		FF9F75EA1B8C062E008CAAD6 /* SignInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		FFAFBEBF1B8BB7DE008D2A2F /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		FFAFBEC61B8BBEA7008D2A2F /* genie@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "genie@1x.png"; sourceTree = "<group>"; };
 		FFAFBEC71B8BBEA7008D2A2F /* genie@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "genie@2x.png"; sourceTree = "<group>"; };
@@ -171,6 +173,7 @@
 				FF01A6F91B8980E800F54273 /* AppDelegate.swift */,
 				FF01A6FB1B8980E800F54273 /* ViewController.swift */,
 				FFAFBEBF1B8BB7DE008D2A2F /* RegisterViewController.swift */,
+				FF9F75EA1B8C062E008CAAD6 /* SignInViewController.swift */,
 				FF4A3FA31B8BD66C00F59B4E /* Main.storyboard */,
 				FF01A7051B8980E800F54273 /* LaunchScreen.storyboard */,
 				FF01A7081B8980E800F54273 /* Info.plist */,
@@ -420,6 +423,7 @@
 				FF01A7021B8980E800F54273 /* Genie.xcdatamodeld in Sources */,
 				FF01A6FC1B8980E800F54273 /* ViewController.swift in Sources */,
 				FF01A6FA1B8980E800F54273 /* AppDelegate.swift in Sources */,
+				FF9F75EB1B8C062E008CAAD6 /* SignInViewController.swift in Sources */,
 				FFAFBEC01B8BB7DE008D2A2F /* RegisterViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
