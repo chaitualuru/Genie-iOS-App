@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class RegisterViewController: UIViewController, UITextFieldDelegate {
 
@@ -15,6 +16,8 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet var emailAddress: UITextField!
     @IBOutlet var password: UITextField!
     @IBOutlet var mobileNumber: UITextField!
+    
+    var ref = Firebase(url:"https://getgenie.firebaseio.com/")
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -62,6 +65,62 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
         */
         // --------------------------------------------------------------------------------------
     
+    }
+    
+    @IBAction func register(sender: UIButton) {
+        
+        if firstName.text == "" || lastName.text == "" || emailAddress.text == "" || password.text == "" || mobileNumber.text == "" {
+            let alertController = UIAlertController(title: "", message: "All fields are required.", preferredStyle: .Alert)
+            
+            let okAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
+            
+            alertController.addAction(okAction)
+            
+            presentViewController(alertController, animated: true, completion: nil)
+
+        }
+        else {
+            self.ref.createUser(emailAddress.text!, password: password.text!,
+                withValueCompletionBlock: { error, result in
+                    if error != nil {
+                        if let errorCode = FAuthenticationError(rawValue: error.code) {
+                            switch (errorCode) {
+                            case .EmailTaken:
+                                let alertController = UIAlertController(title: "", message: "The specified email address is already in use.", preferredStyle: .Alert)
+                                
+                                let okAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
+                                
+                                alertController.addAction(okAction)
+                                
+                                self.presentViewController(alertController, animated: true, completion: nil)
+                            case .InvalidEmail:
+                                let alertController = UIAlertController(title: "", message: "The specified email address is invalid.", preferredStyle: .Alert)
+                                
+                                let okAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
+                                
+                                alertController.addAction(okAction)
+                                
+                                self.presentViewController(alertController, animated: true, completion: nil)
+                            default:
+                                print("Error creating user:", error)
+                            }
+                        }
+                    } else {
+                        let uid = result["uid"] as? String
+                        print("Successfully created user account with uid: \(uid)")
+                        
+                        let usersRef = self.ref.childByAppendingPath("users")
+                        
+                        let uidRef = usersRef.childByAppendingPath(uid)
+                        
+                        let newUser = ["first_name": self.firstName.text!, "last_name": self.lastName.text!, "mobile_number": self.mobileNumber.text!, "email_address": self.emailAddress.text!]
+                        
+                        uidRef.setValue(newUser)
+                    }
+            })
+
+        }
+        
     }
     
     

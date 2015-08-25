@@ -8,15 +8,25 @@
 
 import UIKit
 import CoreData
+import Firebase
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
+    
+    let ref = Firebase(url: "https://getgenie.firebaseio.com")
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        
+        if self.ref.authData != nil {
+            print("user authenticated: ", self.ref.authData)
+        }
+        else {
+            print("No user signed in")
+        }
+        
         return true
     }
 

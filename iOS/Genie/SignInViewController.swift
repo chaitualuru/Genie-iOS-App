@@ -7,11 +7,14 @@
 //
 
 import UIKit
+import Firebase
 
 class SignInViewController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet var emailAddress: UITextField!
     @IBOutlet var password: UITextField!
+    
+    var ref = Firebase(url:"https://getgenie.firebaseio.com/")
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,6 +34,83 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
         
         // --------------------------------------------------------------------------------------
         
+    }
+    
+    @IBAction func signIn(sender: UIButton) {
+        
+        if emailAddress.text == "" && password.text == "" {
+            
+            let alertController = UIAlertController(title: "", message: "Please enter your email address and password to sign in.", preferredStyle: .Alert)
+            
+            let okAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
+            
+            alertController.addAction(okAction)
+            
+            presentViewController(alertController, animated: true, completion: nil)
+            
+        }
+        else if emailAddress.text == "" {
+            
+            let alertController = UIAlertController(title: "", message: "Please enter your email address to sign in.", preferredStyle: .Alert)
+            
+            let okAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
+            
+            alertController.addAction(okAction)
+            
+            presentViewController(alertController, animated: true, completion: nil)
+            
+        }
+        else if password.text == "" {
+        
+            let alertController = UIAlertController(title: "", message: "Please enter your password to sign in.", preferredStyle: .Alert)
+            
+            let okAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
+            
+            alertController.addAction(okAction)
+            
+            presentViewController(alertController, animated: true, completion: nil)
+        
+        }
+        else {
+        
+            self.ref.authUser(self.emailAddress.text, password: self.password.text) {
+                error, authData in
+                if error != nil {
+                    if let errorCode = FAuthenticationError(rawValue: error.code) {
+                        switch (errorCode) {
+                        case .InvalidEmail:
+                            let alertController = UIAlertController(title: "", message: "The specified email address is invalid.", preferredStyle: .Alert)
+                            
+                            let okAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
+                            
+                            alertController.addAction(okAction)
+                            
+                            self.presentViewController(alertController, animated: true, completion: nil)
+                        case .UserDoesNotExist:
+                            let alertController = UIAlertController(title: "", message: "The specified email address is not registered.", preferredStyle: .Alert)
+                            
+                            let okAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
+                            
+                            alertController.addAction(okAction)
+                            
+                            self.presentViewController(alertController, animated: true, completion: nil)
+                        case .InvalidPassword:
+                            let alertController = UIAlertController(title: "", message: "The specified password is incorrect.", preferredStyle: .Alert)
+                            
+                            let okAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
+                            
+                            alertController.addAction(okAction)
+                            
+                            self.presentViewController(alertController, animated: true, completion: nil)
+                        default:
+                            print("Error creating user:", error)
+                        }
+                    }
+                } else {
+                    print("Logged in successfully:", authData.uid)
+                }
+            }
+        }
     }
 
     @IBAction func cancelSignIn(sender: UIBarButtonItem) {

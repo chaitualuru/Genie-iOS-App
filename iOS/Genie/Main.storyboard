@@ -311,6 +311,9 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="odj-W4-8ag"/>
                                 </constraints>
+                                <connections>
+                                    <action selector="register:" destination="0fL-N3-2Js" eventType="touchUpInside" id="MlC-36-mnM"/>
+                                </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="confirm.png" translatesAutoresizingMaskIntoConstraints="NO" id="jfs-YA-G55">
                                 <rect key="frame" x="288" y="562" width="24" height="17.5"/>
@@ -448,6 +451,9 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="3rU-7P-ZRS"/>
                                 </constraints>
+                                <connections>
+                                    <action selector="signIn:" destination="6OP-YU-bBa" eventType="touchUpInside" id="VmN-CM-3f9"/>
+                                </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="confirm.png" translatesAutoresizingMaskIntoConstraints="NO" id="cFs-GQ-Dia">
                                 <rect key="frame" x="288" y="562" width="24" height="17.5"/>
