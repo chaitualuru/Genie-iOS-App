@@ -42,10 +42,11 @@
 		FF4A3FA01B8BCF5A00F59B4E /* cancel@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = FF4A3F9D1B8BCF5A00F59B4E /* cancel@1x.png */; };
 		FF4A3FA11B8BCF5A00F59B4E /* cancel@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FF4A3F9E1B8BCF5A00F59B4E /* cancel@2x.png */; };
 		FF4A3FA21B8BCF5A00F59B4E /* cancel@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = FF4A3F9F1B8BCF5A00F59B4E /* cancel@3x.png */; };
-		FF4A3FA41B8BD66C00F59B4E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FF4A3FA31B8BD66C00F59B4E /* Main.storyboard */; };
 		FF85C9F51B8BDC3400F8E371 /* line@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = FF85C9F21B8BDC3400F8E371 /* line@1x.png */; };
 		FF85C9F61B8BDC3400F8E371 /* line@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FF85C9F31B8BDC3400F8E371 /* line@2x.png */; };
 		FF85C9F71B8BDC3400F8E371 /* line@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = FF85C9F41B8BDC3400F8E371 /* line@3x.png */; };
+		FF8EAAE11B8D580E00EE1396 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF8EAAE01B8D580E00EE1396 /* Message.swift */; };
+		FF8EAAE31B8D752200EE1396 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FF8EAAE21B8D752200EE1396 /* Main.storyboard */; };
 		FF9F75EB1B8C062E008CAAD6 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF9F75EA1B8C062E008CAAD6 /* SignInViewController.swift */; };
 		FFAFBEC01B8BB7DE008D2A2F /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFAFBEBF1B8BB7DE008D2A2F /* RegisterViewController.swift */; };
 		FFAFBECC1B8BBEA7008D2A2F /* genie@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = FFAFBEC61B8BBEA7008D2A2F /* genie@1x.png */; };
@@ -118,10 +119,12 @@
 		FF4A3F9D1B8BCF5A00F59B4E /* cancel@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cancel@1x.png"; sourceTree = "<group>"; };
 		FF4A3F9E1B8BCF5A00F59B4E /* cancel@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cancel@2x.png"; sourceTree = "<group>"; };
 		FF4A3F9F1B8BCF5A00F59B4E /* cancel@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cancel@3x.png"; sourceTree = "<group>"; };
-		FF4A3FA31B8BD66C00F59B4E /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		FF85C9F21B8BDC3400F8E371 /* line@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "line@1x.png"; sourceTree = "<group>"; };
 		FF85C9F31B8BDC3400F8E371 /* line@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "line@2x.png"; sourceTree = "<group>"; };
 		FF85C9F41B8BDC3400F8E371 /* line@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "line@3x.png"; sourceTree = "<group>"; };
+		FF8EAADD1B8D576700EE1396 /* Genie-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Genie-Bridging-Header.h"; sourceTree = "<group>"; };
+		FF8EAAE01B8D580E00EE1396 /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		FF8EAAE21B8D752200EE1396 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		FF9F75EA1B8C062E008CAAD6 /* SignInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		FFAFBEBF1B8BB7DE008D2A2F /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		FFAFBEC61B8BBEA7008D2A2F /* genie@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "genie@1x.png"; sourceTree = "<group>"; };
@@ -207,11 +210,13 @@
 				FFAFBEBF1B8BB7DE008D2A2F /* RegisterViewController.swift */,
 				FF9F75EA1B8C062E008CAAD6 /* SignInViewController.swift */,
 				FFD72DA61B8C7AA5006BC039 /* HomeViewController.swift */,
-				FF4A3FA31B8BD66C00F59B4E /* Main.storyboard */,
+				FF8EAAE01B8D580E00EE1396 /* Message.swift */,
+				FF8EAAE21B8D752200EE1396 /* Main.storyboard */,
 				FF01A7051B8980E800F54273 /* LaunchScreen.storyboard */,
 				FF01A7081B8980E800F54273 /* Info.plist */,
 				FF01A7001B8980E800F54273 /* Genie.xcdatamodeld */,
 				FF01A7031B8980E800F54273 /* Assets.xcassets */,
+				FF8EAADD1B8D576700EE1396 /* Genie-Bridging-Header.h */,
 			);
 			path = Genie;
 			sourceTree = "<group>";
@@ -357,6 +362,7 @@
 		FF01A6EE1B8980E800F54273 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 0700;
 				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = genie;
 				TargetAttributes = {
@@ -424,7 +430,6 @@
 				FF18CCDA1B8D2240003A95A6 /* menu@2x.png in Resources */,
 				FFAFBECE1B8BBEA7008D2A2F /* genie@3x.png in Resources */,
 				FF85C9F71B8BDC3400F8E371 /* line@3x.png in Resources */,
-				FF4A3FA41B8BD66C00F59B4E /* Main.storyboard in Resources */,
 				FF3314841B8A5302008B1B9E /* SF-UI-Display-Heavy.otf in Resources */,
 				FF33148E1B8A5309008B1B9E /* SF-UI-Text-HeavyItalic.otf in Resources */,
 				FF33148C1B8A5309008B1B9E /* SF-UI-Text-BoldItalic.otf in Resources */,
@@ -432,6 +437,7 @@
 				FFAFBECC1B8BBEA7008D2A2F /* genie@1x.png in Resources */,
 				FFD72DA51B8C6492006BC039 /* confirm@3x.png in Resources */,
 				FF85C9F51B8BDC3400F8E371 /* line@1x.png in Resources */,
+				FF8EAAE31B8D752200EE1396 /* Main.storyboard in Resources */,
 				FF18CCDB1B8D2240003A95A6 /* menu@3x.png in Resources */,
 				FF3314901B8A5309008B1B9E /* SF-UI-Text-LightItalic.otf in Resources */,
 				FF33148F1B8A5309008B1B9E /* SF-UI-Text-Light.otf in Resources */,
@@ -500,6 +506,7 @@
 				FF9F75EB1B8C062E008CAAD6 /* SignInViewController.swift in Sources */,
 				FFAFBEC01B8BB7DE008D2A2F /* RegisterViewController.swift in Sources */,
 				FFD72DA71B8C7AA5006BC039 /* HomeViewController.swift in Sources */,
+				FF8EAAE11B8D580E00EE1396 /* Message.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -634,10 +641,13 @@
 			baseConfigurationReference = 5C83FE27D46A28758CEC6503 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = Genie/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.getgenie.Genie;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Genie/Genie-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -646,10 +656,12 @@
 			baseConfigurationReference = A96BCBFDE22A0A2035A3A7A3 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = Genie/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.getgenie.Genie;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Genie/Genie-Bridging-Header.h";
 			};
 			name = Release;
 		};

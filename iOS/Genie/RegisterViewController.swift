@@ -17,10 +17,12 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet var password: UITextField!
     @IBOutlet var mobileNumber: UITextField!
     
-    var ref = Firebase(url:"https://getgenie.firebaseio.com/")
+    var ref: Firebase!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        ref = Firebase(url:"https://getgenie.firebaseio.com/")
         
         // Dismiss keyboard on tap --------------------------------------------------------------
         
@@ -69,6 +71,8 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func register(sender: UIButton) {
         
+        // form validation ----------------------------------------------------------------------
+        
         if firstName.text == "" || lastName.text == "" || emailAddress.text == "" || password.text == "" || mobileNumber.text == "" {
             let alertController = UIAlertController(title: "", message: "All fields are required.", preferredStyle: .Alert)
             
@@ -97,6 +101,12 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
             
             presentViewController(alertController, animated: true, completion: nil)
         }
+            
+        // --------------------------------------------------------------------------------------
+          
+            
+        // registering user ---------------------------------------------------------------------
+            
         else {
             self.ref.createUser(emailAddress.text!, password: password.text!,
                 withValueCompletionBlock: { error, result in
@@ -127,14 +137,38 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
                         let uid = result["uid"] as? String
                         print("Successfully created user account with uid: \(uid)")
                         
-                        let usersRef = self.ref.childByAppendingPath("users")
+        // --------------------------------------------------------------------------------------
                         
-                        let uidRef = usersRef.childByAppendingPath(uid)
                         
-                        let newUser = ["first_name": self.firstName.text!, "last_name": self.lastName.text!, "mobile_number": self.mobileNumber.text!, "email_address": self.emailAddress.text!]
+        // signing in user ----------------------------------------------------------------------
                         
-                        uidRef.setValue(newUser)
+                        self.ref.authUser(self.emailAddress.text, password: self.password.text) {
+                            error, authData in
+                            if error != nil {
+                                print("Logging in failed after successfully registering")
+                            } else {
+                                print("Logged registered user in successfully:", authData.uid)
+                                
+        // --------------------------------------------------------------------------------------
+                                
+                                
+        // storing user details -----------------------------------------------------------------
+                                
+                                let usersRef = self.ref.childByAppendingPath("users")
+                                
+                                let uidRef = usersRef.childByAppendingPath(uid)
+                                
+                                let newUser = ["first_name": self.firstName.text!, "last_name": self.lastName.text!, "mobile_number": self.mobileNumber.text!, "email_address": self.emailAddress.text!]
+                                
+                                uidRef.setValue(newUser)
+                                
+                                self.performSegueWithIdentifier("REGISTER", sender: result)
+                            }
+                        }
                     }
+                    
+        // --------------------------------------------------------------------------------------
+        
             })
 
         }
@@ -199,12 +233,5 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-    /*
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-    // Get the new view controller using segue.destinationViewController.
-    // Pass the selected object to the new view controller.
-    }
-    */
     
 }

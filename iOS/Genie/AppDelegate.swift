@@ -20,12 +20,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
         
+        // set initial view controller ----------------------------------------------------------
+        
         if self.ref.authData != nil {
-            print("user authenticated: ", self.ref.authData)
+            print("user authenticated: ", self.ref.authData, "loading home view")
+            //get access to login view
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            
+            self.window?.rootViewController = storyboard.instantiateViewControllerWithIdentifier("homeView")
         }
         else {
-            print("No user signed in")
+            print("No user signed in, loading intro view")
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            
+            self.window?.rootViewController = storyboard.instantiateViewControllerWithIdentifier("introView")
         }
+        
+        // --------------------------------------------------------------------------------------
+
         
         return true
     }

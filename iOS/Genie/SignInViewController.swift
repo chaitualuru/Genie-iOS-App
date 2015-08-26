@@ -14,10 +14,12 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet var emailAddress: UITextField!
     @IBOutlet var password: UITextField!
     
-    var ref = Firebase(url:"https://getgenie.firebaseio.com/")
+    var ref: Firebase!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        ref = Firebase(url:"https://getgenie.firebaseio.com/")
 
         // Dismiss keyboard on tap --------------------------------------------------------------
         
@@ -37,6 +39,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func signIn(sender: UIButton) {
+        // form validation ----------------------------------------------------------------------
         
         if emailAddress.text == "" && password.text == "" {
             
@@ -71,6 +74,12 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
             presentViewController(alertController, animated: true, completion: nil)
         
         }
+            
+        // --------------------------------------------------------------------------------------
+            
+        
+        // signing in user ----------------------------------------------------------------------
+            
         else {
         
             self.ref.authUser(self.emailAddress.text, password: self.password.text) {
@@ -107,16 +116,18 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
                         }
                     }
                 } else {
-                    print("Logged in successfully:", authData.uid)
+                    print("Signed in successfully:", authData.uid)
+                    self.performSegueWithIdentifier("SIGN_IN", sender: authData)
                 }
             }
+            
+            // --------------------------------------------------------------------------------------
+            
         }
     }
 
     @IBAction func cancelSignIn(sender: UIBarButtonItem) {
-        
         self.dismissViewControllerAnimated(true, completion: nil)
-        
     }
     
     // Dismissing Keyboard ------------------------------------------------------------------
@@ -156,12 +167,5 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-    /*
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
