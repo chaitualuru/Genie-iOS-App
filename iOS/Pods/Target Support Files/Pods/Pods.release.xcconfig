@@ -1,6 +1,6 @@
 FRAMEWORK_SEARCH_PATHS = "$(PODS_ROOT)/Firebase" "$(PODS_ROOT)/Firebase"
 GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
-HEADER_SEARCH_PATHS = $(inherited) "${PODS_ROOT}/Headers/Public" "${PODS_ROOT}/Headers/Public/Firebase"
-OTHER_CFLAGS = $(inherited) -isystem "${PODS_ROOT}/Headers/Public" -isystem "${PODS_ROOT}/Headers/Public/Firebase"
-OTHER_LDFLAGS = $(inherited) -ObjC -l"c++" -l"icucore" -framework "CFNetwork" -framework "Firebase" -framework "Security" -framework "SystemConfiguration"
+HEADER_SEARCH_PATHS = $(inherited) "${PODS_ROOT}/Headers/Public" "${PODS_ROOT}/Headers/Public/Firebase" "${PODS_ROOT}/Headers/Public/JSQMessagesViewController" "${PODS_ROOT}/Headers/Public/JSQSystemSoundPlayer"
+OTHER_CFLAGS = $(inherited) -isystem "${PODS_ROOT}/Headers/Public" -isystem "${PODS_ROOT}/Headers/Public/Firebase" -isystem "${PODS_ROOT}/Headers/Public/JSQMessagesViewController" -isystem "${PODS_ROOT}/Headers/Public/JSQSystemSoundPlayer"
+OTHER_LDFLAGS = $(inherited) -ObjC -l"JSQMessagesViewController" -l"JSQSystemSoundPlayer" -l"c++" -l"icucore" -framework "AudioToolbox" -framework "CFNetwork" -framework "CoreGraphics" -framework "CoreLocation" -framework "Firebase" -framework "Foundation" -framework "MapKit" -framework "QuartzCore" -framework "Security" -framework "SystemConfiguration" -framework "UIKit"
 PODS_ROOT = ${SRCROOT}/Pods

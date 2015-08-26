@@ -15,6 +15,9 @@
 		FF01A7071B8980E800F54273 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FF01A7051B8980E800F54273 /* LaunchScreen.storyboard */; };
 		FF01A7121B8980E800F54273 /* GenieTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF01A7111B8980E800F54273 /* GenieTests.swift */; };
 		FF01A71D1B8980E800F54273 /* GenieUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF01A71C1B8980E800F54273 /* GenieUITests.swift */; };
+		FF18CCD91B8D2240003A95A6 /* menu@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = FF18CCD61B8D2240003A95A6 /* menu@1x.png */; };
+		FF18CCDA1B8D2240003A95A6 /* menu@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FF18CCD71B8D2240003A95A6 /* menu@2x.png */; };
+		FF18CCDB1B8D2240003A95A6 /* menu@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = FF18CCD81B8D2240003A95A6 /* menu@3x.png */; };
 		FF3314821B8A52FB008B1B9E /* SF-UI-Display-Black.otf in Resources */ = {isa = PBXBuildFile; fileRef = FF33146D1B8A52E4008B1B9E /* SF-UI-Display-Black.otf */; };
 		FF3314831B8A52FE008B1B9E /* SF-UI-Display-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = FF33146E1B8A52E4008B1B9E /* SF-UI-Display-Bold.otf */; };
 		FF3314841B8A5302008B1B9E /* SF-UI-Display-Heavy.otf in Resources */ = {isa = PBXBuildFile; fileRef = FF33146F1B8A52E4008B1B9E /* SF-UI-Display-Heavy.otf */; };
@@ -88,6 +91,9 @@
 		FF01A7181B8980E800F54273 /* GenieUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GenieUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FF01A71C1B8980E800F54273 /* GenieUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenieUITests.swift; sourceTree = "<group>"; };
 		FF01A71E1B8980E800F54273 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FF18CCD61B8D2240003A95A6 /* menu@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "menu@1x.png"; sourceTree = "<group>"; };
+		FF18CCD71B8D2240003A95A6 /* menu@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "menu@2x.png"; sourceTree = "<group>"; };
+		FF18CCD81B8D2240003A95A6 /* menu@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "menu@3x.png"; sourceTree = "<group>"; };
 		FF33146D1B8A52E4008B1B9E /* SF-UI-Display-Black.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-UI-Display-Black.otf"; sourceTree = "<group>"; };
 		FF33146E1B8A52E4008B1B9E /* SF-UI-Display-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-UI-Display-Bold.otf"; sourceTree = "<group>"; };
 		FF33146F1B8A52E4008B1B9E /* SF-UI-Display-Heavy.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-UI-Display-Heavy.otf"; sourceTree = "<group>"; };
@@ -200,12 +206,12 @@
 				FF01A6FB1B8980E800F54273 /* IntroViewController.swift */,
 				FFAFBEBF1B8BB7DE008D2A2F /* RegisterViewController.swift */,
 				FF9F75EA1B8C062E008CAAD6 /* SignInViewController.swift */,
+				FFD72DA61B8C7AA5006BC039 /* HomeViewController.swift */,
 				FF4A3FA31B8BD66C00F59B4E /* Main.storyboard */,
 				FF01A7051B8980E800F54273 /* LaunchScreen.storyboard */,
 				FF01A7081B8980E800F54273 /* Info.plist */,
 				FF01A7001B8980E800F54273 /* Genie.xcdatamodeld */,
 				FF01A7031B8980E800F54273 /* Assets.xcassets */,
-				FFD72DA61B8C7AA5006BC039 /* HomeViewController.swift */,
 			);
 			path = Genie;
 			sourceTree = "<group>";
@@ -280,6 +286,9 @@
 				FFD72DA01B8C6492006BC039 /* confirm@1x.png */,
 				FFD72DA11B8C6492006BC039 /* confirm@2x.png */,
 				FFD72DA21B8C6492006BC039 /* confirm@3x.png */,
+				FF18CCD61B8D2240003A95A6 /* menu@1x.png */,
+				FF18CCD71B8D2240003A95A6 /* menu@2x.png */,
+				FF18CCD81B8D2240003A95A6 /* menu@3x.png */,
 			);
 			name = Images;
 			sourceTree = "<group>";
@@ -404,6 +413,7 @@
 				FF3314911B8A5309008B1B9E /* SF-UI-Text-Medium.otf in Resources */,
 				FF33148B1B8A5309008B1B9E /* SF-UI-Text-Bold.otf in Resources */,
 				FF01A7041B8980E800F54273 /* Assets.xcassets in Resources */,
+				FF18CCD91B8D2240003A95A6 /* menu@1x.png in Resources */,
 				FF3314831B8A52FE008B1B9E /* SF-UI-Display-Bold.otf in Resources */,
 				FF33148D1B8A5309008B1B9E /* SF-UI-Text-Heavy.otf in Resources */,
 				FF85C9F61B8BDC3400F8E371 /* line@2x.png in Resources */,
@@ -411,6 +421,7 @@
 				FF4A3FA11B8BCF5A00F59B4E /* cancel@2x.png in Resources */,
 				FF3314931B8A5309008B1B9E /* SF-UI-Text-Regular.otf in Resources */,
 				FF3314961B8A5309008B1B9E /* SF-UI-Text-SemiboldItalic.otf in Resources */,
+				FF18CCDA1B8D2240003A95A6 /* menu@2x.png in Resources */,
 				FFAFBECE1B8BBEA7008D2A2F /* genie@3x.png in Resources */,
 				FF85C9F71B8BDC3400F8E371 /* line@3x.png in Resources */,
 				FF4A3FA41B8BD66C00F59B4E /* Main.storyboard in Resources */,
@@ -421,6 +432,7 @@
 				FFAFBECC1B8BBEA7008D2A2F /* genie@1x.png in Resources */,
 				FFD72DA51B8C6492006BC039 /* confirm@3x.png in Resources */,
 				FF85C9F51B8BDC3400F8E371 /* line@1x.png in Resources */,
+				FF18CCDB1B8D2240003A95A6 /* menu@3x.png in Resources */,
 				FF3314901B8A5309008B1B9E /* SF-UI-Text-LightItalic.otf in Resources */,
 				FF33148F1B8A5309008B1B9E /* SF-UI-Text-Light.otf in Resources */,
 				FF3314881B8A5309008B1B9E /* SF-UI-Display-Semibold.otf in Resources */,
