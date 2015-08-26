@@ -26,6 +26,7 @@ class IntroViewController: UIViewController {
         return false
     }
     
+    
     override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
         return UIInterfaceOrientationMask.Portrait
     }
