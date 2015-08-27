@@ -13,6 +13,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet var emailAddress: UITextField!
     @IBOutlet var password: UITextField!
+    @IBOutlet var navBar: UINavigationBar!
     
     var ref: Firebase!
     
@@ -20,6 +21,26 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         
         ref = Firebase(url:"https://getgenie.firebaseio.com/")
+        
+        // Handling Navigation Bar --------------------------------------------------------------
+        
+        let navItem = UINavigationItem(title: "Sign In")
+        self.navBar.pushNavigationItem(navItem, animated: true)
+        if let navFont = UIFont(name: "SFUIDisplay-Regular", size: 20.0) {
+            let attributes: [String:AnyObject]? = [
+                // 18 146 216
+                NSForegroundColorAttributeName: UIColor(red: (27/255.0), green: (165/255.0), blue: (221/255.0), alpha: 1.0),
+                NSFontAttributeName: navFont
+            ]
+            self.navBar.titleTextAttributes = attributes
+        }
+        
+        navItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "cancel.png"), landscapeImagePhone: UIImage(named: "cancel.png"), style: UIBarButtonItemStyle.Plain, target: self, action: "cancelSignIn:")
+        
+        self.navigationItem.leftBarButtonItem?.tintColor = UIColor(red: (27/255.0), green: (165/255.0), blue: (221/255.0), alpha: 1.0)
+        
+        // --------------------------------------------------------------------------------------
+        
 
         // Dismiss keyboard on tap --------------------------------------------------------------
         
@@ -126,7 +147,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
         }
     }
 
-    @IBAction func cancelSignIn(sender: UIBarButtonItem) {
+    func cancelSignIn(sender: UIBarButtonItem) {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     

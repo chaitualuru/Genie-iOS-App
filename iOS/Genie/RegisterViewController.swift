@@ -16,6 +16,7 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet var emailAddress: UITextField!
     @IBOutlet var password: UITextField!
     @IBOutlet var mobileNumber: UITextField!
+    @IBOutlet var navBar: UINavigationBar!
     
     var ref: Firebase!
     
@@ -57,14 +58,23 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
         // --------------------------------------------------------------------------------------
     
         
-        // Setting title attributes -------------------------------------------------------------
-        /*
-        let attributes = [
-            NSForegroundColorAttributeName: UIColor(red: 27, green: 165, blue: 221, alpha: 1.0),
-            NSFontAttributeName: UIFont(name: "SFUIDisplay-Regular", size: 20)!
-        ]
-        self.navigationController?.navigationBar.titleTextAttributes = attributes
-        */
+        // Handling Navigation Bar --------------------------------------------------------------
+        
+        let navItem = UINavigationItem(title: "Register")
+        self.navBar.pushNavigationItem(navItem, animated: true)
+        if let navFont = UIFont(name: "SFUIDisplay-Regular", size: 20.0) {
+            let attributes: [String:AnyObject]? = [
+                // 18 146 216
+                NSForegroundColorAttributeName: UIColor(red: (27/255.0), green: (165/255.0), blue: (221/255.0), alpha: 1.0),
+                NSFontAttributeName: navFont
+            ]
+            self.navBar.titleTextAttributes = attributes
+        }
+        
+        navItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "cancel.png"), landscapeImagePhone: UIImage(named: "cancel.png"), style: UIBarButtonItemStyle.Plain, target: self, action: "cancelRegister:")
+        
+        self.navigationItem.leftBarButtonItem?.tintColor = UIColor(red: (27/255.0), green: (165/255.0), blue: (221/255.0), alpha: 1.0)
+        
         // --------------------------------------------------------------------------------------
     
     }
@@ -176,7 +186,7 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
     }
     
     
-    @IBAction func cancelRegister(sender: UIBarButtonItem) {
+    func cancelRegister(sender: UIBarButtonItem) {
         if firstName.text == "" && lastName.text == "" && emailAddress.text == "" && password.text == "" && mobileNumber.text == "" {
             self.dismissViewControllerAnimated(true, completion: nil)
         }

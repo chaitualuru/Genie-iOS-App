@@ -166,13 +166,7 @@
                                     <offsetWrapper key="textShadowOffset" horizontal="0.0" vertical="0.0"/>
                                 </textAttributes>
                                 <items>
-                                    <navigationItem title="Register" id="RPc-o0-SOA">
-                                        <barButtonItem key="leftBarButtonItem" image="cancel.png" id="aZV-1O-9yH">
-                                            <connections>
-                                                <action selector="cancelRegister:" destination="0fL-N3-2Js" id="NF9-yB-st6"/>
-                                            </connections>
-                                        </barButtonItem>
-                                    </navigationItem>
+                                    <navigationItem id="RPc-o0-SOA"/>
                                 </items>
                             </navigationBar>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="54r-vi-AvQ">
@@ -197,7 +191,7 @@
                                     <constraint firstAttribute="height" constant="21" id="hjA-yG-ZSw"/>
                                     <constraint firstAttribute="width" constant="83" id="o1f-e1-IQ6"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="12"/>
+                                <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="13"/>
                                 <color key="textColor" red="0.10588235294117647" green="0.6470588235294118" blue="0.8666666666666667" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -206,7 +200,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="pGY-Sg-fHf"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="14"/>
+                                <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="15"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
                             </textField>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="line.png" translatesAutoresizingMaskIntoConstraints="NO" id="63E-OS-iM5">
@@ -221,7 +215,7 @@
                                     <constraint firstAttribute="width" constant="83" id="7Dj-Un-RFP"/>
                                     <constraint firstAttribute="height" constant="21" id="gRl-Rp-izp"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="12"/>
+                                <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="13"/>
                                 <color key="textColor" red="0.1058823529" green="0.64705882349999999" blue="0.86666666670000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -230,7 +224,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="9al-8G-Nq6"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" secureTextEntry="YES"/>
                             </textField>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="line.png" translatesAutoresizingMaskIntoConstraints="NO" id="bha-aO-Pn1">
@@ -240,12 +234,12 @@
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mobile Number" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KDB-Pa-LcR">
-                                <rect key="frame" x="45" y="403" width="93" height="21"/>
+                                <rect key="frame" x="45" y="403" width="100" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="8cR-ma-flL"/>
-                                    <constraint firstAttribute="width" constant="93" id="Ksh-ez-jMH"/>
+                                    <constraint firstAttribute="width" constant="100" id="Ksh-ez-jMH"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="12"/>
+                                <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="13"/>
                                 <color key="textColor" red="0.1058823529" green="0.64705882349999999" blue="0.86666666670000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -254,7 +248,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="TsA-hV-PRQ"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                             </textField>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="line.png" translatesAutoresizingMaskIntoConstraints="NO" id="xze-tZ-YaY">
@@ -269,7 +263,7 @@
                                     <constraint firstAttribute="height" constant="21" id="NkP-U1-dvs"/>
                                     <constraint firstAttribute="width" constant="83" id="gDE-4O-a0a"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="12"/>
+                                <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="13"/>
                                 <color key="textColor" red="0.1058823529" green="0.64705882349999999" blue="0.86666666670000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -278,7 +272,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="Rqf-KL-aES"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="14"/>
+                                <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="15"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="line.png" translatesAutoresizingMaskIntoConstraints="NO" id="ldd-C7-A0c">
@@ -293,7 +287,7 @@
                                     <constraint firstAttribute="height" constant="21" id="19M-eS-y47"/>
                                     <constraint firstAttribute="width" constant="83" id="9W7-Kg-XGa"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="12"/>
+                                <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="13"/>
                                 <color key="textColor" red="0.1058823529" green="0.64705882349999999" blue="0.86666666670000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -302,7 +296,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="zb5-Wu-WQx"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="13"/>
+                                <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="15"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kfU-Q6-sdp">
@@ -381,6 +375,7 @@
                         <outlet property="firstName" destination="jry-XF-pI7" id="wjT-rZ-Hec"/>
                         <outlet property="lastName" destination="eGQ-3X-9sy" id="sLY-2e-3UW"/>
                         <outlet property="mobileNumber" destination="l28-aK-XvE" id="IKr-io-6QM"/>
+                        <outlet property="navBar" destination="9c4-4o-WPu" id="CfE-9N-Ort"/>
                         <outlet property="password" destination="Fcn-f1-S1d" id="LAo-ki-HgT"/>
                         <segue destination="MPQ-AP-793" kind="show" identifier="REGISTER" id="VvV-vL-25t"/>
                     </connections>
@@ -389,7 +384,7 @@
             </objects>
             <point key="canvasLocation" x="1154" y="709"/>
         </scene>
-        <!--Genie-->
+        <!--Home View Controller-->
         <scene sceneID="yPD-tg-k7M">
             <objects>
                 <viewController id="bTm-PC-Yl2" customClass="HomeViewController" customModule="Genie" customModuleProvider="target" sceneMemberID="viewController">
@@ -402,7 +397,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Genie" id="JFx-Ua-TkY"/>
+                    <navigationItem key="navigationItem" id="JFx-Ua-TkY"/>
                     <connections>
                         <segue destination="BYZ-38-t0r" kind="presentation" identifier="LOGOUT" id="QnP-O1-o1e"/>
                     </connections>
@@ -431,17 +426,11 @@
                                 <color key="barTintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                 <textAttributes key="titleTextAttributes">
                                     <fontDescription key="fontDescription" name="SFUIDisplay-Regular" family="SF UI Display" pointSize="20"/>
-                                    <color key="textColor" red="0.1058823529" green="0.64705882349999999" blue="0.86666666670000003" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="textColor" red="0.10588257014751434" green="0.64705884456634521" blue="0.86666655540466309" alpha="1" colorSpace="calibratedRGB"/>
                                     <offsetWrapper key="textShadowOffset" horizontal="0.0" vertical="0.0"/>
                                 </textAttributes>
                                 <items>
-                                    <navigationItem title="Sign In" id="9ud-yq-FOQ">
-                                        <barButtonItem key="leftBarButtonItem" image="cancel.png" id="8hX-V2-7DO">
-                                            <connections>
-                                                <action selector="cancelSignIn:" destination="6OP-YU-bBa" id="NXZ-8A-GQ8"/>
-                                            </connections>
-                                        </barButtonItem>
-                                    </navigationItem>
+                                    <navigationItem id="9ud-yq-FOQ"/>
                                 </items>
                             </navigationBar>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B0V-rP-RNq">
@@ -477,7 +466,7 @@
                                     <constraint firstAttribute="height" constant="21" id="GId-Dp-IhW"/>
                                     <constraint firstAttribute="width" constant="83" id="aAE-QW-Trv"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="12"/>
+                                <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="13"/>
                                 <color key="textColor" red="0.1058823529" green="0.64705882349999999" blue="0.86666666670000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -486,7 +475,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="nLR-IS-zee"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="14"/>
+                                <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="15"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
                             </textField>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="line.png" translatesAutoresizingMaskIntoConstraints="NO" id="upy-Ib-NZl">
@@ -501,7 +490,7 @@
                                     <constraint firstAttribute="width" constant="83" id="64T-zn-wR3"/>
                                     <constraint firstAttribute="height" constant="21" id="TtZ-yx-bUa"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="12"/>
+                                <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="13"/>
                                 <color key="textColor" red="0.1058823529" green="0.64705882349999999" blue="0.86666666670000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -510,7 +499,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="rnF-7K-jZh"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" secureTextEntry="YES"/>
                             </textField>
                         </subviews>
@@ -546,6 +535,7 @@
                     </view>
                     <connections>
                         <outlet property="emailAddress" destination="LT6-vG-f4R" id="phv-SM-5Hd"/>
+                        <outlet property="navBar" destination="2wd-WF-PNM" id="OWJ-Xo-QkI"/>
                         <outlet property="password" destination="DVW-61-SUf" id="giE-Ld-VP6"/>
                         <segue destination="MPQ-AP-793" kind="show" identifier="SIGN_IN" id="FPZ-eq-ADi"/>
                     </connections>
@@ -574,7 +564,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="cancel.png" width="17" height="17"/>
         <image name="confirm.png" width="375" height="60"/>
         <image name="line.png" width="375" height="2"/>
     </resources>

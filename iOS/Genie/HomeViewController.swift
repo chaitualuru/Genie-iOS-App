@@ -23,33 +23,63 @@ class HomeViewController: JSQMessagesViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        self.title = "Genie"
-//        let attributes = [
-//            NSForegroundColorAttributeName: UIColor(red: 27, green: 165, blue: 221, alpha: 1.0),
-//            NSFontAttributeName: UIFont(name: "SFUIDisplay-Regular", size: 20)!
-//        ]
-//        self.navigationController?.navigationBar.titleTextAttributes = attributes
-        
         self.ref = Firebase(url:"https://getgenie.firebaseio.com/")
         self.user = ref.authData
         self.senderId = user?.uid
-        self.senderDisplayName = "Not Set Yet"
+        self.senderDisplayName = "NotSet"
         self.profileRef = Firebase(url: "https://getgenie.firebaseio.com/users/" + senderId + "/first_name")
         self.profileRef.observeEventType(.Value, withBlock: { snapshot in
             self.senderDisplayName = snapshot.value as! String
             }, withCancelBlock: { error in
                 print(error.description)
         })
+
+        // Handling Navigation Bar --------------------------------------------------------------
+        
+        self.title = "Genie"
+        if let navFont = UIFont(name: "SFUIDisplay-Regular", size: 20.0) {
+            let attributes: [String:AnyObject]? = [
+                // 18 146 216
+                NSForegroundColorAttributeName: UIColor(red: (27/255.0), green: (165/255.0), blue: (221/255.0), alpha: 1.0),
+                NSFontAttributeName: navFont
+            ]
+            self.navigationController?.navigationBar.titleTextAttributes = attributes
+        }
+        
+        self.navigationController?.navigationBar.barTintColor = UIColor.whiteColor()
+        
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "menu.png"), landscapeImagePhone: UIImage(named: "menu.png"), style: UIBarButtonItemStyle.Plain, target: self, action: "logout:")
+        
+        self.navigationItem.leftBarButtonItem?.tintColor = UIColor(red: (27/255.0), green: (165/255.0), blue: (221/255.0), alpha: 1.0)
+        
+        // --------------------------------------------------------------------------------------
+        
+        
+        // Setting up Input Bar -----------------------------------------------------------------
         
         inputToolbar!.contentView!.leftBarButtonItem = nil
+        inputToolbar?.contentView?.backgroundColor = UIColor.whiteColor()
+        inputToolbar!.contentView?.textView?.layer.borderWidth = 0
+        inputToolbar!.contentView?.textView?.placeHolder = "Type a message"
+        inputToolbar!.contentView?.textView?.font = UIFont(name: "SFUIText-Regular", size: 15.0)
+        inputToolbar!.contentView?.rightBarButtonItem?.setTitle("", forState: UIControlState.Normal)
+        let sendImage = UIImage(named: "lamp.png")
+        let sendButton: UIButton = UIButton(type: UIButtonType.Custom)
+        sendButton.setImage(sendImage, forState: UIControlState.Normal)
+        inputToolbar!.contentView?.rightBarButtonItem? = sendButton
         automaticallyScrollsToMostRecentMessage = true
+        
+        // --------------------------------------------------------------------------------------
+        
+        
+        // Removing avatars ---------------------------------------------------------------------
         
         self.collectionView!.collectionViewLayout.incomingAvatarViewSize = CGSizeZero;
         self.collectionView!.collectionViewLayout.outgoingAvatarViewSize = CGSizeZero;
         
-        self.showLoadEarlierMessagesHeader = true
+        // --------------------------------------------------------------------------------------
         
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "menu.png"), landscapeImagePhone: UIImage(named: "menu.png"), style: UIBarButtonItemStyle.Plain, target: self, action: "logout:")
+//        self.showLoadEarlierMessagesHeader = true
         
         JSQMessagesCollectionViewCell.registerMenuAction("delete:")
         
@@ -61,6 +91,7 @@ class HomeViewController: JSQMessagesViewController {
         // --------------------------------------------------------------------------------------
         
         setupFirebase()
+        print(messages)
 
     }
     
@@ -71,25 +102,22 @@ class HomeViewController: JSQMessagesViewController {
 
 
     func setupFirebase() {
-        self.messagesRef = Firebase(url: "https://swift-chat.firebaseio.com/messages/" + senderId)
+        self.messagesRef = Firebase(url: "https://getgenie.firebaseio.com/messages/" + senderId)
         
         // *** STEP 4: RECEIVE MESSAGES FROM FIREBASE (limited to latest 25 messages)
-        messagesRef.queryLimitedToLast(25).observeEventType(FEventType.ChildAdded, withBlock: { snapshot in
+        messagesRef.queryLimitedToLast(25).observeEventType(FEventType.ChildAdded, withBlock: {
+            (snapshot) in
             let text = snapshot.value["text"] as? String
-            let displayName = snapshot.value["name"] as? String
-            let senderId = snapshot.value["uid"] as? String
-            let message = Message(text: text, senderId: senderId, senderDisplayName: displayName)
+            let message = Message(text: text, senderId: self.senderId, senderDisplayName: self.senderDisplayName)
             self.messages.append(message)
             self.finishReceivingMessage()
         })
     }
 
-    func sendMessage(text: String!, uid: String!, displayName: String!) {
-        // *** STEP 3: ADD A MESSAGE TO FIREBASE
+    func sendMessage(text: String!) {
+        // *** STEP 3: ADD A MESpSAGE TO FIREBASE
         messagesRef.childByAutoId().setValue([
-            "text": text,
-            "uid": uid,
-            "name": displayName
+            "text": text
             ])
     }
     
@@ -108,9 +136,7 @@ class HomeViewController: JSQMessagesViewController {
     
     override func didPressSendButton(button: UIButton!, withMessageText text: String!, senderId: String!, senderDisplayName: String!, date: NSDate!) {
         JSQSystemSoundPlayer.jsq_playMessageSentSound()
-        
-        sendMessage(text, uid: senderId, displayName: senderDisplayName)
-        
+        sendMessage(text)
         finishSendingMessage()
     }
     
