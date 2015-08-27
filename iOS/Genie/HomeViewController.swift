@@ -16,16 +16,16 @@ class HomeViewController: JSQMessagesViewController {
     var messagesRef: Firebase!
     var profileRef: Firebase!
     var messages = [Message]()
-    var outgoingBubble = JSQMessagesBubbleImageFactory().outgoingMessagesBubbleImageWithColor(UIColor(red: 27, green: 165, blue: 221, alpha: 1.0))
     var incomingBubble = JSQMessagesBubbleImageFactory().incomingMessagesBubbleImageWithColor(UIColor.jsq_messageBubbleLightGrayColor())
+    var outgoingBubble = JSQMessagesBubbleImageFactory().outgoingMessagesBubbleImageWithColor(UIColor(red: (27/255.0), green: (165/255.0), blue: (221/255.0), alpha: 1.0))
     var batchMessages = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.ref = Firebase(url:"https://getgenie.firebaseio.com/")
-        self.user = ref.authData
-        self.senderId = user?.uid
+        self.user = self.ref.authData
+        self.senderId = self.user?.uid
         self.senderDisplayName = "NotSet"
         self.profileRef = Firebase(url: "https://getgenie.firebaseio.com/users/" + senderId + "/first_name")
         self.profileRef.observeEventType(.Value, withBlock: { snapshot in
@@ -39,7 +39,6 @@ class HomeViewController: JSQMessagesViewController {
         self.title = "Genie"
         if let navFont = UIFont(name: "SFUIDisplay-Regular", size: 20.0) {
             let attributes: [String:AnyObject]? = [
-                // 18 146 216
                 NSForegroundColorAttributeName: UIColor(red: (27/255.0), green: (165/255.0), blue: (221/255.0), alpha: 1.0),
                 NSFontAttributeName: navFont
             ]
@@ -79,9 +78,14 @@ class HomeViewController: JSQMessagesViewController {
         
         // --------------------------------------------------------------------------------------
         
-//        self.showLoadEarlierMessagesHeader = true
         
-        JSQMessagesCollectionViewCell.registerMenuAction("delete:")
+        // Adding delete action -----------------------------------------------------------------
+        
+//        JSQMessagesCollectionViewCell.registerMenuAction("deleteMessage")
+//        UIMenuController.sharedMenuController().menuItems = [UIMenuItem(title: "Delete", action: "deleteMessage")]
+        
+        // --------------------------------------------------------------------------------------
+        
         
         // Dismiss keyboard on tap --------------------------------------------------------------
         
@@ -91,47 +95,45 @@ class HomeViewController: JSQMessagesViewController {
         // --------------------------------------------------------------------------------------
         
         setupFirebase()
-        print(messages)
 
     }
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        collectionView!.collectionViewLayout.springinessEnabled = true
+//        collectionView!.collectionViewLayout.springinessEnabled = true
     }
 
 
     func setupFirebase() {
         self.messagesRef = Firebase(url: "https://getgenie.firebaseio.com/messages/" + senderId)
-        
-        // *** STEP 4: RECEIVE MESSAGES FROM FIREBASE (limited to latest 25 messages)
-        messagesRef.queryLimitedToLast(25).observeEventType(FEventType.ChildAdded, withBlock: {
+
+        self.messagesRef.queryLimitedToLast(50).observeEventType(FEventType.ChildAdded, withBlock: {
             (snapshot) in
             let text = snapshot.value["text"] as? String
-            let message = Message(text: text, senderId: self.senderId, senderDisplayName: self.senderDisplayName)
+            let sentByUser = snapshot.value["sentByUser"] as? Bool
+            var sender = "notUser"
+            if sentByUser != true {
+                JSQSystemSoundPlayer.jsq_playMessageReceivedSound()
+            }
+            else {
+                sender = self.senderId
+            }
+            let message = Message(text: text, sentByUser: sentByUser, senderId: sender, senderDisplayName: self.senderDisplayName)
             self.messages.append(message)
             self.finishReceivingMessage()
         })
     }
 
     func sendMessage(text: String!) {
-        // *** STEP 3: ADD A MESpSAGE TO FIREBASE
         messagesRef.childByAutoId().setValue([
-            "text": text
+            "text": text,
+            "sentByUser": true
             ])
     }
     
-    func tempSendMessage(text: String!, uid: String!, displayName: String!) {
-        let message = Message(text: text, senderId: uid, senderDisplayName: displayName)
+    func tempSendMessage(text: String!, sentByUser: Bool!, uid: String!, displayName: String!) {
+        let message = Message(text: text, sentByUser: sentByUser, senderId: uid, senderDisplayName: displayName)
         messages.append(message)
-    }
-    
-//     ACTIONS
-
-    func receivedMessagePressed(sender: UIBarButtonItem) {
-        // Simulate reciving message
-        showTypingIndicator = !showTypingIndicator
-        scrollToBottomAnimated(true)
     }
     
     override func didPressSendButton(button: UIButton!, withMessageText text: String!, senderId: String!, senderDisplayName: String!, date: NSDate!) {
@@ -140,18 +142,14 @@ class HomeViewController: JSQMessagesViewController {
         finishSendingMessage()
     }
     
-    override func didPressAccessoryButton(sender: UIButton!) {
-        print("Camera pressed!")
-    }
-    
     override func collectionView(collectionView: JSQMessagesCollectionView!, messageDataForItemAtIndexPath indexPath: NSIndexPath!) -> JSQMessageData! {
-        return messages[indexPath.item]
+        return self.messages[indexPath.item]
     }
     
     override func collectionView(collectionView: JSQMessagesCollectionView!, messageBubbleImageDataForItemAtIndexPath indexPath: NSIndexPath!) -> JSQMessageBubbleImageDataSource! {
-        let message = messages[indexPath.item]
+        let message = self.messages[indexPath.item]
         
-        if message.senderId() == senderId {
+        if message.sentByUser() == true {
             return self.outgoingBubble
         }
         
@@ -163,81 +161,52 @@ class HomeViewController: JSQMessagesViewController {
     }
     
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return messages.count
+        return self.messages.count
     }
     
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = super.collectionView(collectionView, cellForItemAtIndexPath: indexPath) as! JSQMessagesCollectionViewCell
         
         let message = messages[indexPath.item]
-        if message.senderId() == senderId {
-            cell.textView!.textColor = UIColor.blackColor()
-            cell.textView!.linkTextAttributes = [NSForegroundColorAttributeName: UIColor.blackColor(),
-                NSUnderlineStyleAttributeName: NSUnderlineStyle.StyleSingle.rawValue]
-        } else {
+        if message.sentByUser() == true {
             cell.textView!.textColor = UIColor.whiteColor()
             cell.textView!.linkTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor(),
                 NSUnderlineStyleAttributeName: NSUnderlineStyle.StyleSingle.rawValue]
+        } else {
+            cell.textView!.textColor = UIColor.blackColor()
+            cell.textView!.linkTextAttributes = [NSForegroundColorAttributeName: UIColor.blackColor(),
+                NSUnderlineStyleAttributeName: NSUnderlineStyle.StyleSingle.rawValue]
         }
-        
-//        let attributes : [String:AnyObject] = [NSForegroundColorAttributeName: cell.textView!.textColor, NSUnderlineStyleAttributeName:1]
-//        cell.textView.linkTextAttributes = attributes
 
         return cell
     }
     
+    // Delete action ----------------------------------------------------------------------
     
-    // View  usernames above bubbles
-    override func collectionView(collectionView: JSQMessagesCollectionView!, attributedTextForMessageBubbleTopLabelAtIndexPath indexPath: NSIndexPath!) -> NSAttributedString! {
-        let message = messages[indexPath.item];
-        
-        // Sent by me, skip
-        if message.senderId() == senderId {
-            return nil;
-        }
-        
-        // Same as previous sender, skip
-        if indexPath.item > 0 {
-            let previousMessage = messages[indexPath.item - 1];
-            if previousMessage.senderId() == message.senderId() {
-                return nil;
-            }
-        }
-        
-        return NSAttributedString(string:message.senderId())
-    }
+//    override func collectionView(collectionView: UICollectionView, canPerformAction action: Selector, forItemAtIndexPath indexPath: NSIndexPath, withSender sender: AnyObject?) -> Bool {
+//        return (super.collectionView?.canPerformAction(action, withSender: sender))!
+//    }
+//
+//    override func collectionView(collectionView: UICollectionView, performAction action: Selector, forItemAtIndexPath indexPath: NSIndexPath, withSender sender: AnyObject?) {
+//        if action == "deleteMessage" {
+//            self.deleteMessage(indexPath)
+//        }
+//        else {
+//            super.collectionView?.performSelector(action, withObject: sender)
+//        }
+//    }
+//
+//    func deleteMessage(indexPath: NSIndexPath) {
+//        self.messages.removeAtIndex(indexPath.item)
+//    }
     
-    override func collectionView(collectionView: JSQMessagesCollectionView!, layout collectionViewLayout: JSQMessagesCollectionViewFlowLayout!, heightForMessageBubbleTopLabelAtIndexPath indexPath: NSIndexPath!) -> CGFloat {
-        let message = messages[indexPath.item]
-        
-        // Sent by me, skip
-        if message.senderId() == senderId {
-            return CGFloat(0.0);
-        }
-        
-        // Same as previous sender, skip
-        if indexPath.item > 0 {
-            let previousMessage = messages[indexPath.item - 1];
-            if previousMessage.senderId() == message.senderId() {
-                return CGFloat(0.0);
-            }
-        }
-        
-        return kJSQMessagesCollectionViewCellLabelHeightDefault
-    }
+    // --------------------------------------------------------------------------------------
     
     func logout(sender:UIBarButtonItem) {
         ref.unauth()
         print("logged out user:", ref.authData)
         performSegueWithIdentifier("LOGOUT", sender: self)
     }
-    
-//    @IBAction func logout(sender: UIBarButtonItem) {
-//        ref.unauth()
-//        print("logged out user:", ref.authData)
-//        performSegueWithIdentifier("LOGOUT", sender: self)
-//    }
-    
     
     // Dismissing Keyboard ------------------------------------------------------------------
     

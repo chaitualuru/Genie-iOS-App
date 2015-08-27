@@ -14,17 +14,23 @@ class Message : NSObject, JSQMessageData {
     var senderDisplayName_: String
     var date_: NSDate
     var isMediaMessage_: Bool
+    var sentByUser_: Bool
     
-    init(text: String?, senderId: String?, senderDisplayName: String?) {
+    init(text: String?, sentByUser: Bool?, senderId: String?, senderDisplayName: String?) {
         self.text_ = text!
         self.senderId_ = senderId!
         self.senderDisplayName_ = senderDisplayName!
         self.date_ = NSDate()
         self.isMediaMessage_ = false
+        self.sentByUser_ = sentByUser!
     }
     
     func text() -> String! {
         return text_
+    }
+    
+    func sentByUser() -> Bool! {
+        return sentByUser_
     }
     
     func senderId() -> String! {
