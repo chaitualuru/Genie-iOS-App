@@ -5,5 +5,6 @@
         <!-- Customize your theme here. -->
     </style>
 
-    <color name="primary_color">#23282C</color>
+    <color name="primary_color">#1BA5DD</color>
+    <color name="white">#FFFFFF</color>
 </resources>
