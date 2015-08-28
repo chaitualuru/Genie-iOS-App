@@ -9,6 +9,7 @@
 import Foundation
 
 class Message : NSObject, JSQMessageData {
+    var messageId_: String
     var text_: String
     var senderId_: String
     var senderDisplayName_: String
@@ -16,7 +17,8 @@ class Message : NSObject, JSQMessageData {
     var isMediaMessage_: Bool
     var sentByUser_: Bool
     
-    init(text: String?, sentByUser: Bool?, senderId: String?, senderDisplayName: String?) {
+    init(messageId: String?, text: String?, sentByUser: Bool?, senderId: String?, senderDisplayName: String?) {
+        self.messageId_ = messageId!
         self.text_ = text!
         self.senderId_ = senderId!
         self.senderDisplayName_ = senderDisplayName!
@@ -25,28 +27,32 @@ class Message : NSObject, JSQMessageData {
         self.sentByUser_ = sentByUser!
     }
     
+    func messageId() -> String! {
+        return self.messageId_
+    }
+    
     func text() -> String! {
-        return text_
+        return self.text_
     }
     
     func sentByUser() -> Bool! {
-        return sentByUser_
+        return self.sentByUser_
     }
     
     func senderId() -> String! {
-        return senderId_
+        return self.senderId_
     }
     
     func senderDisplayName() -> String! {
-        return senderDisplayName_
+        return self.senderDisplayName_
     }
     
     func date() -> NSDate! {
-        return date_
+        return self.date_
     }
     
     func isMediaMessage() -> Bool {
-        return isMediaMessage_
+        return self.isMediaMessage_
     }
  
     func messageHash() -> UInt {

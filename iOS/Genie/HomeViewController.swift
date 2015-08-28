@@ -14,7 +14,7 @@ class HomeViewController: JSQMessagesViewController {
     var user: FAuthData?
     var ref: Firebase!
     var messagesRef: Firebase!
-    var profileRef: Firebase!
+    var getMessagesHandle: UInt!
     var messages = [Message]()
     var incomingBubble = JSQMessagesBubbleImageFactory().incomingMessagesBubbleImageWithColor(UIColor.jsq_messageBubbleLightGrayColor())
     var outgoingBubble = JSQMessagesBubbleImageFactory().outgoingMessagesBubbleImageWithColor(UIColor(red: (27/255.0), green: (165/255.0), blue: (221/255.0), alpha: 1.0))
@@ -27,8 +27,8 @@ class HomeViewController: JSQMessagesViewController {
         self.user = self.ref.authData
         self.senderId = self.user?.uid
         self.senderDisplayName = "NotSet"
-        self.profileRef = Firebase(url: "https://getgenie.firebaseio.com/users/" + senderId + "/first_name")
-        self.profileRef.observeEventType(.Value, withBlock: { snapshot in
+        let profileRef = ref.childByAppendingPath("users/" + senderId + "/first_name")
+        profileRef.observeEventType(.Value, withBlock: { snapshot in
             self.senderDisplayName = snapshot.value as! String
             }, withCancelBlock: { error in
                 print(error.description)
@@ -81,8 +81,8 @@ class HomeViewController: JSQMessagesViewController {
         
         // Adding delete action -----------------------------------------------------------------
         
-//        JSQMessagesCollectionViewCell.registerMenuAction("deleteMessage")
-//        UIMenuController.sharedMenuController().menuItems = [UIMenuItem(title: "Delete", action: "deleteMessage")]
+        UIMenuController.sharedMenuController().menuItems = [UIMenuItem(title: "Delete", action: "deleteMessage:")]
+        JSQMessagesCollectionViewCell.registerMenuAction("deleteMessage:")
         
         // --------------------------------------------------------------------------------------
         
@@ -105,10 +105,11 @@ class HomeViewController: JSQMessagesViewController {
 
 
     func setupFirebase() {
-        self.messagesRef = Firebase(url: "https://getgenie.firebaseio.com/messages/" + senderId)
+        self.messagesRef = ref.childByAppendingPath("messages/" + self.senderId)
 
-        self.messagesRef.queryLimitedToLast(50).observeEventType(FEventType.ChildAdded, withBlock: {
+        self.getMessagesHandle = self.messagesRef.queryLimitedToLast(50).observeEventType(FEventType.ChildAdded, withBlock: {
             (snapshot) in
+            let messageId = snapshot.key
             let text = snapshot.value["text"] as? String
             let sentByUser = snapshot.value["sentByUser"] as? Bool
             var sender = "notUser"
@@ -118,23 +119,23 @@ class HomeViewController: JSQMessagesViewController {
             else {
                 sender = self.senderId
             }
-            let message = Message(text: text, sentByUser: sentByUser, senderId: sender, senderDisplayName: self.senderDisplayName)
+            let message = Message(messageId: messageId, text: text, sentByUser: sentByUser, senderId: sender, senderDisplayName: self.senderDisplayName)
             self.messages.append(message)
             self.finishReceivingMessage()
         })
     }
 
     func sendMessage(text: String!) {
-        messagesRef.childByAutoId().setValue([
+        self.messagesRef.childByAutoId().setValue([
             "text": text,
             "sentByUser": true
             ])
     }
     
-    func tempSendMessage(text: String!, sentByUser: Bool!, uid: String!, displayName: String!) {
-        let message = Message(text: text, sentByUser: sentByUser, senderId: uid, senderDisplayName: displayName)
-        messages.append(message)
-    }
+//    func tempSendMessage(text: String!, sentByUser: Bool!, uid: String!, displayName: String!) {
+//        let message = Message(text: text, sentByUser: sentByUser, senderId: uid, senderDisplayName: displayName)
+//        messages.append(message)
+//    }
     
     override func didPressSendButton(button: UIButton!, withMessageText text: String!, senderId: String!, senderDisplayName: String!, date: NSDate!) {
         JSQSystemSoundPlayer.jsq_playMessageSentSound()
@@ -183,26 +184,32 @@ class HomeViewController: JSQMessagesViewController {
     
     // Delete action ----------------------------------------------------------------------
     
-//    override func collectionView(collectionView: UICollectionView, canPerformAction action: Selector, forItemAtIndexPath indexPath: NSIndexPath, withSender sender: AnyObject?) -> Bool {
-//        return (super.collectionView?.canPerformAction(action, withSender: sender))!
-//    }
-//
-//    override func collectionView(collectionView: UICollectionView, performAction action: Selector, forItemAtIndexPath indexPath: NSIndexPath, withSender sender: AnyObject?) {
-//        if action == "deleteMessage" {
-//            self.deleteMessage(indexPath)
-//        }
-//        else {
-//            super.collectionView?.performSelector(action, withObject: sender)
-//        }
-//    }
-//
-//    func deleteMessage(indexPath: NSIndexPath) {
-//        self.messages.removeAtIndex(indexPath.item)
-//    }
+    override func collectionView(collectionView: UICollectionView, canPerformAction action: Selector, forItemAtIndexPath indexPath: NSIndexPath, withSender sender: AnyObject?) -> Bool {
+        if action == "deleteMessage:" {
+            return true
+        }
+        return super.collectionView(collectionView, canPerformAction: action, forItemAtIndexPath: indexPath, withSender: sender)
+    }
+    
+    override func collectionView(collectionView: UICollectionView, performAction action: Selector, forItemAtIndexPath indexPath: NSIndexPath, withSender sender: AnyObject?) {
+        if action == "deleteMessage:" {
+            deleteMessage(collectionView, indexPath: indexPath)
+        }
+        super.collectionView(collectionView, performAction: action, forItemAtIndexPath: indexPath, withSender: sender)
+    }
+    
+    func deleteMessage(collectionView: UICollectionView, indexPath: NSIndexPath) {
+        let messageKey = self.messages[indexPath.item].messageId()
+        let removeMessageRef = self.messagesRef.childByAppendingPath("/" + messageKey)
+        removeMessageRef.removeValue()
+        self.messages.removeAtIndex(indexPath.item)
+        collectionView.deleteItemsAtIndexPaths([indexPath])
+    }
     
     // --------------------------------------------------------------------------------------
     
-    func logout(sender:UIBarButtonItem) {
+    func logout(sender: UIBarButtonItem) {
+        ref.removeObserverWithHandle(getMessagesHandle)
         ref.unauth()
         print("logged out user:", ref.authData)
         performSegueWithIdentifier("LOGOUT", sender: self)
