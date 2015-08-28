@@ -10,22 +10,27 @@
         android:layout_centerInParent="true" />
 
     <Button
-        android:layout_width="150dp"
+        android:layout_width="130dp"
         android:layout_height="wrap_content"
-        android:text="Login"
+        android:text="Sign In"
+        android:padding="10dp"
         android:id="@+id/loginButton"
-        android:layout_marginTop="32dp"
-        android:layout_toLeftOf="@+id/anchor"
-        android:layout_marginRight="-4dp"/>
+        android:background="#FFFFFF"
+        android:textColor="@color/primary_color"
+        android:layout_centerInParent="true"
+        android:layout_toLeftOf="@+id/anchor" />
 
     <Button
-        android:layout_width="150dp"
+        android:layout_width="130dp"
         android:layout_height="wrap_content"
         android:text="Register"
+        android:padding="10dp"
+        android:background="#FFFFFF"
+        android:textColor="@color/primary_color"
         android:id="@+id/registerButton"
         android:layout_alignTop="@+id/loginButton"
         android:layout_toRightOf="@+id/anchor"
-        android:layout_marginLeft="-4dp"/>
+        android:layout_marginLeft="1dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -33,7 +38,7 @@
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="Your Personal Assistant"
         android:id="@+id/textView"
-        android:layout_marginBottom="128dp"
+        android:layout_marginBottom="64dp"
         android:layout_alignParentBottom="true"
         android:layout_alignLeft="@+id/textView2"
         android:layout_alignStart="@+id/textView2"
