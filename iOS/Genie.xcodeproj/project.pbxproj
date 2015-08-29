@@ -46,6 +46,9 @@
 		FF3314941B8A5309008B1B9E /* SF-UI-Text-RegularItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = FF33147F1B8A52E4008B1B9E /* SF-UI-Text-RegularItalic.otf */; };
 		FF3314951B8A5309008B1B9E /* SF-UI-Text-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = FF3314801B8A52E4008B1B9E /* SF-UI-Text-Semibold.otf */; };
 		FF3314961B8A5309008B1B9E /* SF-UI-Text-SemiboldItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = FF3314811B8A52E4008B1B9E /* SF-UI-Text-SemiboldItalic.otf */; };
+		FF69EE031B918DCA0066ECC5 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF69EE001B918DCA0066ECC5 /* FBSDKCoreKit.framework */; };
+		FF69EE041B918DCA0066ECC5 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF69EE011B918DCA0066ECC5 /* FBSDKLoginKit.framework */; };
+		FF69EE051B918DCA0066ECC5 /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF69EE021B918DCA0066ECC5 /* FBSDKShareKit.framework */; };
 		FF85C9F51B8BDC3400F8E371 /* line@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = FF85C9F21B8BDC3400F8E371 /* line@1x.png */; };
 		FF85C9F61B8BDC3400F8E371 /* line@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FF85C9F31B8BDC3400F8E371 /* line@2x.png */; };
 		FF85C9F71B8BDC3400F8E371 /* line@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = FF85C9F41B8BDC3400F8E371 /* line@3x.png */; };
@@ -130,6 +133,9 @@
 		FF33147F1B8A52E4008B1B9E /* SF-UI-Text-RegularItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-UI-Text-RegularItalic.otf"; sourceTree = "<group>"; };
 		FF3314801B8A52E4008B1B9E /* SF-UI-Text-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-UI-Text-Semibold.otf"; sourceTree = "<group>"; };
 		FF3314811B8A52E4008B1B9E /* SF-UI-Text-SemiboldItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-UI-Text-SemiboldItalic.otf"; sourceTree = "<group>"; };
+		FF69EE001B918DCA0066ECC5 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = "../../../../Downloads/FacebookSDKs-iOS-20150813/FBSDKCoreKit.framework"; sourceTree = "<group>"; };
+		FF69EE011B918DCA0066ECC5 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKLoginKit.framework; path = "../../../../Downloads/FacebookSDKs-iOS-20150813/FBSDKLoginKit.framework"; sourceTree = "<group>"; };
+		FF69EE021B918DCA0066ECC5 /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKShareKit.framework; path = "../../../../Downloads/FacebookSDKs-iOS-20150813/FBSDKShareKit.framework"; sourceTree = "<group>"; };
 		FF85C9F21B8BDC3400F8E371 /* line@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "line@1x.png"; sourceTree = "<group>"; };
 		FF85C9F31B8BDC3400F8E371 /* line@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "line@2x.png"; sourceTree = "<group>"; };
 		FF85C9F41B8BDC3400F8E371 /* line@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "line@3x.png"; sourceTree = "<group>"; };
@@ -155,7 +161,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FF69EE051B918DCA0066ECC5 /* FBSDKShareKit.framework in Frameworks */,
 				E6F98B82EB2F5A9000E6C614 /* libPods.a in Frameworks */,
+				FF69EE031B918DCA0066ECC5 /* FBSDKCoreKit.framework in Frameworks */,
+				FF69EE041B918DCA0066ECC5 /* FBSDKLoginKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -180,6 +189,9 @@
 			isa = PBXGroup;
 			children = (
 				7FC06C6E8143FD76177CCCE3 /* libPods.a */,
+				FF69EE001B918DCA0066ECC5 /* FBSDKCoreKit.framework */,
+				FF69EE011B918DCA0066ECC5 /* FBSDKLoginKit.framework */,
+				FF69EE021B918DCA0066ECC5 /* FBSDKShareKit.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -674,7 +686,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				ENABLE_BITCODE = YES;
+				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = Genie/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -695,7 +707,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				ENABLE_BITCODE = YES;
+				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = Genie/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

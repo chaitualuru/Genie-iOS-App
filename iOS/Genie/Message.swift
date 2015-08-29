@@ -17,12 +17,13 @@ class Message : NSObject, JSQMessageData {
     var isMediaMessage_: Bool
     var sentByUser_: Bool
     
-    init(messageId: String?, text: String?, sentByUser: Bool?, senderId: String?, senderDisplayName: String?) {
+    init(messageId: String?, text: String?, sentByUser: Bool?, senderId: String?, senderDisplayName: String?, date: NSDate?) {
         self.messageId_ = messageId!
         self.text_ = text!
         self.senderId_ = senderId!
         self.senderDisplayName_ = senderDisplayName!
-        self.date_ = NSDate()
+        // this is wrong
+        self.date_ = date!
         self.isMediaMessage_ = false
         self.sentByUser_ = sentByUser!
     }
