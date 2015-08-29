@@ -18,6 +18,8 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet var mobileNumber: UITextField!
     @IBOutlet var navBar: UINavigationBar!
     
+    var activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView()
+    
     var ref: Firebase!
     
     override func viewDidLoad() {
@@ -118,6 +120,15 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
         // registering user ---------------------------------------------------------------------
             
         else {
+            
+            self.activityIndicator = UIActivityIndicatorView(frame: CGRectMake(0, 0, 50, 50))
+            self.activityIndicator.center = self.view.center
+            self.activityIndicator.hidesWhenStopped = true
+            self.activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.Gray
+            self.view.addSubview(activityIndicator)
+            self.activityIndicator.startAnimating()
+            UIApplication.sharedApplication().beginIgnoringInteractionEvents()
+            
             self.ref.createUser(emailAddress.text!, password: password.text!,
                 withValueCompletionBlock: { error, result in
                     if error != nil {
@@ -179,6 +190,8 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
                     
         // --------------------------------------------------------------------------------------
         
+                    self.activityIndicator.stopAnimating()
+                    UIApplication.sharedApplication().endIgnoringInteractionEvents()
             })
 
         }

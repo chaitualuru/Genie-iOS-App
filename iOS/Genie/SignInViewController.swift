@@ -15,6 +15,8 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet var password: UITextField!
     @IBOutlet var navBar: UINavigationBar!
     
+    var activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView()
+    
     var ref: Firebase!
     
     override func viewDidLoad() {
@@ -102,6 +104,14 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
         // signing in user ----------------------------------------------------------------------
             
         else {
+            
+            self.activityIndicator = UIActivityIndicatorView(frame: CGRectMake(0, 0, 50, 50))
+            self.activityIndicator.center = self.view.center
+            self.activityIndicator.hidesWhenStopped = true
+            self.activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.Gray
+            self.view.addSubview(activityIndicator)
+            self.activityIndicator.startAnimating()
+            UIApplication.sharedApplication().beginIgnoringInteractionEvents()
         
             self.ref.authUser(self.emailAddress.text, password: self.password.text) {
                 error, authData in
@@ -140,6 +150,9 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
                     print("Signed in successfully:", authData.uid)
                     self.performSegueWithIdentifier("SIGN_IN", sender: authData)
                 }
+                
+                self.activityIndicator.stopAnimating()
+                UIApplication.sharedApplication().endIgnoringInteractionEvents()
             }
             
             // --------------------------------------------------------------------------------------

@@ -15,6 +15,10 @@
 		FF01A7071B8980E800F54273 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FF01A7051B8980E800F54273 /* LaunchScreen.storyboard */; };
 		FF01A7121B8980E800F54273 /* GenieTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF01A7111B8980E800F54273 /* GenieTests.swift */; };
 		FF01A71D1B8980E800F54273 /* GenieUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF01A71C1B8980E800F54273 /* GenieUITests.swift */; };
+		FF1807441B8FC4FA00015884 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF1807431B8FC4FA00015884 /* ProfileViewController.swift */; };
+		FF1807461B8FC50B00015884 /* PaymentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF1807451B8FC50B00015884 /* PaymentViewController.swift */; };
+		FF1807481B8FC51900015884 /* HelpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF1807471B8FC51900015884 /* HelpViewController.swift */; };
+		FF18074A1B8FC52600015884 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF1807491B8FC52600015884 /* AboutViewController.swift */; };
 		FF25A0471B8EA45600802EBD /* cancel@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = FF25A0411B8EA45600802EBD /* cancel@1x.png */; };
 		FF25A0481B8EA45600802EBD /* cancel@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FF25A0421B8EA45600802EBD /* cancel@2x.png */; };
 		FF25A0491B8EA45600802EBD /* cancel@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = FF25A0431B8EA45600802EBD /* cancel@3x.png */; };
@@ -95,6 +99,10 @@
 		FF01A7181B8980E800F54273 /* GenieUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GenieUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FF01A71C1B8980E800F54273 /* GenieUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenieUITests.swift; sourceTree = "<group>"; };
 		FF01A71E1B8980E800F54273 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FF1807431B8FC4FA00015884 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		FF1807451B8FC50B00015884 /* PaymentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentViewController.swift; sourceTree = "<group>"; };
+		FF1807471B8FC51900015884 /* HelpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelpViewController.swift; sourceTree = "<group>"; };
+		FF1807491B8FC52600015884 /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		FF25A0411B8EA45600802EBD /* cancel@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cancel@1x.png"; sourceTree = "<group>"; };
 		FF25A0421B8EA45600802EBD /* cancel@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cancel@2x.png"; sourceTree = "<group>"; };
 		FF25A0431B8EA45600802EBD /* cancel@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cancel@3x.png"; sourceTree = "<group>"; };
@@ -216,6 +224,10 @@
 				FFAFBEBF1B8BB7DE008D2A2F /* RegisterViewController.swift */,
 				FF9F75EA1B8C062E008CAAD6 /* SignInViewController.swift */,
 				FFD72DA61B8C7AA5006BC039 /* HomeViewController.swift */,
+				FF1807431B8FC4FA00015884 /* ProfileViewController.swift */,
+				FF1807451B8FC50B00015884 /* PaymentViewController.swift */,
+				FF1807471B8FC51900015884 /* HelpViewController.swift */,
+				FF1807491B8FC52600015884 /* AboutViewController.swift */,
 				FF8EAAE01B8D580E00EE1396 /* Message.swift */,
 				FF8EAAE21B8D752200EE1396 /* Main.storyboard */,
 				FF01A7051B8980E800F54273 /* LaunchScreen.storyboard */,
@@ -377,6 +389,7 @@
 				TargetAttributes = {
 					FF01A6F51B8980E800F54273 = {
 						CreatedOnToolsVersion = 7.0;
+						DevelopmentTeam = XP3T6Z4XJW;
 					};
 					FF01A70C1B8980E800F54273 = {
 						CreatedOnToolsVersion = 7.0;
@@ -514,11 +527,15 @@
 			files = (
 				FF01A7021B8980E800F54273 /* Genie.xcdatamodeld in Sources */,
 				FF01A6FC1B8980E800F54273 /* IntroViewController.swift in Sources */,
+				FF18074A1B8FC52600015884 /* AboutViewController.swift in Sources */,
 				FF01A6FA1B8980E800F54273 /* AppDelegate.swift in Sources */,
 				FF9F75EB1B8C062E008CAAD6 /* SignInViewController.swift in Sources */,
 				FFAFBEC01B8BB7DE008D2A2F /* RegisterViewController.swift in Sources */,
 				FFD72DA71B8C7AA5006BC039 /* HomeViewController.swift in Sources */,
+				FF1807441B8FC4FA00015884 /* ProfileViewController.swift in Sources */,
+				FF1807461B8FC50B00015884 /* PaymentViewController.swift in Sources */,
 				FF8EAAE11B8D580E00EE1396 /* Message.swift in Sources */,
+				FF1807481B8FC51900015884 /* HelpViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -642,6 +659,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				ONLY_ACTIVE_ARCH = NO;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -654,10 +672,16 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = Genie/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.getgenie.Genie;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Genie/Genie-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -669,10 +693,16 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = Genie/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = com.getgenie.Genie;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Genie/Genie-Bridging-Header.h";
 			};
 			name = Release;
