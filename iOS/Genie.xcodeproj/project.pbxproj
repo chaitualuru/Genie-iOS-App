@@ -19,6 +19,9 @@
 		FF1807461B8FC50B00015884 /* PaymentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF1807451B8FC50B00015884 /* PaymentViewController.swift */; };
 		FF1807481B8FC51900015884 /* HelpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF1807471B8FC51900015884 /* HelpViewController.swift */; };
 		FF18074A1B8FC52600015884 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF1807491B8FC52600015884 /* AboutViewController.swift */; };
+		FF24F4491B91993D002B9AEF /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF24F4461B91993D002B9AEF /* FBSDKCoreKit.framework */; };
+		FF24F44A1B91993D002B9AEF /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF24F4471B91993D002B9AEF /* FBSDKLoginKit.framework */; };
+		FF24F44B1B91993D002B9AEF /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF24F4481B91993D002B9AEF /* FBSDKShareKit.framework */; };
 		FF25A0471B8EA45600802EBD /* cancel@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = FF25A0411B8EA45600802EBD /* cancel@1x.png */; };
 		FF25A0481B8EA45600802EBD /* cancel@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FF25A0421B8EA45600802EBD /* cancel@2x.png */; };
 		FF25A0491B8EA45600802EBD /* cancel@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = FF25A0431B8EA45600802EBD /* cancel@3x.png */; };
@@ -103,6 +106,9 @@
 		FF1807451B8FC50B00015884 /* PaymentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentViewController.swift; sourceTree = "<group>"; };
 		FF1807471B8FC51900015884 /* HelpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelpViewController.swift; sourceTree = "<group>"; };
 		FF1807491B8FC52600015884 /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
+		FF24F4461B91993D002B9AEF /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = "../../../../Downloads/FacebookSDKs-iOS-20150813/FBSDKCoreKit.framework"; sourceTree = "<group>"; };
+		FF24F4471B91993D002B9AEF /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKLoginKit.framework; path = "../../../../Downloads/FacebookSDKs-iOS-20150813/FBSDKLoginKit.framework"; sourceTree = "<group>"; };
+		FF24F4481B91993D002B9AEF /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKShareKit.framework; path = "../../../../Downloads/FacebookSDKs-iOS-20150813/FBSDKShareKit.framework"; sourceTree = "<group>"; };
 		FF25A0411B8EA45600802EBD /* cancel@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cancel@1x.png"; sourceTree = "<group>"; };
 		FF25A0421B8EA45600802EBD /* cancel@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cancel@2x.png"; sourceTree = "<group>"; };
 		FF25A0431B8EA45600802EBD /* cancel@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cancel@3x.png"; sourceTree = "<group>"; };
@@ -155,7 +161,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FF24F44B1B91993D002B9AEF /* FBSDKShareKit.framework in Frameworks */,
 				E6F98B82EB2F5A9000E6C614 /* libPods.a in Frameworks */,
+				FF24F4491B91993D002B9AEF /* FBSDKCoreKit.framework in Frameworks */,
+				FF24F44A1B91993D002B9AEF /* FBSDKLoginKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -180,6 +189,9 @@
 			isa = PBXGroup;
 			children = (
 				7FC06C6E8143FD76177CCCE3 /* libPods.a */,
+				FF24F4461B91993D002B9AEF /* FBSDKCoreKit.framework */,
+				FF24F4471B91993D002B9AEF /* FBSDKLoginKit.framework */,
+				FF24F4481B91993D002B9AEF /* FBSDKShareKit.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -675,6 +687,11 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(PODS_ROOT)/Firebase\"",
+					"\"$(PODS_ROOT)/Firebase\"",
+					"\"/Users/Chaitu/Documents/FacebookSDK\"",
+				);
 				INFOPLIST_FILE = Genie/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -696,6 +713,11 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(PODS_ROOT)/Firebase\"",
+					"\"$(PODS_ROOT)/Firebase\"",
+					"\"Users/Chaitu/Documents/FacebookSDK\"",
+				);
 				INFOPLIST_FILE = Genie/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
