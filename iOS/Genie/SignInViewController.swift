@@ -19,6 +19,40 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
     
     var ref: Firebase!
     
+    
+//    - (BOOL)facebookIsSetup
+//    {
+//    NSString *facebookAppId = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"FacebookAppID"];
+//    NSString *facebookDisplayName = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"FacebookDisplayName"];
+//    BOOL canOpenFacebook =[[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:[NSString stringWithFormat:@"fb%@://", facebookAppId]]];
+//    
+//    if ([@"<YOUR FACEBOOK APP ID>" isEqualToString:facebookAppId] ||
+//    [@"<YOUR FACEBOOK APP DISPLAY NAME>" isEqualToString:facebookDisplayName] || !canOpenFacebook) {
+//    [self showErrorAlertWithMessage:@"Please set FacebookAppID, FacebookDisplayName, and\nURL types > Url Schemes in `Supporting Files/Info.plist`"];
+//    return NO;
+//    } else {
+//    return YES;
+//    }
+//    }
+//    
+//    - (void)facebookLogin {
+//    
+//    [self showProgressAlert];
+//    
+//    // Open a session showing the user the login UI
+//    FBSDKLoginManager *login = [[FBSDKLoginManager alloc] init];
+//    
+//    [login logInWithReadPermissions:@[@"email"] handler:^(FBSDKLoginManagerLoginResult *result, NSError *error) {
+//    if (error) {
+//    NSLog(@"Facebook login failed. Error: %@", error);
+//    } else if (result.isCancelled) {
+//    NSLog(@"Facebook login got cancelled.");
+//    } else if ([FBSDKAccessToken currentAccessToken]) {
+//    [self.ref authWithOAuthProvider:@"facebook" token:[[FBSDKAccessToken currentAccessToken] tokenString] withCompletionBlock:[self loginBlockForProviderName:@"Facebook"]];
+//    }
+//    }];
+//    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
