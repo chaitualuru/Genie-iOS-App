@@ -1,2 +1,1 @@
-#import "JSQMessages.h"
-#import "JSQMessageData.h"
+@import JSQMessagesViewController;
