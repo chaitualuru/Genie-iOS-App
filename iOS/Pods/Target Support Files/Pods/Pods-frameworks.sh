@@ -52,10 +52,12 @@ code_sign_if_enabled() {
 
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
+  install_framework 'Pods/Bond.framework'
   install_framework 'Pods/JSQMessagesViewController.framework'
   install_framework 'Pods/JSQSystemSoundPlayer.framework'
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
+  install_framework 'Pods/Bond.framework'
   install_framework 'Pods/JSQMessagesViewController.framework'
   install_framework 'Pods/JSQSystemSoundPlayer.framework'
 fi
