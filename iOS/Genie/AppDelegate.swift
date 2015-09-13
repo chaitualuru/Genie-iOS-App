@@ -33,7 +33,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             print("No user signed in, loading intro view")
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             
-            self.window?.rootViewController = storyboard.instantiateViewControllerWithIdentifier("introView")
+            self.window?.rootViewController = storyboard.instantiateViewControllerWithIdentifier("mobileView")
         }
         
         // --------------------------------------------------------------------------------------
