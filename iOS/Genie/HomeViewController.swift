@@ -8,11 +8,13 @@
 
 import UIKit
 import Firebase
+import VerifyIosSdk
 
 class HomeViewController: JSQMessagesViewController {
     
     var user: FAuthData?
     var ref: Firebase!
+    var mobileNumber: String!
     var messagesRef: Firebase!
     var getMessagesHandle: UInt!
     var messages = [Message]()
@@ -31,9 +33,15 @@ class HomeViewController: JSQMessagesViewController {
         self.user = self.ref.authData
         self.senderId = self.user?.uid
         self.senderDisplayName = "NotSet"
-        let profileRef = ref.childByAppendingPath("users/" + senderId + "/first_name")
-        profileRef.observeEventType(.Value, withBlock: { snapshot in
+        let firstNameRef = ref.childByAppendingPath("users/" + senderId + "/first_name")
+        firstNameRef.observeEventType(.Value, withBlock: { snapshot in
             self.senderDisplayName = snapshot.value as! String
+            }, withCancelBlock: { error in
+                print(error.description)
+        })
+        let mobileNumberRef = ref.childByAppendingPath("users/" + senderId + "/mobile_number")
+        mobileNumberRef.observeEventType(.Value, withBlock: { snapshot in
+            self.mobileNumber = snapshot.value as! String
             }, withCancelBlock: { error in
                 print(error.description)
         })
@@ -350,6 +358,15 @@ class HomeViewController: JSQMessagesViewController {
         ref.unauth()
         print("logged out user:", ref.authData)
         performSegueWithIdentifier("LOGOUT", sender: self)
+        
+        VerifyClient.logoutUser(countryCode: "US", number: self.mobileNumber, completionBlock: { error in
+            if let error = error {
+                // unable to logout user
+                print("could not logout nexmo : ", error)
+            }
+            
+            print("logged out nexmo user")
+        })
     }
     
     // Dismissing Keyboard ------------------------------------------------------------------

@@ -9,6 +9,7 @@
 import UIKit
 import CoreData
 import Firebase
+import VerifyIosSdk
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -19,6 +20,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        
+        // setup Nexmo --------------------------------------------------------------------------
+
+        NexmoClient.start(applicationId: "775f81ea-e31a-4a76-8bc4-2f66b43617e0", sharedSecretKey: "086cc09c74d400e")
+        
+        // --------------------------------------------------------------------------------------
+        
         
         // set initial view controller ----------------------------------------------------------
         
