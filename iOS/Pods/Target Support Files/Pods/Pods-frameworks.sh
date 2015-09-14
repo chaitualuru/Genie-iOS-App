@@ -55,9 +55,13 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework 'Pods/Bond.framework'
   install_framework 'Pods/JSQMessagesViewController.framework'
   install_framework 'Pods/JSQSystemSoundPlayer.framework'
+  install_framework 'Pods/SVProgressHUD.framework'
+  install_framework 'Pods/SVPullToRefresh.framework'
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework 'Pods/Bond.framework'
   install_framework 'Pods/JSQMessagesViewController.framework'
   install_framework 'Pods/JSQSystemSoundPlayer.framework'
+  install_framework 'Pods/SVProgressHUD.framework'
+  install_framework 'Pods/SVPullToRefresh.framework'
 fi

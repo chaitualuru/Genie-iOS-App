@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import SVPullToRefresh
 
 class HomeViewController: JSQMessagesViewController {
     
@@ -177,6 +178,14 @@ class HomeViewController: JSQMessagesViewController {
         // --------------------------------------------------------------------------------------
         
         
+        // Scroll to top to get Earlier Messages ------------------------------------------------
+        self.collectionView!.addInfiniteScrollingWithActionHandler( { () -> Void in
+            self.loadMore()
+            }, direction: UInt(SVInfiniteScrollingDirectionTop))
+        
+        // --------------------------------------------------------------------------------------
+        
+        
         // Dismiss keyboard on tap --------------------------------------------------------------
         
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
@@ -187,6 +196,47 @@ class HomeViewController: JSQMessagesViewController {
         setupFirebase()
 
     }
+    
+    // Load Earlier Messages --------------------------------------------------------------------
+    func loadMore() {
+        print("Loading earlier messages")
+            
+        self.collectionView!.collectionViewLayout.springinessEnabled = false
+        self.collectionView!.infiniteScrollingView.startAnimating()
+        var counter = 0
+        
+        //Disable Automatic Scrolling -----------------------------------------------------------
+        automaticallyScrollsToMostRecentMessage = false
+        
+        self.messagesRef.queryOrderedByChild("timestamp").queryEndingAtValue(messages[0].date().timeIntervalSince1970 * 1000).queryLimitedToFirst(50).observeEventType(FEventType.ChildAdded, withBlock: {
+            (snapshot) in
+            let messageId = snapshot.key
+            let text = snapshot.value["text"] as? String
+            let timestamp = snapshot.value["timestamp"] as? NSTimeInterval
+            let date = NSDate(timeIntervalSince1970: timestamp!/1000)
+            let sentByUser = snapshot.value["sentByUser"] as? Bool
+            var sender = "notUser"
+            if sentByUser == true {
+                sender = self.senderId
+            }
+            let message = Message(messageId: messageId, text: text, sentByUser: sentByUser, senderId: sender, senderDisplayName: self.senderDisplayName, date: date)
+            
+            self.messages.insert(message, atIndex: counter)
+            counter = counter + 1
+            
+            self.finishReceivingMessage()
+            
+        })
+        self.messages.removeAtIndex(counter)
+        self.collectionView!.infiniteScrollingView.stopAnimating()
+        
+        self.collectionView!.collectionViewLayout.springinessEnabled = true
+        
+        self.finishReceivingMessageAnimated(false)
+        self.collectionView!.layoutIfNeeded()
+        self.collectionView!.reloadData()
+    }
+    // ------------------------------------------------------------------------------------------
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
@@ -209,7 +259,9 @@ class HomeViewController: JSQMessagesViewController {
             self.threeThing.hidden = false
             self.helperFoot.hidden = false
         }
-
+        
+        self.collectionView!.collectionViewLayout.springinessEnabled = false
+        
         self.getMessagesHandle = self.messagesRef.queryLimitedToLast(50).observeEventType(FEventType.ChildAdded, withBlock: {
             (snapshot) in
             let messageId = snapshot.key
@@ -235,7 +287,9 @@ class HomeViewController: JSQMessagesViewController {
             
             self.finishReceivingMessage()
         })
+        self.collectionView!.collectionViewLayout.springinessEnabled = true
     }
+
 
     func sendMessage(text: String!) {
         self.messagesRef.childByAutoId().setValue([
@@ -256,6 +310,7 @@ class HomeViewController: JSQMessagesViewController {
     }
     
     override func collectionView(collectionView: JSQMessagesCollectionView!, messageBubbleImageDataForItemAtIndexPath indexPath: NSIndexPath!) -> JSQMessageBubbleImageDataSource! {
+        
         let message = self.messages[indexPath.item]
         
         if message.sentByUser() == true {
