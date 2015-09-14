@@ -114,6 +114,9 @@
                                     <constraint firstAttribute="height" constant="22" id="GoZ-us-E8H"/>
                                 </constraints>
                                 <state key="normal" image="verify.png"/>
+                                <connections>
+                                    <action selector="verifyCode:" destination="BYZ-38-t0r" eventType="touchUpInside" id="KCj-Xc-ycK"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QgH-xJ-ha9">
                                 <rect key="frame" x="512" y="289" width="78" height="23"/>
