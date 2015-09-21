@@ -25,6 +25,7 @@ class HomeViewController: JSQMessagesViewController {
     var threeThing: UILabel!
     var helperFoot: UILabel!
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -32,12 +33,29 @@ class HomeViewController: JSQMessagesViewController {
         self.user = self.ref.authData
         self.senderId = self.user?.uid
         self.senderDisplayName = "NotSet"
+        self.messagesRef = ref.childByAppendingPath("messages/" + self.senderId)
         let profileRef = ref.childByAppendingPath("users/" + senderId + "/first_name")
-        profileRef.observeEventType(.Value, withBlock: { snapshot in
-            self.senderDisplayName = snapshot.value as! String
+        profileRef.observeEventType(FEventType.Value, withBlock: { (snapshot) in
+                self.senderDisplayName = snapshot.value as! String
+                print(self.senderDisplayName)
+                print("-------------")
+                if self.senderDisplayName == "" {
+                    self.messagesRef.childByAutoId().setValue([
+                        "text": "To assist you better we will like to ask you a few questions. To start with, what's your first name?",
+                        "timestamp": FirebaseServerValue.timestamp(),
+                        "sentByUser": false
+                        ])
+                }
+                self.setupFirebase()
             }, withCancelBlock: { error in
                 print(error.description)
         })
+        
+        // Automatic Messages for New Users -----------------------------------------------------
+        
+        
+        
+        // --------------------------------------------------------------------------------------
         
         
         // Setting up Input Bar -----------------------------------------------------------------
@@ -192,8 +210,6 @@ class HomeViewController: JSQMessagesViewController {
         view.addGestureRecognizer(tap)
         
         // --------------------------------------------------------------------------------------
-        
-        setupFirebase()
 
     }
     
@@ -251,7 +267,7 @@ class HomeViewController: JSQMessagesViewController {
 
 
     func setupFirebase() {
-        self.messagesRef = ref.childByAppendingPath("messages/" + self.senderId)
+        print("Setup")
         
         if self.messages.count == 0 {
             self.pizzaThing.hidden = false

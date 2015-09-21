@@ -27,7 +27,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             //get access to login view
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             
-            self.window?.rootViewController = storyboard.instantiateViewControllerWithIdentifier("homeView")
+            self.window?.rootViewController = storyboard.instantiateViewControllerWithIdentifier("swipeView")
         }
         else {
             print("No user signed in, loading intro view")

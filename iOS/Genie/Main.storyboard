@@ -385,10 +385,78 @@
             </objects>
             <point key="canvasLocation" x="1154" y="709"/>
         </scene>
+        <!--Wishes View Controller-->
+        <scene sceneID="53X-WG-38s">
+            <objects>
+                <viewController storyboardIdentifier="wishesVC" id="c6i-gJ-OKy" customClass="WishesViewController" customModule="Genie" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Khz-8y-76u"/>
+                        <viewControllerLayoutGuide type="bottom" id="SIj-c1-t9S"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="lCf-Ra-sBR">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Wishes" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gFy-6H-iYb">
+                                <rect key="frame" x="272" y="289.5" width="56" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4nM-aG-BEw">
+                                <rect key="frame" x="279" y="479.5" width="42" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="gFy-6H-iYb" firstAttribute="centerY" secondItem="lCf-Ra-sBR" secondAttribute="centerY" id="FgZ-eR-B2b"/>
+                            <constraint firstItem="4nM-aG-BEw" firstAttribute="centerX" secondItem="lCf-Ra-sBR" secondAttribute="centerX" id="J4Q-xj-LC8"/>
+                            <constraint firstItem="gFy-6H-iYb" firstAttribute="centerX" secondItem="lCf-Ra-sBR" secondAttribute="centerX" id="UqV-cU-xSk"/>
+                            <constraint firstItem="SIj-c1-t9S" firstAttribute="top" secondItem="4nM-aG-BEw" secondAttribute="bottom" constant="100" id="Vkv-gr-C2D"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gaB-iS-4TW" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2144" y="2057"/>
+        </scene>
+        <!--History View Controller-->
+        <scene sceneID="sXc-tC-7lQ">
+            <objects>
+                <viewController storyboardIdentifier="historyVC" id="2pg-Jc-YTY" customClass="HistoryViewController" customModule="Genie" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="SnZ-sa-KUh"/>
+                        <viewControllerLayoutGuide type="bottom" id="LG6-fx-huQ"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Ihg-6r-rLF">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="History" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6AN-iV-ZAQ">
+                                <rect key="frame" x="272.5" y="290" width="55" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="6AN-iV-ZAQ" firstAttribute="centerY" secondItem="Ihg-6r-rLF" secondAttribute="centerY" id="5NK-4X-6lP"/>
+                            <constraint firstItem="6AN-iV-ZAQ" firstAttribute="centerX" secondItem="Ihg-6r-rLF" secondAttribute="centerX" id="PdV-jg-BC3"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6Hb-nv-PVT" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2996" y="2057"/>
+        </scene>
         <!--Home View Controller-->
         <scene sceneID="yPD-tg-k7M">
             <objects>
-                <viewController id="bTm-PC-Yl2" customClass="HomeViewController" customModule="Genie" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="homeVC" id="bTm-PC-Yl2" customClass="HomeViewController" customModule="Genie" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jh3-IE-Imo"/>
                         <viewControllerLayoutGuide type="bottom" id="xxk-W1-vjj"/>
@@ -406,6 +474,38 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="E0E-V3-Mhi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1886" y="364"/>
+        </scene>
+        <!--Swipe View Controller-->
+        <scene sceneID="dc5-q8-Yx3">
+            <objects>
+                <viewController storyboardIdentifier="swipeView" id="IRa-vS-9Zt" customClass="SwipeViewController" customModule="Genie" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="eIk-pp-jFd"/>
+                        <viewControllerLayoutGuide type="bottom" id="wI2-FY-9nS"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="fLA-ZM-Be0">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4U3-Rw-Xhr">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="4U3-Rw-Xhr" firstAttribute="leading" secondItem="fLA-ZM-Be0" secondAttribute="leading" id="ArY-cB-J0o"/>
+                            <constraint firstAttribute="trailing" secondItem="4U3-Rw-Xhr" secondAttribute="trailing" id="Cux-ci-Yda"/>
+                            <constraint firstItem="4U3-Rw-Xhr" firstAttribute="top" secondItem="fLA-ZM-Be0" secondAttribute="top" id="aar-Fk-Jae"/>
+                            <constraint firstItem="4U3-Rw-Xhr" firstAttribute="bottom" secondItem="wI2-FY-9nS" secondAttribute="top" id="d6C-yb-yf5"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="scrollView" destination="4U3-Rw-Xhr" id="nC5-Tx-mpN"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vD7-7L-xXI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2648" y="385"/>
         </scene>
         <!--Sign In View Controller-->
         <scene sceneID="Zrk-GV-4kA">
