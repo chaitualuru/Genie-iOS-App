@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta charset="UTF-8" />
+<title>Authentication</title>
+
+<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+<script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script src="https://cdn.firebase.com/js/client/2.2.9/firebase.js"></script>
+
+
+<script type="text/javascript">
+	function loginFormSubmit () {
+		var appRef = new Firebase("https://getgenie.firebaseio.com/");
+		appRef.authWithPassword({
+			"email": $("#email").val(),
+		  	"password": $("#password").val()
+		}, function(error, authData) {
+		  	if (error) {
+		  		alert(error);
+		  	} else {
+		  		jQuery.post("/saveUser", authData, 'json')
+	  			.error(function (){
+			 		alert("Error! Try Again");
+			 	})
+				.success(function (data) {
+				    window.location = "/home";
+				});
+		  	}
+		});
+	}
+</script>
+
+</head>
+<body>
+	<div class="container">
+		<fieldset>
+			<legend>Authentication</legend>
+			<div class="control-group">
+				<label for="email" class="control-label">
+					Email
+					<input type="text" id="email" class="input-block-level" name="email" />
+				</label>
+			</div>
+			
+			<div class="control-group">
+				<label for="password" class="control-label">
+					Password
+					<input type="password" id="password" class="input-block-level" name="password" />
+				</label>
+			</div>
+
+			<input type="submit" onclick="loginFormSubmit()" value="Login" class="btn btn-primary" />
+		</fieldset>
+	</div>
+</body>
+</html>
