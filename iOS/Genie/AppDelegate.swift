@@ -29,7 +29,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         
         // set initial view controller ----------------------------------------------------------
-        
         if self.ref.authData != nil {
             print("user authenticated: ", self.ref.authData, "loading home view")
             //get access to login view
@@ -41,7 +40,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             print("No user signed in, loading intro view")
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             
-            self.window?.rootViewController = storyboard.instantiateViewControllerWithIdentifier("mobileView")
+            self.window?.rootViewController = storyboard.instantiateViewControllerWithIdentifier("registerView")
         }
         
         // --------------------------------------------------------------------------------------
