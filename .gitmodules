@@ -1,0 +1,3 @@
+[submodule "iOS/verify-ios-sdk"]
+	path = iOS/verify-ios-sdk
+	url = https://github.com/nexmo/verify-ios-sdk.git

@@ -8,32 +8,50 @@
 
 import UIKit
 import Firebase
+import VerifyIosSdk
 
 class HomeViewController: JSQMessagesViewController {
     
     var user: FAuthData?
+    
     var ref: Firebase!
     var messagesRef: Firebase!
-    var getMessagesHandle: UInt!
+    
     var messages = [Message]()
+    var mobileNumber: String!
+    
+    var getMessagesHandle: UInt!
+    
     var incomingBubble = JSQMessagesBubbleImageFactory().incomingMessagesBubbleImageWithColor(UIColor.jsq_messageBubbleLightGrayColor())
     var outgoingBubble = JSQMessagesBubbleImageFactory().outgoingMessagesBubbleImageWithColor(UIColor(red: (27/255.0), green: (165/255.0), blue: (221/255.0), alpha: 1.0))
     
-    var pizzaThing: UILabel!
-    var twoThing: UILabel!
-    var threeThing: UILabel!
+    var pizzaHelp: UILabel!
+    var furnitureHelp: UILabel!
+    var ticketHelp: UILabel!
     var helperFoot: UILabel!
+    var firstMessageRead: Bool!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.firstMessageRead = true
+        
         self.ref = Firebase(url:"https://getgenie.firebaseio.com/")
+        
         self.user = self.ref.authData
         self.senderId = self.user?.uid
-        self.senderDisplayName = "NotSet"
-        let profileRef = ref.childByAppendingPath("users/" + senderId + "/first_name")
-        profileRef.observeEventType(.Value, withBlock: { snapshot in
+        self.senderDisplayName = "not_set"
+        
+        let firstNameRef = ref.childByAppendingPath("users/" + senderId + "/first_name")
+        firstNameRef.observeEventType(.Value, withBlock: { snapshot in
             self.senderDisplayName = snapshot.value as! String
+            }, withCancelBlock: { error in
+                print(error.description)
+        })
+        
+        let mobileNumberRef = ref.childByAppendingPath("users/" + senderId + "/mobile_number")
+        mobileNumberRef.observeEventType(.Value, withBlock: { snapshot in
+            self.mobileNumber = snapshot.value as! String
             }, withCancelBlock: { error in
                 print(error.description)
         })
@@ -41,16 +59,36 @@ class HomeViewController: JSQMessagesViewController {
         
         // Setting up Input Bar -----------------------------------------------------------------
         
-        inputToolbar!.contentView!.leftBarButtonItem = nil
-        inputToolbar?.contentView?.backgroundColor = UIColor.whiteColor()
-        inputToolbar!.contentView?.textView?.layer.borderWidth = 0
-        inputToolbar!.contentView?.textView?.placeHolder = "Type a message"
-        inputToolbar!.contentView?.textView?.font = UIFont(name: "SFUIText-Regular", size: 15.0)
-        inputToolbar!.contentView?.rightBarButtonItem?.setTitle("", forState: UIControlState.Normal)
-        let sendImage = UIImage(named: "lamp.png")
-        let sendButton: UIButton = UIButton(type: UIButtonType.Custom)
-        sendButton.setImage(sendImage, forState: UIControlState.Normal)
-        inputToolbar!.contentView?.rightBarButtonItem? = sendButton
+        if let toolbar = inputToolbar {
+            if let conview = toolbar.contentView {
+//                conview.leftBarButtonItem = nil
+                conview.backgroundColor = UIColor.whiteColor()
+                if let texview = conview.textView {
+                    texview.layer.borderWidth = 0
+                    texview.placeHolder = "Type a message"
+                    texview.font = UIFont(name: "SFUIText-Regular", size: 15.0)
+                }
+                if let rightbarbutton = conview.rightBarButtonItem {
+                    rightbarbutton.setTitle("", forState: UIControlState.Normal)
+                }
+                let sendImage = UIImage(named: "lamp.png")
+                let sendButton: UIButton = UIButton(type: UIButtonType.Custom)
+                sendButton.setImage(sendImage, forState: UIControlState.Normal)
+                conview.rightBarButtonItem = sendButton
+            }
+        }
+        
+//        inputToolbar!.contentView!.leftBarButtonItem = nil
+//        inputToolbar?.contentView?.backgroundColor = UIColor.whiteColor()
+//        inputToolbar!.contentView?.textView?.layer.borderWidth = 0
+//        inputToolbar!.contentView?.textView?.placeHolder = "Type a message"
+//        inputToolbar!.contentView?.textView?.font = UIFont(name: "SFUIText-Regular", size: 15.0)
+//        inputToolbar!.contentView?.rightBarButtonItem?.setTitle("", forState: UIControlState.Normal)
+//        let sendImage = UIImage(named: "lamp.png")
+//        let sendButton: UIButton = UIButton(type: UIButtonType.Custom)
+//        sendButton.setImage(sendImage, forState: UIControlState.Normal)
+//        inputToolbar!.contentView?.rightBarButtonItem? = sendButton
+        
         automaticallyScrollsToMostRecentMessage = true
         
         // --------------------------------------------------------------------------------------
@@ -58,53 +96,53 @@ class HomeViewController: JSQMessagesViewController {
         
         // Helper Labels ------------------------------------------------------------------------
         
-        self.pizzaThing = UILabel()
-        self.pizzaThing.translatesAutoresizingMaskIntoConstraints = false
-        self.pizzaThing.numberOfLines = 0
-        self.pizzaThing.font = UIFont(name: "SFUIText-Regular", size: 15.0)
-        self.pizzaThing.textAlignment = NSTextAlignment.Center
-        self.pizzaThing.textColor = UIColor.lightGrayColor()
-        self.pizzaThing.text = "Can you order me some pizza?"
-        self.pizzaThing.sizeToFit()
-        self.view.addSubview(pizzaThing)
-        let pizzaThingxCenterConstraint = NSLayoutConstraint(item: self.pizzaThing, attribute: .CenterX, relatedBy: .Equal, toItem: self.view, attribute: .CenterX, multiplier: 1, constant: 0)
-        let pizzaThingyCenterConstraint = NSLayoutConstraint(item: self.pizzaThing, attribute: .CenterY, relatedBy: .Equal, toItem: self.view, attribute: .CenterY, multiplier: 1, constant: 0)
-        let pizzaThingWidthConstraint = NSLayoutConstraint(item: self.pizzaThing, attribute: .Width, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant:self.pizzaThing.frame.width)
-        let pizzaThingHeightConstraint = NSLayoutConstraint(item: self.pizzaThing, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant:self.pizzaThing.frame.height)
-        self.view.addConstraints([pizzaThingHeightConstraint, pizzaThingWidthConstraint, pizzaThingxCenterConstraint, pizzaThingyCenterConstraint])
-        self.view.insertSubview(self.pizzaThing, belowSubview: (inputToolbar)!)
+        self.pizzaHelp = UILabel()
+        self.pizzaHelp.translatesAutoresizingMaskIntoConstraints = false
+        self.pizzaHelp.numberOfLines = 0
+        self.pizzaHelp.font = UIFont(name: "SFUIText-Regular", size: 15.0)
+        self.pizzaHelp.textAlignment = NSTextAlignment.Center
+        self.pizzaHelp.textColor = UIColor.lightGrayColor()
+        self.pizzaHelp.text = "Can you order me some pizza?"
+        self.pizzaHelp.sizeToFit()
+        self.view.addSubview(pizzaHelp)
+        let pizzaHelpxCenterConstraint = NSLayoutConstraint(item: self.pizzaHelp, attribute: .CenterX, relatedBy: .Equal, toItem: self.view, attribute: .CenterX, multiplier: 1, constant: 0)
+        let pizzaHelpyCenterConstraint = NSLayoutConstraint(item: self.pizzaHelp, attribute: .CenterY, relatedBy: .Equal, toItem: self.view, attribute: .CenterY, multiplier: 1, constant: 0)
+        let pizzaHelpWidthConstraint = NSLayoutConstraint(item: self.pizzaHelp, attribute: .Width, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant:self.pizzaHelp.frame.width)
+        let pizzaHelpHeightConstraint = NSLayoutConstraint(item: self.pizzaHelp, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant:self.pizzaHelp.frame.height)
+        self.view.addConstraints([pizzaHelpHeightConstraint, pizzaHelpWidthConstraint, pizzaHelpxCenterConstraint, pizzaHelpyCenterConstraint])
+        self.view.insertSubview(self.pizzaHelp, belowSubview: (inputToolbar)!)
         
-        self.twoThing = UILabel()
-        self.twoThing.translatesAutoresizingMaskIntoConstraints = false
-        self.twoThing.numberOfLines = 0
-        self.twoThing.font = UIFont(name: "SFUIText-Regular", size: 15.0)
-        self.twoThing.textAlignment = NSTextAlignment.Center
-        self.twoThing.textColor = UIColor.lightGrayColor()
-        self.twoThing.text = "Two thing"
-        self.twoThing.sizeToFit()
-        self.view.addSubview(self.twoThing)
-        let twoThingxCenterConstraint = NSLayoutConstraint(item: self.twoThing, attribute: .CenterX, relatedBy: .Equal, toItem: self.view, attribute: .CenterX, multiplier: 1, constant: 0)
-        let twoThingWidthConstraint = NSLayoutConstraint(item: self.twoThing, attribute: .Width, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant:self.twoThing.frame.width)
-        let twoThingHeightConstraint = NSLayoutConstraint(item: self.twoThing, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant:self.twoThing.frame.height)
-        let twoThingyConstraint = NSLayoutConstraint(item: self.twoThing, attribute: NSLayoutAttribute.Bottom, relatedBy: NSLayoutRelation.Equal, toItem: self.pizzaThing, attribute: NSLayoutAttribute.Top, multiplier: 1.0, constant: -10)
-        self.view.addConstraints([twoThingxCenterConstraint, twoThingyConstraint, twoThingHeightConstraint, twoThingWidthConstraint])
-        self.view.insertSubview(self.twoThing, belowSubview: (inputToolbar)!)
+        self.furnitureHelp = UILabel()
+        self.furnitureHelp.translatesAutoresizingMaskIntoConstraints = false
+        self.furnitureHelp.numberOfLines = 0
+        self.furnitureHelp.font = UIFont(name: "SFUIText-Regular", size: 15.0)
+        self.furnitureHelp.textAlignment = NSTextAlignment.Center
+        self.furnitureHelp.textColor = UIColor.lightGrayColor()
+        self.furnitureHelp.text = "Where can I find furniture for my house?"
+        self.furnitureHelp.sizeToFit()
+        self.view.addSubview(self.furnitureHelp)
+        let furnitureHelpxCenterConstraint = NSLayoutConstraint(item: self.furnitureHelp, attribute: .CenterX, relatedBy: .Equal, toItem: self.view, attribute: .CenterX, multiplier: 1, constant: 0)
+        let furnitureHelpWidthConstraint = NSLayoutConstraint(item: self.furnitureHelp, attribute: .Width, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant:self.furnitureHelp.frame.width)
+        let furnitureHelpHeightConstraint = NSLayoutConstraint(item: self.furnitureHelp, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant:self.furnitureHelp.frame.height)
+        let furnitureHelpyConstraint = NSLayoutConstraint(item: self.furnitureHelp, attribute: NSLayoutAttribute.Bottom, relatedBy: NSLayoutRelation.Equal, toItem: self.pizzaHelp, attribute: NSLayoutAttribute.Top, multiplier: 1.0, constant: -10)
+        self.view.addConstraints([furnitureHelpxCenterConstraint, furnitureHelpyConstraint, furnitureHelpHeightConstraint, furnitureHelpWidthConstraint])
+        self.view.insertSubview(self.furnitureHelp, belowSubview: (inputToolbar)!)
         
-        self.threeThing = UILabel()
-        self.threeThing.translatesAutoresizingMaskIntoConstraints = false
-        self.threeThing.numberOfLines = 0
-        self.threeThing.font = UIFont(name: "SFUIText-Regular", size: 15.0)
-        self.threeThing.textAlignment = NSTextAlignment.Center
-        self.threeThing.textColor = UIColor.lightGrayColor()
-        self.threeThing.text = "Three thing"
-        self.threeThing.sizeToFit()
-        self.view.addSubview(self.threeThing)
-        let threeThingxCenterConstraint = NSLayoutConstraint(item: self.threeThing, attribute: .CenterX, relatedBy: .Equal, toItem: self.view, attribute: .CenterX, multiplier: 1, constant: 0)
-        let threeThingWidthConstraint = NSLayoutConstraint(item: self.threeThing, attribute: .Width, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant:self.threeThing.frame.width)
-        let threeThingHeightConstraint = NSLayoutConstraint(item: self.threeThing, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant:self.threeThing.frame.height)
-        let threeThingyConstraint = NSLayoutConstraint(item: self.threeThing, attribute: NSLayoutAttribute.Top, relatedBy: NSLayoutRelation.Equal, toItem: self.pizzaThing, attribute: NSLayoutAttribute.Bottom, multiplier: 1.0, constant: 10)
-        self.view.addConstraints([threeThingxCenterConstraint, threeThingyConstraint, threeThingHeightConstraint, threeThingWidthConstraint])
-        self.view.insertSubview(self.threeThing, belowSubview: (inputToolbar)!)
+        self.ticketHelp = UILabel()
+        self.ticketHelp.translatesAutoresizingMaskIntoConstraints = false
+        self.ticketHelp.numberOfLines = 0
+        self.ticketHelp.font = UIFont(name: "SFUIText-Regular", size: 15.0)
+        self.ticketHelp.textAlignment = NSTextAlignment.Center
+        self.ticketHelp.textColor = UIColor.lightGrayColor()
+        self.ticketHelp.text = "I would like to book movie tickets!"
+        self.ticketHelp.sizeToFit()
+        self.view.addSubview(self.ticketHelp)
+        let ticketHelpxCenterConstraint = NSLayoutConstraint(item: self.ticketHelp, attribute: .CenterX, relatedBy: .Equal, toItem: self.view, attribute: .CenterX, multiplier: 1, constant: 0)
+        let ticketHelpWidthConstraint = NSLayoutConstraint(item: self.ticketHelp, attribute: .Width, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant:self.ticketHelp.frame.width)
+        let ticketHelpHeightConstraint = NSLayoutConstraint(item: self.ticketHelp, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant:self.ticketHelp.frame.height)
+        let ticketHelpyConstraint = NSLayoutConstraint(item: self.ticketHelp, attribute: NSLayoutAttribute.Top, relatedBy: NSLayoutRelation.Equal, toItem: self.pizzaHelp, attribute: NSLayoutAttribute.Bottom, multiplier: 1.0, constant: 10)
+        self.view.addConstraints([ticketHelpxCenterConstraint, ticketHelpyConstraint, ticketHelpHeightConstraint, ticketHelpWidthConstraint])
+        self.view.insertSubview(self.ticketHelp, belowSubview: (inputToolbar)!)
         
         self.helperFoot = UILabel()
         self.helperFoot.translatesAutoresizingMaskIntoConstraints = false
@@ -129,14 +167,14 @@ class HomeViewController: JSQMessagesViewController {
         self.view.addSubview(self.helperFoot)
         let helperFootxCenterConstraint = NSLayoutConstraint(item: self.helperFoot, attribute: .CenterX, relatedBy: .Equal, toItem: self.view, attribute: .CenterX, multiplier: 1, constant: 0)
         let helperFootWidthConstraint = NSLayoutConstraint(item: self.helperFoot, attribute: .Width, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant:250)
-        let helperFootyConstraint = NSLayoutConstraint(item: self.helperFoot, attribute: NSLayoutAttribute.Top, relatedBy: NSLayoutRelation.Equal, toItem: self.pizzaThing, attribute: NSLayoutAttribute.Bottom, multiplier: 1.0, constant: 40)
+        let helperFootyConstraint = NSLayoutConstraint(item: self.helperFoot, attribute: NSLayoutAttribute.Top, relatedBy: NSLayoutRelation.Equal, toItem: self.pizzaHelp, attribute: NSLayoutAttribute.Bottom, multiplier: 1.0, constant: 40)
         self.view.addConstraints([helperFootxCenterConstraint, helperFootWidthConstraint, helperFootyConstraint])
         self.view.insertSubview(self.helperFoot, belowSubview: (inputToolbar)!)
 
         helperFoot.hidden = true
-        pizzaThing.hidden = true
-        twoThing.hidden = true
-        threeThing.hidden = true
+        pizzaHelp.hidden = true
+        furnitureHelp.hidden = true
+        ticketHelp.hidden = true
         
         // --------------------------------------------------------------------------------------
         
@@ -204,36 +242,44 @@ class HomeViewController: JSQMessagesViewController {
         self.messagesRef = ref.childByAppendingPath("messages/" + self.senderId)
         
         if self.messages.count == 0 {
-            self.pizzaThing.hidden = false
-            self.twoThing.hidden = false
-            self.threeThing.hidden = false
+            self.pizzaHelp.hidden = false
+            self.furnitureHelp.hidden = false
+            self.ticketHelp.hidden = false
             self.helperFoot.hidden = false
         }
 
         self.getMessagesHandle = self.messagesRef.queryLimitedToLast(50).observeEventType(FEventType.ChildAdded, withBlock: {
             (snapshot) in
-            let messageId = snapshot.key
-            let text = snapshot.value["text"] as? String
-            let timestamp = snapshot.value["timestamp"] as? NSTimeInterval
-            let date = NSDate(timeIntervalSince1970: timestamp!/1000)
-            let sentByUser = snapshot.value["sentByUser"] as? Bool
-            var sender = "notUser"
-            if sentByUser != true {
-                JSQSystemSoundPlayer.jsq_playMessageReceivedSound()
+            if snapshot.key != "serviced" {
+                let messageId = snapshot.key
+                let text = snapshot.value["text"] as! String
+                let timestamp = snapshot.value["timestamp"] as! NSTimeInterval
+                let date = NSDate(timeIntervalSince1970: timestamp/1000)
+                let sentByUser = snapshot.value["sent_by_user"] as! Bool
+                let deletedByUser = snapshot.value["deleted_by_user"] as! Bool
+                var sender = "not_user"
+                if !sentByUser && !self.firstMessageRead! {
+                    JSQSystemSoundPlayer.jsq_playMessageReceivedSound()
+                    self.firstMessageRead = false
+                }
+                else {
+                    sender = self.senderId
+                }
+                let message = Message(messageId: messageId, text: text, sentByUser: sentByUser, senderId: sender, senderDisplayName: self.senderDisplayName, date: date)
+                
+                if !deletedByUser {
+                    self.messages.append(message)
+                }
+                
+                if self.messages.count > 0 {
+                    self.pizzaHelp.hidden = true
+                    self.furnitureHelp.hidden = true
+                    self.ticketHelp.hidden = true
+                    self.helperFoot.hidden = true
+                }
+                
+                self.finishReceivingMessage()
             }
-            else {
-                sender = self.senderId
-            }
-            let message = Message(messageId: messageId, text: text, sentByUser: sentByUser, senderId: sender, senderDisplayName: self.senderDisplayName, date: date)
-            
-            self.messages.append(message)
-            
-            self.pizzaThing.hidden = true
-            self.twoThing.hidden = true
-            self.threeThing.hidden = true
-            self.helperFoot.hidden = true
-            
-            self.finishReceivingMessage()
         })
     }
 
@@ -241,14 +287,37 @@ class HomeViewController: JSQMessagesViewController {
         self.messagesRef.childByAutoId().setValue([
             "text": text,
             "timestamp": FirebaseServerValue.timestamp(),
-            "sentByUser": true
+            "sent_by_user": true,
+            "deleted_by_user": false
             ])
+        var isServiced: UInt!
+        self.messagesRef.observeEventType(.Value, withBlock: { snapshot in
+             isServiced = snapshot.value["serviced"] as! UInt
+            }, withCancelBlock: { error in
+                print(error.description)
+        })
+        if isServiced != nil {
+            if isServiced == 1 {
+                self.messagesRef.updateChildValues([
+                    "serviced": 0
+                    ])
+            }
+        }
+        else {
+            self.messagesRef.updateChildValues([
+                    "serviced": 0
+                ])
+        }
     }
     
     override func didPressSendButton(button: UIButton!, withMessageText text: String!, senderId: String!, senderDisplayName: String!, date: NSDate!) {
         JSQSystemSoundPlayer.jsq_playMessageSentSound()
         sendMessage(text)
         finishSendingMessage()
+    }
+    
+    override func didPressAccessoryButton(sender: UIButton!) {
+        print("attacment pressed")
     }
     
     override func collectionView(collectionView: JSQMessagesCollectionView!, messageDataForItemAtIndexPath indexPath: NSIndexPath!) -> JSQMessageData! {
@@ -331,14 +400,18 @@ class HomeViewController: JSQMessagesViewController {
     
     func deleteMessage(collectionView: UICollectionView, indexPath: NSIndexPath) {
         let messageKey = self.messages[indexPath.item].messageId()
-        let removeMessageRef = self.messagesRef.childByAppendingPath("/" + messageKey)
-        removeMessageRef.removeValue()
+        let updateMessageRef = self.messagesRef.childByAppendingPath("/" + messageKey)
+        updateMessageRef.updateChildValues([
+            "deleted_by_user": true
+            ])
+        
         self.messages.removeAtIndex(indexPath.item)
         collectionView.deleteItemsAtIndexPaths([indexPath])
+
         if self.messages.count == 0 {
-            self.pizzaThing.hidden = false
-            self.twoThing.hidden = false
-            self.threeThing.hidden = false
+            self.pizzaHelp.hidden = false
+            self.furnitureHelp.hidden = false
+            self.ticketHelp.hidden = false
             self.helperFoot.hidden = false
         }
     }
@@ -350,6 +423,15 @@ class HomeViewController: JSQMessagesViewController {
         ref.unauth()
         print("logged out user:", ref.authData)
         performSegueWithIdentifier("LOGOUT", sender: self)
+        
+        VerifyClient.logoutUser(countryCode: "US", number: self.mobileNumber, completionBlock: { error in
+            if let error = error {
+                // unable to logout user
+                print("could not logout nexmo : ", error)
+            }
+            
+            print("logged out nexmo user")
+        })
     }
     
     // Dismissing Keyboard ------------------------------------------------------------------

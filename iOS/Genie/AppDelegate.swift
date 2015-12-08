@@ -9,6 +9,7 @@
 import UIKit
 import CoreData
 import Firebase
+import VerifyIosSdk
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -20,8 +21,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
         
-        // set initial view controller ----------------------------------------------------------
+        // setup Nexmo --------------------------------------------------------------------------
+
+        NexmoClient.start(applicationId: "775f81ea-e31a-4a76-8bc4-2f66b43617e0", sharedSecretKey: "086cc09c74d400e")
         
+        // --------------------------------------------------------------------------------------
+        
+        
+        // set initial view controller ----------------------------------------------------------
         if self.ref.authData != nil {
             print("user authenticated: ", self.ref.authData, "loading home view")
             //get access to login view
@@ -33,7 +40,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             print("No user signed in, loading intro view")
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             
-            self.window?.rootViewController = storyboard.instantiateViewControllerWithIdentifier("introView")
+            self.window?.rootViewController = storyboard.instantiateViewControllerWithIdentifier("registerView")
         }
         
         // --------------------------------------------------------------------------------------
