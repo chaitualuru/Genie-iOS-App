@@ -12,6 +12,8 @@ import VerifyIosSdk
 
 class HomeViewController: JSQMessagesViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
+    var checkAttachmentTimer: NSTimer!
+    
     let imagePicker = UIImagePickerController()
     var currentAttachment: UIImage?
     var defaultLeftButton: UIButton!
@@ -217,6 +219,8 @@ class HomeViewController: JSQMessagesViewController, UIImagePickerControllerDele
         
         // --------------------------------------------------------------------------------------
         
+        self.checkAttachmentTimer = NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: Selector("checkAttachment"), userInfo: nil, repeats: true)
+        
         setupFirebase()
 
     }
@@ -229,6 +233,17 @@ class HomeViewController: JSQMessagesViewController, UIImagePickerControllerDele
         collectionView!.collectionViewLayout.springinessEnabled = false
         
         // --------------------------------------------------------------------------------------
+    }
+    
+    override func viewDidDisappear(animated: Bool) {
+        self.checkAttachmentTimer.invalidate()
+    }
+    
+    func checkAttachment()
+    {
+        if self.currentAttachment != nil {
+            self.inputToolbar?.contentView?.rightBarButtonItem?.enabled = true
+        }
     }
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String : AnyObject]?) {
@@ -365,6 +380,12 @@ class HomeViewController: JSQMessagesViewController, UIImagePickerControllerDele
             if text.isEmpty {
                 sendMessage(text)
                 self.finishSendingMessage()
+                self.currentAttachment = nil
+                if let toolbar = inputToolbar {
+                    if let conview = toolbar.contentView {
+                        conview.leftBarButtonItem = self.defaultLeftButton
+                    }
+                }
             }
             else {
                 sendMessage("")
@@ -493,7 +514,7 @@ class HomeViewController: JSQMessagesViewController, UIImagePickerControllerDele
     func logout(sender: UIBarButtonItem) {
         ref.removeObserverWithHandle(getMessagesHandle)
         ref.unauth()
-        print("logged out user:", ref.authData)
+        print("logged out user")
         performSegueWithIdentifier("LOGOUT", sender: self)
         
         VerifyClient.logoutUser(countryCode: "US", number: self.mobileNumber, completionBlock: { error in
