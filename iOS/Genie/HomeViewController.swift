@@ -10,7 +10,11 @@ import UIKit
 import Firebase
 import VerifyIosSdk
 
-class HomeViewController: JSQMessagesViewController {
+class HomeViewController: JSQMessagesViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
+    let imagePicker = UIImagePickerController()
+    var currentAttachment: UIImage?
+    var defaultLeftButton: UIButton!
     
     var user: FAuthData?
     
@@ -33,6 +37,8 @@ class HomeViewController: JSQMessagesViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        imagePicker.delegate = self
         
         self.firstMessageRead = true
         
@@ -61,7 +67,6 @@ class HomeViewController: JSQMessagesViewController {
         
         if let toolbar = inputToolbar {
             if let conview = toolbar.contentView {
-//                conview.leftBarButtonItem = nil
                 conview.backgroundColor = UIColor.whiteColor()
                 if let texview = conview.textView {
                     texview.layer.borderWidth = 0
@@ -71,23 +76,13 @@ class HomeViewController: JSQMessagesViewController {
                 if let rightbarbutton = conview.rightBarButtonItem {
                     rightbarbutton.setTitle("", forState: UIControlState.Normal)
                 }
+                self.defaultLeftButton = conview.leftBarButtonItem
                 let sendImage = UIImage(named: "lamp.png")
                 let sendButton: UIButton = UIButton(type: UIButtonType.Custom)
                 sendButton.setImage(sendImage, forState: UIControlState.Normal)
                 conview.rightBarButtonItem = sendButton
             }
         }
-        
-//        inputToolbar!.contentView!.leftBarButtonItem = nil
-//        inputToolbar?.contentView?.backgroundColor = UIColor.whiteColor()
-//        inputToolbar!.contentView?.textView?.layer.borderWidth = 0
-//        inputToolbar!.contentView?.textView?.placeHolder = "Type a message"
-//        inputToolbar!.contentView?.textView?.font = UIFont(name: "SFUIText-Regular", size: 15.0)
-//        inputToolbar!.contentView?.rightBarButtonItem?.setTitle("", forState: UIControlState.Normal)
-//        let sendImage = UIImage(named: "lamp.png")
-//        let sendButton: UIButton = UIButton(type: UIButtonType.Custom)
-//        sendButton.setImage(sendImage, forState: UIControlState.Normal)
-//        inputToolbar!.contentView?.rightBarButtonItem? = sendButton
         
         automaticallyScrollsToMostRecentMessage = true
         
@@ -231,12 +226,31 @@ class HomeViewController: JSQMessagesViewController {
         
         // Bubble springiness factor ------------------------------------------------------------
         
-        collectionView!.collectionViewLayout.springinessEnabled = true
-        collectionView!.collectionViewLayout.springResistanceFactor = 1000
+        collectionView!.collectionViewLayout.springinessEnabled = false
         
         // --------------------------------------------------------------------------------------
     }
-
+    
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String : AnyObject]?) {
+        if let pickedImage = image as? UIImage {
+            self.currentAttachment = pickedImage
+            if let toolbar = inputToolbar {
+                if let conview = toolbar.contentView {
+                    conview.leftBarButtonItem?.contentMode = .ScaleAspectFill
+                    let attachButton: UIButton = UIButton(type: UIButtonType.Custom)
+                    attachButton.setImage(pickedImage, forState: UIControlState.Normal)
+                    self.defaultLeftButton = conview.leftBarButtonItem
+                    conview.leftBarButtonItem = attachButton
+                }
+            }
+        }
+        
+        dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    func imagePickerControllerDidCancel(picker: UIImagePickerController) {
+        dismissViewControllerAnimated(true, completion: nil)
+    }
 
     func setupFirebase() {
         self.messagesRef = ref.childByAppendingPath("messages/" + self.senderId)
@@ -251,13 +265,17 @@ class HomeViewController: JSQMessagesViewController {
         self.getMessagesHandle = self.messagesRef.queryLimitedToLast(50).observeEventType(FEventType.ChildAdded, withBlock: {
             (snapshot) in
             if snapshot.key != "serviced" {
+                
                 let messageId = snapshot.key
                 let text = snapshot.value["text"] as! String
                 let timestamp = snapshot.value["timestamp"] as! NSTimeInterval
                 let date = NSDate(timeIntervalSince1970: timestamp/1000)
                 let sentByUser = snapshot.value["sent_by_user"] as! Bool
                 let deletedByUser = snapshot.value["deleted_by_user"] as! Bool
+                let isMediaMessage = snapshot.value["is_media_message"] as! Bool
+                
                 var sender = "not_user"
+                
                 if !sentByUser && !self.firstMessageRead! {
                     JSQSystemSoundPlayer.jsq_playMessageReceivedSound()
                     self.firstMessageRead = false
@@ -265,9 +283,24 @@ class HomeViewController: JSQMessagesViewController {
                 else {
                     sender = self.senderId
                 }
-                let message = Message(messageId: messageId, text: text, sentByUser: sentByUser, senderId: sender, senderDisplayName: self.senderDisplayName, date: date)
                 
                 if !deletedByUser {
+                    var message: Message!
+                    if isMediaMessage {
+                        let encodedString = snapshot.value["media"] as? String
+                        if let encoding = encodedString {
+                            let imageData = NSData(base64EncodedString: encoding, options: NSDataBase64DecodingOptions.IgnoreUnknownCharacters)
+                            let photoItem = JSQPhotoMediaItem(image: UIImage(data: imageData!))
+                            message = Message(messageId: messageId, text: text, sentByUser: sentByUser, senderId: sender, senderDisplayName: self.senderDisplayName, date: date, isMediaMessage: isMediaMessage, media: photoItem)
+                        }
+                        else {
+                            print("Could not attach photo")
+                            message = Message(messageId: messageId, text: text, sentByUser: sentByUser, senderId: sender, senderDisplayName: self.senderDisplayName, date: date, isMediaMessage: isMediaMessage, media: nil)
+                        }
+                    }
+                    else {
+                        message = Message(messageId: messageId, text: text, sentByUser: sentByUser, senderId: sender, senderDisplayName: self.senderDisplayName, date: date, isMediaMessage: isMediaMessage, media: nil)
+                    }
                     self.messages.append(message)
                 }
                 
@@ -284,12 +317,28 @@ class HomeViewController: JSQMessagesViewController {
     }
 
     func sendMessage(text: String!) {
-        self.messagesRef.childByAutoId().setValue([
-            "text": text,
-            "timestamp": FirebaseServerValue.timestamp(),
-            "sent_by_user": true,
-            "deleted_by_user": false
-            ])
+        if let attachment = self.currentAttachment {
+            let imageData = UIImageJPEGRepresentation(attachment, 0.5)
+            let imageString = imageData!.base64EncodedStringWithOptions(NSDataBase64EncodingOptions.Encoding64CharacterLineLength)
+            
+            self.messagesRef.childByAutoId().setValue([
+                "text": text,
+                "timestamp": FirebaseServerValue.timestamp(),
+                "sent_by_user": true,
+                "deleted_by_user": false,
+                "is_media_message": true,
+                "media": imageString
+                ])
+        }
+        else {
+            self.messagesRef.childByAutoId().setValue([
+                "text": text,
+                "timestamp": FirebaseServerValue.timestamp(),
+                "sent_by_user": true,
+                "deleted_by_user": false,
+                "is_media_message": false
+                ])
+        }
         var isServiced: UInt!
         self.messagesRef.observeEventType(.Value, withBlock: { snapshot in
              isServiced = snapshot.value["serviced"] as! UInt
@@ -312,12 +361,35 @@ class HomeViewController: JSQMessagesViewController {
     
     override func didPressSendButton(button: UIButton!, withMessageText text: String!, senderId: String!, senderDisplayName: String!, date: NSDate!) {
         JSQSystemSoundPlayer.jsq_playMessageSentSound()
-        sendMessage(text)
-        finishSendingMessage()
+        if self.currentAttachment != nil {
+            if text.isEmpty {
+                sendMessage(text)
+                self.finishSendingMessage()
+            }
+            else {
+                sendMessage("")
+                self.finishSendingMessage()
+                self.currentAttachment = nil
+                if let toolbar = inputToolbar {
+                    if let conview = toolbar.contentView {
+                        conview.leftBarButtonItem = self.defaultLeftButton
+                    }
+                }
+                sendMessage(text)
+                self.finishSendingMessage()
+            }
+        }
+        else {
+            self.sendMessage(text)
+            self.finishSendingMessage()
+        }
     }
     
     override func didPressAccessoryButton(sender: UIButton!) {
-        print("attacment pressed")
+        imagePicker.allowsEditing = false
+        imagePicker.sourceType = .PhotoLibrary
+        
+        presentViewController(imagePicker, animated: true, completion: nil)
     }
     
     override func collectionView(collectionView: JSQMessagesCollectionView!, messageDataForItemAtIndexPath indexPath: NSIndexPath!) -> JSQMessageData! {
@@ -370,12 +442,12 @@ class HomeViewController: JSQMessagesViewController {
         
         let message = messages[indexPath.item]
         if message.sentByUser() == true {
-            cell.textView!.textColor = UIColor.whiteColor()
-            cell.textView!.linkTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor(),
+            cell.textView?.textColor = UIColor.whiteColor()
+            cell.textView?.linkTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor(),
                 NSUnderlineStyleAttributeName: NSUnderlineStyle.StyleSingle.rawValue]
         } else {
-            cell.textView!.textColor = UIColor.blackColor()
-            cell.textView!.linkTextAttributes = [NSForegroundColorAttributeName: UIColor.blackColor(),
+            cell.textView?.textColor = UIColor.blackColor()
+            cell.textView?.linkTextAttributes = [NSForegroundColorAttributeName: UIColor.blackColor(),
                 NSUnderlineStyleAttributeName: NSUnderlineStyle.StyleSingle.rawValue]
         }
 

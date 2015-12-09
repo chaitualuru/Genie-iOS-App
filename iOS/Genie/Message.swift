@@ -16,15 +16,17 @@ class Message : NSObject, JSQMessageData {
     var date_: NSDate
     var isMediaMessage_: Bool
     var sentByUser_: Bool
+    var media_: JSQMessageMediaData?
     
-    init(messageId: String?, text: String?, sentByUser: Bool?, senderId: String?, senderDisplayName: String?, date: NSDate?) {
+    init(messageId: String?, text: String?, sentByUser: Bool?, senderId: String?, senderDisplayName: String?, date: NSDate?, isMediaMessage: Bool?, media: JSQMessageMediaData?) {
         self.messageId_ = messageId!
         self.text_ = text!
         self.senderId_ = senderId!
         self.senderDisplayName_ = senderDisplayName!
         // this is wrong
         self.date_ = date!
-        self.isMediaMessage_ = false
+        self.isMediaMessage_ = isMediaMessage!
+        self.media_ = media
         self.sentByUser_ = sentByUser!
     }
     
@@ -54,6 +56,10 @@ class Message : NSObject, JSQMessageData {
     
     func isMediaMessage() -> Bool {
         return self.isMediaMessage_
+    }
+    
+    func media() -> JSQMessageMediaData! {
+        return self.media_
     }
  
     func messageHash() -> UInt {
