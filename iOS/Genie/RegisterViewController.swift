@@ -182,8 +182,9 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
                                 let newUser = ["first_name": self.firstName.text!, "last_name": self.lastName.text!, "mobile_number": self.mobileNumber.text!, "email_address": self.emailAddress.text!]
                                 
                                 uidRef.setValue(newUser)
-                                
-                                self.performSegueWithIdentifier("REGISTER", sender: result)
+                                print("Correct")
+                                //self.performSegueWithIdentifier("REGISTER", sender: result)
+                                self.presentViewController(MySwipeVC(), animated: true, completion: nil)
                             }
                         }
                     }

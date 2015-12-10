@@ -148,7 +148,8 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
                     }
                 } else {
                     print("Signed in successfully:", authData.uid)
-                    self.performSegueWithIdentifier("SIGN_IN", sender: authData)
+                    // self.performSegueWithIdentifier("SIGN_IN", sender: authData)
+                    self.presentViewController(MySwipeVC(), animated: true, completion: nil)
                 }
                 
                 self.activityIndicator.stopAnimating()

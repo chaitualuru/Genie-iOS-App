@@ -32,15 +32,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if self.ref.authData != nil {
             print("user authenticated: ", self.ref.authData, "loading home view")
             //get access to login view
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            //            let storyboard = UIStoryboard(name: "Main", bundle: nil)
             
-            self.window?.rootViewController = storyboard.instantiateViewControllerWithIdentifier("homeView")
+            window = UIWindow(frame: UIScreen.mainScreen().bounds)
+            window!.rootViewController = MySwipeVC()
+            window!.makeKeyAndVisible()
+            //            self.window?.rootViewController = storyboard.instantiateViewControllerWithIdentifier("swipeView")
         }
         else {
             print("No user signed in, loading intro view")
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             
-            self.window?.rootViewController = storyboard.instantiateViewControllerWithIdentifier("registerView")
+            //self.window?.rootViewController = storyboard.instantiateViewControllerWithIdentifier("registerView")
         }
         
         // --------------------------------------------------------------------------------------

@@ -2,3 +2,4 @@ use_frameworks!
 pod 'Firebase', '>= 2.3.3'
 pod 'JSQMessagesViewController'
 pod 'Bond', '4.0.0-beta1'
+pod 'EZSwipeController'

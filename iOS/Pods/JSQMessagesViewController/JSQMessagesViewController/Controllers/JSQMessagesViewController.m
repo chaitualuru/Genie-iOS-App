@@ -48,6 +48,7 @@ static void * kJSQMessagesKeyValueObservingContext = &kJSQMessagesKeyValueObserv
 
 @interface JSQMessagesViewController () <JSQMessagesInputToolbarDelegate,
                                          JSQMessagesKeyboardControllerDelegate>
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *toolbarBottomConstraint;
 
 @property (weak, nonatomic) IBOutlet JSQMessagesCollectionView *collectionView;
 @property (weak, nonatomic) IBOutlet JSQMessagesInputToolbar *inputToolbar;
@@ -118,6 +119,7 @@ static void * kJSQMessagesKeyValueObservingContext = &kJSQMessagesKeyValueObserv
     self.view.backgroundColor = [UIColor whiteColor];
 
     self.jsq_isObserving = NO;
+    self.toolbarBottomConstraint.constant = self.navigationController.navigationBar.frame.size.height;
 
     self.toolbarHeightConstraint.constant = self.inputToolbar.preferredDefaultHeight;
 

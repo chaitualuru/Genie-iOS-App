@@ -39,8 +39,9 @@ class HomeViewController: JSQMessagesViewController, UIImagePickerControllerDele
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+     
         imagePicker.delegate = self
+        print("Home")
         
         self.firstMessageRead = true
         
@@ -178,20 +179,7 @@ class HomeViewController: JSQMessagesViewController, UIImagePickerControllerDele
 
         // Handling Navigation Bar --------------------------------------------------------------
         
-        self.title = "Genie"
-        if let navFont = UIFont(name: "SFUIDisplay-Regular", size: 20.0) {
-            let attributes: [String:AnyObject]? = [
-                NSForegroundColorAttributeName: UIColor(red: (27/255.0), green: (165/255.0), blue: (221/255.0), alpha: 1.0),
-                NSFontAttributeName: navFont
-            ]
-            self.navigationController?.navigationBar.titleTextAttributes = attributes
-        }
-        
-        self.navigationController?.navigationBar.barTintColor = UIColor.whiteColor()
-        
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "menu.png"), landscapeImagePhone: UIImage(named: "menu.png"), style: UIBarButtonItemStyle.Plain, target: self, action: "logout:")
-        
-        self.navigationItem.leftBarButtonItem?.tintColor = UIColor(red: (27/255.0), green: (165/255.0), blue: (221/255.0), alpha: 1.0)
+        self.navigationController?.navigationBar.hidden = true        
         
         // --------------------------------------------------------------------------------------
         
