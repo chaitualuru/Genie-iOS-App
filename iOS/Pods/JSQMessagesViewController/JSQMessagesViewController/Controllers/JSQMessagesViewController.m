@@ -50,6 +50,8 @@ static void * kJSQMessagesKeyValueObservingContext = &kJSQMessagesKeyValueObserv
                                          JSQMessagesKeyboardControllerDelegate>
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *toolbarBottomConstraint;
 
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *collectionViewTopConstraint;
+
 @property (weak, nonatomic) IBOutlet JSQMessagesCollectionView *collectionView;
 @property (weak, nonatomic) IBOutlet JSQMessagesInputToolbar *inputToolbar;
 
@@ -217,6 +219,7 @@ static void * kJSQMessagesKeyValueObservingContext = &kJSQMessagesKeyValueObserv
     [[[self class] nib] instantiateWithOwner:self options:nil];
 
     [self jsq_configureMessagesViewController];
+    self.toolbarBottomConstraint.constant = self.navigationController.navigationBar.frame.size.height;
     [self jsq_registerForNotifications:YES];
 }
 
@@ -228,6 +231,7 @@ static void * kJSQMessagesKeyValueObservingContext = &kJSQMessagesKeyValueObserv
     [super viewWillAppear:animated];
     [self.view layoutIfNeeded];
     [self.collectionView.collectionViewLayout invalidateLayout];
+    self.toolbarBottomConstraint.constant = self.navigationController.navigationBar.frame.size.height;
 
     if (self.automaticallyScrollsToMostRecentMessage) {
         dispatch_async(dispatch_get_main_queue(), ^{
