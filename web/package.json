@@ -1,0 +1,18 @@
+{   
+    "name": "Genie_Internal_Tools",
+    "version": "1.0.0",
+    "main": "app.js",
+    "description": "Genie Internal Tools for employees",
+    "author": "Vamsee Chamakura",
+    "dependencies": {
+        "express": "^4.9.7",
+        "firebase": "^2.3.0",
+        "body-parser": "^1.14.1",
+        "express-handlebars": "^1.1.0",
+        "handlebars": "^4.0.0",
+        "cookie-parser": "^1.4",
+        "express-session": "^1.12",
+        "mongoose": "^4.0.2",
+        "bcrypt": "^0.8.0"
+    }
+}
