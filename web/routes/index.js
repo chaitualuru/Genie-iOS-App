@@ -1,4 +1,4 @@
-module.exports = function (app, ref) {
+module.exports = function (app, ref, server) {
 	var baseURL = "https://getgenie.firebaseio.com"
 	var Firebase = require('firebase');
 	var Handlebars = require('handlebars');
@@ -6,7 +6,7 @@ module.exports = function (app, ref) {
 	var mRef = new Firebase(baseURL + "/messages");
 	var msgRef = {};
 	var activeRequests;
-	var messages = {};
+	var io = require('socket.io')(server);
 
 	//------------------------------------------- REGISTER --------------------------------------------------
 	app.get('/register', function (req, res) {
@@ -141,27 +141,25 @@ module.exports = function (app, ref) {
 
 
 
-
-
 	//-------------------------------------- MESSAGING ------------------------------------------------------
+	io.on('connection', function(socket) {
+		socket.on("id", function (msg_id) {
+			console.log("User Id: " + msg_id);
+			msgRef[msg_id] = new Firebase(baseURL + "/messages/" + msg_id);
+			msgRef[msg_id].update({serviced: -1});
+			msgRef[msg_id].on("child_added", function (snapshot) {
+				var msg = snapshot.val();
+				socket.emit(msg_id, msg);
+			}, function(error) {
+				console.log(error);
+			});
+		});
+	});
 
 	app.get('/messages/:msg_id', function (req, res) {
 		if (!req.session.uid) {
 			res.redirect('/');
 		} else {
-			msgRef[req.params.msg_id] = new Firebase(baseURL + "/messages/" + req.params.msg_id);
-			msgRef[req.params.msg_id].update({serviced: -1});
-			msgRef[req.params.msg_id].on("child_added", function (snapshot) {
-				var msg = snapshot.val();
-				var keys = Object.keys(messages);
-				if (!messages[req.params.msg_id]) {
-					messages[req.params.msg_id] = [];
-				}
-				
-				messages[req.params.msg_id].push(msg);
-			}, function(error) {
-				console.log(error);
-			});
 			res.render('messaging');
 		}
 	});
@@ -216,22 +214,12 @@ module.exports = function (app, ref) {
 		}
 	});
 
-	app.get('/get/messages/:msg_id', function (req, res) {
-		if (!req.session.uid) {
-			res.redirect('/');
-		} else {
-			var msg = messages[req.params.msg_id];
-			res.send(msg);
-			delete messages[req.params.msg_id];
-		}
-	});
-
 	app.get('/denyRequest/:msg_id', function (req, res) {
 		if (!req.session.uid) {
 			res.redirect('/'); 
 		} else {
-			var msgRef = new Firebase(baseURL + "/messages/" + req.params.msg_id);
-			msgRef.update({serviced: 1});
+			var userRef = new Firebase(baseURL + "/users/" + req.params.msg_id);
+			userRef.update({serviced: 1});
 			res.send({code: 200, message: "OK"});
 		}
 	});
@@ -240,11 +228,16 @@ module.exports = function (app, ref) {
 		if (!req.session.uid) {
 			res.redirect('/');
 		} else {
-			var msgRef = new Firebase(baseURL + "/messages/" + req.params.msg_id);
-			msgRef.update({serviced: 1});
+			var userRef = new Firebase(baseURL + "/users/" + req.params.msg_id);
+			userRef.update({serviced: 1});
 			res.send({code: 200, message: "OK"});
 		}
 	});
 	//-------------------------------------- MESSAGING END --------------------------------------------------
 
+
+
+	//--------------------------------------------- ORDERS --------------------------------------------------
+	
+	//--------------------------------------------- ORDERS END ----------------------------------------------
 }

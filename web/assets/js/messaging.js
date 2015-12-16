@@ -2,6 +2,7 @@ var url = window.location.pathname.split('/');
 var user_id = url[2];
 var user_name = "";
 var uploadedFileContents;
+var playsound = false;
 
 $("#denyRequest").click(function () {
 	$.ajax({url: "/denyRequest/" + user_id, success: function(response) {
@@ -74,6 +75,7 @@ function getUserProfile() {
 		$('#user-email').text(user.email_address);
 		$('#user-mobile').text(user.mobile_number);
 		user_name = user.first_name;
+		console.log(user_name);
 		getNewMessages(false);
 	}});
 }
@@ -84,44 +86,42 @@ function largerView (src) {
 }
 
 function getNewMessages(playsound) {
-	$.ajax({url: "/get/messages/" + user_id, success: function (messages) {
-		if (messages) {
-			var len = messages.length
-			$.each(messages, function (idx, message) {
-				if (message.timestamp) {
-					var date = new Date(message.timestamp);
-					date = date.toGMTString();
-					date = date.split(' ');
-					date = date[1] + " " + date[2] + ", " + date[4];
-					if (message.sent_by_user == true) {
-						if (message.is_media_message) {
-				        	$("#message-box").append(
-				        		"<div class='row msg-box-user'><div class='col-md-9'><span style='color: red;'>" + user_name + ": </span><img onclick='largerView(this.src)' height='150px' width='300px' src='data:img/png;base64," + message.media + "' /></div><div class='col-md-3'><center>" + date + "</center></div></div>");
-				        } else {
-				        	$("#message-box").append(
-				        		"<div class='row msg-box-user'><div class='col-md-9'><span style='color: red;'>" + user_name + ": </span>" + message.text + "</div><div class='col-md-3'><center>" + date + "</center></div></div>");
-				        }
-			        	if (playsound) {
-				        	var audio = new Audio('/sounds/new_message.mp3');
-							audio.play();
-						}
+	var iosocket = io.connect();
+	iosocket.on('connect', function () {
+		iosocket.emit('id', user_id);
+		iosocket.on(user_id, function(message) {
+			if (message.timestamp) {
+				var date = new Date(message.timestamp);
+				date = date.toGMTString();
+				date = date.split(' ');
+				date = date[1] + " " + date[2] + ", " + date[4];
+				if (message.sent_by_user == true) {
+					if (message.is_media_message) {
+			        	$("#message-box").append(
+			        		"<div class='row msg-box-user'><div class='col-md-9'><span style='color: red;'>" + user_name + ": </span><img onclick='largerView(this.src)' height='150px' width='300px' src='data:img/png;base64," + message.media + "' /></div><div class='col-md-3'><center>" + date + "</center></div></div>");
 			        } else {
-			        	if (message.is_media_message) {
-			        		$("#message-box").append(
-				        		"<div class='row msg-box-employee'><div class='col-md-9'>You: <img onclick='largerView(this.src)' height='150px' width='300px' src='data:img/png;base64," + message.media + "' /></div><div class='col-md-3'><center>" + date + "</center></div></div>");
-			        	} else {
-				        	$("#message-box").append(
-				        		"<div class='row msg-box-employee'><div class='col-md-9'>You: " + message.text + 
-				        		"</div><div class='col-md-3'><center>" + date + "</center></div></div>");
-				        }
+			        	$("#message-box").append(
+			        		"<div class='row msg-box-user'><div class='col-md-9'><span style='color: red;'>" + user_name + ": </span>" + message.text + "</div><div class='col-md-3'><center>" + date + "</center></div></div>");
 			        }
-			    }
-			    $("#message-box").animate({ scrollTop: $('#message-box').prop("scrollHeight")}, 00);
-			});
-		}
-	}});
+		        	if (playsound) {
+			        	var audio = new Audio('/sounds/new_message.mp3');
+						audio.play();
+					}
+		        } else {
+		        	if (message.is_media_message) {
+		        		$("#message-box").append(
+			        		"<div class='row msg-box-employee'><div class='col-md-9'>You: <img onclick='largerView(this.src)' height='150px' width='300px' src='data:img/png;base64," + message.media + "' /></div><div class='col-md-3'><center>" + date + "</center></div></div>");
+		        	} else {
+			        	$("#message-box").append(
+			        		"<div class='row msg-box-employee'><div class='col-md-9'>You: " + message.text + 
+			        		"</div><div class='col-md-3'><center>" + date + "</center></div></div>");
+			        }
+		        }
+		    }
+		    $("#message-box").animate({ scrollTop: $('#message-box').prop("scrollHeight")}, 100);
+		});
+	});
 }
 getUserProfile();
-setInterval(getNewMessages, 2000, true);
 document.getElementById('uploadFile').addEventListener('change', readSingleFile, false);
 $("#sendMessage").click(sendMessage);
