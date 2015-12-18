@@ -344,7 +344,6 @@ class HomeViewController: JSQMessagesViewController, UIImagePickerControllerDele
         self.getMessagesHandle = self.messagesRef.queryLimitedToLast(5).observeEventType(FEventType.ChildAdded, withBlock: {
             (snapshot) in
             if snapshot.key != "serviced" {
-                print(snapshot.key)
                 let messageId = snapshot.key
                 let text = snapshot.value["text"] as! String
                 let timestamp = snapshot.value["timestamp"] as! NSTimeInterval
@@ -402,7 +401,6 @@ class HomeViewController: JSQMessagesViewController, UIImagePickerControllerDele
                         notification.alertBody = message.text()
                         notification.soundName = UILocalNotificationDefaultSoundName
                         UIApplication.sharedApplication().scheduleLocalNotification(notification)
-                        print(message.text())
                     }
                 }
                 

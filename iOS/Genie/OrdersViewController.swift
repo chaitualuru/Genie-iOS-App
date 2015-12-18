@@ -94,9 +94,14 @@ class OrdersViewController: UITableViewController {
         else {
             cell.orderDescription.text = order.orderDescription()
         }
-        cell.dateAndTimeOfOrder.text = order.date().description
-        cell.statusOfOrder.text = order.status()
-        print(order.category().lowercaseString)
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.timeStyle = .ShortStyle
+        dateFormatter.dateStyle = .MediumStyle
+
+        cell.dateAndTimeOfOrder.text = dateFormatter.stringFromDate(order.date())
+        var statusString = order.status()
+        statusString.replaceRange(statusString.startIndex...statusString.startIndex, with: String(statusString[statusString.startIndex]).capitalizedString)
+        cell.statusOfOrder.text = statusString
         cell.categoryImageOfOrder.image = UIImage(named: order.category().lowercaseString)
 
         return cell
