@@ -50,8 +50,9 @@ class OrdersViewController: UITableViewController {
             let timestamp = snapshot.value["timestamp"] as! NSTimeInterval
             let date = NSDate(timeIntervalSince1970: timestamp/1000)
             let status = snapshot.value["status"] as! String
+            let category = snapshot.value["category"] as! String
 
-            let order = Order(status: status, description: description, date: date, company: company)
+            let order = Order(status: status, description: description, date: date, company: company, category: category)
             
             self.orders.append(order)
         })
@@ -95,6 +96,7 @@ class OrdersViewController: UITableViewController {
         }
         cell.dateAndTimeOfOrder.text = order.date().description
         cell.statusOfOrder.text = order.status()
+        cell.categoryImageOfOrder.image = UIImage(named: order.category().lowercaseString)
 
         return cell
     }
