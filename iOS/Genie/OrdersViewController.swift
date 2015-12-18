@@ -16,6 +16,7 @@ class OrdersViewController: UITableViewController {
     var ordersRef: Firebase!
     var senderId: String!
     var getOrdersHandle: UInt!
+    var noOrdersLabel: UILabel!
     
     var orders = [Order]()
 
@@ -28,6 +29,21 @@ class OrdersViewController: UITableViewController {
         self.ref = Firebase(url:"https://getgenie.firebaseio.com/")
         self.user = self.ref.authData
         self.senderId = self.user?.uid
+        
+        self.noOrdersLabel = UILabel()
+        self.noOrdersLabel.translatesAutoresizingMaskIntoConstraints = false
+        self.noOrdersLabel.text = "You have not placed any orders yet.\nWe'd love to help you place your first!"
+        self.noOrdersLabel.lineBreakMode = .ByWordWrapping
+        self.noOrdersLabel.numberOfLines = 0
+        self.noOrdersLabel.font = UIFont(name: "SFUIText-Regular", size: 15.0)
+        self.noOrdersLabel.textAlignment = NSTextAlignment.Center
+        self.noOrdersLabel.textColor = UIColor(red: 98/255.0, green: 90/255.0, blue: 151/255.0, alpha: 1.0)
+        self.noOrdersLabel.sizeToFit()
+        self.view.addSubview(self.noOrdersLabel)
+        let noOrdersxCenterConstraint = NSLayoutConstraint(item: self.noOrdersLabel, attribute: .CenterX, relatedBy: .Equal, toItem: self.view, attribute: .CenterX, multiplier: 1, constant: 0)
+        let noOrdersyCenterConstraint = NSLayoutConstraint(item: self.noOrdersLabel, attribute: .CenterY, relatedBy: .Equal, toItem: self.view, attribute: .CenterY, multiplier: 1, constant: -50)
+        let noOrdersWidthConstraint = NSLayoutConstraint(item: self.noOrdersLabel, attribute: .Width, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 300)
+        self.view.addConstraints([noOrdersxCenterConstraint, noOrdersWidthConstraint, noOrdersyCenterConstraint])
         
         setupOrders()
         checkStatus()
@@ -58,10 +74,10 @@ class OrdersViewController: UITableViewController {
         })
         
         if self.orders.count == 0 {
-            // show "You have not placed any orders yet."
+            self.view.addSubview(noOrdersLabel)
         }
         else {
-            // hide it
+
         }
         
     }
@@ -97,8 +113,9 @@ class OrdersViewController: UITableViewController {
         let dateFormatter = NSDateFormatter()
         dateFormatter.timeStyle = .ShortStyle
         dateFormatter.dateStyle = .MediumStyle
-
-        cell.dateAndTimeOfOrder.text = dateFormatter.stringFromDate(order.date())
+        let formattedDateTime = dateFormatter.stringFromDate(order.date())
+        let splitArray = formattedDateTime.componentsSeparatedByString(",")
+        cell.dateAndTimeOfOrder.text = splitArray[0] + "," + splitArray[1] + " |" + splitArray[2]
         var statusString = order.status()
         statusString.replaceRange(statusString.startIndex...statusString.startIndex, with: String(statusString[statusString.startIndex]).capitalizedString)
         cell.statusOfOrder.text = statusString
@@ -123,13 +140,6 @@ class OrdersViewController: UITableViewController {
                 }
             }
         })
-        
-        if self.orders.count == 0 {
-            // show "You have not placed any orders yet."
-        }
-        else {
-            // hide it
-        }
     }
 
     /*
