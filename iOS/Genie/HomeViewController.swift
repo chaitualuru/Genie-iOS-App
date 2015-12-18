@@ -242,7 +242,7 @@ class HomeViewController: JSQMessagesViewController, UIImagePickerControllerDele
         
         self.messagesRef.queryOrderedByChild("timestamp").queryEndingAtValue(lastMsg.date().timeIntervalSince1970 * 1000 - 1).queryLimitedToLast(5).observeEventType(FEventType.ChildAdded, withBlock: {
             (snapshot) in
-            if snapshot != nil && snapshot.key != "serviced" {
+            if snapshot != nil && snapshot.key != "serviced" { 
                 let messageId = snapshot.key
                 let text = snapshot.value["text"] as? String
                 let timestamp = snapshot.value["timestamp"] as? NSTimeInterval
@@ -381,6 +381,23 @@ class HomeViewController: JSQMessagesViewController, UIImagePickerControllerDele
                         message = Message(messageId: messageId, text: text, sentByUser: sentByUser, senderId: sender, senderDisplayName: self.senderDisplayName, date: date, isMediaMessage: isMediaMessage, media: nil)
                     }
                     self.messages.append(message)
+                    let settings = UIApplication.sharedApplication().currentUserNotificationSettings()
+                    
+                    if (UIApplication.sharedApplication().applicationState == UIApplicationState.Background) {
+                        if settings!.types == .None {
+                            let ac = UIAlertController(title: "Can't schedule", message: "Either we don't have permission to schedule notifications, or we haven't asked yet.", preferredStyle: .Alert)
+                            ac.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
+                            self.presentViewController(ac, animated: true, completion: nil)
+                            return
+                        }
+                        
+                        let notification = UILocalNotification()
+                        notification.fireDate = NSDate(timeIntervalSinceNow: 1)
+                        notification.alertBody = message.text()
+                        notification.soundName = UILocalNotificationDefaultSoundName
+                        UIApplication.sharedApplication().scheduleLocalNotification(notification)
+                        print(message.text())
+                    }
                 }
                 
                 if self.messages.count > 0 {

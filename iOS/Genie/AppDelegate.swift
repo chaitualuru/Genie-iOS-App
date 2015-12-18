@@ -27,6 +27,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // --------------------------------------------------------------------------------------
         
+        // set local notifications --------------------------------------------------------------
+        let notificationSettings = UIUserNotificationSettings(forTypes: UIUserNotificationType.Sound, categories: nil)
+        application.registerUserNotificationSettings(notificationSettings)
+        // --------------------------------------------------------------------------------------
+        
         
         // set initial view controller ----------------------------------------------------------
         if self.ref.authData != nil {

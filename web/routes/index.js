@@ -218,8 +218,8 @@ module.exports = function (app, ref, server) {
 		if (!req.session.uid) {
 			res.redirect('/'); 
 		} else {
-			var userRef = new Firebase(baseURL + "/users/" + req.params.msg_id);
-			userRef.update({serviced: 1});
+			var msgRef = new Firebase(baseURL + "/messages/" + req.params.msg_id);
+			msgRef.update({serviced: 1});
 			res.send({code: 200, message: "OK"});
 		}
 	});
@@ -228,8 +228,8 @@ module.exports = function (app, ref, server) {
 		if (!req.session.uid) {
 			res.redirect('/');
 		} else {
-			var userRef = new Firebase(baseURL + "/users/" + req.params.msg_id);
-			userRef.update({serviced: 1});
+			var msgRef = new Firebase(baseURL + "/messages/" + req.params.msg_id);
+			msgRef.update({serviced: 1});
 			res.send({code: 200, message: "OK"});
 		}
 	});
