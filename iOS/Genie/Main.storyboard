@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="xK3-KW-HPV">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="xK3-KW-HPV">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
@@ -547,7 +547,6 @@
                                 </state>
                                 <connections>
                                     <action selector="register:" destination="0fL-N3-2Js" eventType="touchUpInside" id="MlC-36-mnM"/>
-                                    <segue destination="BYZ-38-t0r" kind="show" identifier="VERIFY" id="QBB-oi-K6C"/>
                                 </connections>
                             </button>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9c4-4o-WPu">
@@ -684,6 +683,7 @@
                         <outlet property="navBar" destination="9c4-4o-WPu" id="CfE-9N-Ort"/>
                         <outlet property="password" destination="vo0-41-IgG" id="ovO-do-5bO"/>
                         <outlet property="username" destination="Fcn-f1-S1d" id="7RF-i7-xaJ"/>
+                        <segue destination="BYZ-38-t0r" kind="show" identifier="VERIFY" id="4MX-GW-B0C"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="p6w-K0-HlW" userLabel="First Responder" sceneMemberID="firstResponder"/>

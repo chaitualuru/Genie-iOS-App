@@ -115,9 +115,12 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
         // registering user ---------------------------------------------------------------------
             
         else {
+            print("here")
             var usernameExists = false
-            let usersRef = self.ref.childByAppendingPath("users")
-            usersRef.queryOrderedByChild("username").queryEqualToValue(self.username.text).observeSingleEventOfType(.Value, withBlock: { snapshot in
+            let usersRef = self.ref.childByAppendingPath("users/")
+            usersRef.queryOrderedByChild("username").queryEqualToValue(self.username.text).observeEventType(.ChildAdded, withBlock: { snapshot in
+                
+                print("----------------------")
                 if snapshot.value is NSNull {
                     usernameExists = false
                     print("No such user exists")
@@ -189,7 +192,7 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
                                     let newUser = ["first_name": "tba", "last_name": "tba", "mobile_number": "tba", "email_address": self.emailAddress.text!, "username": self.username.text!]
                                     
                                     uidRef.setValue(newUser)
-                                    self.performSegueWithIdentifier("VERIFY", sender: result)
+//                                    self.performSegueWithIdentifier("VERIFY", sender: result)
                                 }
                             }
                         }
