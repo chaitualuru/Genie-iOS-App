@@ -11,11 +11,11 @@ import Firebase
 
 class RegisterViewController: UIViewController, UITextFieldDelegate {
 
-    @IBOutlet var firstName: UITextField!
-    @IBOutlet var lastName: UITextField!
+//    @IBOutlet var firstName: UITextField!
+//    @IBOutlet var lastName: UITextField!
     @IBOutlet var emailAddress: UITextField!
     @IBOutlet var password: UITextField!
-    @IBOutlet var mobileNumber: UITextField!
+//    @IBOutlet var mobileNumber: UITextField!
     @IBOutlet var navBar: UINavigationBar!
     
     var activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView()
@@ -37,11 +37,11 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
         
         // Set the textfield delegates ----------------------------------------------------------
         
-        self.firstName.delegate = self
+//        self.firstName.delegate = self
         self.password.delegate = self
-        self.lastName.delegate = self
+//        self.lastName.delegate = self
         self.emailAddress.delegate = self
-        self.mobileNumber.delegate = self
+//        self.mobileNumber.delegate = self
         
         // --------------------------------------------------------------------------------------
         
@@ -62,20 +62,19 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
         
         // Handling Navigation Bar --------------------------------------------------------------
         
-        let navItem = UINavigationItem(title: "Register")
+        let navItem = UINavigationItem(title: "Sign Up")
         self.navBar.pushNavigationItem(navItem, animated: true)
-        if let navFont = UIFont(name: "SFUIDisplay-Regular", size: 20.0) {
+        if let navFont = UIFont(name: "SFUIDisplay-Medium", size: 17.0) {
             let attributes: [String:AnyObject]? = [
                 // 18 146 216
-                NSForegroundColorAttributeName: UIColor(red: (27/255.0), green: (165/255.0), blue: (221/255.0), alpha: 1.0),
+                NSForegroundColorAttributeName: UIColor(red: (98/255.0), green: (90/255.0), blue: (151/255.0), alpha: 1.0),
                 NSFontAttributeName: navFont
             ]
             self.navBar.titleTextAttributes = attributes
         }
         
         navItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "cancel.png"), landscapeImagePhone: UIImage(named: "cancel.png"), style: UIBarButtonItemStyle.Plain, target: self, action: "cancelRegister:")
-        
-        self.navigationItem.leftBarButtonItem?.tintColor = UIColor(red: (27/255.0), green: (165/255.0), blue: (221/255.0), alpha: 1.0)
+        self.navBar.tintColor = UIColor(red: (98/255.0), green: (90/255.0), blue: (151/255.0), alpha: 1.0)
         
         // --------------------------------------------------------------------------------------
     
@@ -85,7 +84,8 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
         
         // form validation ----------------------------------------------------------------------
         
-        if firstName.text == "" || lastName.text == "" || emailAddress.text == "" || password.text == "" || mobileNumber.text == "" {
+//        if firstName.text == "" || lastName.text == "" || emailAddress.text == "" || password.text == "" || mobileNumber.text == "" {
+        if emailAddress.text == "" || password.text == "" {
             let alertController = UIAlertController(title: "", message: "All fields are required.", preferredStyle: .Alert)
             
             let okAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
@@ -104,15 +104,15 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
             
             presentViewController(alertController, animated: true, completion: nil)
         }
-        else if mobileNumber.text?.characters.count < 10 {
-            let alertController = UIAlertController(title: "", message: "The mobile number must be 10 characters long.", preferredStyle: .Alert)
-            
-            let okAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
-            
-            alertController.addAction(okAction)
-            
-            presentViewController(alertController, animated: true, completion: nil)
-        }
+//        else if mobileNumber.text?.characters.count < 10 {
+//            let alertController = UIAlertController(title: "", message: "The mobile number must be 10 characters long.", preferredStyle: .Alert)
+//            
+//            let okAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
+//            
+//            alertController.addAction(okAction)
+//            
+//            presentViewController(alertController, animated: true, completion: nil)
+//        }
             
         // --------------------------------------------------------------------------------------
           
@@ -179,12 +179,11 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
                                 
                                 let uidRef = usersRef.childByAppendingPath(uid)
                                 
-                                let newUser = ["first_name": self.firstName.text!, "last_name": self.lastName.text!, "mobile_number": self.mobileNumber.text!, "email_address": self.emailAddress.text!]
+                                let newUser = ["first_name": "tba", "last_name": "tba", "mobile_number": "tba", "email_address": self.emailAddress.text!]
                                 
                                 uidRef.setValue(newUser)
-                                print("Correct")
-                                //self.performSegueWithIdentifier("REGISTER", sender: result)
-                                self.presentViewController(MySwipeVC(), animated: true, completion: nil)
+                                
+                                self.performSegueWithIdentifier("VERIFY", sender: result)
                             }
                         }
                     }
@@ -201,22 +200,24 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
     
     
     func cancelRegister(sender: UIBarButtonItem) {
-        if firstName.text == "" && lastName.text == "" && emailAddress.text == "" && password.text == "" && mobileNumber.text == "" {
-            self.dismissViewControllerAnimated(true, completion: nil)
-        }
-        else {
-            let alertController = UIAlertController(title: "", message: "Are you sure you want to cancel? Your information will not be saved", preferredStyle: .Alert)
-            
-            let yesAction = UIAlertAction(title: "Yes", style: .Default) { (action) in
-                self.dismissViewControllerAnimated(true, completion: nil)
-            }
-            let noAction = UIAlertAction(title: "No", style: .Default, handler: nil)
-            
-            alertController.addAction(yesAction)
-            alertController.addAction(noAction)
-            
-            presentViewController(alertController, animated: true, completion: nil)
-        }
+//        if firstName.text == "" && lastName.text == "" && emailAddress.text == "" && password.text == "" && mobileNumber.text == "" {
+//        if
+//            self.dismissViewControllerAnimated(true, completion: nil)
+//        }
+//        else {
+//            let alertController = UIAlertController(title: "", message: "Are you sure you want to cancel? Your information will not be saved", preferredStyle: .Alert)
+//            
+//            let yesAction = UIAlertAction(title: "Yes", style: .Default) { (action) in
+//                self.dismissViewControllerAnimated(true, completion: nil)
+//            }
+//            let noAction = UIAlertAction(title: "No", style: .Default, handler: nil)
+//            
+//            alertController.addAction(yesAction)
+//            alertController.addAction(noAction)
+//            
+//            presentViewController(alertController, animated: true, completion: nil)
+//        }
+        self.dismissViewControllerAnimated(true, completion: nil)
     }
     
     

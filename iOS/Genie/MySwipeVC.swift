@@ -4,10 +4,7 @@ import UIKit
 class MySwipeVC: EZSwipeController {
     override func setupView() {
         datasource = self
-        //        navigationBarShouldNotExist = true
         
-        
-        // Change the top bar tint
         view.backgroundColor = UIColor.whiteColor()
     }
 }
@@ -19,62 +16,58 @@ extension MySwipeVC: EZSwipeControllerDataSource {
     
     func viewControllerData() -> [UIViewController] {
         let homeVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("homeView")
-        let historyVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("historyView") as! HistoryViewController
-        let wishesVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("wishesView") as! WishesViewController
+        let ordersVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("ordersView")
+        let discoverVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("discoverView")
         
-        return [historyVC, homeVC, wishesVC]
+        return [ordersVC, homeVC, discoverVC]
     }
     
     func navigationBarDataForPageIndex(index: Int) -> UINavigationBar {
         var title = ""
         if index == 0 {
-            title = "History"
+            title = "Orders"
         } else if index == 1 {
             title = ""
         } else if index == 2 {
-            title = "Wishes"
+            title = "Discover"
         }
-    
         
         let navigationBar = UINavigationBar()
         navigationBar.barStyle = UIBarStyle.Default
-        //        navigationBar.barTintColor = QorumColors.WhiteLight
-        navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.blackColor()]
         
         let navigationItem = UINavigationItem(title: title)
         navigationItem.hidesBackButton = true
-        if let navFont = UIFont(name: "SFUIDisplay-Regular", size: 20.0) {
+        if let navFont = UIFont(name: "SFUIDisplay-Medium", size: 17.0) {
             let attributes: [String:AnyObject]? = [
-                NSForegroundColorAttributeName: UIColor(red: (27/255.0), green: (165/255.0), blue: (221/255.0), alpha: 1.0),
+                NSForegroundColorAttributeName: UIColor.whiteColor(),
                 NSFontAttributeName: navFont
             ]
             navigationBar.titleTextAttributes = attributes
         }
         
-        navigationBar.barTintColor = UIColor.whiteColor()
-
+        navigationBar.barTintColor = UIColor(red: (98/255.0), green: (90/255.0), blue: (151/255.0), alpha: 1.0)
         
-        var menuImg = UIImage(named: "menu")!
-        menuImg = scaleTo(image: menuImg, w: 22, h: 18)
-        
+        let menuImage = UIImage(named: "menu")
+        let gridImage = UIImage(named: "grid")
+        let genieImage = UIImage(named: "profile_genie")
+        let rightImage = UIImage(named: "return_right")
+        let leftImage = UIImage(named: "return_left")
         
         if index == 0 {
-            let rightButtonItem = UIBarButtonItem(image: menuImg, style: UIBarButtonItemStyle.Plain, target: self, action: "a")
-            rightButtonItem.tintColor = UIColor.blackColor()
+            let rightButtonItem = UIBarButtonItem(image: rightImage, style: UIBarButtonItemStyle.Plain, target: self, action: "a")
+            rightButtonItem.tintColor = UIColor.whiteColor()
             
             navigationItem.leftBarButtonItem = nil
             navigationItem.rightBarButtonItem = rightButtonItem
         } else if index == 1 {
-            var genie = UIImage(named: "genie")!
-            genie = scaleTo(image: genie, w: 25, h: 30)
-            let rightButtonItem = UIBarButtonItem(image: menuImg, style: UIBarButtonItemStyle.Plain, target: self, action: "a")
+            let rightButtonItem = UIBarButtonItem(image: gridImage, style: UIBarButtonItemStyle.Plain, target: self, action: "a")
             (barButtonSystemItem: UIBarButtonSystemItem.Bookmarks, target: self, action: "a")
-            rightButtonItem.tintColor = UIColor.blackColor()
+            rightButtonItem.tintColor = UIColor.whiteColor()
             
-            let leftButtonItem = UIBarButtonItem(image: menuImg, style: UIBarButtonItemStyle.Plain, target: self, action: "a")
-            leftButtonItem.tintColor = UIColor.blackColor()
+            let leftButtonItem = UIBarButtonItem(image: menuImage, style: UIBarButtonItemStyle.Plain, target: self, action: "a")
+            leftButtonItem.tintColor = UIColor.whiteColor()
             
-            let genieLogo = UIImageView(image: genie)
+            let genieLogo = UIImageView(image: genieImage)
             let tapGestureRecognizer = UITapGestureRecognizer(target:self, action:Selector("toProfileVC:"))
             genieLogo.userInteractionEnabled = true
             genieLogo.addGestureRecognizer(tapGestureRecognizer)
@@ -83,8 +76,8 @@ extension MySwipeVC: EZSwipeControllerDataSource {
             navigationItem.titleView = genieLogo
             navigationItem.rightBarButtonItem = rightButtonItem
         } else if index == 2 {
-            let leftButtonItem = UIBarButtonItem(image: menuImg, style: UIBarButtonItemStyle.Plain, target: self, action: "a")
-            leftButtonItem.tintColor = UIColor.blackColor()
+            let leftButtonItem = UIBarButtonItem(image: leftImage, style: UIBarButtonItemStyle.Plain, target: self, action: "a")
+            leftButtonItem.tintColor = UIColor.whiteColor()
             
             navigationItem.leftBarButtonItem = leftButtonItem
             navigationItem.rightBarButtonItem = nil
@@ -106,4 +99,5 @@ extension MySwipeVC: EZSwipeControllerDataSource {
         let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("profileVC") as! ProfileViewController
         self.presentViewController(vc, animated: true, completion: nil)
     }
+    
 }

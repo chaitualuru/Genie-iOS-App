@@ -1,20 +1,33 @@
 //
-//  HistoryViewController.swift
+//  EntryViewController.swift
 //  Genie
 //
-//  Created by Vamsee Chamakura on 10/12/15.
+//  Created by Krishna Chaitanya Aluru on 12/11/15.
 //  Copyright © 2015 genie. All rights reserved.
 //
 
 import UIKit
 
-class HistoryViewController: UIViewController {
+class EntryViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
     }
+    
+    @IBAction func signUp(sender: AnyObject) {
+    
+        self.performSegueWithIdentifier("SIGNUP", sender: self)
+        
+    }
+    
+    @IBAction func signIn(sender: AnyObject) {
+    
+        self.performSegueWithIdentifier("SIGNIN", sender: self)
+    
+    }
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

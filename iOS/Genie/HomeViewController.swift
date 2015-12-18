@@ -14,15 +14,8 @@ import SVProgressHUD
 
 
 class HomeViewController: JSQMessagesViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    
-    var checkAttachmentTimer: NSTimer!
-    
-    let imagePicker = UIImagePickerController()
-    var currentAttachment: UIImage?
-    var defaultLeftButton: UIButton!
-    
+
     var user: FAuthData?
-    
     var ref: Firebase!
     var messagesRef: Firebase!
     
@@ -30,6 +23,11 @@ class HomeViewController: JSQMessagesViewController, UIImagePickerControllerDele
     var mobileNumber: String!
     
     var getMessagesHandle: UInt!
+    
+    var checkAttachmentTimer: NSTimer!
+    let imagePicker = UIImagePickerController()
+    var currentAttachment: UIImage?
+    var defaultLeftButton: UIButton!
     
     var incomingBubble = JSQMessagesBubbleImageFactory().incomingMessagesBubbleImageWithColor(UIColor.jsq_messageBubbleLightGrayColor())
     var outgoingBubble = JSQMessagesBubbleImageFactory().outgoingMessagesBubbleImageWithColor(UIColor(red: (27/255.0), green: (165/255.0), blue: (221/255.0), alpha: 1.0))
@@ -42,14 +40,8 @@ class HomeViewController: JSQMessagesViewController, UIImagePickerControllerDele
     
     override func viewDidLoad() {
         super.viewDidLoad()
-     
-        imagePicker.delegate = self
-        print("Home")
-        
-        self.firstMessageRead = true
         
         self.ref = Firebase(url:"https://getgenie.firebaseio.com/")
-        
         self.user = self.ref.authData
         self.senderId = self.user?.uid
         self.senderDisplayName = "not_set"
@@ -68,6 +60,8 @@ class HomeViewController: JSQMessagesViewController, UIImagePickerControllerDele
                 print(error.description)
         })
         
+        imagePicker.delegate = self
+        self.firstMessageRead = true
         
         // Setting up Input Bar -----------------------------------------------------------------
         
@@ -197,8 +191,8 @@ class HomeViewController: JSQMessagesViewController, UIImagePickerControllerDele
         
         // Adding delete action -----------------------------------------------------------------
         
-        UIMenuController.sharedMenuController().menuItems = [UIMenuItem(title: "Delete", action: "deleteMessage:")]
-        JSQMessagesCollectionViewCell.registerMenuAction("deleteMessage:")
+        UIMenuController.sharedMenuController().menuItems = [UIMenuItem(title: "Remove", action: "removeMessage:")]
+        JSQMessagesCollectionViewCell.registerMenuAction("removeMessage:")
         
         // --------------------------------------------------------------------------------------
         
@@ -223,7 +217,7 @@ class HomeViewController: JSQMessagesViewController, UIImagePickerControllerDele
         
         self.checkAttachmentTimer = NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: Selector("checkAttachment"), userInfo: nil, repeats: true)
         
-        setupFirebase()
+        setupMessages()
 
     }
     
@@ -329,7 +323,7 @@ class HomeViewController: JSQMessagesViewController, UIImagePickerControllerDele
         dismissViewControllerAnimated(true, completion: nil)
     }
 
-    func setupFirebase() {
+    func setupMessages() {
         self.messagesRef = ref.childByAppendingPath("messages/" + self.senderId)
         
         if self.messages.count == 0 {
@@ -344,7 +338,7 @@ class HomeViewController: JSQMessagesViewController, UIImagePickerControllerDele
         self.getMessagesHandle = self.messagesRef.queryLimitedToLast(5).observeEventType(FEventType.ChildAdded, withBlock: {
             (snapshot) in
             if snapshot.key != "serviced" {
-                
+                print(snapshot.key)
                 let messageId = snapshot.key
                 let text = snapshot.value["text"] as! String
                 let timestamp = snapshot.value["timestamp"] as! NSTimeInterval
@@ -560,20 +554,20 @@ class HomeViewController: JSQMessagesViewController, UIImagePickerControllerDele
     // Delete action ----------------------------------------------------------------------
     
     override func collectionView(collectionView: UICollectionView, canPerformAction action: Selector, forItemAtIndexPath indexPath: NSIndexPath, withSender sender: AnyObject?) -> Bool {
-        if action == "deleteMessage:" {
+        if action == "removeMessage:" {
             return true
         }
         return super.collectionView(collectionView, canPerformAction: action, forItemAtIndexPath: indexPath, withSender: sender)
     }
     
     override func collectionView(collectionView: UICollectionView, performAction action: Selector, forItemAtIndexPath indexPath: NSIndexPath, withSender sender: AnyObject?) {
-        if action == "deleteMessage:" {
-            deleteMessage(collectionView, indexPath: indexPath)
+        if action == "removeMessage:" {
+            removeMessage(collectionView, indexPath: indexPath)
         }
         super.collectionView(collectionView, performAction: action, forItemAtIndexPath: indexPath, withSender: sender)
     }
     
-    func deleteMessage(collectionView: UICollectionView, indexPath: NSIndexPath) {
+    func removeMessage(collectionView: UICollectionView, indexPath: NSIndexPath) {
         let messageKey = self.messages[indexPath.item].messageId()
         let updateMessageRef = self.messagesRef.childByAppendingPath("/" + messageKey)
         updateMessageRef.updateChildValues([

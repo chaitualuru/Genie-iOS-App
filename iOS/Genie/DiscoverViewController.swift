@@ -1,14 +1,14 @@
 //
-//  WishesViewController.swift
+//  DiscoverViewController.swift
 //  Genie
 //
-//  Created by Vamsee Chamakura on 10/12/15.
+//  Created by Krishna Chaitanya Aluru on 12/13/15.
 //  Copyright © 2015 genie. All rights reserved.
 //
 
 import UIKit
 
-class WishesViewController: UIViewController {
+class DiscoverViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
