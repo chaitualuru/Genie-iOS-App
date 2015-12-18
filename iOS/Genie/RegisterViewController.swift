@@ -115,105 +115,92 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
         // registering user ---------------------------------------------------------------------
             
         else {
-            print("here")
-            var usernameExists = false
-            let usersRef = self.ref.childByAppendingPath("users/")
-            usersRef.queryOrderedByChild("username").queryEqualToValue(self.username.text).observeEventType(.ChildAdded, withBlock: { snapshot in
-                
-                print("----------------------")
+
+            let usersRef = self.ref.childByAppendingPath("users")
+            usersRef.queryOrderedByChild("username").queryEqualToValue(self.username.text).observeSingleEventOfType(.Value, withBlock: { snapshot in
                 if snapshot.value is NSNull {
-                    usernameExists = false
-                    print("No such user exists")
-                }
-                else {
-                    usernameExists = true
-                    print("User does exist")
-                }
-            })
-            
-            if !usernameExists {
-                self.activityIndicator = UIActivityIndicatorView(frame: CGRectMake(0, 0, 50, 50))
-                self.activityIndicator.center = self.view.center
-                self.activityIndicator.hidesWhenStopped = true
-                self.activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.Gray
-                self.view.addSubview(activityIndicator)
-                self.activityIndicator.startAnimating()
-                UIApplication.sharedApplication().beginIgnoringInteractionEvents()
-                self.ref.createUser(emailAddress.text!, password: password.text!,
-                    withValueCompletionBlock: { error, result in
-                        if error != nil {
-                            if let errorCode = FAuthenticationError(rawValue: error.code) {
-                                switch (errorCode) {
-                                case .EmailTaken:
-                                    let alertController = UIAlertController(title: "", message: "The specified email address is already in use.", preferredStyle: .Alert)
-                                    
-                                    let okAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
-                                    
-                                    alertController.addAction(okAction)
-                                    
-                                    self.presentViewController(alertController, animated: true, completion: nil)
-                                case .InvalidEmail:
-                                    let alertController = UIAlertController(title: "", message: "The specified email address is invalid.", preferredStyle: .Alert)
-                                    
-                                    let okAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
-                                    
-                                    alertController.addAction(okAction)
-                                    
-                                    self.presentViewController(alertController, animated: true, completion: nil)
-                                default:
-                                    print("Error creating user:", error)
+                    self.activityIndicator = UIActivityIndicatorView(frame: CGRectMake(0, 0, 50, 50))
+                    self.activityIndicator.center = self.view.center
+                    self.activityIndicator.hidesWhenStopped = true
+                    self.activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.Gray
+                    self.view.addSubview(self.activityIndicator)
+                    self.activityIndicator.startAnimating()
+                    UIApplication.sharedApplication().beginIgnoringInteractionEvents()
+                    self.ref.createUser(self.emailAddress.text!, password: self.password.text!,
+                        withValueCompletionBlock: { error, result in
+                            if error != nil {
+                                if let errorCode = FAuthenticationError(rawValue: error.code) {
+                                    switch (errorCode) {
+                                    case .EmailTaken:
+                                        let alertController = UIAlertController(title: "", message: "The specified email address is already in use.", preferredStyle: .Alert)
+                                        
+                                        let okAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
+                                        
+                                        alertController.addAction(okAction)
+                                        
+                                        self.presentViewController(alertController, animated: true, completion: nil)
+                                    case .InvalidEmail:
+                                        let alertController = UIAlertController(title: "", message: "The specified email address is invalid.", preferredStyle: .Alert)
+                                        
+                                        let okAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
+                                        
+                                        alertController.addAction(okAction)
+                                        
+                                        self.presentViewController(alertController, animated: true, completion: nil)
+                                    default:
+                                        print("Error creating user:", error)
+                                    }
+                                }
+                            } else {
+                                let uid = result["uid"] as! String?
+                                print("Successfully created user with uid:" + uid!)
+                                // --------------------------------------------------------------------------------------
+                                
+                                
+                                // signing in user ----------------------------------------------------------------------
+                                
+                                self.ref.authUser(self.emailAddress.text, password: self.password.text) {
+                                    error, authData in
+                                    if error != nil {
+                                        print("Logging in failed after successfully registering")
+                                    } else {
+                                        print("Logged registered user in successfully:", authData.uid)
+                                        
+                                        // --------------------------------------------------------------------------------------
+                                        
+                                        
+                                        // storing user details -----------------------------------------------------------------
+                                        
+                                        let uidRef = self.ref.childByAppendingPath("users/" + uid!)
+                                        
+                                        let newUser = ["first_name": "tba", "last_name": "tba", "mobile_number": "tba", "email_address": self.emailAddress.text!, "username": self.username.text!]
+                                        
+                                        uidRef.setValue(newUser)
+                                        self.performSegueWithIdentifier("VERIFY", sender: result)
+                                    }
                                 }
                             }
-                        } else {
-                            let uid = result["uid"] as? String
-                            print("Successfully created user account with uid: \(uid)")
                             
                             // --------------------------------------------------------------------------------------
                             
-                            
-                            // signing in user ----------------------------------------------------------------------
-                            
-                            self.ref.authUser(self.emailAddress.text, password: self.password.text) {
-                                error, authData in
-                                if error != nil {
-                                    print("Logging in failed after successfully registering")
-                                } else {
-                                    print("Logged registered user in successfully:", authData.uid)
-                                    
-                                    // --------------------------------------------------------------------------------------
-                                    
-                                    
-                                    // storing user details -----------------------------------------------------------------
-                                    
-                                    let usersRef = self.ref.childByAppendingPath("users")
-                                    
-                                    let uidRef = usersRef.childByAppendingPath(uid)
-                                    
-                                    let newUser = ["first_name": "tba", "last_name": "tba", "mobile_number": "tba", "email_address": self.emailAddress.text!, "username": self.username.text!]
-                                    
-                                    uidRef.setValue(newUser)
-//                                    self.performSegueWithIdentifier("VERIFY", sender: result)
-                                }
-                            }
-                        }
-                        
-                        // --------------------------------------------------------------------------------------
-                        
-                        self.activityIndicator.stopAnimating()
-                        UIApplication.sharedApplication().endIgnoringInteractionEvents()
-                })
-            }
-            else {
-                let alertController = UIAlertController(title: "", message: "The specified username is already in use.", preferredStyle: .Alert)
+                            self.activityIndicator.stopAnimating()
+                            UIApplication.sharedApplication().endIgnoringInteractionEvents()
+                    })
+                }
+                else {
+                    let alertController = UIAlertController(title: "", message: "The specified username is already in use.", preferredStyle: .Alert)
+                    
+                    let okAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
+                    
+                    alertController.addAction(okAction)
+                    
+                    self.presentViewController(alertController, animated: true, completion: nil)
+                }
                 
-                let okAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
-                
-                alertController.addAction(okAction)
-                
-                self.presentViewController(alertController, animated: true, completion: nil)
-            }
+                }, withCancelBlock: { error in
+                    print(error.description)
+            })
         }
-        
     }
     
     
