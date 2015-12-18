@@ -42,19 +42,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         
         // set initial view controller ----------------------------------------------------------
-        if self.ref.authData != nil {
-            print("user authenticated: ", self.ref.authData, "loading home view")
-        
-            window = UIWindow(frame: UIScreen.mainScreen().bounds)
-            window!.rootViewController = MySwipeVC()
-            window!.makeKeyAndVisible()
-        }
-        else {
+//        if self.ref.authData != nil {
+//            print("user authenticated: ", self.ref.authData, "loading home view")
+//        
+//            window = UIWindow(frame: UIScreen.mainScreen().bounds)
+//            window!.rootViewController = MySwipeVC()
+//            window!.makeKeyAndVisible()
+//        }
+//        else {
             print("No user signed in, loading intro view")
 
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             self.window?.rootViewController = storyboard.instantiateViewControllerWithIdentifier("entryView")
-        }
+//        }
         
         // --------------------------------------------------------------------------------------
 

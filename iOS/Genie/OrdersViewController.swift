@@ -44,7 +44,6 @@ class OrdersViewController: UITableViewController {
         self.getOrdersHandle = self.ordersRef.queryLimitedToLast(50).observeEventType(FEventType.ChildAdded, withBlock: {
             (snapshot) in
             
-            print(snapshot.key)
             let description = snapshot.value["description"] as! String
             let company = snapshot.value["company"] as? String
             let timestamp = snapshot.value["timestamp"] as! NSTimeInterval
@@ -55,6 +54,7 @@ class OrdersViewController: UITableViewController {
             let order = Order(status: status, description: description, date: date, company: company, category: category)
             
             self.orders.append(order)
+            self.tableView.reloadData()
         })
         
         if self.orders.count == 0 {
@@ -89,13 +89,14 @@ class OrdersViewController: UITableViewController {
         let order = self.orders[indexPath.item]
         
         if order.company() != nil {
-            cell.orderDescription.text = order.orderDescription() + "|" + order.company()!
+            cell.orderDescription.text = order.orderDescription() + " | " + order.company()!
         }
         else {
             cell.orderDescription.text = order.orderDescription()
         }
         cell.dateAndTimeOfOrder.text = order.date().description
         cell.statusOfOrder.text = order.status()
+        print(order.category().lowercaseString)
         cell.categoryImageOfOrder.image = UIImage(named: order.category().lowercaseString)
 
         return cell
