@@ -1,0 +1,55 @@
+<nav class="navbar navbar-default">
+  	<div class="container-fluid">
+    	<div class="navbar-header">
+      		<a class="navbar-brand" href="/">
+        		<img alt="Brand" src="/images/genie.png" width="25px" height="25px" />
+      		</a>
+      		<p class="navbar-text">Genie</p>
+    	</div>
+    	<button type="button" id="completeRequest" class="btn btn-success navbar-btn navbar-right" style="margin-right: 10px;">Complete Request</button>
+    	<button type="button" id="denyRequest" class="btn btn-danger navbar-btn navbar-right" style="margin-right: 10px;">Deny Request</button>
+  	</div>
+</nav>
+
+<!-- Large modal -->
+<div class="modal fade modal-image" id="modal-image" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+    	<img src="" height="100%" width="100%" id="image-preview" />
+    </div>
+  </div>
+</div>
+
+<div class="container">
+	<div class="row">
+		<div class="col-md-8 border-solid">
+			<div id="message-box" style="height: 30em; overflow: scroll;">
+				
+			</div>
+			<div id="message-input" class="padding-md border-top">
+				<div class="row">
+					<div class="col-md-10">
+						<input type="text" style="width: 100%" id="message_input" class="form-control" name="message" placeholder="Type your message here..." >
+						<input type="file" id="uploadFile" accept="image/*"/>
+					</div>
+					<div class="col-md-2">
+						<center>
+							<button type="submit" id="sendMessage" class="btn btn-primary">Send</button>
+						</center>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="user-profile" class="col-md-3 border-solid" style="margin-left: 5px;">
+			<br />
+			<center>
+				<img src="/images/blank_profile.png" style="height: 76px; width: 76px;" alt="" class="img-circle" id="user-profile" />
+			</center>
+			<br />
+			<h5>Name:</h5><h4><small id="user-name"></small></h4>
+			<h5>Email:</h5><h4><small id="user-email"></small></h4>
+			<h5>Mobile:</h5><h4><small id="user-mobile"></small></h4>
+		</div>
+	</div>
+	<script type="text/javascript" src="/js/messaging.js"></script>	
+</div>

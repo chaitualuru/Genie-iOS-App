@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		ACBF36ECF20473CBC6C31204 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74043735D10AA6FA685FEFA9 /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		ACBF36ECF20473CBC6C31204 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74043735D10AA6FA685FEFA9 /* Pods.framework */; };
 		BA27962F1C19D773000C31C1 /* EZSwipeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA27962E1C19D773000C31C1 /* EZSwipeController.swift */; };
 		BA2796311C19D7BC000C31C1 /* MySwipeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA2796301C19D7BC000C31C1 /* MySwipeVC.swift */; };
 		BA2796361C1A0AD1000C31C1 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA2796351C1A0AD1000C31C1 /* ProfileViewController.swift */; };

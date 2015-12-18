@@ -9,6 +9,9 @@
 import UIKit
 import Firebase
 import VerifyIosSdk
+import SVPullToRefresh
+import SVProgressHUD
+
 
 class HomeViewController: JSQMessagesViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
@@ -193,6 +196,17 @@ class HomeViewController: JSQMessagesViewController, UIImagePickerControllerDele
         
         // --------------------------------------------------------------------------------------
         
+        // Scroll to top to get Earlier Messages ------------------------------------------------
+
+        
+        self.collectionView!.addPullToRefreshWithActionHandler({ () -> Void in
+            self.loadMore()
+        }, position: UInt(SVPullToRefreshPositionTop))
+        
+        
+            
+        // --------------------------------------------------------------------------------------
+        
         
         // Dismiss keyboard on tap --------------------------------------------------------------
         
@@ -206,6 +220,66 @@ class HomeViewController: JSQMessagesViewController, UIImagePickerControllerDele
         setupMessages()
 
     }
+    
+    // Load Earlier Messages --------------------------------------------------------------------
+    func loadMore(){
+        print("Loading earlier messages")
+        
+        self.collectionView!.collectionViewLayout.springinessEnabled = false
+        self.collectionView!.pullToRefreshView.startAnimating()
+        var counter = 0
+        
+        //Disable Automatic Scrolling -----------------------------------------------------------
+        automaticallyScrollsToMostRecentMessage = false
+        
+        let lastMsg = messages[0]
+        
+        self.messagesRef.queryOrderedByChild("timestamp").queryEndingAtValue(lastMsg.date().timeIntervalSince1970 * 1000 - 1).queryLimitedToLast(5).observeEventType(FEventType.ChildAdded, withBlock: {
+            (snapshot) in
+            if snapshot != nil && snapshot.key != "serviced" {
+                let messageId = snapshot.key
+                let text = snapshot.value["text"] as? String
+                let timestamp = snapshot.value["timestamp"] as? NSTimeInterval
+                let date = NSDate(timeIntervalSince1970: timestamp!/1000)
+                let sentByUser = snapshot.value["sent_by_user"] as! Bool
+                let deletedByUser = snapshot.value["deleted_by_user"] as! Bool
+                let isMediaMessage = snapshot.value["is_media_message"] as! Bool
+                var sender = "notUser"
+                if sentByUser == true {
+                    sender = self.senderId
+                }
+                if !deletedByUser {
+                    var message: Message!
+                    if isMediaMessage {
+                        let encodedString = snapshot.value["media"] as? String
+                        if let encoding = encodedString {
+                            let imageData = NSData(base64EncodedString: encoding, options: NSDataBase64DecodingOptions.IgnoreUnknownCharacters)
+                            let photoItem = JSQPhotoMediaItem(image: UIImage(data: imageData!))
+                            message = Message(messageId: messageId, text: text, sentByUser: sentByUser, senderId: sender, senderDisplayName: self.senderDisplayName, date: date, isMediaMessage: isMediaMessage, media: photoItem)
+                        }
+                        else {
+                            print("Could not attach photo")
+                            message = Message(messageId: messageId, text: text, sentByUser: sentByUser, senderId: sender, senderDisplayName: self.senderDisplayName, date: date, isMediaMessage: isMediaMessage, media: nil)
+                        }
+                    }
+                    else {
+                        message = Message(messageId: messageId, text: text, sentByUser: sentByUser, senderId: sender, senderDisplayName: self.senderDisplayName, date: date, isMediaMessage: isMediaMessage, media: nil)
+                    }
+                    self.messages.insert(message, atIndex: counter)
+                    counter = counter + 1
+                }
+            
+            }
+            self.finishReceivingMessage()
+            
+        })
+        
+        self.finishReceivingMessageAnimated(false)
+        self.collectionView!.pullToRefreshView.stopAnimating()
+        self.collectionView!.layoutIfNeeded()
+        self.collectionView!.reloadData()
+    }
+    // ------------------------------------------------------------------------------------------
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
@@ -258,8 +332,10 @@ class HomeViewController: JSQMessagesViewController, UIImagePickerControllerDele
             self.ticketHelp.hidden = false
             self.helperFoot.hidden = false
         }
+        
+        self.collectionView!.collectionViewLayout.springinessEnabled = false
 
-        self.getMessagesHandle = self.messagesRef.queryLimitedToLast(50).observeEventType(FEventType.ChildAdded, withBlock: {
+        self.getMessagesHandle = self.messagesRef.queryLimitedToLast(5).observeEventType(FEventType.ChildAdded, withBlock: {
             (snapshot) in
             if snapshot.key != "serviced" {
                 print(snapshot.key)
@@ -311,6 +387,7 @@ class HomeViewController: JSQMessagesViewController, UIImagePickerControllerDele
                 self.finishReceivingMessage()
             }
         })
+//        self.collectionView!.collectionViewLayout.springinessEnabled = true
     }
 
     func sendMessage(text: String!) {
