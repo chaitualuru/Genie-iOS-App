@@ -32,18 +32,19 @@ class OrdersViewController: UITableViewController {
         
         self.noOrdersLabel = UILabel()
         self.noOrdersLabel.translatesAutoresizingMaskIntoConstraints = false
-        self.noOrdersLabel.text = "You have not placed any orders yet.\nWe'd love to help you place your first!"
+        self.noOrdersLabel.text = "You have not placed any orders yet.\nAsk us for anything!"
         self.noOrdersLabel.lineBreakMode = .ByWordWrapping
         self.noOrdersLabel.numberOfLines = 0
-        self.noOrdersLabel.font = UIFont(name: "SFUIText-Regular", size: 15.0)
+        self.noOrdersLabel.font = UIFont(name: "SFUIText-Regular", size: 15.5)
         self.noOrdersLabel.textAlignment = NSTextAlignment.Center
-        self.noOrdersLabel.textColor = UIColor(red: 98/255.0, green: 90/255.0, blue: 151/255.0, alpha: 1.0)
+        self.noOrdersLabel.textColor = UIColor(red: 52/255.0, green: 73/255.0, blue: 94/255.0, alpha: 1.0)
         self.noOrdersLabel.sizeToFit()
         self.view.addSubview(self.noOrdersLabel)
         let noOrdersxCenterConstraint = NSLayoutConstraint(item: self.noOrdersLabel, attribute: .CenterX, relatedBy: .Equal, toItem: self.view, attribute: .CenterX, multiplier: 1, constant: 0)
         let noOrdersyCenterConstraint = NSLayoutConstraint(item: self.noOrdersLabel, attribute: .CenterY, relatedBy: .Equal, toItem: self.view, attribute: .CenterY, multiplier: 1, constant: -50)
         let noOrdersWidthConstraint = NSLayoutConstraint(item: self.noOrdersLabel, attribute: .Width, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 300)
         self.view.addConstraints([noOrdersxCenterConstraint, noOrdersWidthConstraint, noOrdersyCenterConstraint])
+        self.noOrdersLabel.hidden = true
         
         setupOrders()
         checkStatus()
@@ -56,6 +57,9 @@ class OrdersViewController: UITableViewController {
     }
     
     func setupOrders() {
+        if self.orders.count == 0 {
+            self.noOrdersLabel.hidden = false
+        }
         self.ordersRef = ref.childByAppendingPath("orders/" + self.senderId)
         
         self.getOrdersHandle = self.ordersRef.queryLimitedToLast(50).observeEventType(FEventType.ChildAdded, withBlock: {
@@ -71,15 +75,11 @@ class OrdersViewController: UITableViewController {
             
             self.orders.append(order)
             self.tableView.reloadData()
+            
+            if self.orders.count > 0 {
+                self.noOrdersLabel.hidden = true
+            }
         })
-        
-        if self.orders.count == 0 {
-            self.view.addSubview(noOrdersLabel)
-        }
-        else {
-
-        }
-        
     }
 
     override func didReceiveMemoryWarning() {

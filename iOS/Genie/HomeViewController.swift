@@ -223,7 +223,7 @@ class HomeViewController: JSQMessagesViewController, UIImagePickerControllerDele
     }
     
     // Load Earlier Messages --------------------------------------------------------------------
-    func loadMore(){
+    func loadMore() {
         print("Loading earlier messages")
         
         self.collectionView!.collectionViewLayout.springinessEnabled = false
