@@ -15,6 +15,7 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet var password: UITextField!
     @IBOutlet var username: UITextField!
     @IBOutlet var navBar: UINavigationBar!
+    @IBOutlet weak var darkLoadingView: UIView!
     
     var activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView()
     
@@ -122,6 +123,7 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
                     self.activityIndicator = UIActivityIndicatorView(frame: CGRectMake(0, 0, 50, 50))
                     self.activityIndicator.center = self.view.center
                     self.activityIndicator.hidesWhenStopped = true
+                    self.darkLoadingView.hidden = false
                     self.activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.Gray
                     self.view.addSubview(self.activityIndicator)
                     self.activityIndicator.startAnimating()
@@ -182,7 +184,7 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
                             }
                             
                             // --------------------------------------------------------------------------------------
-                            
+                            self.darkLoadingView.hidden = true
                             self.activityIndicator.stopAnimating()
                             UIApplication.sharedApplication().endIgnoringInteractionEvents()
                     })

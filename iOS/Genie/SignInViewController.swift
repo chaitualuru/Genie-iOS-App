@@ -15,6 +15,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet var password: UITextField!
     @IBOutlet var navBar: UINavigationBar!
     
+    @IBOutlet weak var darkLoadingView: UIView!
     var activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView()
     
     var ref: Firebase!
@@ -108,6 +109,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
             self.activityIndicator.center = self.view.center
             self.activityIndicator.hidesWhenStopped = true
             self.activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.Gray
+            self.darkLoadingView.hidden = false
             self.view.addSubview(activityIndicator)
             self.activityIndicator.startAnimating()
             UIApplication.sharedApplication().beginIgnoringInteractionEvents()
@@ -150,6 +152,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
                     self.presentViewController(MySwipeVC(), animated: true, completion: nil)
                 }
                 
+                self.darkLoadingView.hidden = true
                 self.activityIndicator.stopAnimating()
                 UIApplication.sharedApplication().endIgnoringInteractionEvents()
             }
