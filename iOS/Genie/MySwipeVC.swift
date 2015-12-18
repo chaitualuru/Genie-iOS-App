@@ -5,7 +5,7 @@ class MySwipeVC: EZSwipeController {
     override func setupView() {
         datasource = self
         
-        view.backgroundColor = UIColor.whiteColor()
+        view.backgroundColor = UIColor(red: 98/255, green: 90/255, blue: 151/255, alpha: 1.0)
     }
 }
 

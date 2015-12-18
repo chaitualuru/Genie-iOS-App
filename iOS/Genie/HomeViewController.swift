@@ -30,7 +30,7 @@ class HomeViewController: JSQMessagesViewController, UIImagePickerControllerDele
     var defaultLeftButton: UIButton!
     
     var incomingBubble = JSQMessagesBubbleImageFactory().incomingMessagesBubbleImageWithColor(UIColor.jsq_messageBubbleLightGrayColor())
-    var outgoingBubble = JSQMessagesBubbleImageFactory().outgoingMessagesBubbleImageWithColor(UIColor(red: (27/255.0), green: (165/255.0), blue: (221/255.0), alpha: 1.0))
+    var outgoingBubble = JSQMessagesBubbleImageFactory().outgoingMessagesBubbleImageWithColor(UIColor(red: (98/255.0), green: (90/255.0), blue: (151/255.0), alpha: 1.0))
     
     var pizzaHelp: UILabel!
     var furnitureHelp: UILabel!
