@@ -30,6 +30,7 @@ class OrdersViewController: UITableViewController {
         self.senderId = self.user?.uid
         
         setupOrders()
+        checkStatus()
         
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -47,11 +48,10 @@ class OrdersViewController: UITableViewController {
             let description = snapshot.value["description"] as! String
             let company = snapshot.value["company"] as? String
             let timestamp = snapshot.value["timestamp"] as! NSTimeInterval
-            let date = NSDate(timeIntervalSince1970: timestamp/1000)
             let status = snapshot.value["status"] as! String
             let category = snapshot.value["category"] as! String
 
-            let order = Order(status: status, description: description, date: date, company: company, category: category)
+            let order = Order(status: status, description: description, company: company, category: category, timestamp: timestamp)
             
             self.orders.append(order)
             self.tableView.reloadData()
@@ -105,6 +105,31 @@ class OrdersViewController: UITableViewController {
         cell.categoryImageOfOrder.image = UIImage(named: order.category().lowercaseString)
 
         return cell
+    }
+    
+    func checkStatus() {
+        self.ordersRef = ref.childByAppendingPath("orders/" + self.senderId)
+        
+        self.ordersRef.observeEventType(FEventType.ChildChanged, withBlock: {
+            (snapshot) in
+            let timestamp = snapshot.value["timestamp"] as! NSTimeInterval
+            let status = snapshot.value["status"] as! String
+            
+            for order in self.orders {
+                if order.timestamp() == timestamp {
+                    order.setStatus(status)
+                    self.tableView.reloadData()
+                    break
+                }
+            }
+        })
+        
+        if self.orders.count == 0 {
+            // show "You have not placed any orders yet."
+        }
+        else {
+            // hide it
+        }
     }
 
     /*
