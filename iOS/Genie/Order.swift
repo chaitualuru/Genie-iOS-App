@@ -12,14 +12,16 @@ class Order : NSObject {
     var status_: String
     var description_: String
     var date_: NSDate
-//    var icon_: UIImage
+    var category_: String
     var company_: String?
     
-    init(status: String?, description: String?, date: NSDate?, company: String?) {
+    
+    init(status: String?, description: String?, date: NSDate?, company: String?, category: String?) {
         self.date_ = date!
         self.status_ = status!
         self.description_ = description!
         self.company_ = company
+        self.category_ = category!
     }
     
     func status() -> String! {
@@ -34,9 +36,9 @@ class Order : NSObject {
         return self.description_
     }
     
-//    func icon() -> UIImage! {
-//        return self.icon_
-//    }
+    func category() -> String! {
+        return self.category_
+    }
     
     func company() -> String? {
         return self.company_
