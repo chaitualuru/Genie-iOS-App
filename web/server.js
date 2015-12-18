@@ -29,7 +29,7 @@ var server = app.listen(3000, function () {
 
 
 require('./config/credentials.js')(app, mongoose);
-require('./routes/index.js')(app, ref);
+require('./routes/index.js')(app, ref, server);
 
 Employees = require('./models/employees.js');
 
@@ -44,7 +44,6 @@ function authenticate () {
 			res.end("Not OK");
 		} else {
 			console.log("Server Authenticated Successfully.");
-			console.log(authData);
 		}
 	});
 }

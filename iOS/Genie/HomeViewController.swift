@@ -30,7 +30,7 @@ class HomeViewController: JSQMessagesViewController, UIImagePickerControllerDele
     var defaultLeftButton: UIButton!
     
     var incomingBubble = JSQMessagesBubbleImageFactory().incomingMessagesBubbleImageWithColor(UIColor.jsq_messageBubbleLightGrayColor())
-    var outgoingBubble = JSQMessagesBubbleImageFactory().outgoingMessagesBubbleImageWithColor(UIColor(red: (27/255.0), green: (165/255.0), blue: (221/255.0), alpha: 1.0))
+    var outgoingBubble = JSQMessagesBubbleImageFactory().outgoingMessagesBubbleImageWithColor(UIColor(red: (98/255.0), green: (90/255.0), blue: (151/255.0), alpha: 0.8))
     
     var pizzaHelp: UILabel!
     var furnitureHelp: UILabel!
@@ -192,6 +192,7 @@ class HomeViewController: JSQMessagesViewController, UIImagePickerControllerDele
         // Adding delete action -----------------------------------------------------------------
         
         UIMenuController.sharedMenuController().menuItems = [UIMenuItem(title: "Remove", action: "removeMessage:")]
+
         JSQMessagesCollectionViewCell.registerMenuAction("removeMessage:")
         
         // --------------------------------------------------------------------------------------
@@ -236,7 +237,7 @@ class HomeViewController: JSQMessagesViewController, UIImagePickerControllerDele
         
         self.messagesRef.queryOrderedByChild("timestamp").queryEndingAtValue(lastMsg.date().timeIntervalSince1970 * 1000 - 1).queryLimitedToLast(5).observeEventType(FEventType.ChildAdded, withBlock: {
             (snapshot) in
-            if snapshot != nil && snapshot.key != "serviced" {
+            if snapshot != nil && snapshot.key != "serviced" { 
                 let messageId = snapshot.key
                 let text = snapshot.value["text"] as? String
                 let timestamp = snapshot.value["timestamp"] as? NSTimeInterval
@@ -245,9 +246,11 @@ class HomeViewController: JSQMessagesViewController, UIImagePickerControllerDele
                 let deletedByUser = snapshot.value["deleted_by_user"] as! Bool
                 let isMediaMessage = snapshot.value["is_media_message"] as! Bool
                 var sender = "notUser"
-                if sentByUser == true {
+                
+                if sentByUser {
                     sender = self.senderId
                 }
+                
                 if !deletedByUser {
                     var message: Message!
                     if isMediaMessage {
@@ -255,6 +258,9 @@ class HomeViewController: JSQMessagesViewController, UIImagePickerControllerDele
                         if let encoding = encodedString {
                             let imageData = NSData(base64EncodedString: encoding, options: NSDataBase64DecodingOptions.IgnoreUnknownCharacters)
                             let photoItem = JSQPhotoMediaItem(image: UIImage(data: imageData!))
+                            if !sentByUser {
+                                photoItem.appliesMediaViewMaskAsOutgoing = false
+                            }
                             message = Message(messageId: messageId, text: text, sentByUser: sentByUser, senderId: sender, senderDisplayName: self.senderDisplayName, date: date, isMediaMessage: isMediaMessage, media: photoItem)
                         }
                         else {
@@ -349,13 +355,15 @@ class HomeViewController: JSQMessagesViewController, UIImagePickerControllerDele
                 
                 var sender = "not_user"
                 
-                if !sentByUser && !self.firstMessageRead! {
-                    JSQSystemSoundPlayer.jsq_playMessageReceivedSound()
-                    self.firstMessageRead = false
+                if sentByUser {
+                   sender = self.senderId
+                } else {
+                    if !self.firstMessageRead {
+                        JSQSystemSoundPlayer.jsq_playMessageReceivedSound()
+                        self.firstMessageRead = false
+                    }
                 }
-                else {
-                    sender = self.senderId
-                }
+                
                 
                 if !deletedByUser {
                     var message: Message!
@@ -364,6 +372,9 @@ class HomeViewController: JSQMessagesViewController, UIImagePickerControllerDele
                         if let encoding = encodedString {
                             let imageData = NSData(base64EncodedString: encoding, options: NSDataBase64DecodingOptions.IgnoreUnknownCharacters)
                             let photoItem = JSQPhotoMediaItem(image: UIImage(data: imageData!))
+                            if !sentByUser {
+                                photoItem.appliesMediaViewMaskAsOutgoing = false
+                            }
                             message = Message(messageId: messageId, text: text, sentByUser: sentByUser, senderId: sender, senderDisplayName: self.senderDisplayName, date: date, isMediaMessage: isMediaMessage, media: photoItem)
                         }
                         else {
@@ -375,6 +386,24 @@ class HomeViewController: JSQMessagesViewController, UIImagePickerControllerDele
                         message = Message(messageId: messageId, text: text, sentByUser: sentByUser, senderId: sender, senderDisplayName: self.senderDisplayName, date: date, isMediaMessage: isMediaMessage, media: nil)
                     }
                     self.messages.append(message)
+                    
+                    let settings = UIApplication.sharedApplication().currentUserNotificationSettings()
+                    
+                    if (UIApplication.sharedApplication().applicationState == UIApplicationState.Background) {
+                        if settings!.types == .None {
+                            let ac = UIAlertController(title: "Can't schedule", message: "Either we don't have permission to schedule notifications, or we haven't asked yet.", preferredStyle: .Alert)
+                            ac.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
+                            self.presentViewController(ac, animated: true, completion: nil)
+                            return
+                        }
+                        
+                        let notification = UILocalNotification()
+                        notification.fireDate = NSDate(timeIntervalSinceNow: 1)
+                        notification.alertBody = message.text()
+                        notification.soundName = UILocalNotificationDefaultSoundName
+                        UIApplication.sharedApplication().scheduleLocalNotification(notification)
+                        print(message.text())
+                    }
                 }
                 
                 if self.messages.count > 0 {
