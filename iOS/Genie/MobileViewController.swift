@@ -172,7 +172,7 @@ class MobileViewController: UIViewController, UITextFieldDelegate {
     func verifiedMobile() {
         self.activityIndicator.stopAnimating()
         UIApplication.sharedApplication().endIgnoringInteractionEvents()
-        performSegueWithIdentifier("VERIFIED", sender: self)
+        self.presentViewController(MySwipeVC(), animated: true, completion: nil)
     }
     
     func showOptions() {

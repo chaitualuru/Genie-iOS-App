@@ -21,6 +21,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
         
+        // status bar style ---------------------------------------------------------------------
+        
+//        UIApplication.sharedApplication().statusBarStyle = .LightContent
+//        UIApplication.sharedApplication().statusBarHidden = false
+        
+        // --------------------------------------------------------------------------------------
+        
+        
         // setup Nexmo --------------------------------------------------------------------------
 
         NexmoClient.start(applicationId: "775f81ea-e31a-4a76-8bc4-2f66b43617e0", sharedSecretKey: "086cc09c74d400e")
@@ -29,23 +37,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         
         // set initial view controller ----------------------------------------------------------
-        if self.ref.authData != nil {
-            print("user authenticated: ", self.ref.authData, "loading home view")
-            //get access to login view
-            //            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            
-            window = UIWindow(frame: UIScreen.mainScreen().bounds)
-            window!.rootViewController = MySwipeVC()
-            window!.makeKeyAndVisible()
-            //            self.window?.rootViewController = storyboard.instantiateViewControllerWithIdentifier("swipeView")
-        }
-        else {
+//        if self.ref.authData != nil {
+//            print("user authenticated: ", self.ref.authData, "loading home view")
+//        
+//            window = UIWindow(frame: UIScreen.mainScreen().bounds)
+//            window!.rootViewController = MySwipeVC()
+//            window!.makeKeyAndVisible()
+//        }
+//        else {
             print("No user signed in, loading intro view")
+
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            
-//            self.window?.rootViewController = storyboard.instantiateViewControllerWithIdentifier("registerView")
-            self.window?.rootViewController = storyboard.instantiateViewControllerWithIdentifier("signInVC")
-        }
+            self.window?.rootViewController = storyboard.instantiateViewControllerWithIdentifier("entryView")
+//        }
         
         // --------------------------------------------------------------------------------------
 

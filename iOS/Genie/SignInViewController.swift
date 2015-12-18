@@ -28,18 +28,17 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
         
         let navItem = UINavigationItem(title: "Sign In")
         self.navBar.pushNavigationItem(navItem, animated: true)
-        if let navFont = UIFont(name: "SFUIDisplay-Regular", size: 20.0) {
+        if let navFont = UIFont(name: "SFUIDisplay-Medium", size: 17.0) {
             let attributes: [String:AnyObject]? = [
                 // 18 146 216
-                NSForegroundColorAttributeName: UIColor(red: (27/255.0), green: (165/255.0), blue: (221/255.0), alpha: 1.0),
+                NSForegroundColorAttributeName: UIColor(red: (98/255.0), green: (90/255.0), blue: (151/255.0), alpha: 1.0),
                 NSFontAttributeName: navFont
             ]
             self.navBar.titleTextAttributes = attributes
         }
         
         navItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "cancel.png"), landscapeImagePhone: UIImage(named: "cancel.png"), style: UIBarButtonItemStyle.Plain, target: self, action: "cancelSignIn:")
-        
-        self.navigationItem.leftBarButtonItem?.tintColor = UIColor(red: (27/255.0), green: (165/255.0), blue: (221/255.0), alpha: 1.0)
+        self.navBar.tintColor = UIColor(red: (98/255.0), green: (90/255.0), blue: (151/255.0), alpha: 1.0)
         
         // --------------------------------------------------------------------------------------
         
@@ -148,7 +147,6 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
                     }
                 } else {
                     print("Signed in successfully:", authData.uid)
-                    // self.performSegueWithIdentifier("SIGN_IN", sender: authData)
                     self.presentViewController(MySwipeVC(), animated: true, completion: nil)
                 }
                 
