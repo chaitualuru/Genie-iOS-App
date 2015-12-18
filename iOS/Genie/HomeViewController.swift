@@ -30,7 +30,7 @@ class HomeViewController: JSQMessagesViewController, UIImagePickerControllerDele
     var defaultLeftButton: UIButton!
     
     var incomingBubble = JSQMessagesBubbleImageFactory().incomingMessagesBubbleImageWithColor(UIColor.jsq_messageBubbleLightGrayColor())
-    var outgoingBubble = JSQMessagesBubbleImageFactory().outgoingMessagesBubbleImageWithColor(UIColor(red: (98/255.0), green: (90/255.0), blue: (151/255.0), alpha: 1.0))
+    var outgoingBubble = JSQMessagesBubbleImageFactory().outgoingMessagesBubbleImageWithColor(UIColor(red: (98/255.0), green: (90/255.0), blue: (151/255.0), alpha: 0.8))
     
     var pizzaHelp: UILabel!
     var furnitureHelp: UILabel!
@@ -192,6 +192,7 @@ class HomeViewController: JSQMessagesViewController, UIImagePickerControllerDele
         // Adding delete action -----------------------------------------------------------------
         
         UIMenuController.sharedMenuController().menuItems = [UIMenuItem(title: "Remove", action: "removeMessage:")]
+
         JSQMessagesCollectionViewCell.registerMenuAction("removeMessage:")
         
         // --------------------------------------------------------------------------------------
@@ -245,9 +246,11 @@ class HomeViewController: JSQMessagesViewController, UIImagePickerControllerDele
                 let deletedByUser = snapshot.value["deleted_by_user"] as! Bool
                 let isMediaMessage = snapshot.value["is_media_message"] as! Bool
                 var sender = "notUser"
-                if sentByUser == true {
+                
+                if sentByUser {
                     sender = self.senderId
                 }
+                
                 if !deletedByUser {
                     var message: Message!
                     if isMediaMessage {
@@ -255,6 +258,9 @@ class HomeViewController: JSQMessagesViewController, UIImagePickerControllerDele
                         if let encoding = encodedString {
                             let imageData = NSData(base64EncodedString: encoding, options: NSDataBase64DecodingOptions.IgnoreUnknownCharacters)
                             let photoItem = JSQPhotoMediaItem(image: UIImage(data: imageData!))
+                            if !sentByUser {
+                                photoItem.appliesMediaViewMaskAsOutgoing = false
+                            }
                             message = Message(messageId: messageId, text: text, sentByUser: sentByUser, senderId: sender, senderDisplayName: self.senderDisplayName, date: date, isMediaMessage: isMediaMessage, media: photoItem)
                         }
                         else {
@@ -349,13 +355,15 @@ class HomeViewController: JSQMessagesViewController, UIImagePickerControllerDele
                 
                 var sender = "not_user"
                 
-                if !sentByUser && !self.firstMessageRead! {
-                    JSQSystemSoundPlayer.jsq_playMessageReceivedSound()
-                    self.firstMessageRead = false
+                if sentByUser {
+                   sender = self.senderId
+                } else {
+                    if !self.firstMessageRead {
+                        JSQSystemSoundPlayer.jsq_playMessageReceivedSound()
+                        self.firstMessageRead = false
+                    }
                 }
-                else {
-                    sender = self.senderId
-                }
+                
                 
                 if !deletedByUser {
                     var message: Message!
@@ -364,6 +372,9 @@ class HomeViewController: JSQMessagesViewController, UIImagePickerControllerDele
                         if let encoding = encodedString {
                             let imageData = NSData(base64EncodedString: encoding, options: NSDataBase64DecodingOptions.IgnoreUnknownCharacters)
                             let photoItem = JSQPhotoMediaItem(image: UIImage(data: imageData!))
+                            if !sentByUser {
+                                photoItem.appliesMediaViewMaskAsOutgoing = false
+                            }
                             message = Message(messageId: messageId, text: text, sentByUser: sentByUser, senderId: sender, senderDisplayName: self.senderDisplayName, date: date, isMediaMessage: isMediaMessage, media: photoItem)
                         }
                         else {
@@ -375,6 +386,7 @@ class HomeViewController: JSQMessagesViewController, UIImagePickerControllerDele
                         message = Message(messageId: messageId, text: text, sentByUser: sentByUser, senderId: sender, senderDisplayName: self.senderDisplayName, date: date, isMediaMessage: isMediaMessage, media: nil)
                     }
                     self.messages.append(message)
+                    
                     let settings = UIApplication.sharedApplication().currentUserNotificationSettings()
                     
                     if (UIApplication.sharedApplication().applicationState == UIApplicationState.Background) {

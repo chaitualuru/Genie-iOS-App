@@ -5,7 +5,7 @@ class MySwipeVC: EZSwipeController {
     override func setupView() {
         datasource = self
         
-        view.backgroundColor = UIColor(red: 98/255, green: 90/255, blue: 151/255, alpha: 1.0)
+        view.backgroundColor = UIColor(red: 98/255.0, green: 90/255.0, blue: 151/255.0, alpha: 1.0)
     }
 }
 
@@ -46,6 +46,7 @@ extension MySwipeVC: EZSwipeControllerDataSource {
         }
         
         navigationBar.barTintColor = UIColor(red: (98/255.0), green: (90/255.0), blue: (151/255.0), alpha: 1.0)
+        navigationBar.translucent = false
         
         let menuImage = UIImage(named: "menu")
         let gridImage = UIImage(named: "grid")
