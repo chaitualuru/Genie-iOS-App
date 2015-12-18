@@ -11,17 +11,21 @@ import UIKit
 class Order : NSObject {
     var status_: String
     var description_: String
-    var date_: NSDate
+    var timestamp_: NSTimeInterval
     var category_: String
     var company_: String?
     
     
-    init(status: String?, description: String?, date: NSDate?, company: String?, category: String?) {
-        self.date_ = date!
+    init(status: String?, description: String?, company: String?, category: String?, timestamp: NSTimeInterval?) {
+        self.timestamp_ = timestamp!
         self.status_ = status!
         self.description_ = description!
         self.company_ = company
         self.category_ = category!
+    }
+    
+    func setStatus(status: String) {
+        self.status_ = status
     }
     
     func status() -> String! {
@@ -29,7 +33,11 @@ class Order : NSObject {
     }
     
     func date() -> NSDate! {
-        return self.date_
+        return NSDate(timeIntervalSince1970: self.timestamp_/1000)
+    }
+    
+    func timestamp() -> NSTimeInterval! {
+        return self.timestamp_
     }
     
     func orderDescription() -> String! {
