@@ -227,7 +227,6 @@ class HomeViewController: JSQMessagesViewController, UIImagePickerControllerDele
     override func collectionView(collectionView: JSQMessagesCollectionView!, didTapMessageBubbleAtIndexPath indexPath: NSIndexPath!) {
         let tappedMessage = self.messages[indexPath.row]
         if tappedMessage.isMediaMessage() {
-            print(tappedMessage.media())
             let mediaItem = tappedMessage.media() as! JSQPhotoMediaItem!
             tappedImageData = mediaItem.image
             performSegueWithIdentifier("SHOW_IMAGE", sender: nil)
