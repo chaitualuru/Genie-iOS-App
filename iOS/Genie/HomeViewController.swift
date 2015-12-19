@@ -214,12 +214,16 @@ class HomeViewController: JSQMessagesViewController, UIImagePickerControllerDele
         // Dismiss keyboard on tap --------------------------------------------------------------
         
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
-        self.view.window?.addGestureRecognizer(tap)
+        self.view.addGestureRecognizer(tap)
         
         // --------------------------------------------------------------------------------------
         
         setupMessages()
 
+    }
+    
+    override func collectionView(collectionView: JSQMessagesCollectionView!, didTapCellAtIndexPath indexPath: NSIndexPath!, touchLocation: CGPoint) {
+        dismissKeyboard()
     }
 
     override func collectionView(collectionView: JSQMessagesCollectionView!, didTapMessageBubbleAtIndexPath indexPath: NSIndexPath!) {
@@ -229,8 +233,8 @@ class HomeViewController: JSQMessagesViewController, UIImagePickerControllerDele
             tappedImageData = mediaItem.image
             performSegueWithIdentifier("SHOW_IMAGE", sender: nil)
         }
+        dismissKeyboard()
     }
-    
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "SHOW_IMAGE" {
@@ -328,10 +332,9 @@ class HomeViewController: JSQMessagesViewController, UIImagePickerControllerDele
             self.currentAttachment = pickedImage
             if let toolbar = inputToolbar {
                 if let conview = toolbar.contentView {
-                    conview.leftBarButtonItem?.contentMode = .ScaleAspectFill
+                    conview.leftBarButtonItem?.contentMode = .ScaleAspectFit
                     let attachButton: UIButton = UIButton(type: UIButtonType.Custom)
                     attachButton.setImage(pickedImage, forState: UIControlState.Normal)
-                    self.defaultLeftButton = conview.leftBarButtonItem
                     conview.leftBarButtonItem = attachButton
                     conview.rightBarButtonItem!.enabled = true
                 }
@@ -628,12 +631,6 @@ class HomeViewController: JSQMessagesViewController, UIImagePickerControllerDele
     }
     
     // Dismissing Keyboard ------------------------------------------------------------------
-    
-    // Dismiss keyboard on pressing the return key
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
-        self.view.endEditing(true)
-        return false
-    }
     
     // Dismiss the keyboard when tap is recognized
     func dismissKeyboard() {
