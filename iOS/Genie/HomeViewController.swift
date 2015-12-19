@@ -227,9 +227,6 @@ class HomeViewController: JSQMessagesViewController, UIImagePickerControllerDele
         self.collectionView!.pullToRefreshView.startAnimating()
         var counter = 0
         
-        //Disable Automatic Scrolling -----------------------------------------------------------
-        automaticallyScrollsToMostRecentMessage = false
-        
         let lastMsg = messages[0]
         
         self.messagesRef.queryOrderedByChild("timestamp").queryEndingAtValue(lastMsg.date().timeIntervalSince1970 * 1000 - 1).queryLimitedToLast(10).observeEventType(FEventType.ChildAdded, withBlock: {
@@ -273,6 +270,8 @@ class HomeViewController: JSQMessagesViewController, UIImagePickerControllerDele
                 }
             
             }
+            //Disable Automatic Scrolling -----------------------------------------------------------
+            self.automaticallyScrollsToMostRecentMessage = false
             self.finishReceivingMessage()
             
         })
@@ -397,7 +396,7 @@ class HomeViewController: JSQMessagesViewController, UIImagePickerControllerDele
                     self.helperFoot.hidden = true
                 }
                 self.finishReceivingMessage()
-                automaticallyScrollsToMostRecentMessage = true
+                self.automaticallyScrollsToMostRecentMessage = true
             }
         })
     }
