@@ -4,7 +4,8 @@ import UIKit
 class MySwipeVC: EZSwipeController {
     override func setupView() {
         datasource = self
-        
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
+        view.addGestureRecognizer(tap)
         view.backgroundColor = UIColor(red: 98/255.0, green: 90/255.0, blue: 151/255.0, alpha: 1.0)
     }
 }
@@ -97,8 +98,21 @@ extension MySwipeVC: EZSwipeControllerDataSource {
     }
     
     func toProfileVC(img: AnyObject) {
-        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("profileVC") as! ProfileViewController
-        self.presentViewController(vc, animated: true, completion: nil)
+        let profileVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("profileVC") as! ProfileViewController
+        self.presentViewController(profileVC, animated: true, completion: nil)
+        
     }
+    
+    // Dismiss keyboard on pressing the return key
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return false
+    }
+    
+    // Dismiss the keyboard when tap is recognized
+    func dismissKeyboard() {
+        view.endEditing(true)
+    }
+
     
 }

@@ -76,7 +76,10 @@ class OrdersViewController: UITableViewController {
             let order = Order(status: status, description: description, company: company, category: category, timestamp: timestamp)
             
             self.orders.insert(order, atIndex: 0)
-            self.tableView.reloadData()
+            
+            dispatch_async(dispatch_get_main_queue(), {
+                self.tableView.reloadData()
+            })
             
             if self.orders.count > 0 {
                 self.noOrdersLabel.hidden = true
@@ -114,10 +117,9 @@ class OrdersViewController: UITableViewController {
         }
         let dateFormatter = NSDateFormatter()
         dateFormatter.timeStyle = .ShortStyle
-        dateFormatter.dateStyle = .MediumStyle
+        dateFormatter.dateFormat = "MMM d, y | h:mm a"
         let formattedDateTime = dateFormatter.stringFromDate(order.date())
-        let splitArray = formattedDateTime.componentsSeparatedByString(",")
-        cell.dateAndTimeOfOrder.text = splitArray[0] + "," + splitArray[1] + " |" + splitArray[2]
+        cell.dateAndTimeOfOrder.text = formattedDateTime
         var statusString = order.status()
         statusString.replaceRange(statusString.startIndex...statusString.startIndex, with: String(statusString[statusString.startIndex]).capitalizedString)
         cell.statusOfOrder.text = statusString
