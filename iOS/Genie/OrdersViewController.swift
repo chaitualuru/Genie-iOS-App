@@ -25,6 +25,8 @@ class OrdersViewController: UITableViewController {
         
         // remove extra lines below filled rows
         self.tableView.tableFooterView = UIView()
+        self.tableView.allowsSelection = false
+        self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 50, 0);
 
         self.ref = Firebase(url:"https://getgenie.firebaseio.com/")
         self.user = self.ref.authData
@@ -73,7 +75,7 @@ class OrdersViewController: UITableViewController {
 
             let order = Order(status: status, description: description, company: company, category: category, timestamp: timestamp)
             
-            self.orders.append(order)
+            self.orders.insert(order, atIndex: 0)
             self.tableView.reloadData()
             
             if self.orders.count > 0 {
@@ -102,7 +104,7 @@ class OrdersViewController: UITableViewController {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("orderCell", forIndexPath: indexPath) as! OrderCell
         
-        let order = self.orders[indexPath.item]
+        let order = self.orders[indexPath.row]
         
         if order.company() != nil {
             cell.orderDescription.text = order.orderDescription() + " | " + order.company()!
@@ -140,6 +142,10 @@ class OrdersViewController: UITableViewController {
                 }
             }
         })
+    }
+    
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return 100.0
     }
 
     /*
