@@ -97,8 +97,9 @@ extension MySwipeVC: EZSwipeControllerDataSource {
     }
     
     func toProfileVC(img: AnyObject) {
-        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("profileVC") as! ProfileViewController
-        self.presentViewController(vc, animated: true, completion: nil)
+        let profileVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("profileVC") as! ProfileViewController
+        self.presentViewController(profileVC, animated: true, completion: nil)
+        
     }
     
 }

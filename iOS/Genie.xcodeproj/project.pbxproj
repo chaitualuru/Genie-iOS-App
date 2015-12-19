@@ -69,6 +69,9 @@
 		FF68B7A51BA50BF7002E699C /* MobileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF68B7A41BA50BF7002E699C /* MobileViewController.swift */; };
 		FF8EAAE11B8D580E00EE1396 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF8EAAE01B8D580E00EE1396 /* Message.swift */; };
 		FF8EAAE31B8D752200EE1396 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FF8EAAE21B8D752200EE1396 /* Main.storyboard */; };
+		FF91FEC91C2525EF00FEEE1F /* down@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = FF91FEC61C2525EF00FEEE1F /* down@1x.png */; };
+		FF91FECA1C2525EF00FEEE1F /* down@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FF91FEC71C2525EF00FEEE1F /* down@2x.png */; };
+		FF91FECB1C2525EF00FEEE1F /* down@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = FF91FEC81C2525EF00FEEE1F /* down@3x.png */; };
 		FF9F75EB1B8C062E008CAAD6 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF9F75EA1B8C062E008CAAD6 /* SignInViewController.swift */; };
 		FFAFBEC01B8BB7DE008D2A2F /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFAFBEBF1B8BB7DE008D2A2F /* RegisterViewController.swift */; };
 		FFB9CFA61C23E4CF00EE83EE /* genie@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = FFB9CFA31C23E4CF00EE83EE /* genie@1x.png */; };
@@ -238,6 +241,9 @@
 		FF8EAADD1B8D576700EE1396 /* Genie-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Genie-Bridging-Header.h"; sourceTree = "<group>"; };
 		FF8EAAE01B8D580E00EE1396 /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		FF8EAAE21B8D752200EE1396 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		FF91FEC61C2525EF00FEEE1F /* down@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "down@1x.png"; sourceTree = "<group>"; };
+		FF91FEC71C2525EF00FEEE1F /* down@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "down@2x.png"; sourceTree = "<group>"; };
+		FF91FEC81C2525EF00FEEE1F /* down@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "down@3x.png"; sourceTree = "<group>"; };
 		FF9F75EA1B8C062E008CAAD6 /* SignInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		FFAFBEBF1B8BB7DE008D2A2F /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		FFB9CFA31C23E4CF00EE83EE /* genie@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "genie@1x.png"; sourceTree = "<group>"; };
@@ -507,6 +513,9 @@
 				FF1C4FF61C24F9110095FB27 /* shopping@1x.png */,
 				FF1C4FF71C24F9110095FB27 /* shopping@2x.png */,
 				FF1C4FF81C24F9110095FB27 /* shopping@3x.png */,
+				FF91FEC61C2525EF00FEEE1F /* down@1x.png */,
+				FF91FEC71C2525EF00FEEE1F /* down@2x.png */,
+				FF91FEC81C2525EF00FEEE1F /* down@3x.png */,
 				FFB9CFEB1C23E5DA00EE83EE /* resend@1x.png */,
 				FFB9CFEC1C23E5DA00EE83EE /* resend@2x.png */,
 				FFB9CFED1C23E5DA00EE83EE /* resend@3x.png */,
@@ -658,6 +667,8 @@
 				FF1C4FFD1C24F9110095FB27 /* food@2x.png in Resources */,
 				FFB9CFF01C23E5DA00EE83EE /* resend@3x.png in Resources */,
 				FFB9CFC61C23E52300EE83EE /* line@3x.png in Resources */,
+				FF91FECA1C2525EF00FEEE1F /* down@2x.png in Resources */,
+				FF91FECB1C2525EF00FEEE1F /* down@3x.png in Resources */,
 				FFB9CFDD1C23E58A00EE83EE /* return_left@2x.png in Resources */,
 				FFB9CFCC1C23E55C00EE83EE /* grid@3x.png in Resources */,
 				FF1C50141C24FBCA0095FB27 /* signup@1x.png in Resources */,
@@ -671,6 +682,7 @@
 				FF1C50161C24FBCA0095FB27 /* signup@3x.png in Resources */,
 				FFB9CFE21C23E59900EE83EE /* return_right@1x.png in Resources */,
 				FF1C50121C24FBCA0095FB27 /* signin@2x.png in Resources */,
+				FF91FEC91C2525EF00FEEE1F /* down@1x.png in Resources */,
 				FF1C50151C24FBCA0095FB27 /* signup@2x.png in Resources */,
 				FFB9CFF61C23E5FF00EE83EE /* lamp@3x.png in Resources */,
 				FF1C4FFE1C24F9110095FB27 /* food@3x.png in Resources */,

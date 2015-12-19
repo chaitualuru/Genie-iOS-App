@@ -81,7 +81,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="28Q-zG-Gfg">
-                                <rect key="frame" x="272" y="153" width="56" height="17"/>
+                                <rect key="frame" x="272.5" y="153" width="55.5" height="17"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -96,23 +96,6 @@
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="grb-j7-sPN">
-                                <rect key="frame" x="287" y="565" width="25" height="25"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="25" id="9Ku-pu-bKg"/>
-                                    <constraint firstAttribute="width" constant="25" id="CMR-UM-Pzq"/>
-                                    <constraint firstAttribute="width" constant="25" id="pnF-46-XBX"/>
-                                </constraints>
-                                <state key="normal" backgroundImage="cancel.png"/>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="pnF-46-XBX"/>
-                                    </mask>
-                                </variation>
-                                <connections>
-                                    <action selector="closeProfileVC:" destination="2G7-lm-eaN" eventType="touchUpInside" id="9Fh-cL-L2q"/>
-                                </connections>
-                            </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yoy-oe-cJV">
                                 <rect key="frame" x="0.0" y="220" width="600" height="40"/>
                                 <constraints>
@@ -149,12 +132,29 @@
                                     <constraint firstAttribute="width" secondItem="9Ge-OU-wrC" secondAttribute="height" multiplier="1:1" id="xUf-sC-Ow3"/>
                                 </constraints>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="grb-j7-sPN">
+                                <rect key="frame" x="289" y="567" width="23" height="13"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="13" id="9Ku-pu-bKg"/>
+                                    <constraint firstAttribute="width" constant="23" id="CMR-UM-Pzq"/>
+                                    <constraint firstAttribute="width" constant="25" id="pnF-46-XBX"/>
+                                </constraints>
+                                <state key="normal" backgroundImage="down.png"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="pnF-46-XBX"/>
+                                    </mask>
+                                </variation>
+                                <connections>
+                                    <action selector="closeProfileVC:" destination="2G7-lm-eaN" eventType="touchUpInside" id="9Fh-cL-L2q"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="tintColor" red="0.30980392159999998" green="0.26274509800000001" blue="0.52941176469999995" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="qNn-bw-20O" firstAttribute="width" secondItem="3RO-0M-lqh" secondAttribute="width" id="2dc-X1-jrw"/>
-                            <constraint firstItem="2fK-DU-wsh" firstAttribute="top" secondItem="grb-j7-sPN" secondAttribute="bottom" constant="10" id="2q0-Ks-8cN"/>
+                            <constraint firstItem="2fK-DU-wsh" firstAttribute="top" secondItem="grb-j7-sPN" secondAttribute="bottom" constant="20" id="2q0-Ks-8cN"/>
                             <constraint firstAttribute="trailingMargin" secondItem="9Ge-OU-wrC" secondAttribute="trailing" id="3hG-Rx-XAG"/>
                             <constraint firstItem="28Q-zG-Gfg" firstAttribute="top" secondItem="PFb-QW-TYt" secondAttribute="bottom" constant="8" id="5pU-ak-g5x"/>
                             <constraint firstItem="3RO-0M-lqh" firstAttribute="width" secondItem="oKc-ow-Ju2" secondAttribute="width" id="5sn-3d-Z65"/>
@@ -865,7 +865,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="C1q-QC-1nI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3441" y="743"/>
+            <point key="canvasLocation" x="3457" y="743"/>
         </scene>
         <!--Sign In View Controller-->
         <scene sceneID="Zrk-GV-4kA">
@@ -1040,6 +1040,7 @@
         <image name="back.png" width="16" height="16"/>
         <image name="cancel.png" width="16" height="16"/>
         <image name="confirm.png" width="375" height="40"/>
+        <image name="down.png" width="23" height="13"/>
         <image name="line.png" width="375" height="1"/>
         <image name="next.png" width="19" height="18"/>
         <image name="resend.png" width="19" height="19"/>
