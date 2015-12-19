@@ -24,7 +24,6 @@ class HomeViewController: JSQMessagesViewController, UIImagePickerControllerDele
     
     var getMessagesHandle: UInt!
     
-    var checkAttachmentTimer: NSTimer!
     let imagePicker = UIImagePickerController()
     var currentAttachment: UIImage?
     var defaultLeftButton: UIButton!
@@ -46,7 +45,6 @@ class HomeViewController: JSQMessagesViewController, UIImagePickerControllerDele
         self.user = self.ref.authData
         self.senderId = self.user?.uid
         self.senderDisplayName = "not_set"
-        self.collectionView?.contentInset = UIEdgeInsetsMake(0, 0, 50, 0)
         
         let firstNameRef = ref.childByAppendingPath("users/" + senderId + "/first_name")
         firstNameRef.observeEventType(.Value, withBlock: { snapshot in
@@ -218,8 +216,6 @@ class HomeViewController: JSQMessagesViewController, UIImagePickerControllerDele
         
         // --------------------------------------------------------------------------------------
         
-        self.checkAttachmentTimer = NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: Selector("checkAttachment"), userInfo: nil, repeats: true)
-        
         setupMessages()
 
     }
@@ -227,7 +223,6 @@ class HomeViewController: JSQMessagesViewController, UIImagePickerControllerDele
     override func collectionView(collectionView: JSQMessagesCollectionView!, didTapMessageBubbleAtIndexPath indexPath: NSIndexPath!) {
         let tappedMessage = self.messages[indexPath.row]
         if tappedMessage.isMediaMessage() {
-            print(tappedMessage.media())
             let mediaItem = tappedMessage.media() as! JSQPhotoMediaItem!
             tappedImageData = mediaItem.image
             performSegueWithIdentifier("SHOW_IMAGE", sender: nil)
@@ -250,12 +245,9 @@ class HomeViewController: JSQMessagesViewController, UIImagePickerControllerDele
         self.collectionView!.pullToRefreshView.startAnimating()
         var counter = 0
         
-        //Disable Automatic Scrolling -----------------------------------------------------------
-        automaticallyScrollsToMostRecentMessage = false
-        
         let lastMsg = messages[0]
         
-        self.messagesRef.queryOrderedByChild("timestamp").queryEndingAtValue(lastMsg.date().timeIntervalSince1970 * 1000 - 1).queryLimitedToLast(5).observeEventType(FEventType.ChildAdded, withBlock: {
+        self.messagesRef.queryOrderedByChild("timestamp").queryEndingAtValue(lastMsg.date().timeIntervalSince1970 * 1000 - 1).queryLimitedToLast(10).observeEventType(FEventType.ChildAdded, withBlock: {
             (snapshot) in
             if snapshot != nil && snapshot.key != "serviced" { 
                 let messageId = snapshot.key
@@ -296,10 +288,11 @@ class HomeViewController: JSQMessagesViewController, UIImagePickerControllerDele
                 }
             
             }
+            //Disable Automatic Scrolling -----------------------------------------------------------
+            self.automaticallyScrollsToMostRecentMessage = false
             self.finishReceivingMessage()
             
         })
-        automaticallyScrollsToMostRecentMessage = true
         self.finishReceivingMessageAnimated(false)
         self.collectionView!.pullToRefreshView.stopAnimating()
         self.collectionView!.layoutIfNeeded()
@@ -317,17 +310,6 @@ class HomeViewController: JSQMessagesViewController, UIImagePickerControllerDele
         // --------------------------------------------------------------------------------------
     }
     
-    override func viewDidDisappear(animated: Bool) {
-        self.checkAttachmentTimer.invalidate()
-    }
-    
-    func checkAttachment()
-    {
-        if self.currentAttachment != nil {
-            self.inputToolbar?.contentView?.rightBarButtonItem?.enabled = true
-        }
-    }
-    
     func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String : AnyObject]?) {
         if let pickedImage = image as? UIImage {
             self.currentAttachment = pickedImage
@@ -338,6 +320,7 @@ class HomeViewController: JSQMessagesViewController, UIImagePickerControllerDele
                     attachButton.setImage(pickedImage, forState: UIControlState.Normal)
                     self.defaultLeftButton = conview.leftBarButtonItem
                     conview.leftBarButtonItem = attachButton
+                    conview.rightBarButtonItem!.enabled = true
                 }
             }
         }
@@ -361,7 +344,7 @@ class HomeViewController: JSQMessagesViewController, UIImagePickerControllerDele
         
         self.collectionView!.collectionViewLayout.springinessEnabled = false
 
-        self.getMessagesHandle = self.messagesRef.queryLimitedToLast(5).observeEventType(FEventType.ChildAdded, withBlock: {
+        self.getMessagesHandle = self.messagesRef.queryLimitedToLast(10).observeEventType(FEventType.ChildAdded, withBlock: {
             (snapshot) in
             if snapshot.key != "serviced" {
                 let messageId = snapshot.key
@@ -430,11 +413,10 @@ class HomeViewController: JSQMessagesViewController, UIImagePickerControllerDele
                     self.ticketHelp.hidden = true
                     self.helperFoot.hidden = true
                 }
-                
                 self.finishReceivingMessage()
+                self.automaticallyScrollsToMostRecentMessage = true
             }
         })
-//        self.collectionView!.collectionViewLayout.springinessEnabled = true
     }
 
     func sendMessage(text: String!) {
