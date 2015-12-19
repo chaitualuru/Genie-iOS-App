@@ -41,7 +41,7 @@ class HomeViewController: JSQMessagesViewController, UIImagePickerControllerDele
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.collectionView?.contentInset = UIEdgeInsetsMake(0, 0, 100, 0);
+        self.collectionView?.contentInset = UIEdgeInsetsMake(0, 0, 80, 0);
         
         self.ref = Firebase(url:"https://getgenie.firebaseio.com/")
         self.user = self.ref.authData
@@ -299,7 +299,7 @@ class HomeViewController: JSQMessagesViewController, UIImagePickerControllerDele
             dispatch_async(dispatch_get_main_queue(), {
                 self.automaticallyScrollsToMostRecentMessage = true
                 if counter == 0 {
-                    let alertController = UIAlertController(title: "", message: "No more messages", preferredStyle: .Alert)
+                    let alertController = UIAlertController(title: "", message: "No more messages.", preferredStyle: .Alert)
                     
                     let okAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
                     
