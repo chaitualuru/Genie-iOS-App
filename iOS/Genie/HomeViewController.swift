@@ -27,6 +27,7 @@ class HomeViewController: JSQMessagesViewController, UIImagePickerControllerDele
     let imagePicker = UIImagePickerController()
     var currentAttachment: UIImage?
     var defaultLeftButton: UIButton!
+    var tappedImageData: UIImage!
     
     var incomingBubble = JSQMessagesBubbleImageFactory().incomingMessagesBubbleImageWithColor(UIColor.jsq_messageBubbleLightGrayColor())
     var outgoingBubble = JSQMessagesBubbleImageFactory().outgoingMessagesBubbleImageWithColor(UIColor(red: (98/255.0), green: (90/255.0), blue: (151/255.0), alpha: 0.8))
@@ -217,6 +218,23 @@ class HomeViewController: JSQMessagesViewController, UIImagePickerControllerDele
         
         setupMessages()
 
+    }
+
+    override func collectionView(collectionView: JSQMessagesCollectionView!, didTapMessageBubbleAtIndexPath indexPath: NSIndexPath!) {
+        let tappedMessage = self.messages[indexPath.row]
+        if tappedMessage.isMediaMessage() {
+            let mediaItem = tappedMessage.media() as! JSQPhotoMediaItem!
+            tappedImageData = mediaItem.image
+            performSegueWithIdentifier("SHOW_IMAGE", sender: nil)
+        }
+    }
+    
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "SHOW_IMAGE" {
+            let imageViewerController = (segue.destinationViewController as! ImageViewer)
+            imageViewerController.imageData = tappedImageData
+        }
     }
     
     // Load Earlier Messages --------------------------------------------------------------------

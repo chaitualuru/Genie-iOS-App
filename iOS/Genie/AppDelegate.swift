@@ -47,7 +47,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             self.window?.rootViewController = storyboard.instantiateViewControllerWithIdentifier("entryView")
         }
-    
+
         // --------------------------------------------------------------------------------------
 
         
