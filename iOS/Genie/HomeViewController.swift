@@ -41,6 +41,8 @@ class HomeViewController: JSQMessagesViewController, UIImagePickerControllerDele
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.collectionView?.contentInset = UIEdgeInsetsMake(0, 0, 80, 0);
+        
         self.ref = Firebase(url:"https://getgenie.firebaseio.com/")
         self.user = self.ref.authData
         self.senderId = self.user?.uid
@@ -212,7 +214,7 @@ class HomeViewController: JSQMessagesViewController, UIImagePickerControllerDele
         // Dismiss keyboard on tap --------------------------------------------------------------
         
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
-        view.addGestureRecognizer(tap)
+        self.view.window?.addGestureRecognizer(tap)
         
         // --------------------------------------------------------------------------------------
         
@@ -297,7 +299,7 @@ class HomeViewController: JSQMessagesViewController, UIImagePickerControllerDele
             dispatch_async(dispatch_get_main_queue(), {
                 self.automaticallyScrollsToMostRecentMessage = true
                 if counter == 0 {
-                    let alertController = UIAlertController(title: "", message: "No more messages", preferredStyle: .Alert)
+                    let alertController = UIAlertController(title: "", message: "No more messages.", preferredStyle: .Alert)
                     
                     let okAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
                     

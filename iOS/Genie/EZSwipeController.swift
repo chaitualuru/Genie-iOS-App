@@ -86,6 +86,17 @@ public class EZSwipeController: UIViewController {
         super.init(nibName: nil, bundle: nil)
         setupView()
     }
+    
+    // Dismiss keyboard on pressing the return key
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return false
+    }
+    
+    // Dismiss the keyboard when tap is recognized
+    func dismissKeyboard() {
+        view.endEditing(true)
+    }
 
     public required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -197,7 +208,7 @@ public class EZSwipeController: UIViewController {
     }
 
     public func setupView() {
-
+        
     }
 
     override public func loadView() {
