@@ -41,6 +41,8 @@ class HomeViewController: JSQMessagesViewController, UIImagePickerControllerDele
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.collectionView?.contentInset = UIEdgeInsetsMake(0, 0, 100, 0);
+        
         self.ref = Firebase(url:"https://getgenie.firebaseio.com/")
         self.user = self.ref.authData
         self.senderId = self.user?.uid
@@ -212,7 +214,7 @@ class HomeViewController: JSQMessagesViewController, UIImagePickerControllerDele
         // Dismiss keyboard on tap --------------------------------------------------------------
         
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
-        view.addGestureRecognizer(tap)
+        self.view.window?.addGestureRecognizer(tap)
         
         // --------------------------------------------------------------------------------------
         
