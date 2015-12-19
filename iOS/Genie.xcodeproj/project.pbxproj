@@ -11,6 +11,7 @@
 		BA27962F1C19D773000C31C1 /* EZSwipeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA27962E1C19D773000C31C1 /* EZSwipeController.swift */; };
 		BA2796311C19D7BC000C31C1 /* MySwipeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA2796301C19D7BC000C31C1 /* MySwipeVC.swift */; };
 		BA2796361C1A0AD1000C31C1 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA2796351C1A0AD1000C31C1 /* ProfileViewController.swift */; };
+		BADD30681C25479200C587E6 /* ImageViewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = BADD30671C25479200C587E6 /* ImageViewer.swift */; };
 		FF01A6FA1B8980E800F54273 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF01A6F91B8980E800F54273 /* AppDelegate.swift */; };
 		FF01A7021B8980E800F54273 /* Genie.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FF01A7001B8980E800F54273 /* Genie.xcdatamodeld */; };
 		FF01A7041B8980E800F54273 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FF01A7031B8980E800F54273 /* Assets.xcassets */; };
@@ -167,6 +168,7 @@
 		BA2796301C19D7BC000C31C1 /* MySwipeVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MySwipeVC.swift; sourceTree = "<group>"; };
 		BA2796351C1A0AD1000C31C1 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		BA8A93E91C24410200D0509A /* VerifyIosSdk.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = VerifyIosSdk.xcodeproj; path = "../../../verify-ios-sdk/VerifyIosSdk.xcodeproj"; sourceTree = "<group>"; };
+		BADD30671C25479200C587E6 /* ImageViewer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageViewer.swift; sourceTree = "<group>"; };
 		FF01A6F61B8980E800F54273 /* Genie.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Genie.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FF01A6F91B8980E800F54273 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FF01A7011B8980E800F54273 /* Genie.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Genie.xcdatamodel; sourceTree = "<group>"; };
@@ -371,26 +373,27 @@
 		FF01A6F81B8980E800F54273 /* Genie */ = {
 			isa = PBXGroup;
 			children = (
-				BA2796321C19D7CB000C31C1 /* Swipe */,
 				FF8EAADD1B8D576700EE1396 /* Genie-Bridging-Header.h */,
 				FF01A7081B8980E800F54273 /* Info.plist */,
 				FF8EAAE21B8D752200EE1396 /* Main.storyboard */,
-				BA2796351C1A0AD1000C31C1 /* ProfileViewController.swift */,
 				FF01A6F91B8980E800F54273 /* AppDelegate.swift */,
-				FFC398131C1E640000CDEB87 /* OrdersViewController.swift */,
-				FFC398191C1E744300CDEB87 /* Order.swift */,
-				FFC398171C1E69C200CDEB87 /* OrderCell.swift */,
-				FFD72DA61B8C7AA5006BC039 /* HomeViewController.swift */,
 				FFC398151C1E642300CDEB87 /* DiscoverViewController.swift */,
+				FF65769E1C1BDAE9008F077B /* EntryViewController.swift */,
+				FFD72DA61B8C7AA5006BC039 /* HomeViewController.swift */,
+				BADD30671C25479200C587E6 /* ImageViewer.swift */,
 				FF8EAAE01B8D580E00EE1396 /* Message.swift */,
 				FF68B7A41BA50BF7002E699C /* MobileViewController.swift */,
+				FFC398191C1E744300CDEB87 /* Order.swift */,
+				FFC398171C1E69C200CDEB87 /* OrderCell.swift */,
+				FFC398131C1E640000CDEB87 /* OrdersViewController.swift */,
+				BA2796351C1A0AD1000C31C1 /* ProfileViewController.swift */,
 				FFAFBEBF1B8BB7DE008D2A2F /* RegisterViewController.swift */,
 				FF9F75EA1B8C062E008CAAD6 /* SignInViewController.swift */,
-				FF65769E1C1BDAE9008F077B /* EntryViewController.swift */,
 				FF01A7031B8980E800F54273 /* Assets.xcassets */,
 				FF01A7001B8980E800F54273 /* Genie.xcdatamodeld */,
 				FF01A7051B8980E800F54273 /* LaunchScreen.storyboard */,
 				FF3314681B8A51E2008B1B9E /* Resources */,
+				BA2796321C19D7CB000C31C1 /* Swipe */,
 			);
 			path = Genie;
 			sourceTree = "<group>";
@@ -808,6 +811,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FF01A7021B8980E800F54273 /* Genie.xcdatamodeld in Sources */,
+				BADD30681C25479200C587E6 /* ImageViewer.swift in Sources */,
 				BA2796311C19D7BC000C31C1 /* MySwipeVC.swift in Sources */,
 				FFC398181C1E69C200CDEB87 /* OrderCell.swift in Sources */,
 				FF01A6FA1B8980E800F54273 /* AppDelegate.swift in Sources */,
