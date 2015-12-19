@@ -291,13 +291,22 @@ class HomeViewController: JSQMessagesViewController, UIImagePickerControllerDele
                         self.collectionView!.pullToRefreshView.stopAnimating()
                     } else {
                         self.messages.insert(message, atIndex: counter)
+                        counter = counter + 1
                     }
-                    counter = counter + 1
                 }
             
             }
             dispatch_async(dispatch_get_main_queue(), {
                 self.automaticallyScrollsToMostRecentMessage = true
+                if counter == 0 {
+                    let alertController = UIAlertController(title: "", message: "No more messages", preferredStyle: .Alert)
+                    
+                    let okAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
+                    
+                    alertController.addAction(okAction)
+                    
+                    self.presentViewController(alertController, animated: true, completion: nil)
+                }
             })
             self.finishReceivingMessageAnimated(false)
         })
