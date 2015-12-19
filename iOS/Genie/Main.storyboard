@@ -687,6 +687,7 @@
                         </variation>
                     </view>
                     <connections>
+                        <outlet property="bottomConstraint" destination="Sjg-Qs-VXb" id="nWh-av-5n9"/>
                         <outlet property="darkLoadingView" destination="naH-pz-mOS" id="iNt-3q-drb"/>
                         <outlet property="emailAddress" destination="pxc-yD-C8X" id="YFb-Tc-EQM"/>
                         <outlet property="navBar" destination="9c4-4o-WPu" id="CfE-9N-Ort"/>
@@ -1002,6 +1003,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="bottomConstraint" destination="Uaw-xz-7xw" id="WyV-c6-tB8"/>
                         <outlet property="darkLoadingView" destination="egD-Db-tn2" id="QxF-tP-zN7"/>
                         <outlet property="emailAddress" destination="LT6-vG-f4R" id="phv-SM-5Hd"/>
                         <outlet property="navBar" destination="2wd-WF-PNM" id="OWJ-Xo-QkI"/>

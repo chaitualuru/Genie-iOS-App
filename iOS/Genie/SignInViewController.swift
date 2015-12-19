@@ -14,6 +14,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet var emailAddress: UITextField!
     @IBOutlet var password: UITextField!
     @IBOutlet var navBar: UINavigationBar!
+    @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
     
     @IBOutlet weak var darkLoadingView: UIView!
     var activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView()
@@ -48,6 +49,8 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
         
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
         view.addGestureRecognizer(tap)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWasShown:"), name:UIKeyboardWillShowNotification, object: nil);
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWasHidden:"), name:UIKeyboardWillHideNotification, object: nil);
         
         // --------------------------------------------------------------------------------------
         
@@ -180,6 +183,22 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
     }
     
     // --------------------------------------------------------------------------------------
+    
+    func keyboardWasShown(notification: NSNotification) {
+        var info = notification.userInfo!
+        let keyboardFrame: CGRect = (info[UIKeyboardFrameEndUserInfoKey] as! NSValue).CGRectValue()
+        
+        UIView.animateWithDuration(1, animations: { () -> Void in
+            self.bottomConstraint.constant = keyboardFrame.size.height
+        })
+    }
+    
+    func keyboardWasHidden(notification: NSNotification) {
+        
+        UIView.animateWithDuration(1, animations: { () -> Void in
+            self.bottomConstraint.constant = 0
+        })
+    }
     
     
     // Orientation fixed to Portrait --------------------------------------------------------
