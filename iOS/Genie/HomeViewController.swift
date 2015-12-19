@@ -228,8 +228,10 @@ class HomeViewController: JSQMessagesViewController, UIImagePickerControllerDele
         var counter = 0
         
         let lastMsg = messages[0]
+        //Disable Automatic Scrolling -----------------------------------------------------------
+        self.automaticallyScrollsToMostRecentMessage = false
         
-        self.messagesRef.queryOrderedByChild("timestamp").queryEndingAtValue(lastMsg.date().timeIntervalSince1970 * 1000 - 1).queryLimitedToLast(10).observeEventType(FEventType.ChildAdded, withBlock: {
+        self.messagesRef.queryOrderedByChild("timestamp").queryEndingAtValue(lastMsg.date().timeIntervalSince1970 * 1000).queryLimitedToLast(10).observeEventType(.ChildAdded, withBlock: {
             (snapshot) in
             if snapshot != nil && snapshot.key != "serviced" { 
                 let messageId = snapshot.key
@@ -265,20 +267,20 @@ class HomeViewController: JSQMessagesViewController, UIImagePickerControllerDele
                     else {
                         message = Message(messageId: messageId, text: text, sentByUser: sentByUser, senderId: sender, senderDisplayName: self.senderDisplayName, date: date, isMediaMessage: isMediaMessage, media: nil)
                     }
-                    self.messages.insert(message, atIndex: counter)
+                    if message.messageId() == lastMsg.messageId() {
+                        self.collectionView!.pullToRefreshView.stopAnimating()
+                    } else {
+                        self.messages.insert(message, atIndex: counter)
+                    }
                     counter = counter + 1
                 }
             
             }
-            //Disable Automatic Scrolling -----------------------------------------------------------
-            self.automaticallyScrollsToMostRecentMessage = false
-            self.finishReceivingMessage()
-            
+            dispatch_async(dispatch_get_main_queue(), {
+                self.automaticallyScrollsToMostRecentMessage = true
+            })
+            self.finishReceivingMessageAnimated(false)
         })
-        self.finishReceivingMessageAnimated(false)
-        self.collectionView!.pullToRefreshView.stopAnimating()
-        self.collectionView!.layoutIfNeeded()
-        self.collectionView!.reloadData()
     }
     // ------------------------------------------------------------------------------------------
     
@@ -326,7 +328,7 @@ class HomeViewController: JSQMessagesViewController, UIImagePickerControllerDele
         
         self.collectionView!.collectionViewLayout.springinessEnabled = false
 
-        self.getMessagesHandle = self.messagesRef.queryLimitedToLast(10).observeEventType(FEventType.ChildAdded, withBlock: {
+        self.getMessagesHandle = self.messagesRef.queryLimitedToLast(14).observeEventType(FEventType.ChildAdded, withBlock: {
             (snapshot) in
             if snapshot.key != "serviced" {
                 let messageId = snapshot.key
@@ -396,7 +398,6 @@ class HomeViewController: JSQMessagesViewController, UIImagePickerControllerDele
                     self.helperFoot.hidden = true
                 }
                 self.finishReceivingMessage()
-                self.automaticallyScrollsToMostRecentMessage = true
             }
         })
     }
