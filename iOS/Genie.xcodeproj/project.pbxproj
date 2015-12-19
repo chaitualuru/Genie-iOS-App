@@ -11,6 +11,7 @@
 		BA27962F1C19D773000C31C1 /* EZSwipeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA27962E1C19D773000C31C1 /* EZSwipeController.swift */; };
 		BA2796311C19D7BC000C31C1 /* MySwipeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA2796301C19D7BC000C31C1 /* MySwipeVC.swift */; };
 		BA2796361C1A0AD1000C31C1 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA2796351C1A0AD1000C31C1 /* ProfileViewController.swift */; };
+		BADD306D1C25531400C587E6 /* ImageViewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = BADD306C1C25531400C587E6 /* ImageViewer.swift */; };
 		FF01A6FA1B8980E800F54273 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF01A6F91B8980E800F54273 /* AppDelegate.swift */; };
 		FF01A7021B8980E800F54273 /* Genie.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FF01A7001B8980E800F54273 /* Genie.xcdatamodeld */; };
 		FF01A7041B8980E800F54273 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FF01A7031B8980E800F54273 /* Assets.xcassets */; };
@@ -202,6 +203,7 @@
 		BA27962E1C19D773000C31C1 /* EZSwipeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EZSwipeController.swift; sourceTree = "<group>"; };
 		BA2796301C19D7BC000C31C1 /* MySwipeVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MySwipeVC.swift; sourceTree = "<group>"; };
 		BA2796351C1A0AD1000C31C1 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		BADD306C1C25531400C587E6 /* ImageViewer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageViewer.swift; sourceTree = "<group>"; };
 		FF01A6F61B8980E800F54273 /* Genie.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Genie.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FF01A6F91B8980E800F54273 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FF01A7011B8980E800F54273 /* Genie.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Genie.xcdatamodel; sourceTree = "<group>"; };
@@ -411,6 +413,7 @@
 				FF01A7081B8980E800F54273 /* Info.plist */,
 				FF8EAAE21B8D752200EE1396 /* Main.storyboard */,
 				BA2796351C1A0AD1000C31C1 /* ProfileViewController.swift */,
+				BADD306C1C25531400C587E6 /* ImageViewer.swift */,
 				FF01A6F91B8980E800F54273 /* AppDelegate.swift */,
 				FFC398131C1E640000CDEB87 /* OrdersViewController.swift */,
 				FFC398191C1E744300CDEB87 /* Order.swift */,
@@ -868,6 +871,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FF01A7021B8980E800F54273 /* Genie.xcdatamodeld in Sources */,
+				BADD306D1C25531400C587E6 /* ImageViewer.swift in Sources */,
 				BA2796311C19D7BC000C31C1 /* MySwipeVC.swift in Sources */,
 				FFC398181C1E69C200CDEB87 /* OrderCell.swift in Sources */,
 				FF01A6FA1B8980E800F54273 /* AppDelegate.swift in Sources */,
