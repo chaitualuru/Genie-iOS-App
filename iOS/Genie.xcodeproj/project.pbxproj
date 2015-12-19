@@ -82,9 +82,9 @@
 		FF91FF0C1C258AC700FEEE1F /* white_cancel@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = FF91FF091C258AC700FEEE1F /* white_cancel@1x.png */; };
 		FF91FF0D1C258AC700FEEE1F /* white_cancel@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FF91FF0A1C258AC700FEEE1F /* white_cancel@2x.png */; };
 		FF91FF0E1C258AC700FEEE1F /* white_cancel@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = FF91FF0B1C258AC700FEEE1F /* white_cancel@3x.png */; };
-		FF91FF121C2599ED00FEEE1F /* circle@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = FF91FF0F1C2599ED00FEEE1F /* circle@1x.png */; };
-		FF91FF131C2599ED00FEEE1F /* circle@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FF91FF101C2599ED00FEEE1F /* circle@2x.png */; };
-		FF91FF141C2599ED00FEEE1F /* circle@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = FF91FF111C2599ED00FEEE1F /* circle@3x.png */; };
+		FF91FF191C259B3600FEEE1F /* circle@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = FF91FF161C259B3600FEEE1F /* circle@1x.png */; };
+		FF91FF1A1C259B3600FEEE1F /* circle@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FF91FF171C259B3600FEEE1F /* circle@2x.png */; };
+		FF91FF1B1C259B3600FEEE1F /* circle@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = FF91FF181C259B3600FEEE1F /* circle@3x.png */; };
 		FF9F75EB1B8C062E008CAAD6 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF9F75EA1B8C062E008CAAD6 /* SignInViewController.swift */; };
 		FFAFBEC01B8BB7DE008D2A2F /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFAFBEBF1B8BB7DE008D2A2F /* RegisterViewController.swift */; };
 		FFB9CFA61C23E4CF00EE83EE /* genie@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = FFB9CFA31C23E4CF00EE83EE /* genie@1x.png */; };
@@ -285,9 +285,9 @@
 		FF91FF091C258AC700FEEE1F /* white_cancel@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "white_cancel@1x.png"; sourceTree = "<group>"; };
 		FF91FF0A1C258AC700FEEE1F /* white_cancel@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "white_cancel@2x.png"; sourceTree = "<group>"; };
 		FF91FF0B1C258AC700FEEE1F /* white_cancel@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "white_cancel@3x.png"; sourceTree = "<group>"; };
-		FF91FF0F1C2599ED00FEEE1F /* circle@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "circle@1x.png"; sourceTree = "<group>"; };
-		FF91FF101C2599ED00FEEE1F /* circle@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "circle@2x.png"; sourceTree = "<group>"; };
-		FF91FF111C2599ED00FEEE1F /* circle@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "circle@3x.png"; sourceTree = "<group>"; };
+		FF91FF161C259B3600FEEE1F /* circle@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "circle@1x.png"; sourceTree = "<group>"; };
+		FF91FF171C259B3600FEEE1F /* circle@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "circle@2x.png"; sourceTree = "<group>"; };
+		FF91FF181C259B3600FEEE1F /* circle@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "circle@3x.png"; sourceTree = "<group>"; };
 		FF9F75EA1B8C062E008CAAD6 /* SignInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		FFAFBEBF1B8BB7DE008D2A2F /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		FFB9CFA31C23E4CF00EE83EE /* genie@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "genie@1x.png"; sourceTree = "<group>"; };
@@ -567,9 +567,9 @@
 				FF91FF091C258AC700FEEE1F /* white_cancel@1x.png */,
 				FF91FF0A1C258AC700FEEE1F /* white_cancel@2x.png */,
 				FF91FF0B1C258AC700FEEE1F /* white_cancel@3x.png */,
-				FF91FF0F1C2599ED00FEEE1F /* circle@1x.png */,
-				FF91FF101C2599ED00FEEE1F /* circle@2x.png */,
-				FF91FF111C2599ED00FEEE1F /* circle@3x.png */,
+				FF91FF161C259B3600FEEE1F /* circle@1x.png */,
+				FF91FF171C259B3600FEEE1F /* circle@2x.png */,
+				FF91FF181C259B3600FEEE1F /* circle@3x.png */,
 				FFB9CFEB1C23E5DA00EE83EE /* resend@1x.png */,
 				FFB9CFEC1C23E5DA00EE83EE /* resend@2x.png */,
 				FFB9CFED1C23E5DA00EE83EE /* resend@3x.png */,
@@ -728,7 +728,7 @@
 				FFB9CFDD1C23E58A00EE83EE /* return_left@2x.png in Resources */,
 				FFB9CFCC1C23E55C00EE83EE /* grid@3x.png in Resources */,
 				FF1C50141C24FBCA0095FB27 /* signup@1x.png in Resources */,
-				FF91FF131C2599ED00FEEE1F /* circle@2x.png in Resources */,
+				FF91FF1A1C259B3600FEEE1F /* circle@2x.png in Resources */,
 				FF3314951B8A5309008B1B9E /* SF-UI-Text-Semibold.otf in Resources */,
 				FFB9CFEE1C23E5DA00EE83EE /* resend@1x.png in Resources */,
 				FF3314821B8A52FB008B1B9E /* SF-UI-Display-Black.otf in Resources */,
@@ -750,7 +750,7 @@
 				FF3314871B8A5309008B1B9E /* SF-UI-Display-Regular.otf in Resources */,
 				FF1C50091C24F9110095FB27 /* shopping@2x.png in Resources */,
 				FFB9CFA81C23E4CF00EE83EE /* genie@3x.png in Resources */,
-				FF91FF141C2599ED00FEEE1F /* circle@3x.png in Resources */,
+				FF91FF1B1C259B3600FEEE1F /* circle@3x.png in Resources */,
 				FFB9CFD21C23E56900EE83EE /* menu@3x.png in Resources */,
 				FF1C4FF91C24F9110095FB27 /* booking@1x.png in Resources */,
 				FFB9CFF41C23E5FF00EE83EE /* lamp@1x.png in Resources */,
@@ -804,7 +804,7 @@
 				FF3314901B8A5309008B1B9E /* SF-UI-Text-LightItalic.otf in Resources */,
 				FF1C50041C24F9110095FB27 /* home@3x.png in Resources */,
 				FFB9CFB91C23E50B00EE83EE /* confirm@2x.png in Resources */,
-				FF91FF121C2599ED00FEEE1F /* circle@1x.png in Resources */,
+				FF91FF191C259B3600FEEE1F /* circle@1x.png in Resources */,
 				FFB9CFF51C23E5FF00EE83EE /* lamp@2x.png in Resources */,
 				FF33148F1B8A5309008B1B9E /* SF-UI-Text-Light.otf in Resources */,
 				FF1C50031C24F9110095FB27 /* home@2x.png in Resources */,
