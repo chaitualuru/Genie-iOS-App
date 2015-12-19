@@ -45,6 +45,7 @@ class HomeViewController: JSQMessagesViewController, UIImagePickerControllerDele
         self.user = self.ref.authData
         self.senderId = self.user?.uid
         self.senderDisplayName = "not_set"
+        self.collectionView?.contentInset = UIEdgeInsetsMake(0, 0, 50, 0)
         
         let firstNameRef = ref.childByAppendingPath("users/" + senderId + "/first_name")
         firstNameRef.observeEventType(.Value, withBlock: { snapshot in
@@ -279,7 +280,7 @@ class HomeViewController: JSQMessagesViewController, UIImagePickerControllerDele
             self.finishReceivingMessage()
             
         })
-        
+        automaticallyScrollsToMostRecentMessage = true
         self.finishReceivingMessageAnimated(false)
         self.collectionView!.pullToRefreshView.stopAnimating()
         self.collectionView!.layoutIfNeeded()
