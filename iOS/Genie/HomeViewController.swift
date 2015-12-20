@@ -13,6 +13,8 @@ import SVPullToRefresh
 import SVProgressHUD
 import Haneke
 
+var homeVCwishSelected = false
+var homeVCwishDescription = ""
 
 class HomeViewController: JSQMessagesViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
@@ -71,7 +73,7 @@ class HomeViewController: JSQMessagesViewController, UIImagePickerControllerDele
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         self.collectionView?.contentInset = UIEdgeInsetsMake(0, 0, 80, 0);
         
         self.ref = Firebase(url:"https://getgenie.firebaseio.com/")
@@ -121,6 +123,11 @@ class HomeViewController: JSQMessagesViewController, UIImagePickerControllerDele
         
         // --------------------------------------------------------------------------------------
         
+        if homeVCwishSelected {
+            inputToolbar?.contentView?.textView?.text = homeVCwishDescription
+            homeVCwishSelected = false
+            homeVCwishDescription = ""
+        }
         
         // Helper Labels ------------------------------------------------------------------------
         

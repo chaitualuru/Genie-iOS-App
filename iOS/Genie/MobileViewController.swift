@@ -8,6 +8,7 @@
 
 import UIKit
 import VerifyIosSdk
+import Firebase
 
 class MobileViewController: UIViewController, UITextFieldDelegate {
 
@@ -19,6 +20,7 @@ class MobileViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet var verificationCodeSent: UILabel!
     @IBOutlet var resendVerificationCode: UIButton!
     @IBOutlet var cancelVerification: UIButton!
+    var ref: Firebase!
     
     var activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView()
     var storedNumber: String!
@@ -266,6 +268,9 @@ class MobileViewController: UIViewController, UITextFieldDelegate {
     func verifiedMobile() {
         self.activityIndicator.stopAnimating()
         UIApplication.sharedApplication().endIgnoringInteractionEvents()
+        self.ref = Firebase(url:"https://getgenie.firebaseio.com/users/" + self.ref.authData.uid)
+        let mobile = ["mobile_number": self.mobileNumber.text!]
+        self.ref.updateChildValues(mobile)
         self.presentViewController(MySwipeVC(), animated: true, completion: nil)
     }
     
