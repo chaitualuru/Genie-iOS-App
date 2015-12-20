@@ -178,7 +178,7 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
                                         
                                         let uidRef = self.ref.childByAppendingPath("users/" + uid!)
                                         
-                                        let newUser = ["first_name": "tba", "last_name": "tba", "mobile_number": "tba", "email_address": self.emailAddress.text!, "username": self.username.text!]
+                                        let newUser = ["first_name": "Name", "last_name": "", "mobile_number": "Mobile Number", "email_address": self.emailAddress.text!, "username": self.username.text!]
                                         
                                         uidRef.setValue(newUser)
                                         self.performSegueWithIdentifier("VERIFY", sender: result)
