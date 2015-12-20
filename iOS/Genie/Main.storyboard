@@ -1029,13 +1029,13 @@ Check back soon!</string>
                                                 <rect key="frame" x="0.0" y="237" width="300" height="103"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Booking" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Pc-Js-TxC">
-                                                        <rect key="frame" x="140" y="71" width="50" height="16"/>
+                                                        <rect key="frame" x="140" y="72" width="50" height="16"/>
                                                         <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="13"/>
                                                         <color key="textColor" red="0.38431372549999998" green="0.35294117650000001" blue="0.59215686270000001" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m52-jq-uUP">
-                                                        <rect key="frame" x="129" y="0.0" width="72" height="72"/>
+                                                        <rect key="frame" x="129" y="1" width="72" height="72"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" secondItem="m52-jq-uUP" secondAttribute="height" multiplier="30:31" constant="2.4193548387096797" id="XfB-8g-qlh"/>
                                                         </constraints>
@@ -1044,9 +1044,9 @@ Check back soon!</string>
                                                 </subviews>
                                                 <constraints>
                                                     <constraint firstItem="1Pc-Js-TxC" firstAttribute="centerX" secondItem="QeC-2W-11c" secondAttribute="centerX" constant="15" id="Jnk-d6-pKp"/>
-                                                    <constraint firstItem="m52-jq-uUP" firstAttribute="top" secondItem="QeC-2W-11c" secondAttribute="top" id="S4f-0f-oCL"/>
+                                                    <constraint firstItem="m52-jq-uUP" firstAttribute="top" secondItem="QeC-2W-11c" secondAttribute="top" constant="1" id="S4f-0f-oCL"/>
                                                     <constraint firstItem="m52-jq-uUP" firstAttribute="leading" secondItem="QeC-2W-11c" secondAttribute="leading" constant="120" id="TyN-Pm-Mkq"/>
-                                                    <constraint firstAttribute="bottom" secondItem="1Pc-Js-TxC" secondAttribute="bottom" constant="16" id="YQQ-lH-brK"/>
+                                                    <constraint firstAttribute="bottom" secondItem="1Pc-Js-TxC" secondAttribute="bottom" constant="15" id="YQQ-lH-brK"/>
                                                     <constraint firstItem="1Pc-Js-TxC" firstAttribute="top" secondItem="m52-jq-uUP" secondAttribute="bottom" constant="-1" id="gax-nb-5wc"/>
                                                     <constraint firstAttribute="trailing" secondItem="m52-jq-uUP" secondAttribute="trailing" constant="120" id="hux-Oh-ex3"/>
                                                     <constraint firstItem="m52-jq-uUP" firstAttribute="centerX" secondItem="QeC-2W-11c" secondAttribute="centerX" constant="15" id="wJZ-5P-Ehc"/>
@@ -1062,13 +1062,13 @@ Check back soon!</string>
                                                 <rect key="frame" x="300" y="237" width="300" height="103"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Shopping" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1zD-WW-it1">
-                                                        <rect key="frame" x="106" y="71" width="58.5" height="16"/>
+                                                        <rect key="frame" x="106" y="72" width="58.5" height="16"/>
                                                         <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="13"/>
                                                         <color key="textColor" red="0.38431372549999998" green="0.35294117650000001" blue="0.59215686270000001" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tX4-W1-bVO">
-                                                        <rect key="frame" x="94" y="-5" width="82" height="82"/>
+                                                        <rect key="frame" x="95" y="-5" width="80" height="80"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" secondItem="tX4-W1-bVO" secondAttribute="height" multiplier="30:31" constant="2.4193548387096797" id="U8v-89-5kO"/>
                                                         </constraints>
@@ -1079,8 +1079,8 @@ Check back soon!</string>
                                                     <constraint firstItem="1zD-WW-it1" firstAttribute="centerX" secondItem="hL6-mq-aUw" secondAttribute="centerX" constant="-15" id="MJ7-8s-5Co"/>
                                                     <constraint firstItem="tX4-W1-bVO" firstAttribute="top" secondItem="hL6-mq-aUw" secondAttribute="top" constant="-5" id="VxH-3F-cSk"/>
                                                     <constraint firstAttribute="trailing" secondItem="tX4-W1-bVO" secondAttribute="trailing" constant="120" id="XUK-OA-raN"/>
-                                                    <constraint firstItem="1zD-WW-it1" firstAttribute="top" secondItem="tX4-W1-bVO" secondAttribute="bottom" constant="-6" id="b6k-Zy-trp"/>
-                                                    <constraint firstAttribute="bottom" secondItem="1zD-WW-it1" secondAttribute="bottom" constant="16" id="d9L-hs-XIL"/>
+                                                    <constraint firstItem="1zD-WW-it1" firstAttribute="top" secondItem="tX4-W1-bVO" secondAttribute="bottom" constant="-3" id="b6k-Zy-trp"/>
+                                                    <constraint firstAttribute="bottom" secondItem="1zD-WW-it1" secondAttribute="bottom" constant="15" id="d9L-hs-XIL"/>
                                                     <constraint firstItem="tX4-W1-bVO" firstAttribute="leading" secondItem="hL6-mq-aUw" secondAttribute="leading" constant="120" id="qoP-7t-lur"/>
                                                     <constraint firstItem="tX4-W1-bVO" firstAttribute="centerX" secondItem="hL6-mq-aUw" secondAttribute="centerX" constant="-15" id="zDn-cd-tdk"/>
                                                 </constraints>
@@ -1101,7 +1101,7 @@ Check back soon!</string>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SR7-cg-nPP">
-                                                        <rect key="frame" x="93" y="0.0" width="85" height="85"/>
+                                                        <rect key="frame" x="94" y="-5" width="82" height="82"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" secondItem="SR7-cg-nPP" secondAttribute="height" multiplier="30:31" constant="2.4193548387096797" id="O2t-NL-BL9"/>
                                                         </constraints>
@@ -1109,13 +1109,13 @@ Check back soon!</string>
                                                     </button>
                                                 </subviews>
                                                 <constraints>
-                                                    <constraint firstItem="SR7-cg-nPP" firstAttribute="top" secondItem="Vvd-nO-HHa" secondAttribute="top" id="5yn-fX-5jc"/>
+                                                    <constraint firstItem="SR7-cg-nPP" firstAttribute="top" secondItem="Vvd-nO-HHa" secondAttribute="top" constant="-5" id="5yn-fX-5jc"/>
                                                     <constraint firstAttribute="bottom" secondItem="EBy-Gh-ePo" secondAttribute="bottom" constant="10" id="Vpd-n3-8GG"/>
                                                     <constraint firstItem="SR7-cg-nPP" firstAttribute="centerX" secondItem="Vvd-nO-HHa" secondAttribute="centerX" constant="-15" id="edp-PX-YM7"/>
                                                     <constraint firstAttribute="trailing" secondItem="SR7-cg-nPP" secondAttribute="trailing" constant="120" id="geq-9h-rjA"/>
                                                     <constraint firstItem="EBy-Gh-ePo" firstAttribute="centerX" secondItem="Vvd-nO-HHa" secondAttribute="centerX" constant="-15" id="gf1-e6-Epe"/>
                                                     <constraint firstItem="SR7-cg-nPP" firstAttribute="leading" secondItem="Vvd-nO-HHa" secondAttribute="leading" constant="120" id="skX-cL-k6c"/>
-                                                    <constraint firstItem="EBy-Gh-ePo" firstAttribute="top" secondItem="SR7-cg-nPP" secondAttribute="bottom" constant="-8" id="wPi-Vc-QOc"/>
+                                                    <constraint firstItem="EBy-Gh-ePo" firstAttribute="top" secondItem="SR7-cg-nPP" secondAttribute="bottom" id="wPi-Vc-QOc"/>
                                                 </constraints>
                                                 <variation key="default">
                                                     <mask key="constraints">
