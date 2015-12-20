@@ -62,7 +62,6 @@ class HomeViewController: JSQMessagesViewController, UIImagePickerControllerDele
             counter++
         }
         textCache.set(value: allMessageIds, key: "allMessageIds")
-        print("Cache Set")
     }
     
     override func viewWillDisappear(animated: Bool) {
@@ -295,7 +294,6 @@ class HomeViewController: JSQMessagesViewController, UIImagePickerControllerDele
                 }
             }
         }.onFailure { error in
-            print("OnFailure")
             self.setupMessages()
         }
         
