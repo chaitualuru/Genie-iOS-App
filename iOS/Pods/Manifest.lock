@@ -2,6 +2,7 @@ PODS:
   - Bond (4.0.0-beta1)
   - EZSwipeController (0.4)
   - Firebase (2.3.3)
+  - HanekeSwift (0.10.0)
   - JSQMessagesViewController (7.1.0):
     - JSQSystemSoundPlayer (~> 2.0.1)
   - JSQSystemSoundPlayer (2.0.1)
@@ -12,6 +13,7 @@ DEPENDENCIES:
   - Bond (= 4.0.0-beta1)
   - EZSwipeController
   - Firebase (>= 2.3.3)
+  - HanekeSwift
   - JSQMessagesViewController
   - SVProgressHUD
   - SVPullToRefresh
@@ -20,6 +22,7 @@ SPEC CHECKSUMS:
   Bond: f73c140d5ebaea1a7f97452dce48ceaf3d583bd2
   EZSwipeController: 49aa0f869e66049ac433483120f458434272ee32
   Firebase: 2db60272f68ce40c7d47e5ae6eddc16977c65d4c
+  HanekeSwift: d6f5bdf9dbdbbc09d59623b2c1d533e46463dd4d
   JSQMessagesViewController: ca11f86fa68ca70835f05e169df9244147c1dc40
   JSQSystemSoundPlayer: c5850e77a4363ffd374cd851154b9af93264ed8d
   SVProgressHUD: 748080e4f36e603f6c02aec292664239df5279c1
