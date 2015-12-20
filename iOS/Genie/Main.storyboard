@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="xK3-KW-HPV">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="xK3-KW-HPV">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
@@ -21,7 +21,6 @@
             <string>SFUIText-Medium</string>
         </mutableArray>
         <mutableArray key="SF-UI-Text-Regular.otf">
-            <string>SFUIText-Regular</string>
             <string>SFUIText-Regular</string>
             <string>SFUIText-Regular</string>
             <string>SFUIText-Regular</string>
@@ -245,16 +244,6 @@
                                 <fontDescription key="fontDescription" name="SFUIDisplay-Regular" family="SF UI Display" pointSize="24"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad"/>
                             </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Verify Mobile Number" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V2J-8n-E8R">
-                                <rect key="frame" x="228" y="249" width="145" height="21"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="21" id="5iK-x3-kEG"/>
-                                    <constraint firstAttribute="width" constant="145" id="Pbb-j7-sp2"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="14"/>
-                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <textField hidden="YES" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="000000" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="e2K-CF-CKu">
                                 <rect key="frame" x="252" y="285" width="97" height="30"/>
                                 <constraints>
@@ -265,23 +254,13 @@
                                 <fontDescription key="fontDescription" name="SFUIDisplay-Regular" family="SF UI Display" pointSize="24"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad"/>
                             </textField>
-                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter Verification Code" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jp3-rE-HMe">
-                                <rect key="frame" x="223" y="249" width="154" height="21"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="21" id="RyX-aY-kcA"/>
-                                    <constraint firstAttribute="width" constant="154" id="ca3-Rv-bA6"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="14"/>
-                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xa3-Bb-nrW">
                                 <rect key="frame" x="512" y="290" width="78" height="22"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="78" id="Chd-pW-aMx"/>
                                     <constraint firstAttribute="height" constant="22" id="GoZ-us-E8H"/>
                                 </constraints>
-                                <state key="normal" image="verify.png"/>
+                                <state key="normal" image="return_left.png"/>
                                 <connections>
                                     <action selector="verifyCode:" destination="BYZ-38-t0r" eventType="touchUpInside" id="KCj-Xc-ycK"/>
                                 </connections>
@@ -302,7 +281,7 @@
                                     <constraint firstAttribute="height" constant="22" id="b1E-9r-uia"/>
                                     <constraint firstAttribute="width" constant="18" id="i5W-nB-ZTN"/>
                                 </constraints>
-                                <state key="normal" image="resend.png"/>
+                                <state key="normal" image="white_cancel.png"/>
                                 <connections>
                                     <action selector="resend:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Ukd-Lt-1YB"/>
                                 </connections>
@@ -313,7 +292,7 @@
                                     <constraint firstAttribute="width" constant="18" id="OBG-uO-3Dw"/>
                                     <constraint firstAttribute="height" constant="22" id="Tqg-t1-dlE"/>
                                 </constraints>
-                                <state key="normal" image="back.png"/>
+                                <state key="normal" image="white_cancel.png"/>
                                 <connections>
                                     <action selector="cancel:" destination="BYZ-38-t0r" eventType="touchUpInside" id="x78-sr-nPW"/>
                                 </connections>
@@ -324,7 +303,7 @@
                                     <constraint firstAttribute="width" constant="78" id="BYE-hs-pqW"/>
                                     <constraint firstAttribute="height" constant="23" id="pOu-kc-AUU"/>
                                 </constraints>
-                                <state key="normal" image="next.png"/>
+                                <state key="normal" image="profile_genie.png"/>
                                 <connections>
                                     <action selector="sendCode:" destination="BYZ-38-t0r" eventType="touchUpInside" id="KJW-8f-4s7"/>
                                 </connections>
@@ -336,6 +315,16 @@
                                     <constraint firstAttribute="height" constant="27" id="eCd-gV-qN0"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="17"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter your mobile number to continue" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V2J-8n-E8R">
+                                <rect key="frame" x="175" y="249" width="250" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="5iK-x3-kEG"/>
+                                    <constraint firstAttribute="width" constant="250" id="Pbb-j7-sp2"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="14"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -354,7 +343,6 @@
                             <constraint firstItem="8t0-6H-Rv4" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="6" id="JTm-KM-29e"/>
                             <constraint firstItem="xQk-zf-ajL" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Kcu-wH-zW7"/>
                             <constraint firstItem="nOH-BE-J5x" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="KtY-a5-NDD"/>
-                            <constraint firstItem="e2K-CF-CKu" firstAttribute="top" secondItem="Jp3-rE-HMe" secondAttribute="bottom" constant="15" id="OjM-w3-CgJ"/>
                             <constraint firstItem="e2K-CF-CKu" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Q5d-0T-DJC"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="8t0-6H-Rv4" secondAttribute="bottom" constant="40" id="RJQ-H6-Jdv"/>
                             <constraint firstAttribute="trailingMargin" secondItem="QgH-xJ-ha9" secondAttribute="trailing" constant="-10" id="Ts7-gD-GOy"/>
@@ -363,7 +351,6 @@
                             <constraint firstItem="8t0-6H-Rv4" firstAttribute="top" secondItem="2tC-ub-a70" secondAttribute="bottom" constant="-2" id="ZgB-oo-ONA"/>
                             <constraint firstItem="tC1-mX-PkM" firstAttribute="top" secondItem="xGX-7e-rRA" secondAttribute="bottom" constant="13" id="ZgC-nh-hxC"/>
                             <constraint firstItem="e2K-CF-CKu" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="b07-ch-g7c"/>
-                            <constraint firstItem="Jp3-rE-HMe" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="bV3-cq-jf9"/>
                             <constraint firstAttribute="trailingMargin" secondItem="xa3-Bb-nrW" secondAttribute="trailing" constant="-10" id="faG-yj-hYi"/>
                             <constraint firstItem="tC1-mX-PkM" firstAttribute="top" secondItem="xa3-Bb-nrW" secondAttribute="bottom" constant="13" id="lbY-2l-4og"/>
                             <constraint firstItem="nYU-y0-zgT" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="yHO-Ab-qeu"/>
@@ -371,7 +358,6 @@
                     </view>
                     <connections>
                         <outlet property="cancelVerification" destination="xGX-7e-rRA" id="PtM-Vq-2Vb"/>
-                        <outlet property="enterVerificationCode" destination="Jp3-rE-HMe" id="WbZ-Ww-qDY"/>
                         <outlet property="mobileNumber" destination="nYU-y0-zgT" id="Vjo-w2-TIR"/>
                         <outlet property="next" destination="QgH-xJ-ha9" id="Rc3-zG-4Hf"/>
                         <outlet property="resendVerificationCode" destination="nOH-BE-J5x" id="rji-fZ-7tL"/>
@@ -1501,7 +1487,6 @@ Check back soon!</string>
         </scene>
     </scenes>
     <resources>
-        <image name="back.png" width="16" height="16"/>
         <image name="booking.png" width="75" height="75"/>
         <image name="circle.png" width="154" height="154"/>
         <image name="confirm.png" width="375" height="40"/>
@@ -1511,13 +1496,12 @@ Check back soon!</string>
         <image name="health.png" width="75" height="75"/>
         <image name="home.png" width="75" height="75"/>
         <image name="line.png" width="375" height="1"/>
-        <image name="next.png" width="19" height="18"/>
+        <image name="profile_genie.png" width="21" height="27"/>
         <image name="recharge.png" width="75" height="75"/>
-        <image name="resend.png" width="19" height="19"/>
+        <image name="return_left.png" width="11" height="19"/>
         <image name="shopping.png" width="75" height="75"/>
         <image name="signin.png" width="140" height="30"/>
         <image name="signup.png" width="140" height="30"/>
-        <image name="verify.png" width="20" height="16"/>
         <image name="white_cancel.png" width="16" height="16"/>
     </resources>
 </document>

@@ -14,7 +14,6 @@ class MobileViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet var mobileNumber: UITextField!
     @IBOutlet var verificationCode: UITextField!
     @IBOutlet var verifyNumber: UILabel!
-    @IBOutlet var enterVerificationCode: UILabel!
     @IBOutlet var verify: UIButton!
     @IBOutlet var next: UIButton!
     @IBOutlet var verificationCodeSent: UILabel!
@@ -63,109 +62,204 @@ class MobileViewController: UIViewController, UITextFieldDelegate {
         
         self.storedNumber = self.mobileNumber.text!
         
-        VerifyClient.getVerifiedUser(countryCode: "US", phoneNumber: self.storedNumber,
-            onVerifyInProgress: {
-                print("Verify in Progress")
-            },
-            onUserVerified: {
-                self.verifiedMobile()
-            },
-            onError: { (error: VerifyError) in
-                switch error {
-                    /** Number is invalid. Either:
-                    1. Number is missing or not a real number (in international or local format).
-                    2. Cannot route any verification messages to this number.
-                    */
-                case VerifyError.INVALID_NUMBER:
-                    print("Please check the number and try again.")
-                    self.cancel(self)
-                    
-                    /** User must be in pending status to be able to perform a PIN check. */
-                case VerifyError.CANNOT_PERFORM_CHECK:
-                    print("Please go back and re-enter your number.")
-                    self.cancel(self)
-                    
-                    /** Missing or invalid PIN code supplied. */
-                case VerifyError.INVALID_PIN_CODE:
-                    print("The code is invalid; try again or use resend.")
-                    
-                    /** Ongoing verification has failed. A wrong PIN code was provided too many times. */
-                case VerifyError.INVALID_CODE_TOO_MANY_TIMES:
-                    print("wrong pin too many times")
-                    self.cancel(self)
-                    
-                    /** Ongoing verification expired. Need to start verify again. */
-                case VerifyError.USER_EXPIRED:
-                    print("Ongoing verification has expired")
-                    self.cancel(self)
-                    
-                    /** Ongoing verification rejected. User blacklisted for verification. */
-                case VerifyError.USER_BLACKLISTED:
-                    print("you have been blacklisted, contact customet support")
-                    self.cancel(self)
-                    
-                    /** Throttled. Too many failed requests. */
-                case VerifyError.THROTTLED:
-                    print("too many failed requests")
-                    self.cancel(self)
-                    
-                    /** Your account does not have sufficient credit to process this request. */
-                case VerifyError.QUOTA_EXCEEDED:
-                    print("quota exceeded")
-                    self.cancel(self)
-                    
-                    /**
-                    Invalid Credentials. Either:
-                    1. Supplied Application ID may not be listed under your accepted application list.
-                    2. Shared secret key is invalid.
-                    */
-                case VerifyError.INVALID_CREDENTIALS:
-                    print("app id or secret key is invalid")
-                    
-                    /** The SDK revision is not supported anymore. */
-                case VerifyError.SDK_REVISION_NOT_SUPPORTED:
-                    print("sdk not supported anymore")
-                    
-                    /** Current iOS OS version is not supported. */
-                case VerifyError.OS_NOT_SUPPORTED:
-                    print("current os version is not supported")
-                    
-                    /** Generic internal error, the service might be down for the moment. Please try again later. */
-                case VerifyError.INTERNAL_ERROR:
-                    print("service is down")
-                    
-                    /** This Nexmo Account has been barred from sending messages */
-                case VerifyError.ACCOUNT_BARRED:
-                    print("this account is barred")
-                
-                default:
-                    print("nexmo unknown error")
+        if self.storedNumber.characters.count != 10 {
+            let alertController = UIAlertController(title: "", message: "Mobile number must be 10 characters long.", preferredStyle: .Alert)
+            
+            let okAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
+            
+            alertController.addAction(okAction)
+            
+            presentViewController(alertController, animated: true, completion: nil)
+        }
+        else {
+            VerifyClient.getVerifiedUser(countryCode: "IN", phoneNumber: self.storedNumber,
+                onVerifyInProgress: {
+                    print("Verify in Progress")
+                },
+                onUserVerified: {
+                    self.verifiedMobile()
+                },
+                onError: { (error: VerifyError) in
+                    switch error {
+                        /** Number is invalid. Either:
+                        1. Number is missing or not a real number (in international or local format).
+                        2. Cannot route any verification messages to this number.
+                        */
+                    case VerifyError.INVALID_NUMBER:
+                        print("Please check the number and try again.")
+                        let alertController = UIAlertController(title: "", message: "Invalid number. Please check the number and try again.", preferredStyle: .Alert)
+                        
+                        let okAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
+                        
+                        alertController.addAction(okAction)
+                        
+                        self.presentViewController(alertController, animated: true, completion: nil)
+                        self.cancel(self)
+                        
+                        /** User must be in pending status to be able to perform a PIN check. */
+                    case VerifyError.CANNOT_PERFORM_CHECK:
+                        print("Please go back and re-enter your number.")
+                        let alertController = UIAlertController(title: "", message: "Cannot perform check. Please re-enter your number.", preferredStyle: .Alert)
+                        
+                        let okAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
+                        
+                        alertController.addAction(okAction)
+                        
+                        self.presentViewController(alertController, animated: true, completion: nil)
+                        self.cancel(self)
+                        
+                        /** Missing or invalid PIN code supplied. */
+                    case VerifyError.INVALID_PIN_CODE:
+                        print("The code is invalid; try again or use resend.")
+                        let alertController = UIAlertController(title: "", message: "Invalid code. Try again or use the resend button.", preferredStyle: .Alert)
+                        
+                        let okAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
+                        
+                        alertController.addAction(okAction)
+                        
+                        self.presentViewController(alertController, animated: true, completion: nil)
+                        /** Ongoing verification has failed. A wrong PIN code was provided too many times. */
+                    case VerifyError.INVALID_CODE_TOO_MANY_TIMES:
+                        print("wrong pin too many times")
+                        let alertController = UIAlertController(title: "", message: "Entered the wrong code too many times. Please try again later.", preferredStyle: .Alert)
+                        
+                        let okAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
+                        
+                        alertController.addAction(okAction)
+                        
+                        self.presentViewController(alertController, animated: true, completion: nil)
+                        self.cancel(self)
+                        
+                        /** Ongoing verification expired. Need to start verify again. */
+                    case VerifyError.USER_EXPIRED:
+                        print("Ongoing verification has expired")
+                        let alertController = UIAlertController(title: "", message: "The verification has expired. Please enter your number again.", preferredStyle: .Alert)
+                        
+                        let okAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
+                        
+                        alertController.addAction(okAction)
+                        
+                        self.presentViewController(alertController, animated: true, completion: nil)
+                        
+                        self.cancel(self)
+                        
+                        /** Ongoing verification rejected. User blacklisted for verification. */
+                    case VerifyError.USER_BLACKLISTED:
+                        print("you have been blacklisted, contact customer support")
+                        let alertController = UIAlertController(title: "", message: "You have been blacklisted. Please contact customer support.", preferredStyle: .Alert)
+                        
+                        let okAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
+                        
+                        alertController.addAction(okAction)
+                        
+                        self.presentViewController(alertController, animated: true, completion: nil)
+                        self.cancel(self)
+                        
+                        /** Throttled. Too many failed requests. */
+                    case VerifyError.THROTTLED:
+                        print("too many failed requests")
+                        let alertController = UIAlertController(title: "", message: "Too many failed requests. Please try again later.", preferredStyle: .Alert)
+                        
+                        let okAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
+                        
+                        alertController.addAction(okAction)
+                        
+                        self.presentViewController(alertController, animated: true, completion: nil)
+                        self.cancel(self)
+                        
+                        /** Your account does not have sufficient credit to process this request. */
+                    case VerifyError.QUOTA_EXCEEDED:
+                        print("quota exceeded")
+                        let alertController = UIAlertController(title: "", message: "Something went wrong. Please try again later.", preferredStyle: .Alert)
+                        
+                        let okAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
+                        
+                        alertController.addAction(okAction)
+                        
+                        self.presentViewController(alertController, animated: true, completion: nil)
+                        self.cancel(self)
+                        
+                        /**
+                        Invalid Credentials. Either:
+                        1. Supplied Application ID may not be listed under your accepted application list.
+                        2. Shared secret key is invalid.
+                        */
+                    case VerifyError.INVALID_CREDENTIALS:
+                        print("app id or secret key is invalid")
+                        let alertController = UIAlertController(title: "", message: "Something went wrong. Please try again later.", preferredStyle: .Alert)
+                        
+                        let okAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
+                        
+                        alertController.addAction(okAction)
+                        
+                        self.presentViewController(alertController, animated: true, completion: nil)
+                        
+                        /** The SDK revision is not supported anymore. */
+                    case VerifyError.SDK_REVISION_NOT_SUPPORTED:
+                        let alertController = UIAlertController(title: "", message: "Something went wrong. Please try again later.", preferredStyle: .Alert)
+                        
+                        let okAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
+                        
+                        alertController.addAction(okAction)
+                        
+                        self.presentViewController(alertController, animated: true, completion: nil)
+                        
+                        /** Current iOS OS version is not supported. */
+                    case VerifyError.OS_NOT_SUPPORTED:
+                        let alertController = UIAlertController(title: "", message: "Something went wrong. Please try again later.", preferredStyle: .Alert)
+                        
+                        let okAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
+                        
+                        alertController.addAction(okAction)
+                        
+                        self.presentViewController(alertController, animated: true, completion: nil)
+                        
+                        /** Generic internal error, the service might be down for the moment. Please try again later. */
+                    case VerifyError.INTERNAL_ERROR:
+                        let alertController = UIAlertController(title: "", message: "Service is down. Please try again later.", preferredStyle: .Alert)
+                        
+                        let okAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
+                        
+                        alertController.addAction(okAction)
+                        
+                        self.presentViewController(alertController, animated: true, completion: nil)
+                        
+                        /** This Nexmo Account has been barred from sending messages */
+                    case VerifyError.ACCOUNT_BARRED:
+                        let alertController = UIAlertController(title: "", message: "Your account is barred. Please contact customer support.", preferredStyle: .Alert)
+                        
+                        let okAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
+                        
+                        alertController.addAction(okAction)
+                        
+                        self.presentViewController(alertController, animated: true, completion: nil)
+                        
+                    default:
+                        print("Unknown error. Please contact customer support.")
+                    }
                 }
-            }
-        )
-
-        // --------------------------------------------------------------------------------------
-        
-        
-        UIView.transitionWithView(self.next, duration: 0.2, options: UIViewAnimationOptions.TransitionCrossDissolve, animations: nil, completion: nil)
-        self.next.hidden = true
-    
-        UIView.transitionWithView(self.verificationCode, duration: 1.0, options: UIViewAnimationOptions.TransitionCrossDissolve, animations: nil, completion: nil)
-        self.verificationCode.hidden = false
-        
-        UIView.transitionWithView(self.verify, duration: 1.0, options: UIViewAnimationOptions.TransitionCrossDissolve, animations: nil, completion: nil)
-        self.verify.hidden = false
-        
-        UIView.transitionWithView(self.mobileNumber, duration: 0.5, options: UIViewAnimationOptions.TransitionCrossDissolve, animations: nil, completion: nil)
-        self.mobileNumber.hidden = true
-        
-        UIView.transitionWithView(self.verifyNumber, duration: 0.5, options: UIViewAnimationOptions.TransitionCrossDissolve, animations: nil, completion: nil)
-        self.verifyNumber.hidden = true
-        
-        UIView.transitionWithView(self.enterVerificationCode, duration: 1.0, options: UIViewAnimationOptions.TransitionCrossDissolve, animations: nil, completion: nil)
-        self.enterVerificationCode.hidden = false
-        
-        NSTimer.scheduledTimerWithTimeInterval(10.0, target: self, selector: "showOptions", userInfo: nil, repeats: false)
+            )
+            
+            // --------------------------------------------------------------------------------------
+            
+            
+            UIView.transitionWithView(self.next, duration: 0.2, options: UIViewAnimationOptions.TransitionCrossDissolve, animations: nil, completion: nil)
+            self.next.hidden = true
+            
+            UIView.transitionWithView(self.verificationCode, duration: 1.0, options: UIViewAnimationOptions.TransitionCrossDissolve, animations: nil, completion: nil)
+            self.verificationCode.hidden = false
+            
+            UIView.transitionWithView(self.verify, duration: 1.0, options: UIViewAnimationOptions.TransitionCrossDissolve, animations: nil, completion: nil)
+            self.verify.hidden = false
+            
+            UIView.transitionWithView(self.mobileNumber, duration: 0.5, options: UIViewAnimationOptions.TransitionCrossDissolve, animations: nil, completion: nil)
+            self.mobileNumber.hidden = true
+            
+            UIView.transitionWithView(self.verifyNumber, duration: 0.5, options: UIViewAnimationOptions.TransitionCrossDissolve, animations: nil, completion: nil)
+            self.verifyNumber.hidden = true
+            
+            NSTimer.scheduledTimerWithTimeInterval(10.0, target: self, selector: "showOptions", userInfo: nil, repeats: false)
+        }
         
     }
     
@@ -216,9 +310,6 @@ class MobileViewController: UIViewController, UITextFieldDelegate {
             
             UIView.transitionWithView(self.verifyNumber, duration: 1.0, options: UIViewAnimationOptions.TransitionCrossDissolve, animations: nil, completion: nil)
             self.verifyNumber.hidden = false
-            
-            UIView.transitionWithView(self.enterVerificationCode, duration: 0.5, options: UIViewAnimationOptions.TransitionCrossDissolve, animations: nil, completion: nil)
-            self.enterVerificationCode.hidden = true
         })
     }
     
@@ -232,7 +323,7 @@ class MobileViewController: UIViewController, UITextFieldDelegate {
             print("cancelled verification request")
         })
         
-        VerifyClient.getVerifiedUser(countryCode: "US", phoneNumber: self.storedNumber,
+        VerifyClient.getVerifiedUser(countryCode: "IN", phoneNumber: self.storedNumber,
             onVerifyInProgress: {
                 print("Verify in Progress")
             },

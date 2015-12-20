@@ -119,18 +119,19 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
         // registering user ---------------------------------------------------------------------
             
         else {
+            
+            self.activityIndicator = UIActivityIndicatorView(frame: CGRectMake(0, 0, 50, 50))
+            self.activityIndicator.center = self.view.center
+            self.activityIndicator.hidesWhenStopped = true
+            self.darkLoadingView.hidden = false
+            self.activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.Gray
+            self.view.addSubview(self.activityIndicator)
+            self.activityIndicator.startAnimating()
+            UIApplication.sharedApplication().beginIgnoringInteractionEvents()
 
             let usersRef = self.ref.childByAppendingPath("users")
             usersRef.queryOrderedByChild("username").queryEqualToValue(self.username.text).observeSingleEventOfType(.Value, withBlock: { snapshot in
                 if snapshot.value is NSNull {
-                    self.activityIndicator = UIActivityIndicatorView(frame: CGRectMake(0, 0, 50, 50))
-                    self.activityIndicator.center = self.view.center
-                    self.activityIndicator.hidesWhenStopped = true
-                    self.darkLoadingView.hidden = false
-                    self.activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.Gray
-                    self.view.addSubview(self.activityIndicator)
-                    self.activityIndicator.startAnimating()
-                    UIApplication.sharedApplication().beginIgnoringInteractionEvents()
                     self.ref.createUser(self.emailAddress.text!, password: self.password.text!,
                         withValueCompletionBlock: { error, result in
                             if error != nil {
@@ -187,6 +188,7 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
                             }
                             
                             // --------------------------------------------------------------------------------------
+                            
                             self.darkLoadingView.hidden = true
                             self.activityIndicator.stopAnimating()
                             UIApplication.sharedApplication().endIgnoringInteractionEvents()
@@ -200,6 +202,10 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
                     alertController.addAction(okAction)
                     
                     self.presentViewController(alertController, animated: true, completion: nil)
+                    
+                    self.darkLoadingView.hidden = true
+                    self.activityIndicator.stopAnimating()
+                    UIApplication.sharedApplication().endIgnoringInteractionEvents()
                 }
                 
                 }, withCancelBlock: { error in
