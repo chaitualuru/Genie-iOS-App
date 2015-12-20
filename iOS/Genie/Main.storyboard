@@ -19,8 +19,10 @@
             <string>SFUIText-Medium</string>
             <string>SFUIText-Medium</string>
             <string>SFUIText-Medium</string>
+            <string>SFUIText-Medium</string>
         </mutableArray>
         <mutableArray key="SF-UI-Text-Regular.otf">
+            <string>SFUIText-Regular</string>
             <string>SFUIText-Regular</string>
             <string>SFUIText-Regular</string>
             <string>SFUIText-Regular</string>
@@ -932,6 +934,9 @@ Check back soon!</string>
                                                             <constraint firstAttribute="width" secondItem="P36-pQ-GCE" secondAttribute="height" multiplier="30:31" constant="2.4193548387096797" id="Q8k-Ej-8sy"/>
                                                         </constraints>
                                                         <state key="normal" image="food.png"/>
+                                                        <connections>
+                                                            <action selector="foodSelected:" destination="yNo-il-eyh" eventType="touchUpInside" id="Auq-LK-G5M"/>
+                                                        </connections>
                                                     </button>
                                                 </subviews>
                                                 <constraints>
@@ -975,6 +980,9 @@ Check back soon!</string>
                                                             <constraint firstAttribute="width" secondItem="yOr-lW-zwc" secondAttribute="height" multiplier="30:31" constant="2.4193548387096797" id="E4Z-IH-3u6"/>
                                                         </constraints>
                                                         <state key="normal" image="health.png"/>
+                                                        <connections>
+                                                            <action selector="healthSelected:" destination="yNo-il-eyh" eventType="touchUpInside" id="9Dt-PX-Tfv"/>
+                                                        </connections>
                                                     </button>
                                                 </subviews>
                                                 <constraints>
@@ -1016,6 +1024,9 @@ Check back soon!</string>
                                                             <constraint firstAttribute="width" secondItem="eCr-of-3d3" secondAttribute="height" multiplier="30:31" constant="2.4193548387096797" id="Evb-HM-edp"/>
                                                         </constraints>
                                                         <state key="normal" image="recharge.png"/>
+                                                        <connections>
+                                                            <action selector="rechargeSelected:" destination="yNo-il-eyh" eventType="touchUpInside" id="aiw-ci-YSP"/>
+                                                        </connections>
                                                     </button>
                                                 </subviews>
                                                 <constraints>
@@ -1053,6 +1064,9 @@ Check back soon!</string>
                                                             <constraint firstAttribute="width" secondItem="m52-jq-uUP" secondAttribute="height" multiplier="30:31" constant="2.4193548387096797" id="XfB-8g-qlh"/>
                                                         </constraints>
                                                         <state key="normal" image="booking.png"/>
+                                                        <connections>
+                                                            <action selector="bookingSelected:" destination="yNo-il-eyh" eventType="touchUpInside" id="3lU-XB-mp4"/>
+                                                        </connections>
                                                     </button>
                                                 </subviews>
                                                 <constraints>
@@ -1086,6 +1100,9 @@ Check back soon!</string>
                                                             <constraint firstAttribute="width" secondItem="tX4-W1-bVO" secondAttribute="height" multiplier="30:31" constant="2.4193548387096797" id="U8v-89-5kO"/>
                                                         </constraints>
                                                         <state key="normal" image="shopping.png"/>
+                                                        <connections>
+                                                            <action selector="shoppingSelected:" destination="yNo-il-eyh" eventType="touchUpInside" id="m2u-mz-xjZ"/>
+                                                        </connections>
                                                     </button>
                                                 </subviews>
                                                 <constraints>
@@ -1119,6 +1136,9 @@ Check back soon!</string>
                                                             <constraint firstAttribute="width" secondItem="SR7-cg-nPP" secondAttribute="height" multiplier="30:31" constant="2.4193548387096797" id="O2t-NL-BL9"/>
                                                         </constraints>
                                                         <state key="normal" image="home.png"/>
+                                                        <connections>
+                                                            <action selector="homeSelected:" destination="yNo-il-eyh" eventType="touchUpInside" id="7qL-TI-PgT"/>
+                                                        </connections>
                                                     </button>
                                                 </subviews>
                                                 <constraints>
@@ -1272,10 +1292,83 @@ Check back soon!</string>
                             </mask>
                         </variation>
                     </view>
+                    <connections>
+                        <segue destination="r5x-Mo-e6y" kind="show" identifier="WISHES" id="Fyl-Vd-QLs"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="C1q-QC-1nI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3439" y="743"/>
+        </scene>
+        <!--Food-->
+        <scene sceneID="F1q-yN-0sg">
+            <objects>
+                <tableViewController id="jRR-uG-p07" customClass="WishesViewController" customModule="Genie" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="100" sectionHeaderHeight="28" sectionFooterHeight="28" id="ERw-r1-Hn1">
+                        <rect key="frame" x="0.0" y="64" width="600" height="536"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="wishesCell" rowHeight="100" id="020-cQ-U6k" customClass="WishesCell" customModule="Genie" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="600" height="100"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="020-cQ-U6k" id="0xm-1y-jTQ">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="99.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Wish" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qaY-Aa-ZH6">
+                                            <rect key="frame" x="18" y="18" width="39.5" height="20"/>
+                                            <fontDescription key="fontDescription" name="SFUIText-Medium" family="SF UI Text" pointSize="16.5"/>
+                                            <color key="textColor" red="0.38431372549999998" green="0.35294117650000001" blue="0.59215686270000001" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lGU-gd-686">
+                                            <rect key="frame" x="18" y="48" width="524" height="16"/>
+                                            <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="13"/>
+                                            <color key="textColor" red="0.38431372549999998" green="0.35294117650000001" blue="0.59215686270000001" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ocv-oE-9dc">
+                                            <rect key="frame" x="566" y="39" width="16" height="22"/>
+                                            <state key="normal" image="cancel.png"/>
+                                            <connections>
+                                                <action selector="wishClicked:" destination="020-cQ-U6k" eventType="touchUpInside" id="Umj-Ih-fHb"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="trailingMargin" secondItem="ocv-oE-9dc" secondAttribute="trailing" constant="10" id="6Xl-9x-coT"/>
+                                        <constraint firstItem="ocv-oE-9dc" firstAttribute="centerY" secondItem="0xm-1y-jTQ" secondAttribute="centerY" id="CY0-KM-5Fr"/>
+                                        <constraint firstItem="lGU-gd-686" firstAttribute="trailing" secondItem="ocv-oE-9dc" secondAttribute="trailing" constant="-40" id="G3Q-PH-WeB"/>
+                                        <constraint firstAttribute="leadingMargin" secondItem="qaY-Aa-ZH6" secondAttribute="leading" constant="-10" id="bZG-Vm-n0G"/>
+                                        <constraint firstAttribute="topMargin" secondItem="qaY-Aa-ZH6" secondAttribute="top" constant="-10" id="ddN-Mh-1hg"/>
+                                        <constraint firstItem="lGU-gd-686" firstAttribute="top" secondItem="qaY-Aa-ZH6" secondAttribute="bottom" constant="10" id="jjY-OO-cV0"/>
+                                        <constraint firstAttribute="leadingMargin" secondItem="lGU-gd-686" secondAttribute="leading" constant="-10" id="qs9-nU-X6p"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="wishDescription" destination="lGU-gd-686" id="NVK-1P-oM4"/>
+                                    <outlet property="wishHeading" destination="qaY-Aa-ZH6" id="lfR-ad-gnR"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="jRR-uG-p07" id="Wrt-fA-dJC"/>
+                            <outlet property="delegate" destination="jRR-uG-p07" id="hvW-RX-Xmu"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Food" id="16Z-pU-YR7">
+                        <barButtonItem key="leftBarButtonItem" image="return_left.png" id="8Ef-Fk-xuc">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="goBackToDiscover:" destination="jRR-uG-p07" id="PGq-zJ-2td"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6Ak-JO-VXM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4251" y="1564"/>
         </scene>
         <!--Sign In View Controller-->
         <scene sceneID="Zrk-GV-4kA">
@@ -1499,10 +1592,36 @@ Check back soon!</string>
             </objects>
             <point key="canvasLocation" x="2717" y="1553"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="hkx-9d-1Yw">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="r5x-Mo-e6y" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" backIndicatorImage="return_left.png" id="KWP-KY-SI4">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="barTintColor" red="0.38431372549999998" green="0.35294117650000001" blue="0.59215686270000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <fontDescription key="fontDescription" type="system" pointSize="0.0"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <color key="textShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </textAttributes>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="jRR-uG-p07" kind="relationship" relationship="rootViewController" id="qQq-Lh-w8L"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0Tj-Fh-rjy" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3439" y="1564"/>
+        </scene>
     </scenes>
     <resources>
         <image name="back.png" width="16" height="16"/>
         <image name="booking.png" width="75" height="75"/>
+        <image name="cancel.png" width="16" height="16"/>
         <image name="circle.png" width="154" height="154"/>
         <image name="confirm.png" width="375" height="40"/>
         <image name="down.png" width="23" height="13"/>
@@ -1514,6 +1633,7 @@ Check back soon!</string>
         <image name="next.png" width="19" height="18"/>
         <image name="recharge.png" width="75" height="75"/>
         <image name="resend.png" width="19" height="19"/>
+        <image name="return_left.png" width="11" height="19"/>
         <image name="shopping.png" width="75" height="75"/>
         <image name="signin.png" width="140" height="30"/>
         <image name="signup.png" width="140" height="30"/>
