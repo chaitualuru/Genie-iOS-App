@@ -24,6 +24,8 @@ class MobileViewController: UIViewController, UITextFieldDelegate {
     
     var activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView()
     var storedNumber: String!
+    var ref: Firebase!
+    var user: FAuthData?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -82,6 +84,8 @@ class MobileViewController: UIViewController, UITextFieldDelegate {
                     self.verifiedMobile()
                 },
                 onError: { (error: VerifyError) in
+                    self.activityIndicator.stopAnimating()
+                    UIApplication.sharedApplication().endIgnoringInteractionEvents()
                     switch error {
                         /** Number is invalid. Either:
                         1. Number is missing or not a real number (in international or local format).
@@ -260,7 +264,13 @@ class MobileViewController: UIViewController, UITextFieldDelegate {
             UIView.transitionWithView(self.verifyNumber, duration: 0.5, options: UIViewAnimationOptions.TransitionCrossDissolve, animations: nil, completion: nil)
             self.verifyNumber.hidden = true
             
-            NSTimer.scheduledTimerWithTimeInterval(10.0, target: self, selector: "showOptions", userInfo: nil, repeats: false)
+            if (self.isViewLoaded() && self.view.window != nil) {
+                UIView.transitionWithView(self.resendVerificationCode, duration: 1.0, options: UIViewAnimationOptions.TransitionCrossDissolve, animations: nil, completion: nil)
+                self.resendVerificationCode.hidden = false
+                
+                UIView.transitionWithView(self.cancelVerification, duration: 1.0, options: UIViewAnimationOptions.TransitionCrossDissolve, animations: nil, completion: nil)
+                self.cancelVerification.hidden = false
+            }
         }
         
     }
@@ -268,22 +278,15 @@ class MobileViewController: UIViewController, UITextFieldDelegate {
     func verifiedMobile() {
         self.activityIndicator.stopAnimating()
         UIApplication.sharedApplication().endIgnoringInteractionEvents()
-        self.ref = Firebase(url:"https://getgenie.firebaseio.com/users/" + self.ref.authData.uid)
+        self.ref = Firebase(url: "https://getgenie.firebaseio.com/")
+        self.user = self.ref.authData
+        let uid = self.user?.uid
+        let userRef = Firebase(url: "https://getgenie.firebaseio.com/users/" + uid!)
+        print("this happened")
         let mobile = ["mobile_number": self.mobileNumber.text!]
-        self.ref.updateChildValues(mobile)
+        print("reached here")
+        userRef.updateChildValues(mobile)
         self.presentViewController(MySwipeVC(), animated: true, completion: nil)
-    }
-    
-    func showOptions() {
-        
-        if (self.isViewLoaded() && self.view.window != nil) {
-            UIView.transitionWithView(self.resendVerificationCode, duration: 1.0, options: UIViewAnimationOptions.TransitionCrossDissolve, animations: nil, completion: nil)
-            self.resendVerificationCode.hidden = false
-        
-            UIView.transitionWithView(self.cancelVerification, duration: 1.0, options: UIViewAnimationOptions.TransitionCrossDissolve, animations: nil, completion: nil)
-            self.cancelVerification.hidden = false
-        }
-        
     }
     
     @IBAction func cancel(sender: AnyObject) {
@@ -346,7 +349,7 @@ class MobileViewController: UIViewController, UITextFieldDelegate {
         UIView.transitionWithView(self.verificationCodeSent, duration: 1.0, options: UIViewAnimationOptions.TransitionCrossDissolve, animations: nil, completion: nil)
         self.verificationCodeSent.hidden = false
         
-        NSTimer.scheduledTimerWithTimeInterval(3.0, target: self, selector: "resent", userInfo: nil, repeats: false)
+        NSTimer.scheduledTimerWithTimeInterval(30.0, target: self, selector: "resent", userInfo: nil, repeats: false)
         
     }
     
