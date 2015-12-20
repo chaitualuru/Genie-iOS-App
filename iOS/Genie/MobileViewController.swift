@@ -24,7 +24,6 @@ class MobileViewController: UIViewController, UITextFieldDelegate {
     
     var activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView()
     var storedNumber: String!
-    var ref: Firebase!
     var user: FAuthData?
     
     override func viewDidLoad() {
