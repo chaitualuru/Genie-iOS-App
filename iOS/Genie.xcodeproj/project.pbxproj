@@ -127,6 +127,12 @@
 		FFC398181C1E69C200CDEB87 /* OrderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC398171C1E69C200CDEB87 /* OrderCell.swift */; };
 		FFC3981A1C1E744300CDEB87 /* Order.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC398191C1E744300CDEB87 /* Order.swift */; };
 		FFD72DA71B8C7AA5006BC039 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFD72DA61B8C7AA5006BC039 /* HomeViewController.swift */; };
+		FFE54ED81C26EC66004E7C9A /* next@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = FFE54ED51C26EC66004E7C9A /* next@1x.png */; };
+		FFE54ED91C26EC66004E7C9A /* next@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FFE54ED61C26EC66004E7C9A /* next@2x.png */; };
+		FFE54EDA1C26EC66004E7C9A /* next@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = FFE54ED71C26EC66004E7C9A /* next@3x.png */; };
+		FFE54EDE1C26ECB6004E7C9A /* verify@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = FFE54EDB1C26ECB6004E7C9A /* verify@1x.png */; };
+		FFE54EDF1C26ECB6004E7C9A /* verify@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FFE54EDC1C26ECB6004E7C9A /* verify@2x.png */; };
+		FFE54EE01C26ECB6004E7C9A /* verify@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = FFE54EDD1C26ECB6004E7C9A /* verify@3x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -335,6 +341,12 @@
 		FFC398171C1E69C200CDEB87 /* OrderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderCell.swift; sourceTree = "<group>"; };
 		FFC398191C1E744300CDEB87 /* Order.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Order.swift; sourceTree = "<group>"; };
 		FFD72DA61B8C7AA5006BC039 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		FFE54ED51C26EC66004E7C9A /* next@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "next@1x.png"; sourceTree = "<group>"; };
+		FFE54ED61C26EC66004E7C9A /* next@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "next@2x.png"; sourceTree = "<group>"; };
+		FFE54ED71C26EC66004E7C9A /* next@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "next@3x.png"; sourceTree = "<group>"; };
+		FFE54EDB1C26ECB6004E7C9A /* verify@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "verify@1x.png"; sourceTree = "<group>"; };
+		FFE54EDC1C26ECB6004E7C9A /* verify@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "verify@2x.png"; sourceTree = "<group>"; };
+		FFE54EDD1C26ECB6004E7C9A /* verify@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "verify@3x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -585,6 +597,12 @@
 				FF91FF521C26E11400FEEE1F /* expand@1x.png */,
 				FF91FF531C26E11400FEEE1F /* expand@2x.png */,
 				FF91FF541C26E11400FEEE1F /* expand@3x.png */,
+				FFE54ED51C26EC66004E7C9A /* next@1x.png */,
+				FFE54ED61C26EC66004E7C9A /* next@2x.png */,
+				FFE54ED71C26EC66004E7C9A /* next@3x.png */,
+				FFE54EDB1C26ECB6004E7C9A /* verify@1x.png */,
+				FFE54EDC1C26ECB6004E7C9A /* verify@2x.png */,
+				FFE54EDD1C26ECB6004E7C9A /* verify@3x.png */,
 				FFB9CFEB1C23E5DA00EE83EE /* resend@1x.png */,
 				FFB9CFEC1C23E5DA00EE83EE /* resend@2x.png */,
 				FFB9CFED1C23E5DA00EE83EE /* resend@3x.png */,
@@ -742,6 +760,7 @@
 				FF91FECA1C2525EF00FEEE1F /* down@2x.png in Resources */,
 				FF91FECB1C2525EF00FEEE1F /* down@3x.png in Resources */,
 				FFB9CFDD1C23E58A00EE83EE /* return_left@2x.png in Resources */,
+				FFE54EDA1C26EC66004E7C9A /* next@3x.png in Resources */,
 				FFB9CFCC1C23E55C00EE83EE /* grid@3x.png in Resources */,
 				FF1C50141C24FBCA0095FB27 /* signup@1x.png in Resources */,
 				FF91FF1A1C259B3600FEEE1F /* circle@2x.png in Resources */,
@@ -775,15 +794,18 @@
 				FFB9CFD71C23E57800EE83EE /* profile_genie@2x.png in Resources */,
 				FFB9CFE41C23E59900EE83EE /* return_right@3x.png in Resources */,
 				FF3314851B8A5304008B1B9E /* SF-UI-Display-Light.otf in Resources */,
+				FFE54EDE1C26ECB6004E7C9A /* verify@1x.png in Resources */,
 				FF33148A1B8A5309008B1B9E /* SF-UI-Display-Ultralight.otf in Resources */,
 				FF1C4FFF1C24F9110095FB27 /* health@1x.png in Resources */,
 				FF1C50001C24F9110095FB27 /* health@2x.png in Resources */,
 				FFB9CFB81C23E50B00EE83EE /* confirm@1x.png in Resources */,
 				FFB9CFD11C23E56900EE83EE /* menu@2x.png in Resources */,
+				FFE54ED81C26EC66004E7C9A /* next@1x.png in Resources */,
 				FF1C4FFA1C24F9110095FB27 /* booking@2x.png in Resources */,
 				FF3314891B8A5309008B1B9E /* SF-UI-Display-Thin.otf in Resources */,
 				FFB9CFBA1C23E50B00EE83EE /* confirm@3x.png in Resources */,
 				FF91FF321C26D50B00FEEE1F /* shopping@2x.png in Resources */,
+				FFE54EE01C26ECB6004E7C9A /* verify@3x.png in Resources */,
 				FF1C501A1C24FFFC0095FB27 /* cancel@1x.png in Resources */,
 				FFB9CFCB1C23E55C00EE83EE /* grid@2x.png in Resources */,
 				FFB9CFCA1C23E55C00EE83EE /* grid@1x.png in Resources */,
@@ -808,6 +830,7 @@
 				FFB9CFC41C23E52300EE83EE /* line@1x.png in Resources */,
 				FF91FF0E1C258AC700FEEE1F /* white_cancel@3x.png in Resources */,
 				FF91FF0C1C258AC700FEEE1F /* white_cancel@1x.png in Resources */,
+				FFE54EDF1C26ECB6004E7C9A /* verify@2x.png in Resources */,
 				FFB9CFD81C23E57800EE83EE /* profile_genie@3x.png in Resources */,
 				FFB9CFD61C23E57800EE83EE /* profile_genie@1x.png in Resources */,
 				FF3314841B8A5302008B1B9E /* SF-UI-Display-Heavy.otf in Resources */,
@@ -821,6 +844,7 @@
 				FF3314901B8A5309008B1B9E /* SF-UI-Text-LightItalic.otf in Resources */,
 				FF91FF571C26E11400FEEE1F /* expand@3x.png in Resources */,
 				FFB9CFB91C23E50B00EE83EE /* confirm@2x.png in Resources */,
+				FFE54ED91C26EC66004E7C9A /* next@2x.png in Resources */,
 				FF91FF191C259B3600FEEE1F /* circle@1x.png in Resources */,
 				FF91FF311C26D50B00FEEE1F /* shopping@1x.png in Resources */,
 				FF91FF551C26E11400FEEE1F /* expand@1x.png in Resources */,
