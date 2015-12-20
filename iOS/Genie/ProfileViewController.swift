@@ -13,13 +13,12 @@ class ProfileViewController: UIViewController {
 
     @IBOutlet weak var whiteViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var profileImg: UIImageView!
-//
+
     @IBOutlet weak var username: UILabel!
     @IBOutlet weak var fullName: UILabel!
 
     @IBOutlet weak var userMobile: UILabel!
     @IBOutlet weak var userEmail: UILabel!
-//
 
     @IBOutlet weak var profileImgTop: NSLayoutConstraint!
     
