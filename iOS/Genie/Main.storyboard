@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="xK3-KW-HPV">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="xK3-KW-HPV">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
@@ -495,7 +495,7 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email Address" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xeq-j1-Fk6">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xeq-j1-Fk6">
                                 <rect key="frame" x="45" y="104" width="115" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="hjA-yG-ZSw"/>
@@ -1241,14 +1241,17 @@ Check back soon!</string>
                                     <constraint firstAttribute="bottom" secondItem="26R-43-h5s" secondAttribute="bottom" id="0OF-f3-PF4"/>
                                     <constraint firstItem="26R-43-h5s" firstAttribute="leading" secondItem="Jjj-0z-Elu" secondAttribute="leading" id="2gZ-KO-gB2"/>
                                     <constraint firstAttribute="trailing" secondItem="26R-43-h5s" secondAttribute="trailing" id="3qe-4x-l9G"/>
+                                    <constraint firstItem="K0S-td-6qD" firstAttribute="width" secondItem="Jjj-0z-Elu" secondAttribute="width" id="8FR-h3-95G"/>
                                     <constraint firstItem="eNi-dL-buW" firstAttribute="top" secondItem="YC9-0z-AWM" secondAttribute="bottom" constant="342" id="IsV-9C-Ck7"/>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="402" id="JUy-Vo-CTf"/>
+                                    <constraint firstItem="P8B-zm-r54" firstAttribute="width" secondItem="Jjj-0z-Elu" secondAttribute="width" id="KmN-hS-uua"/>
                                     <constraint firstItem="26R-43-h5s" firstAttribute="height" secondItem="YC9-0z-AWM" secondAttribute="height" multiplier="2" id="OIn-Bj-0RZ"/>
                                     <constraint firstItem="26R-43-h5s" firstAttribute="top" secondItem="YC9-0z-AWM" secondAttribute="bottom" id="SDk-Oy-bgd"/>
                                     <constraint firstAttribute="height" constant="380" id="bNl-pm-y1J"/>
                                     <constraint firstAttribute="trailing" secondItem="YC9-0z-AWM" secondAttribute="trailing" id="bgq-XS-9ma"/>
                                     <constraint firstItem="26R-43-h5s" firstAttribute="height" secondItem="YC9-0z-AWM" secondAttribute="height" multiplier="2" id="cj6-0a-1eA"/>
                                     <constraint firstAttribute="height" constant="380" id="e6o-U7-3g9"/>
+                                    <constraint firstItem="26R-43-h5s" firstAttribute="width" secondItem="Jjj-0z-Elu" secondAttribute="width" id="eNa-4B-4TQ"/>
                                     <constraint firstItem="26R-43-h5s" firstAttribute="top" secondItem="YC9-0z-AWM" secondAttribute="bottom" id="iLU-Ba-Xqg"/>
                                     <constraint firstItem="YC9-0z-AWM" firstAttribute="top" secondItem="Jjj-0z-Elu" secondAttribute="top" id="k8w-29-YXX"/>
                                     <constraint firstItem="YC9-0z-AWM" firstAttribute="leading" secondItem="Jjj-0z-Elu" secondAttribute="leading" id="o4G-K8-TrV"/>
@@ -1413,7 +1416,7 @@ Check back soon!</string>
                                     <constraint firstAttribute="height" constant="1" id="8yX-qw-Axx"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email Address" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i6k-6B-Xqw">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i6k-6B-Xqw">
                                 <rect key="frame" x="45" y="104" width="105" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="GId-Dp-IhW"/>

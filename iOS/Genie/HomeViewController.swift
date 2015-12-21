@@ -125,7 +125,16 @@ class HomeViewController: JSQMessagesViewController, UIImagePickerControllerDele
         // --------------------------------------------------------------------------------------
         
         if homeVCwishSelected {
-            inputToolbar?.contentView?.textView?.text = homeVCwishDescription
+            
+            if let toolbar = inputToolbar {
+                if let conview = toolbar.contentView {
+                    conview.backgroundColor = UIColor.whiteColor()
+                    if let textView = conview.textView {
+                        textView.text = homeVCwishDescription
+                    }
+                }
+            }
+            
             homeVCwishSelected = false
             homeVCwishDescription = ""
         }

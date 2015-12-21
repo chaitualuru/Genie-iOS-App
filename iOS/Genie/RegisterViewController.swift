@@ -125,6 +125,7 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
             self.activityIndicator.hidesWhenStopped = true
             self.darkLoadingView.hidden = false
             self.activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.Gray
+            self.activityIndicator.color = UIColor.whiteColor()
             self.view.addSubview(self.activityIndicator)
             self.activityIndicator.startAnimating()
             UIApplication.sharedApplication().beginIgnoringInteractionEvents()

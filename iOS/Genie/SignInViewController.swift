@@ -112,6 +112,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
             self.activityIndicator.center = self.view.center
             self.activityIndicator.hidesWhenStopped = true
             self.activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.Gray
+            self.activityIndicator.color = UIColor.whiteColor()
             self.darkLoadingView.hidden = false
             self.view.addSubview(activityIndicator)
             self.activityIndicator.startAnimating()

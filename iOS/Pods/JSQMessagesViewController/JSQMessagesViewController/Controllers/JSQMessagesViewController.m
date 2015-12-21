@@ -710,6 +710,13 @@ static void * kJSQMessagesKeyValueObservingContext = &kJSQMessagesKeyValueObserv
     if (textView != self.inputToolbar.contentView.textView) {
         return;
     }
+    
+    CGFloat fixedWidth = textView.frame.size.width;
+    CGSize newSize = [textView sizeThatFits:CGSizeMake(fixedWidth, MAXFLOAT)];
+    CGRect newFrame = textView.frame;
+    newFrame.size = CGSizeMake(fmaxf(newSize.width, fixedWidth), newSize.height);
+    textView.frame = newFrame;
+    textView.scrollEnabled = NO;
 
     [self.inputToolbar toggleSendButtonEnabled];
 }
