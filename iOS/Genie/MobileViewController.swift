@@ -21,6 +21,10 @@ class MobileViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet var resendVerificationCode: UIButton!
     @IBOutlet var cancelVerification: UIButton!
     @IBOutlet var darkLoadingView: UIView!
+    var resendTimer: NSTimer?
+    var loadOptionsTimer: NSTimer?
+    var canResend = false
+    var canCancel = false
     
     var ref: Firebase!
     
@@ -62,6 +66,11 @@ class MobileViewController: UIViewController, UITextFieldDelegate {
         VerifyClient.checkPinCode(self.verificationCode.text!)
     }
     
+    func loadOptions() {
+        self.canResend = true
+        self.canCancel = true
+    }
+    
     @IBAction func sendCode(sender: AnyObject) {
         
         // Send sms nexmo -----------------------------------------------------------------------
@@ -81,6 +90,11 @@ class MobileViewController: UIViewController, UITextFieldDelegate {
             VerifyClient.getVerifiedUser(countryCode: "IN", phoneNumber: self.storedNumber,
                 onVerifyInProgress: {
                     print("Verify in Progress")
+                    
+                    self.canResend = false
+                    self.canCancel = false
+                    
+                    self.loadOptionsTimer = NSTimer.scheduledTimerWithTimeInterval(30.0, target: self, selector: "loadOptions", userInfo: nil, repeats: false)
                 },
                 onUserVerified: {
                     self.verifiedMobile()
@@ -292,66 +306,95 @@ class MobileViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func cancel(sender: AnyObject) {
-        
-        VerifyClient.cancelVerification({error in
-            if let error = error {
-                print("could not cancel verificaton request : ", error)
-            }
+        if self.canCancel {
+            self.canCancel = false
+            VerifyClient.cancelVerification({error in
+                if let error = error {
+                    print("could not cancel verificaton request : ", error)
+                }
+                
+                print("cancelled verification request")
+                
+                UIView.transitionWithView(self.next, duration: 1.0, options: UIViewAnimationOptions.TransitionCrossDissolve, animations: nil, completion: nil)
+                self.next.hidden = false
+                self.resent()
+                
+                UIView.transitionWithView(self.cancelVerification, duration: 0.2, options: UIViewAnimationOptions.TransitionCrossDissolve, animations: nil, completion: nil)
+                self.cancelVerification.hidden = true
+                
+                UIView.transitionWithView(self.verificationCode, duration: 0.5, options: UIViewAnimationOptions.TransitionCrossDissolve, animations: nil, completion: nil)
+                self.verificationCode.hidden = true
+                
+                UIView.transitionWithView(self.verify, duration: 0.5, options: UIViewAnimationOptions.TransitionCrossDissolve, animations: nil, completion: nil)
+                self.verify.hidden = true
+                
+                UIView.transitionWithView(self.resendVerificationCode, duration: 0.5, options: UIViewAnimationOptions.TransitionCrossDissolve, animations: nil, completion: nil)
+                self.resendVerificationCode.hidden = true
+                
+                UIView.transitionWithView(self.mobileNumber, duration: 1.0, options: UIViewAnimationOptions.TransitionCrossDissolve, animations: nil, completion: nil)
+                self.mobileNumber.hidden = false
+                
+                UIView.transitionWithView(self.verifyNumber, duration: 1.0, options: UIViewAnimationOptions.TransitionCrossDissolve, animations: nil, completion: nil)
+                self.verifyNumber.hidden = false
+                
+                if ((self.resendTimer) != nil) {
+                    self.resendTimer!.invalidate()
+                }
+                if ((self.loadOptionsTimer) != nil) {
+                    self.loadOptionsTimer!.invalidate()
+                }
+            })
+        } else {
+            let alertController = UIAlertController(title: "", message: "Please wait 30 seconds before cancelling.", preferredStyle: .Alert)
             
-            print("cancelled verification request")
+            let okAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
             
-            UIView.transitionWithView(self.next, duration: 1.0, options: UIViewAnimationOptions.TransitionCrossDissolve, animations: nil, completion: nil)
-            self.next.hidden = false
+            alertController.addAction(okAction)
             
-            UIView.transitionWithView(self.cancelVerification, duration: 0.2, options: UIViewAnimationOptions.TransitionCrossDissolve, animations: nil, completion: nil)
-            self.cancelVerification.hidden = true
-            
-            UIView.transitionWithView(self.verificationCode, duration: 0.5, options: UIViewAnimationOptions.TransitionCrossDissolve, animations: nil, completion: nil)
-            self.verificationCode.hidden = true
-            
-            UIView.transitionWithView(self.verify, duration: 0.5, options: UIViewAnimationOptions.TransitionCrossDissolve, animations: nil, completion: nil)
-            self.verify.hidden = true
-            
-            UIView.transitionWithView(self.resendVerificationCode, duration: 0.5, options: UIViewAnimationOptions.TransitionCrossDissolve, animations: nil, completion: nil)
-            self.resendVerificationCode.hidden = true
-            
-            UIView.transitionWithView(self.mobileNumber, duration: 1.0, options: UIViewAnimationOptions.TransitionCrossDissolve, animations: nil, completion: nil)
-            self.mobileNumber.hidden = false
-            
-            UIView.transitionWithView(self.verifyNumber, duration: 1.0, options: UIViewAnimationOptions.TransitionCrossDissolve, animations: nil, completion: nil)
-            self.verifyNumber.hidden = false
-        })
+            self.presentViewController(alertController, animated: true, completion: nil)
+        }
     }
     
     @IBAction func resend(sender: AnyObject) {
-        
-        VerifyClient.cancelVerification({error in
-            if let error = error {
-                print("could not cancel verificaton request in resend : ", error)
-            }
+        if self.canResend {
+            self.canResend = false
+            self.canCancel = false
+            VerifyClient.cancelVerification({error in
+                if let error = error {
+                    print("could not cancel verificaton request in resend : ", error)
+                }
+                
+                print("cancelled verification request")
+            })
             
-            print("cancelled verification request")
-        })
-        
-        VerifyClient.getVerifiedUser(countryCode: "IN", phoneNumber: self.storedNumber,
-            onVerifyInProgress: {
-                print("Verify in Progress")
-            },
-            onUserVerified: {
-                self.verifiedMobile()
-            },
-            onError: { (error: VerifyError) in
-                print("there was an error verifying user")
-            }
-        )
-        
-        UIView.transitionWithView(self.resendVerificationCode, duration: 0.2, options: UIViewAnimationOptions.TransitionCrossDissolve, animations: nil, completion: nil)
-        self.resendVerificationCode.hidden = true
-        
-        UIView.transitionWithView(self.verificationCodeSent, duration: 1.0, options: UIViewAnimationOptions.TransitionCrossDissolve, animations: nil, completion: nil)
-        self.verificationCodeSent.hidden = false
-        
-        NSTimer.scheduledTimerWithTimeInterval(30.0, target: self, selector: "resent", userInfo: nil, repeats: false)
+            VerifyClient.getVerifiedUser(countryCode: "IN", phoneNumber: self.storedNumber,
+                onVerifyInProgress: {
+                    print("Verify in Progress")
+                },
+                onUserVerified: {
+                    self.verifiedMobile()
+                },
+                onError: { (error: VerifyError) in
+                    print("there was an error verifying user")
+                }
+            )
+            
+            UIView.transitionWithView(self.resendVerificationCode, duration: 0.2, options: UIViewAnimationOptions.TransitionCrossDissolve, animations: nil, completion: nil)
+            self.resendVerificationCode.hidden = true
+            
+            UIView.transitionWithView(self.verificationCodeSent, duration: 1.0, options: UIViewAnimationOptions.TransitionCrossDissolve, animations: nil, completion: nil)
+            self.verificationCodeSent.hidden = false
+            
+            resendTimer = NSTimer.scheduledTimerWithTimeInterval(30.0, target: self, selector: "resent", userInfo: nil, repeats: false)
+        } else {
+            let alertController = UIAlertController(title: "", message: "Please wait 30 seconds before requesting a resend.", preferredStyle: .Alert)
+            
+            let okAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
+            
+            alertController.addAction(okAction)
+            
+            self.presentViewController(alertController, animated: true, completion: nil)
+        }
         
     }
     
@@ -360,6 +403,7 @@ class MobileViewController: UIViewController, UITextFieldDelegate {
         if (self.isViewLoaded() && self.view.window != nil) {
             UIView.transitionWithView(self.resendVerificationCode, duration: 1.0, options: UIViewAnimationOptions.TransitionCrossDissolve, animations: nil, completion: nil)
             self.resendVerificationCode.hidden = false
+            self.canCancel = true
         }
         
         UIView.transitionWithView(self.verificationCodeSent, duration: 0.5, options: UIViewAnimationOptions.TransitionCrossDissolve, animations: nil, completion: nil)
