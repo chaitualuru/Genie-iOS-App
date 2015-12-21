@@ -17,9 +17,10 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet var username: UITextField!
     @IBOutlet var navBar: UINavigationBar!
     @IBOutlet weak var darkLoadingView: UIView!
+    @IBOutlet weak var scrollView: UIScrollView!
     
     var activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView()
-    
+    var activeField: UITextField?
     var ref: Firebase!
     
     override func viewDidLoad() {
@@ -244,6 +245,17 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
         UIView.animateWithDuration(1, animations: { () -> Void in
             self.bottomConstraint.constant = keyboardFrame.size.height
         })
+        
+        if let activeField = self.activeField {
+            let contentInsets = UIEdgeInsets(top: 0.0, left: 0.0, bottom: keyboardFrame.height, right: 0.0)
+            self.scrollView.contentInset = contentInsets
+            self.scrollView.scrollIndicatorInsets = contentInsets
+            var aRect = self.view.frame
+            aRect.size.height -= keyboardFrame.size.height
+            if (!CGRectContainsPoint(aRect, activeField.frame.origin)) {
+                self.scrollView.scrollRectToVisible(activeField.frame, animated: true)
+            }
+        }
     }
     
     func keyboardWasHidden(notification: NSNotification) {
@@ -251,6 +263,18 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
         UIView.animateWithDuration(1, animations: { () -> Void in
             self.bottomConstraint.constant = 0
         })
+        
+        let contentInsets = UIEdgeInsetsZero
+        self.scrollView.contentInset = contentInsets
+        self.scrollView.scrollIndicatorInsets = contentInsets
+    }
+    
+    func textFieldDidEndEditing(textField: UITextField) {
+        self.activeField = nil
+    }
+    
+    func textFieldDidBeginEditing(textField: UITextField) {
+        self.activeField = textField
     }
     
     
