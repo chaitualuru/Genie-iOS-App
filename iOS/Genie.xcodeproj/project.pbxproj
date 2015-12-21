@@ -126,6 +126,9 @@
 		FFCE45411C286C4B008C21F4 /* circle@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = FFCE453E1C286C4B008C21F4 /* circle@1x.png */; };
 		FFCE45421C286C4B008C21F4 /* circle@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FFCE453F1C286C4B008C21F4 /* circle@2x.png */; };
 		FFCE45431C286C4B008C21F4 /* circle@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = FFCE45401C286C4B008C21F4 /* circle@3x.png */; };
+		FFCE45471C286E81008C21F4 /* logout@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = FFCE45441C286E81008C21F4 /* logout@1x.png */; };
+		FFCE45481C286E81008C21F4 /* logout@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FFCE45451C286E81008C21F4 /* logout@2x.png */; };
+		FFCE45491C286E81008C21F4 /* logout@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = FFCE45461C286E81008C21F4 /* logout@3x.png */; };
 		FFD72DA71B8C7AA5006BC039 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFD72DA61B8C7AA5006BC039 /* HomeViewController.swift */; };
 		FFE54ED81C26EC66004E7C9A /* next@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = FFE54ED51C26EC66004E7C9A /* next@1x.png */; };
 		FFE54ED91C26EC66004E7C9A /* next@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FFE54ED61C26EC66004E7C9A /* next@2x.png */; };
@@ -343,6 +346,9 @@
 		FFCE453E1C286C4B008C21F4 /* circle@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "circle@1x.png"; sourceTree = "<group>"; };
 		FFCE453F1C286C4B008C21F4 /* circle@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "circle@2x.png"; sourceTree = "<group>"; };
 		FFCE45401C286C4B008C21F4 /* circle@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "circle@3x.png"; sourceTree = "<group>"; };
+		FFCE45441C286E81008C21F4 /* logout@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logout@1x.png"; sourceTree = "<group>"; };
+		FFCE45451C286E81008C21F4 /* logout@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logout@2x.png"; sourceTree = "<group>"; };
+		FFCE45461C286E81008C21F4 /* logout@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logout@3x.png"; sourceTree = "<group>"; };
 		FFD72DA61B8C7AA5006BC039 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		FFE54ED51C26EC66004E7C9A /* next@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "next@1x.png"; sourceTree = "<group>"; };
 		FFE54ED61C26EC66004E7C9A /* next@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "next@2x.png"; sourceTree = "<group>"; };
@@ -605,6 +611,9 @@
 				FF885A701C27BF39009AB85C /* expand@1x.png */,
 				FF885A711C27BF39009AB85C /* expand@2x.png */,
 				FF885A721C27BF39009AB85C /* expand@3x.png */,
+				FFCE45441C286E81008C21F4 /* logout@1x.png */,
+				FFCE45451C286E81008C21F4 /* logout@2x.png */,
+				FFCE45461C286E81008C21F4 /* logout@3x.png */,
 			);
 			name = Images;
 			sourceTree = "<group>";
@@ -765,6 +774,7 @@
 				FF1C4FFD1C24F9110095FB27 /* food@2x.png in Resources */,
 				FFB9CFF01C23E5DA00EE83EE /* resend@3x.png in Resources */,
 				FF91FF331C26D50B00FEEE1F /* shopping@3x.png in Resources */,
+				FFCE45481C286E81008C21F4 /* logout@2x.png in Resources */,
 				FFB9CFC61C23E52300EE83EE /* line@3x.png in Resources */,
 				FF91FECA1C2525EF00FEEE1F /* down@2x.png in Resources */,
 				FF91FECB1C2525EF00FEEE1F /* down@3x.png in Resources */,
@@ -780,6 +790,7 @@
 				FFB9CFEE1C23E5DA00EE83EE /* resend@1x.png in Resources */,
 				FF3314821B8A52FB008B1B9E /* SF-UI-Display-Black.otf in Resources */,
 				FF1C50131C24FBCA0095FB27 /* signin@3x.png in Resources */,
+				FFCE45491C286E81008C21F4 /* logout@3x.png in Resources */,
 				FF3314921B8A5309008B1B9E /* SF-UI-Text-MediumItalic.otf in Resources */,
 				FFB9CFDC1C23E58A00EE83EE /* return_left@1x.png in Resources */,
 				FF1C50161C24FBCA0095FB27 /* signup@3x.png in Resources */,
@@ -859,6 +870,7 @@
 				FFB9CFB91C23E50B00EE83EE /* confirm@2x.png in Resources */,
 				FFE54ED91C26EC66004E7C9A /* next@2x.png in Resources */,
 				FFCE45431C286C4B008C21F4 /* circle@3x.png in Resources */,
+				FFCE45471C286E81008C21F4 /* logout@1x.png in Resources */,
 				FF91FF311C26D50B00FEEE1F /* shopping@1x.png in Resources */,
 				FFB9CFF51C23E5FF00EE83EE /* lamp@2x.png in Resources */,
 				FF33148F1B8A5309008B1B9E /* SF-UI-Text-Light.otf in Resources */,
