@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="xK3-KW-HPV">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="xK3-KW-HPV">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
@@ -531,6 +531,7 @@
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="30" id="pGY-Sg-fHf"/>
                                                 </constraints>
+                                                <color key="textColor" red="0.1215686275" green="0.12941176469999999" blue="0.14117647059999999" alpha="1" colorSpace="calibratedRGB"/>
                                                 <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="15"/>
                                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
                                             </textField>
@@ -540,17 +541,17 @@
                                                     <constraint firstAttribute="height" constant="21" id="hjA-yG-ZSw"/>
                                                     <constraint firstAttribute="width" constant="115" id="o1f-e1-IQ6"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="13"/>
+                                                <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="15"/>
                                                 <color key="textColor" red="0.38431372549999998" green="0.35294117650000001" blue="0.59215686270000001" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Create Username" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hUc-FE-eK4">
-                                                <rect key="frame" x="45" y="77" width="118" height="21"/>
+                                                <rect key="frame" x="45" y="77" width="125" height="21"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="118" id="7Dj-Un-RFP"/>
+                                                    <constraint firstAttribute="width" constant="125" id="7Dj-Un-RFP"/>
                                                     <constraint firstAttribute="height" constant="21" id="gRl-Rp-izp"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="13"/>
+                                                <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="15"/>
                                                 <color key="textColor" red="0.38431372549999998" green="0.35294117650000001" blue="0.59215686270000001" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
@@ -559,6 +560,7 @@
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="30" id="9al-8G-Nq6"/>
                                                 </constraints>
+                                                <color key="textColor" red="0.1215686275" green="0.12941176469999999" blue="0.14117647059999999" alpha="1" colorSpace="calibratedRGB"/>
                                                 <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="15"/>
                                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
                                             </textField>
@@ -578,12 +580,12 @@
                                                 </variation>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Create Password" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JYn-ZB-Vno">
-                                                <rect key="frame" x="45" y="144" width="118" height="21"/>
+                                                <rect key="frame" x="45" y="144" width="125" height="21"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="118" id="jCj-If-Tcj"/>
+                                                    <constraint firstAttribute="width" constant="125" id="jCj-If-Tcj"/>
                                                     <constraint firstAttribute="height" constant="21" id="yxl-GB-4lT"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="13"/>
+                                                <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="15"/>
                                                 <color key="textColor" red="0.38431372549999998" green="0.35294117650000001" blue="0.59215686270000001" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
@@ -592,6 +594,7 @@
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="30" id="p3L-73-CyF"/>
                                                 </constraints>
+                                                <color key="textColor" red="0.1215686275" green="0.12941176469999999" blue="0.14117647059999999" alpha="1" colorSpace="calibratedRGB"/>
                                                 <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="15"/>
                                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" secureTextEntry="YES"/>
                                             </textField>
@@ -1482,7 +1485,7 @@ Check back soon!</string>
                                     <constraint firstAttribute="height" constant="21" id="GId-Dp-IhW"/>
                                     <constraint firstAttribute="width" constant="105" id="aAE-QW-Trv"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="13"/>
+                                <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="15"/>
                                 <color key="textColor" red="0.38431372549999998" green="0.35294117650000001" blue="0.59215686270000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -1491,6 +1494,7 @@ Check back soon!</string>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="nLR-IS-zee"/>
                                 </constraints>
+                                <color key="textColor" red="0.1215686275" green="0.12941176469999999" blue="0.14117647059999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="15"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
                             </textField>
@@ -1500,7 +1504,7 @@ Check back soon!</string>
                                     <constraint firstAttribute="width" constant="83" id="64T-zn-wR3"/>
                                     <constraint firstAttribute="height" constant="21" id="TtZ-yx-bUa"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="13"/>
+                                <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="15"/>
                                 <color key="textColor" red="0.38431372549999998" green="0.35294117650000001" blue="0.59215686270000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -1509,6 +1513,7 @@ Check back soon!</string>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="rnF-7K-jZh"/>
                                 </constraints>
+                                <color key="textColor" red="0.1215686275" green="0.12941176469999999" blue="0.14117647059999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="15"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" secureTextEntry="YES"/>
                             </textField>
