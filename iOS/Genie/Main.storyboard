@@ -912,16 +912,20 @@ Check back soon!</string>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="P8B-zm-r54" secondAttribute="trailing" id="159-cT-o79"/>
+                                            <constraint firstItem="P8B-zm-r54" firstAttribute="width" secondItem="YC9-0z-AWM" secondAttribute="width" id="90E-Qs-B2X"/>
                                             <constraint firstItem="Tr1-83-XJO" firstAttribute="centerY" secondItem="YC9-0z-AWM" secondAttribute="centerY" constant="15.25" id="CBw-gL-bIf"/>
                                             <constraint firstItem="Tr1-83-XJO" firstAttribute="centerX" secondItem="YC9-0z-AWM" secondAttribute="centerX" id="CSw-Ta-tv6"/>
                                             <constraint firstItem="P8B-zm-r54" firstAttribute="top" secondItem="YC9-0z-AWM" secondAttribute="top" id="Or3-Yw-kcr"/>
                                             <constraint firstItem="P8B-zm-r54" firstAttribute="leading" secondItem="YC9-0z-AWM" secondAttribute="leading" id="syd-6m-vpG"/>
+                                            <constraint firstItem="P8B-zm-r54" firstAttribute="centerX" secondItem="YC9-0z-AWM" secondAttribute="centerX" id="tsP-c8-Vef"/>
                                             <constraint firstItem="P8B-zm-r54" firstAttribute="top" secondItem="YC9-0z-AWM" secondAttribute="top" id="wIZ-IS-PIU"/>
                                             <constraint firstAttribute="height" constant="160" id="ylm-RQ-Ok5"/>
                                         </constraints>
                                         <variation key="default">
                                             <mask key="constraints">
                                                 <exclude reference="ylm-RQ-Ok5"/>
+                                                <exclude reference="159-cT-o79"/>
+                                                <exclude reference="syd-6m-vpG"/>
                                                 <exclude reference="wIZ-IS-PIU"/>
                                             </mask>
                                         </variation>
@@ -929,16 +933,6 @@ Check back soon!</string>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="26R-43-h5s">
                                         <rect key="frame" x="0.0" y="193" width="600" height="386.5"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CATEGORIES" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K0S-td-6qD">
-                                                <rect key="frame" x="0.0" y="0.0" width="600" height="32"/>
-                                                <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="32" id="QBg-6w-Gcx"/>
-                                                </constraints>
-                                                <fontDescription key="fontDescription" name="SFUIText-Medium" family="SF UI Text" pointSize="13"/>
-                                                <color key="textColor" red="0.38431372549999998" green="0.35294117650000001" blue="0.59215686270000001" alpha="1" colorSpace="calibratedRGB"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tus-4d-obf" userLabel="Food">
                                                 <rect key="frame" x="0.0" y="32" width="300" height="102.5"/>
                                                 <subviews>
@@ -1177,6 +1171,16 @@ Check back soon!</string>
                                                     </mask>
                                                 </variation>
                                             </view>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CATEGORIES" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K0S-td-6qD">
+                                                <rect key="frame" x="0.0" y="0.0" width="600" height="32"/>
+                                                <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="32" id="QBg-6w-Gcx"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="SFUIText-Medium" family="SF UI Text" pointSize="13"/>
+                                                <color key="textColor" red="0.38431372549999998" green="0.35294117650000001" blue="0.59215686270000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
@@ -1267,6 +1271,7 @@ Check back soon!</string>
                                     <constraint firstItem="26R-43-h5s" firstAttribute="leading" secondItem="Jjj-0z-Elu" secondAttribute="leading" id="2gZ-KO-gB2"/>
                                     <constraint firstAttribute="trailing" secondItem="26R-43-h5s" secondAttribute="trailing" id="3qe-4x-l9G"/>
                                     <constraint firstItem="K0S-td-6qD" firstAttribute="width" secondItem="Jjj-0z-Elu" secondAttribute="width" id="8FR-h3-95G"/>
+                                    <constraint firstItem="YC9-0z-AWM" firstAttribute="width" secondItem="Jjj-0z-Elu" secondAttribute="width" id="EuT-oo-GHy"/>
                                     <constraint firstItem="eNi-dL-buW" firstAttribute="top" secondItem="YC9-0z-AWM" secondAttribute="bottom" constant="342" id="IsV-9C-Ck7"/>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="402" id="JUy-Vo-CTf"/>
                                     <constraint firstItem="P8B-zm-r54" firstAttribute="width" secondItem="Jjj-0z-Elu" secondAttribute="width" id="KmN-hS-uua"/>
@@ -1278,6 +1283,8 @@ Check back soon!</string>
                                     <constraint firstAttribute="height" constant="380" id="e6o-U7-3g9"/>
                                     <constraint firstItem="26R-43-h5s" firstAttribute="width" secondItem="Jjj-0z-Elu" secondAttribute="width" id="eNa-4B-4TQ"/>
                                     <constraint firstItem="26R-43-h5s" firstAttribute="top" secondItem="YC9-0z-AWM" secondAttribute="bottom" id="iLU-Ba-Xqg"/>
+                                    <constraint firstItem="26R-43-h5s" firstAttribute="centerX" secondItem="Jjj-0z-Elu" secondAttribute="centerX" id="ifS-ba-yiD"/>
+                                    <constraint firstItem="26R-43-h5s" firstAttribute="width" secondItem="YC9-0z-AWM" secondAttribute="width" id="jgc-Ue-TTs"/>
                                     <constraint firstItem="YC9-0z-AWM" firstAttribute="top" secondItem="Jjj-0z-Elu" secondAttribute="top" id="k8w-29-YXX"/>
                                     <constraint firstItem="YC9-0z-AWM" firstAttribute="leading" secondItem="Jjj-0z-Elu" secondAttribute="leading" id="o4G-K8-TrV"/>
                                 </constraints>
@@ -1286,6 +1293,8 @@ Check back soon!</string>
                                         <exclude reference="JUy-Vo-CTf"/>
                                         <exclude reference="bNl-pm-y1J"/>
                                         <exclude reference="e6o-U7-3g9"/>
+                                        <exclude reference="2gZ-KO-gB2"/>
+                                        <exclude reference="3qe-4x-l9G"/>
                                         <exclude reference="OIn-Bj-0RZ"/>
                                         <exclude reference="SDk-Oy-bgd"/>
                                         <exclude reference="IsV-9C-Ck7"/>
@@ -1296,19 +1305,23 @@ Check back soon!</string>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="u2h-0v-wN8" firstAttribute="top" secondItem="Jjj-0z-Elu" secondAttribute="bottom" id="23r-Rr-Cip"/>
+                            <constraint firstItem="Jjj-0z-Elu" firstAttribute="width" secondItem="vJf-uj-Nq3" secondAttribute="width" id="4RF-TD-t4l"/>
                             <constraint firstItem="u2h-0v-wN8" firstAttribute="top" secondItem="eNi-dL-buW" secondAttribute="bottom" constant="0.5" id="A1M-O1-R3Y"/>
                             <constraint firstItem="Jjj-0z-Elu" firstAttribute="top" secondItem="0tj-KK-Yew" secondAttribute="bottom" id="EE2-l5-EEq"/>
                             <constraint firstItem="Jjj-0z-Elu" firstAttribute="top" secondItem="0tj-KK-Yew" secondAttribute="bottom" constant="-20" id="IQH-kY-7IN"/>
                             <constraint firstItem="u2h-0v-wN8" firstAttribute="top" secondItem="Jjj-0z-Elu" secondAttribute="bottom" id="PkY-bU-7Cg"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="Jjj-0z-Elu" secondAttribute="trailing" constant="-20" id="cRk-JM-HoB"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Jjj-0z-Elu" secondAttribute="trailing" constant="-10" id="cRk-JM-HoB"/>
+                            <constraint firstItem="Jjj-0z-Elu" firstAttribute="centerX" secondItem="vJf-uj-Nq3" secondAttribute="centerX" id="flg-Ch-bCQ"/>
                             <constraint firstItem="Jjj-0z-Elu" firstAttribute="top" secondItem="0tj-KK-Yew" secondAttribute="bottom" id="k0w-6d-Si0"/>
-                            <constraint firstItem="Jjj-0z-Elu" firstAttribute="leading" secondItem="vJf-uj-Nq3" secondAttribute="leadingMargin" constant="-20" id="nXN-X2-iR8"/>
+                            <constraint firstItem="Jjj-0z-Elu" firstAttribute="leading" secondItem="vJf-uj-Nq3" secondAttribute="leadingMargin" constant="-10" id="nXN-X2-iR8"/>
                             <constraint firstItem="Jjj-0z-Elu" firstAttribute="top" secondItem="0tj-KK-Yew" secondAttribute="bottom" id="oY2-bl-hnh"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
                                 <exclude reference="EE2-l5-EEq"/>
                                 <exclude reference="IQH-kY-7IN"/>
+                                <exclude reference="cRk-JM-HoB"/>
+                                <exclude reference="nXN-X2-iR8"/>
                                 <exclude reference="oY2-bl-hnh"/>
                                 <exclude reference="23r-Rr-Cip"/>
                                 <exclude reference="A1M-O1-R3Y"/>
