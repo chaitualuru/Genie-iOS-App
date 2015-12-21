@@ -20,7 +20,7 @@ class WishesViewController: UITableViewController {
     let healthDescription = ["I would like my prescription delivered.", "I want the Gilette shaving cream + razor package.", "What treats should I buy my dog today?", "Make an appointment with an Orthopedic doctor near me.", "Can you send me medium size diapers for my daughter?", "Ask us anything!"]
     let healthHeading = ["Medicine", "Personal Care", "Pet Care", "Doctor Appointment", "Baby Care", "Other"]
 
-    let homeDescription = ["I would like a plumber to fix the shower.", "Can you book a cleaner for later today?", "Find me an electrician to set up the wiring for me.", "I want to get my clothes picked up for dry cleaning.", "I need an exterminator for bed bugs.", "Ask us anything!"]
+    let homeDescription = ["I would like a plumber to fix the shower.", "Can you book a cleaner for later today?", "Find me an electrician to set up the wiring for my house.", "I want to get my clothes picked up for dry cleaning.", "I need an exterminator for bed bugs.", "Ask us anything!"]
     let homeHeading = ["Plumber", "Cleaner", "Electrician", "Laundry", "Pest Control", "Other"]
     
     let bookingDescription = ["I want to buy 2 tickets for today's show of Dilwale.", "Can you book me a flight to Bengaluru on the 29th?", "I need a cab to pick me up in Cuffe Parade right now.", "Reserve a table for 4 at Peshawari for dinner tonight.", "Which bar can I go to with my friends later tonight?", "Ask us anything!"]
@@ -29,7 +29,7 @@ class WishesViewController: UITableViewController {
     let rechargeDescription = ["Can you recharge my Airtel plan with 300 rupees?", "Need to top-up my Tata Sky service.", "I want to recharge my Tata Photon plan.", "Pay my Reliance Energy bill that is due later today.", "My ICICI premium needs to be paid today.", "Ask us anything!"]
     let rechargeHeading = ["Phone", "Television", "DataCard and Landline", "Electricity and Gas", "Insurance", "Other"]
     
-    let shoppingDescription = ["Can you send me some milk, cheese and eggs?", "I want a bouquet of Tulips delivered to my wife's office.", "Need some AA batteries picked up.", "Which TV would you recommend in my budget?", "Courier my package to Delhi tomorrow.", "Ask us anything!"]
+    let shoppingDescription = ["Can you send me some milk, cheese and eggs?", "I want a bouquet of Tulips delivered to my wife's office.", "Need some AA batteries picked up.", "I need to buy a new television. Any recommendations?", "I would like a package couriered to Delhi tomorrow.", "Ask us anything!"]
     let shoppingHeading = ["Groceries", "Flowers", "General Store", "Electronics", "Parcel", "Other"]
     
     override func viewDidLoad() {
@@ -41,26 +41,32 @@ class WishesViewController: UITableViewController {
             case "food":
                 selectedDescription = foodDescription
                 selectedHeading = foodHeading
+                self.navigationItem.title = "Food"
                 break
             case "health":
                 selectedHeading = healthHeading
                 selectedDescription = healthDescription
+                self.navigationItem.title = "Health"
                 break
             case "home":
                 selectedHeading = homeHeading
                 selectedDescription = homeDescription
+                self.navigationItem.title = "Home"
                 break
             case "recharge":
                 selectedHeading = rechargeHeading
                 selectedDescription = rechargeDescription
+                self.navigationItem.title = "Recharge"
                 break
             case "booking":
                 selectedHeading = bookingHeading
                 selectedDescription = bookingDescription
+                self.navigationItem.title = "Booking"
                 break
             case "shopping":
                 selectedHeading = shoppingHeading
                 selectedDescription = shoppingDescription
+                self.navigationItem.title = "Shopping"
                 break
             default:
                 break
@@ -99,6 +105,10 @@ class WishesViewController: UITableViewController {
 
         cell.wishHeading.text = selectedHeading[indexPath.row] as? String
         cell.wishDescription.text = selectedDescription[indexPath.row] as? String
+        let bgColorView = UIView()
+        bgColorView.backgroundColor = UIColor(red: (98/255.0), green: (90/255.0), blue: (151/255.0), alpha: 0.2)
+        
+        cell.selectedBackgroundView = bgColorView
 
         return cell
     }
