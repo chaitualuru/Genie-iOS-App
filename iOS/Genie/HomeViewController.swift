@@ -342,75 +342,86 @@ class HomeViewController: JSQMessagesViewController, UIImagePickerControllerDele
     
     // Load Earlier Messages --------------------------------------------------------------------
     func loadMore() {
-        print("Loading earlier messages")
-        
-        self.collectionView!.collectionViewLayout.springinessEnabled = false
-        self.collectionView!.pullToRefreshView.startAnimating()
-        var counter = 0
-        
-        let lastMsg = messages[0]
-        //Disable Automatic Scrolling -----------------------------------------------------------
-        self.automaticallyScrollsToMostRecentMessage = false
-        
-        self.messagesRef.queryOrderedByChild("timestamp").queryEndingAtValue(lastMsg.date().timeIntervalSince1970 * 1000).queryLimitedToLast(10).observeEventType(.ChildAdded, withBlock: {
-            (snapshot) in
-            if snapshot != nil && snapshot.key != "serviced" { 
-                let messageId = snapshot.key
-                let text = snapshot.value["text"] as? String
-                let timestamp = snapshot.value["timestamp"] as? NSTimeInterval
-                let date = NSDate(timeIntervalSince1970: timestamp!/1000)
-                let sentByUser = snapshot.value["sent_by_user"] as! Bool
-                let deletedByUser = snapshot.value["deleted_by_user"] as! Bool
-                let isMediaMessage = snapshot.value["is_media_message"] as! Bool
-                var sender = "notUser"
-                
-                if sentByUser {
-                    sender = self.senderId
-                }
-                
-                if !deletedByUser {
-                    var message: Message!
-                    if isMediaMessage {
-                        let encodedString = snapshot.value["media"] as? String
-                        if let encoding = encodedString {
-                            let imageData = NSData(base64EncodedString: encoding, options: NSDataBase64DecodingOptions.IgnoreUnknownCharacters)
-                            let photoItem = JSQPhotoMediaItem(image: UIImage(data: imageData!))
-                            if !sentByUser {
-                                photoItem.appliesMediaViewMaskAsOutgoing = false
+        if self.messages.count > 0 {
+            print("Loading earlier messages")
+            
+            self.collectionView!.collectionViewLayout.springinessEnabled = false
+            self.collectionView!.pullToRefreshView.startAnimating()
+            var counter = 0
+            
+            let lastMsg = messages[0]
+            //Disable Automatic Scrolling -----------------------------------------------------------
+            self.automaticallyScrollsToMostRecentMessage = false
+            
+            self.messagesRef.queryOrderedByChild("timestamp").queryEndingAtValue(lastMsg.date().timeIntervalSince1970 * 1000).queryLimitedToLast(10).observeEventType(.ChildAdded, withBlock: {
+                (snapshot) in
+                if snapshot != nil && snapshot.key != "serviced" { 
+                    let messageId = snapshot.key
+                    let text = snapshot.value["text"] as? String
+                    let timestamp = snapshot.value["timestamp"] as? NSTimeInterval
+                    let date = NSDate(timeIntervalSince1970: timestamp!/1000)
+                    let sentByUser = snapshot.value["sent_by_user"] as! Bool
+                    let deletedByUser = snapshot.value["deleted_by_user"] as! Bool
+                    let isMediaMessage = snapshot.value["is_media_message"] as! Bool
+                    var sender = "notUser"
+                    
+                    if sentByUser {
+                        sender = self.senderId
+                    }
+                    
+                    if !deletedByUser {
+                        var message: Message!
+                        if isMediaMessage {
+                            let encodedString = snapshot.value["media"] as? String
+                            if let encoding = encodedString {
+                                let imageData = NSData(base64EncodedString: encoding, options: NSDataBase64DecodingOptions.IgnoreUnknownCharacters)
+                                let photoItem = JSQPhotoMediaItem(image: UIImage(data: imageData!))
+                                if !sentByUser {
+                                    photoItem.appliesMediaViewMaskAsOutgoing = false
+                                }
+                                message = Message(messageId: messageId, text: text, sentByUser: sentByUser, senderId: sender, senderDisplayName: self.senderDisplayName, date: date, isMediaMessage: isMediaMessage, media: photoItem)
                             }
-                            message = Message(messageId: messageId, text: text, sentByUser: sentByUser, senderId: sender, senderDisplayName: self.senderDisplayName, date: date, isMediaMessage: isMediaMessage, media: photoItem)
+                            else {
+                                print("Could not attach photo")
+                                message = Message(messageId: messageId, text: text, sentByUser: sentByUser, senderId: sender, senderDisplayName: self.senderDisplayName, date: date, isMediaMessage: isMediaMessage, media: nil)
+                            }
                         }
                         else {
-                            print("Could not attach photo")
                             message = Message(messageId: messageId, text: text, sentByUser: sentByUser, senderId: sender, senderDisplayName: self.senderDisplayName, date: date, isMediaMessage: isMediaMessage, media: nil)
                         }
+                        if message.messageId() == lastMsg.messageId() {
+                            self.collectionView!.pullToRefreshView.stopAnimating()
+                        } else {
+                            self.messages.insert(message, atIndex: counter)
+                            counter = counter + 1
+                        }
                     }
-                    else {
-                        message = Message(messageId: messageId, text: text, sentByUser: sentByUser, senderId: sender, senderDisplayName: self.senderDisplayName, date: date, isMediaMessage: isMediaMessage, media: nil)
-                    }
-                    if message.messageId() == lastMsg.messageId() {
-                        self.collectionView!.pullToRefreshView.stopAnimating()
-                    } else {
-                        self.messages.insert(message, atIndex: counter)
-                        counter = counter + 1
-                    }
+                
                 }
-            
-            }
-            dispatch_async(dispatch_get_main_queue(), {
-                self.automaticallyScrollsToMostRecentMessage = true
-                if counter == 0 {
-                    let alertController = UIAlertController(title: "", message: "No more messages.", preferredStyle: .Alert)
-                    
-                    let okAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
-                    
-                    alertController.addAction(okAction)
-                    
-                    self.presentViewController(alertController, animated: true, completion: nil)
-                }
+                dispatch_async(dispatch_get_main_queue(), {
+                    self.automaticallyScrollsToMostRecentMessage = true
+                    if counter == 0 {
+                        let alertController = UIAlertController(title: "", message: "No more messages.", preferredStyle: .Alert)
+                        
+                        let okAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
+                        
+                        alertController.addAction(okAction)
+                        
+                        self.presentViewController(alertController, animated: true, completion: nil)
+                    }
+                })
+                self.finishReceivingMessageAnimated(false)
             })
-            self.finishReceivingMessageAnimated(false)
-        })
+        } else {
+            let alertController = UIAlertController(title: "", message: "No messages.", preferredStyle: .Alert)
+            
+            let okAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
+            
+            alertController.addAction(okAction)
+            
+            self.presentViewController(alertController, animated: true, completion: nil)
+            self.collectionView!.pullToRefreshView.stopAnimating()
+        }
     }
     // ------------------------------------------------------------------------------------------
     
