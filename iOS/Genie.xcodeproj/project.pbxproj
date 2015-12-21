@@ -61,6 +61,9 @@
 		FF3314961B8A5309008B1B9E /* SF-UI-Text-SemiboldItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = FF3314811B8A52E4008B1B9E /* SF-UI-Text-SemiboldItalic.otf */; };
 		FF65769F1C1BDAE9008F077B /* EntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF65769E1C1BDAE9008F077B /* EntryViewController.swift */; };
 		FF68B7A51BA50BF7002E699C /* MobileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF68B7A41BA50BF7002E699C /* MobileViewController.swift */; };
+		FF885A731C27BF39009AB85C /* expand@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = FF885A701C27BF39009AB85C /* expand@1x.png */; };
+		FF885A741C27BF39009AB85C /* expand@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FF885A711C27BF39009AB85C /* expand@2x.png */; };
+		FF885A751C27BF39009AB85C /* expand@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = FF885A721C27BF39009AB85C /* expand@3x.png */; };
 		FF8EAAE11B8D580E00EE1396 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF8EAAE01B8D580E00EE1396 /* Message.swift */; };
 		FF8EAAE31B8D752200EE1396 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FF8EAAE21B8D752200EE1396 /* Main.storyboard */; };
 		FF91FEC91C2525EF00FEEE1F /* down@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = FF91FEC61C2525EF00FEEE1F /* down@1x.png */; };
@@ -276,6 +279,9 @@
 		FF68B9351BA53038002E699C /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		FF68B9361BA53038002E699C /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		FF68B9E71BA5370C002E699C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		FF885A701C27BF39009AB85C /* expand@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "expand@1x.png"; sourceTree = "<group>"; };
+		FF885A711C27BF39009AB85C /* expand@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "expand@2x.png"; sourceTree = "<group>"; };
+		FF885A721C27BF39009AB85C /* expand@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "expand@3x.png"; sourceTree = "<group>"; };
 		FF8EAADD1B8D576700EE1396 /* Genie-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Genie-Bridging-Header.h"; sourceTree = "<group>"; };
 		FF8EAAE01B8D580E00EE1396 /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		FF8EAAE21B8D752200EE1396 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
@@ -587,6 +593,9 @@
 				FFB9CFEB1C23E5DA00EE83EE /* resend@1x.png */,
 				FFB9CFEC1C23E5DA00EE83EE /* resend@2x.png */,
 				FFB9CFED1C23E5DA00EE83EE /* resend@3x.png */,
+				FF885A701C27BF39009AB85C /* expand@1x.png */,
+				FF885A711C27BF39009AB85C /* expand@2x.png */,
+				FF885A721C27BF39009AB85C /* expand@3x.png */,
 			);
 			name = Images;
 			sourceTree = "<group>";
@@ -755,6 +764,7 @@
 				FFB9CFCC1C23E55C00EE83EE /* grid@3x.png in Resources */,
 				FF1C50141C24FBCA0095FB27 /* signup@1x.png in Resources */,
 				FF91FF1A1C259B3600FEEE1F /* circle@2x.png in Resources */,
+				FF885A731C27BF39009AB85C /* expand@1x.png in Resources */,
 				FF3314951B8A5309008B1B9E /* SF-UI-Text-Semibold.otf in Resources */,
 				FF91FF371C26D54400FEEE1F /* recharge@1x.png in Resources */,
 				FFB9CFEE1C23E5DA00EE83EE /* resend@1x.png in Resources */,
@@ -764,6 +774,7 @@
 				FFB9CFDC1C23E58A00EE83EE /* return_left@1x.png in Resources */,
 				FF1C50161C24FBCA0095FB27 /* signup@3x.png in Resources */,
 				FFB9CFE21C23E59900EE83EE /* return_right@1x.png in Resources */,
+				FF885A741C27BF39009AB85C /* expand@2x.png in Resources */,
 				FF1C50121C24FBCA0095FB27 /* signin@2x.png in Resources */,
 				FF91FEC91C2525EF00FEEE1F /* down@1x.png in Resources */,
 				FF1C50151C24FBCA0095FB27 /* signup@2x.png in Resources */,
@@ -808,6 +819,7 @@
 				FFB9CFA61C23E4CF00EE83EE /* genie@1x.png in Resources */,
 				FFB9CFD01C23E56900EE83EE /* menu@1x.png in Resources */,
 				FF01A7041B8980E800F54273 /* Assets.xcassets in Resources */,
+				FF885A751C27BF39009AB85C /* expand@3x.png in Resources */,
 				FF91FF261C26D4FC00FEEE1F /* home@2x.png in Resources */,
 				FF3314831B8A52FE008B1B9E /* SF-UI-Display-Bold.otf in Resources */,
 				FF33148D1B8A5309008B1B9E /* SF-UI-Text-Heavy.otf in Resources */,
