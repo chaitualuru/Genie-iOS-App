@@ -74,7 +74,6 @@ class HomeViewController: JSQMessagesViewController, UIImagePickerControllerDele
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(messages)
         UIApplication.sharedApplication().statusBarStyle = UIStatusBarStyle.LightContent
         self.collectionView?.contentInset = UIEdgeInsetsMake(0, 0, 80, 0);
         
