@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="xK3-KW-HPV">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="xK3-KW-HPV">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
@@ -22,7 +22,6 @@
             <string>SFUIText-Medium</string>
         </mutableArray>
         <mutableArray key="SF-UI-Text-Regular.otf">
-            <string>SFUIText-Regular</string>
             <string>SFUIText-Regular</string>
             <string>SFUIText-Regular</string>
             <string>SFUIText-Regular</string>
@@ -135,42 +134,53 @@
                                 </constraints>
                             </view>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="genie.png" translatesAutoresizingMaskIntoConstraints="NO" id="rmO-Mg-3uW">
-                                <rect key="frame" x="280" y="70" width="40" height="50"/>
+                                <rect key="frame" x="278" y="91.5" width="44" height="55"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="40" id="7Zt-oO-ffa"/>
-                                    <constraint firstAttribute="height" constant="50" id="Aaq-Bq-Bbz"/>
+                                    <constraint firstAttribute="width" constant="44" id="7Zt-oO-ffa"/>
+                                    <constraint firstAttribute="height" constant="55" id="Aaq-Bq-Bbz"/>
+                                    <constraint firstAttribute="width" secondItem="rmO-Mg-3uW" secondAttribute="height" multiplier="4:5" id="qxY-6O-LhI"/>
                                 </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="qxY-6O-LhI"/>
+                                    </mask>
+                                </variation>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y4I-Na-gFH">
-                                <rect key="frame" x="0.0" y="140" width="600" height="20"/>
+                                <rect key="frame" x="0.0" y="181.5" width="600" height="20.5"/>
                                 <fontDescription key="fontDescription" name="SFUIText-Medium" family="SF UI Text" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="username" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jJY-px-yrm">
-                                <rect key="frame" x="0.0" y="164" width="600" height="17.5"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="username" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jJY-px-yrm">
+                                <rect key="frame" x="0.0" y="206.5" width="600" height="18"/>
                                 <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="15"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="circle.png" translatesAutoresizingMaskIntoConstraints="NO" id="6hc-sk-HbA">
-                                <rect key="frame" x="262" y="53" width="75" height="75"/>
+                                <rect key="frame" x="255" y="70" width="90" height="90"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="75" id="pHh-DW-Ber"/>
-                                    <constraint firstAttribute="width" constant="75" id="vhY-cA-1JB"/>
+                                    <constraint firstAttribute="height" constant="90" id="pHh-DW-Ber"/>
+                                    <constraint firstAttribute="width" constant="90" id="vhY-cA-1JB"/>
                                 </constraints>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9p4-oy-lab">
-                                <rect key="frame" x="521" y="40" width="59" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9p4-oy-lab">
+                                <rect key="frame" x="560" y="40" width="20" height="20"/>
                                 <constraints>
+                                    <constraint firstAttribute="height" constant="20" id="3h6-mH-Daf"/>
+                                    <constraint firstAttribute="width" secondItem="9p4-oy-lab" secondAttribute="height" multiplier="9:11" id="GFN-D7-M1z"/>
+                                    <constraint firstAttribute="width" constant="20" id="USx-9e-4qZ"/>
+                                    <constraint firstAttribute="width" constant="20" id="riy-L2-JIw"/>
                                     <constraint firstAttribute="height" constant="45" id="tdw-ig-tiF"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="15"/>
-                                <state key="normal" title="Sign Out">
+                                <state key="normal" backgroundImage="logout.png">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <variation key="default">
                                     <mask key="constraints">
+                                        <exclude reference="GFN-D7-M1z"/>
+                                        <exclude reference="USx-9e-4qZ"/>
                                         <exclude reference="tdw-ig-tiF"/>
                                     </mask>
                                 </variation>
@@ -187,22 +197,27 @@
                             <constraint firstItem="jJY-px-yrm" firstAttribute="top" secondItem="y4I-Na-gFH" secondAttribute="bottom" constant="5" id="3Wi-cZ-Amw"/>
                             <constraint firstItem="6hc-sk-HbA" firstAttribute="centerX" secondItem="rmO-Mg-3uW" secondAttribute="centerX" id="5Yf-4a-rib"/>
                             <constraint firstItem="rmO-Mg-3uW" firstAttribute="centerX" secondItem="oKc-ow-Ju2" secondAttribute="centerX" id="5ra-9x-7rD"/>
+                            <constraint firstItem="6hc-sk-HbA" firstAttribute="centerX" secondItem="oKc-ow-Ju2" secondAttribute="centerX" id="Hab-SH-NlS"/>
                             <constraint firstItem="jJY-px-yrm" firstAttribute="width" secondItem="y4I-Na-gFH" secondAttribute="width" id="IMm-V3-olK"/>
                             <constraint firstItem="6hc-sk-HbA" firstAttribute="centerY" secondItem="rmO-Mg-3uW" secondAttribute="centerY" constant="-4" id="PxW-w0-vd2"/>
                             <constraint firstItem="y4I-Na-gFH" firstAttribute="width" secondItem="oKc-ow-Ju2" secondAttribute="width" id="Vdu-i9-XmU"/>
                             <constraint firstItem="6hc-sk-HbA" firstAttribute="height" secondItem="rmO-Mg-3uW" secondAttribute="height" id="XG5-6a-veT"/>
                             <constraint firstItem="6hc-sk-HbA" firstAttribute="width" secondItem="rmO-Mg-3uW" secondAttribute="width" id="Zd7-Qc-LIw"/>
+                            <constraint firstItem="rmO-Mg-3uW" firstAttribute="centerY" secondItem="6hc-sk-HbA" secondAttribute="centerY" constant="4" id="gi9-82-UyG"/>
                             <constraint firstItem="9p4-oy-lab" firstAttribute="top" secondItem="5kt-4O-aPI" secondAttribute="bottom" constant="20" id="j7f-GM-hCE"/>
                             <constraint firstItem="6iR-Ox-zZ4" firstAttribute="centerX" secondItem="oKc-ow-Ju2" secondAttribute="centerX" id="jlD-Ul-faS"/>
-                            <constraint firstItem="y4I-Na-gFH" firstAttribute="top" secondItem="rmO-Mg-3uW" secondAttribute="bottom" constant="20" id="kND-OX-VCq"/>
+                            <constraint firstItem="y4I-Na-gFH" firstAttribute="top" secondItem="rmO-Mg-3uW" secondAttribute="bottom" constant="35" id="kND-OX-VCq"/>
                             <constraint firstItem="jJY-px-yrm" firstAttribute="centerX" secondItem="y4I-Na-gFH" secondAttribute="centerX" id="ks5-sf-tBX"/>
                             <constraint firstItem="y4I-Na-gFH" firstAttribute="width" secondItem="oKc-ow-Ju2" secondAttribute="width" id="lky-Jq-YT5"/>
                             <constraint firstItem="rmO-Mg-3uW" firstAttribute="top" secondItem="5kt-4O-aPI" secondAttribute="bottom" constant="50" id="qns-Xm-IqZ"/>
                             <constraint firstItem="6iR-Ox-zZ4" firstAttribute="width" secondItem="oKc-ow-Ju2" secondAttribute="width" id="s2Y-JH-eWY"/>
                             <constraint firstItem="y4I-Na-gFH" firstAttribute="leading" secondItem="rmO-Mg-3uW" secondAttribute="trailing" constant="10" id="tDh-69-cvH"/>
                             <constraint firstItem="y4I-Na-gFH" firstAttribute="centerX" secondItem="rmO-Mg-3uW" secondAttribute="centerX" id="u6M-8p-2X4"/>
+                            <constraint firstItem="6hc-sk-HbA" firstAttribute="top" secondItem="9p4-oy-lab" secondAttribute="bottom" constant="10" id="uTG-lR-oWo"/>
+                            <constraint firstItem="rmO-Mg-3uW" firstAttribute="centerX" secondItem="6hc-sk-HbA" secondAttribute="centerX" id="vtt-se-sce"/>
                             <constraint firstItem="ull-GJ-Ssc" firstAttribute="centerX" secondItem="oKc-ow-Ju2" secondAttribute="centerX" id="wJe-C9-iNs"/>
                             <constraint firstItem="2fK-DU-wsh" firstAttribute="top" secondItem="6iR-Ox-zZ4" secondAttribute="bottom" id="wMh-Mm-fMe"/>
+                            <constraint firstItem="rmO-Mg-3uW" firstAttribute="top" secondItem="9p4-oy-lab" secondAttribute="bottom" id="wi3-Rq-9iR"/>
                             <constraint firstItem="y4I-Na-gFH" firstAttribute="centerX" secondItem="rmO-Mg-3uW" secondAttribute="centerX" id="wrj-NC-Ttc"/>
                         </constraints>
                         <variation key="default">
@@ -210,8 +225,12 @@
                                 <exclude reference="Vdu-i9-XmU"/>
                                 <exclude reference="tDh-69-cvH"/>
                                 <exclude reference="u6M-8p-2X4"/>
+                                <exclude reference="5Yf-4a-rib"/>
+                                <exclude reference="PxW-w0-vd2"/>
                                 <exclude reference="XG5-6a-veT"/>
                                 <exclude reference="Zd7-Qc-LIw"/>
+                                <exclude reference="qns-Xm-IqZ"/>
+                                <exclude reference="wi3-Rq-9iR"/>
                             </mask>
                         </variation>
                     </view>
@@ -1692,6 +1711,7 @@ Check back soon!</string>
         <image name="health.png" width="75" height="75"/>
         <image name="home.png" width="75" height="75"/>
         <image name="line.png" width="375" height="1"/>
+        <image name="logout.png" width="18" height="18"/>
         <image name="mobile_cancel.png" width="17" height="16"/>
         <image name="next.png" width="19" height="19"/>
         <image name="recharge.png" width="75" height="75"/>
