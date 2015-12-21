@@ -17,6 +17,7 @@ class ImageViewer: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         imageView.image = imageData
+        UIApplication.sharedApplication().statusBarStyle = UIStatusBarStyle.LightContent
         // Do any additional setup after loading the view.
     }
     

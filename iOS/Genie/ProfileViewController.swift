@@ -29,6 +29,7 @@ class ProfileViewController: UIViewController {
     var emailAddress: String!
     override func viewDidLoad() {
         super.viewDidLoad()
+        UIApplication.sharedApplication().statusBarStyle = UIStatusBarStyle.LightContent
         self.whiteViewHeightConstraint.constant = UIScreen.mainScreen().bounds.height * 0.6
         
         self.ref = Firebase(url:"https://getgenie.firebaseio.com/")
@@ -61,6 +62,10 @@ class ProfileViewController: UIViewController {
         userMobile.layer.addBorder(UIRectEdge.Bottom, color: lineColor, thickness: 0.5)
         userEmail.layer.addBorder(UIRectEdge.Bottom, color: lineColor, thickness: 0.5)
         
+    }
+    @IBAction func signOut(sender: UIButton) {
+        self.ref.unauth()
+        performSegueWithIdentifier("SIGN_OUT", sender: nil)
     }
     
     @IBAction func closeProfileVC(sender: UIButton) {

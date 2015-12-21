@@ -34,7 +34,7 @@ class MobileViewController: UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        UIApplication.sharedApplication().statusBarStyle = UIStatusBarStyle.LightContent
         
         // Dismiss keyboard on tap --------------------------------------------------------------
         

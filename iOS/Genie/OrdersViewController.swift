@@ -23,6 +23,8 @@ class OrdersViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        UIApplication.sharedApplication().statusBarStyle = UIStatusBarStyle.LightContent
+        
         // remove extra lines below filled rows
         self.tableView.tableFooterView = UIView()
         self.tableView.allowsSelection = false

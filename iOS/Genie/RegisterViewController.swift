@@ -23,8 +23,14 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
     var activeField: UITextField?
     var ref: Firebase!
     
+    override func viewWillDisappear(animated: Bool) {
+        UIApplication.sharedApplication().statusBarStyle = UIStatusBarStyle.LightContent
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        UIApplication.sharedApplication().statusBarStyle = UIStatusBarStyle.Default
         
         ref = Firebase(url:"https://getgenie.firebaseio.com/")
         

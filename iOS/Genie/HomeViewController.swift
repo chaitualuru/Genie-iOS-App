@@ -75,6 +75,7 @@ class HomeViewController: JSQMessagesViewController, UIImagePickerControllerDele
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        UIApplication.sharedApplication().statusBarStyle = UIStatusBarStyle.LightContent
         self.collectionView?.contentInset = UIEdgeInsetsMake(0, 0, 80, 0);
         
         self.ref = Firebase(url:"https://getgenie.firebaseio.com/")

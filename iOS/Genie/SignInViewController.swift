@@ -21,8 +21,14 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
     
     var ref: Firebase!
     
+    override func viewWillDisappear(animated: Bool) {
+        UIApplication.sharedApplication().statusBarStyle = UIStatusBarStyle.LightContent
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.Default, animated: true)
+
         
         ref = Firebase(url:"https://getgenie.firebaseio.com/")
         

@@ -12,6 +12,8 @@ class EntryViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        UIApplication.sharedApplication().statusBarStyle = UIStatusBarStyle.LightContent
+
 
         // Do any additional setup after loading the view.
     }
