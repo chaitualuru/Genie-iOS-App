@@ -14,8 +14,8 @@ class WishesViewController: UITableViewController {
     var selectedHeading = []
     
     
-    let foodDescription = ["I would like to order a medium barbecue pizza from Dominos.", "Can you give the menu for Biryani House?", "Show me some reviews of Indigo Deli.", "I would like the recipe for homemade Gulab Jamun.", "Where can I find the best chinese food nearby?", "Ask us anything!"]
-    let foodHeading = ["Order", "Menu", "Review/Ratings", "Recipes", "Recommendations", "Other"]
+    let foodDescription = ["I would like to order a medium barbecue pizza from Dominos.", "Can you send me the menu for Biryani House?", "Show me some reviews for Indigo Deli.", "I would like the recipe for homemade Gulab Jamun.", "Where can I find the best chinese food nearby?", "Ask us anything!"]
+    let foodHeading = ["Order", "Menu", "Reviews/Ratings", "Recipes", "Recommendations", "Other"]
     
     let healthDescription = ["I would like my prescription delivered.", "I want the Gilette shaving cream + razor package.", "What treats should I buy my dog today?", "Make an appointment with an Orthopedic doctor near me.", "Can you send me medium size diapers for my daughter?", "Ask us anything!"]
     let healthHeading = ["Medicine", "Personal Care", "Pet Care", "Doctor Appointment", "Baby Care", "Other"]
