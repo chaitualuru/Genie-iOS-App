@@ -20,10 +20,10 @@ class MobileViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet var verificationCodeSent: UILabel!
     @IBOutlet var resendVerificationCode: UIButton!
     @IBOutlet var cancelVerification: UIButton!
+    var ref: Firebase!
     
     var activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView()
     var storedNumber: String!
-    var ref: Firebase!
     var user: FAuthData?
     
     override func viewDidLoad() {
