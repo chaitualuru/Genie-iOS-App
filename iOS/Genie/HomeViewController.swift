@@ -364,7 +364,7 @@ class HomeViewController: JSQMessagesViewController, UIImagePickerControllerDele
             
             self.messagesRef.queryOrderedByChild("timestamp").queryEndingAtValue(lastMsg.date().timeIntervalSince1970 * 1000).queryLimitedToLast(10).observeEventType(.ChildAdded, withBlock: {
                 (snapshot) in
-                if snapshot != nil && snapshot.key != "serviced" { 
+                if snapshot != nil {
                     let messageId = snapshot.key
                     let text = snapshot.value["text"] as? String
                     let timestamp = snapshot.value["timestamp"] as? NSTimeInterval
@@ -480,83 +480,81 @@ class HomeViewController: JSQMessagesViewController, UIImagePickerControllerDele
 
         self.getMessagesHandle = self.messagesRef.queryLimitedToLast(14).observeEventType(FEventType.ChildAdded, withBlock: {
             (snapshot) in
-            if snapshot.key != "serviced" {
-                let messageId = snapshot.key
-                var messageExists = false
-                for msg in self.messages {
-                    if msg.messageId() == messageId {
-                        messageExists = true
-                        break
+            let messageId = snapshot.key
+            var messageExists = false
+            for msg in self.messages {
+                if msg.messageId() == messageId {
+                    messageExists = true
+                    break
+                }
+            }
+            if (messageExists == false) {
+                let text = snapshot.value["text"] as! String
+                let timestamp = snapshot.value["timestamp"] as! NSTimeInterval
+                let date = NSDate(timeIntervalSince1970: timestamp/1000)
+                let sentByUser = snapshot.value["sent_by_user"] as! Bool
+                let deletedByUser = snapshot.value["deleted_by_user"] as! Bool
+                let isMediaMessage = snapshot.value["is_media_message"] as! Bool
+                
+                var sender = "not_user"
+                
+                if sentByUser {
+                    sender = self.senderId
+                } else {
+                    if !self.firstMessageRead {
+                        JSQSystemSoundPlayer.jsq_playMessageReceivedSound()
+                        self.firstMessageRead = false
                     }
                 }
-                if (messageExists == false) {
-                    let text = snapshot.value["text"] as! String
-                    let timestamp = snapshot.value["timestamp"] as! NSTimeInterval
-                    let date = NSDate(timeIntervalSince1970: timestamp/1000)
-                    let sentByUser = snapshot.value["sent_by_user"] as! Bool
-                    let deletedByUser = snapshot.value["deleted_by_user"] as! Bool
-                    let isMediaMessage = snapshot.value["is_media_message"] as! Bool
-                    
-                    var sender = "not_user"
-                    
-                    if sentByUser {
-                       sender = self.senderId
-                    } else {
-                        if !self.firstMessageRead {
-                            JSQSystemSoundPlayer.jsq_playMessageReceivedSound()
-                            self.firstMessageRead = false
-                        }
-                    }
-                    
-                    
-                    if !deletedByUser {
-                        var message: Message!
-                        if isMediaMessage {
-                            let encodedString = snapshot.value["media"] as? String
-                            if let encoding = encodedString {
-                                let imageData = NSData(base64EncodedString: encoding, options: NSDataBase64DecodingOptions.IgnoreUnknownCharacters)
-                                let photoItem = JSQPhotoMediaItem(image: UIImage(data: imageData!))
-                                if !sentByUser {
-                                    photoItem.appliesMediaViewMaskAsOutgoing = false
-                                }
-                                message = Message(messageId: messageId, text: text, sentByUser: sentByUser, senderId: sender, senderDisplayName: self.senderDisplayName, date: date, isMediaMessage: isMediaMessage, media: photoItem)
+                
+                
+                if !deletedByUser {
+                    var message: Message!
+                    if isMediaMessage {
+                        let encodedString = snapshot.value["media"] as? String
+                        if let encoding = encodedString {
+                            let imageData = NSData(base64EncodedString: encoding, options: NSDataBase64DecodingOptions.IgnoreUnknownCharacters)
+                            let photoItem = JSQPhotoMediaItem(image: UIImage(data: imageData!))
+                            if !sentByUser {
+                                photoItem.appliesMediaViewMaskAsOutgoing = false
                             }
-                            else {
-                                print("Could not attach photo")
-                                message = Message(messageId: messageId, text: text, sentByUser: sentByUser, senderId: sender, senderDisplayName: self.senderDisplayName, date: date, isMediaMessage: isMediaMessage, media: nil)
-                            }
+                            message = Message(messageId: messageId, text: text, sentByUser: sentByUser, senderId: sender, senderDisplayName: self.senderDisplayName, date: date, isMediaMessage: isMediaMessage, media: photoItem)
                         }
                         else {
+                            print("Could not attach photo")
                             message = Message(messageId: messageId, text: text, sentByUser: sentByUser, senderId: sender, senderDisplayName: self.senderDisplayName, date: date, isMediaMessage: isMediaMessage, media: nil)
                         }
-                        self.messages.append(message)
-                        
-                        let settings = UIApplication.sharedApplication().currentUserNotificationSettings()
-                        
-                        if (UIApplication.sharedApplication().applicationState == UIApplicationState.Background) {
-                            if settings!.types == .None {
-                                let ac = UIAlertController(title: "Can't schedule", message: "Either we don't have permission to schedule notifications, or we haven't asked yet.", preferredStyle: .Alert)
-                                ac.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
-                                self.presentViewController(ac, animated: true, completion: nil)
-                                return
-                            }
-                            
-                            let notification = UILocalNotification()
-                            notification.fireDate = NSDate(timeIntervalSinceNow: 1)
-                            notification.alertBody = message.text()
-                            notification.soundName = UILocalNotificationDefaultSoundName
-                            UIApplication.sharedApplication().scheduleLocalNotification(notification)
+                    }
+                    else {
+                        message = Message(messageId: messageId, text: text, sentByUser: sentByUser, senderId: sender, senderDisplayName: self.senderDisplayName, date: date, isMediaMessage: isMediaMessage, media: nil)
+                    }
+                    self.messages.append(message)
+                    
+                    let settings = UIApplication.sharedApplication().currentUserNotificationSettings()
+                    
+                    if (UIApplication.sharedApplication().applicationState == UIApplicationState.Background) {
+                        if settings!.types == .None {
+                            let ac = UIAlertController(title: "Can't schedule", message: "Either we don't have permission to schedule notifications, or we haven't asked yet.", preferredStyle: .Alert)
+                            ac.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
+                            self.presentViewController(ac, animated: true, completion: nil)
+                            return
                         }
+                        
+                        let notification = UILocalNotification()
+                        notification.fireDate = NSDate(timeIntervalSinceNow: 1)
+                        notification.alertBody = message.text()
+                        notification.soundName = UILocalNotificationDefaultSoundName
+                        UIApplication.sharedApplication().scheduleLocalNotification(notification)
                     }
                 }
-                if self.messages.count > 0 {
-                    self.pizzaHelp.hidden = true
-                    self.furnitureHelp.hidden = true
-                    self.ticketHelp.hidden = true
-                    self.helperFoot.hidden = true
-                }
-                self.finishReceivingMessage()
             }
+            if self.messages.count > 0 {
+                self.pizzaHelp.hidden = true
+                self.furnitureHelp.hidden = true
+                self.ticketHelp.hidden = true
+                self.helperFoot.hidden = true
+            }
+            self.finishReceivingMessage()
         })
     }
 
@@ -584,20 +582,21 @@ class HomeViewController: JSQMessagesViewController, UIImagePickerControllerDele
                 ])
         }
         var isServiced: UInt!
-        self.messagesRef.observeEventType(.Value, withBlock: { snapshot in
+        let userRef = self.ref.childByAppendingPath("users/" + self.senderId)
+        userRef.observeEventType(.Value, withBlock: { snapshot in
              isServiced = snapshot.value["serviced"] as! UInt
             }, withCancelBlock: { error in
                 print(error.description)
         })
         if isServiced != nil {
             if isServiced == 1 {
-                self.messagesRef.updateChildValues([
+                userRef.updateChildValues([
                     "serviced": 0
                     ])
             }
         }
         else {
-            self.messagesRef.updateChildValues([
+            userRef.updateChildValues([
                     "serviced": 0
                 ])
         }
