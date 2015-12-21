@@ -74,7 +74,7 @@ class HomeViewController: JSQMessagesViewController, UIImagePickerControllerDele
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        print(messages)
         UIApplication.sharedApplication().statusBarStyle = UIStatusBarStyle.LightContent
         self.collectionView?.contentInset = UIEdgeInsetsMake(0, 0, 80, 0);
         
@@ -133,6 +133,7 @@ class HomeViewController: JSQMessagesViewController, UIImagePickerControllerDele
                     if let textView = conview.textView {
                         textView.text = homeVCwishDescription
                     }
+                    conview.rightBarButtonItem?.enabled = true
                 }
             }
             
@@ -302,7 +303,7 @@ class HomeViewController: JSQMessagesViewController, UIImagePickerControllerDele
                                 self.messages.insert(message, atIndex: 0)
                                 if (self.messages.count == allMessageIds.count - 1) {
                                     print("Cache Fetched")
-                                    self.messages.sortInPlace({ $0.date().timeIntervalSince1970 > $1.date().timeIntervalSince1970 })
+                                    self.messages.sortInPlace({ $0.date().timeIntervalSince1970 < $1.date().timeIntervalSince1970 })
                                     self.pizzaHelp.hidden = true
                                     self.furnitureHelp.hidden = true
                                     self.ticketHelp.hidden = true
