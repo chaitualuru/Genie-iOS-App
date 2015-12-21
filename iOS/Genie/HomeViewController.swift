@@ -134,7 +134,7 @@ class HomeViewController: JSQMessagesViewController, UIImagePickerControllerDele
         self.pizzaHelp.sizeToFit()
         self.view.addSubview(pizzaHelp)
         let pizzaHelpxCenterConstraint = NSLayoutConstraint(item: self.pizzaHelp, attribute: .CenterX, relatedBy: .Equal, toItem: self.view, attribute: .CenterX, multiplier: 1, constant: 0)
-        let pizzaHelpyCenterConstraint = NSLayoutConstraint(item: self.pizzaHelp, attribute: .CenterY, relatedBy: .Equal, toItem: self.view, attribute: .CenterY, multiplier: 1, constant: 0)
+        let pizzaHelpyCenterConstraint = NSLayoutConstraint(item: self.pizzaHelp, attribute: .CenterY, relatedBy: .Equal, toItem: self.view, attribute: .CenterY, multiplier: 1, constant: -44)
         let pizzaHelpWidthConstraint = NSLayoutConstraint(item: self.pizzaHelp, attribute: .Width, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant:self.pizzaHelp.frame.width)
         let pizzaHelpHeightConstraint = NSLayoutConstraint(item: self.pizzaHelp, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant:self.pizzaHelp.frame.height)
         self.view.addConstraints([pizzaHelpHeightConstraint, pizzaHelpWidthConstraint, pizzaHelpxCenterConstraint, pizzaHelpyCenterConstraint])
@@ -178,17 +178,10 @@ class HomeViewController: JSQMessagesViewController, UIImagePickerControllerDele
         self.helperFoot.lineBreakMode = NSLineBreakMode.ByWordWrapping
         self.helperFoot.font = UIFont(name: "SFUIText-Medium", size: 15.5)
         self.helperFoot.textAlignment = NSTextAlignment.Center
-        let mainString = "Find more here!"
-        let stringHighlight = "here"
-        let stringNormal = "Find more "
-        let stringExc = "!"
-        let rangeHighlight = (mainString as NSString).rangeOfString(stringHighlight)
-        let rangeNormal = (mainString as NSString).rangeOfString(stringNormal)
-        let rangeExc = (mainString as NSString).rangeOfString(stringExc)
+        let mainString = "Swipe right for more!"
+        let range = (mainString as NSString).rangeOfString("Swipe right for more!")
         let attributedString = NSMutableAttributedString(string:mainString)
-        attributedString.addAttribute(NSForegroundColorAttributeName, value: UIColor(red: 52/255.0, green: 73/255.0, blue: 94/255.0, alpha: 1.0), range: rangeNormal)
-        attributedString.addAttribute(NSForegroundColorAttributeName, value: UIColor(red: 52/255.0, green: 73/255.0, blue: 94/255.0, alpha: 1.0), range: rangeExc)
-        attributedString.addAttribute(NSForegroundColorAttributeName, value: UIColor(red: 27/255.0, green: 165/255.0, blue: 221/255.0, alpha: 1.0), range: rangeHighlight)
+        attributedString.addAttribute(NSForegroundColorAttributeName, value: UIColor(red: 52/255.0, green: 73/255.0, blue: 94/255.0, alpha: 1.0), range: range)
         self.helperFoot.attributedText = attributedString
         self.helperFoot.sizeToFit()
         self.helperFoot.autoresizingMask = UIViewAutoresizing.FlexibleHeight
