@@ -200,10 +200,10 @@ class HomeViewController: JSQMessagesViewController, UIImagePickerControllerDele
         self.view.addConstraints([helperFootxCenterConstraint, helperFootWidthConstraint, helperFootyConstraint])
         self.view.insertSubview(self.helperFoot, belowSubview: (inputToolbar)!)
 
-        helperFoot.hidden = true
-        pizzaHelp.hidden = true
-        furnitureHelp.hidden = true
-        ticketHelp.hidden = true
+        helperFoot.hidden = false
+        pizzaHelp.hidden = false
+        furnitureHelp.hidden = false
+        ticketHelp.hidden = false
         
         // --------------------------------------------------------------------------------------
         
@@ -280,6 +280,10 @@ class HomeViewController: JSQMessagesViewController, UIImagePickerControllerDele
                                         self.messages.sortInPlace({ $0.date().timeIntervalSince1970 < $1.date().timeIntervalSince1970 })
                                         self.finishReceivingMessage()
                                         print("Cache Fetched")
+                                        self.pizzaHelp.hidden = true
+                                        self.furnitureHelp.hidden = true
+                                        self.ticketHelp.hidden = true
+                                        self.helperFoot.hidden = true
                                         self.setupMessages()
                                     }
                                 }
@@ -289,6 +293,10 @@ class HomeViewController: JSQMessagesViewController, UIImagePickerControllerDele
                                 if (self.messages.count == allMessageIds.count - 1) {
                                     print("Cache Fetched")
                                     self.messages.sortInPlace({ $0.date().timeIntervalSince1970 > $1.date().timeIntervalSince1970 })
+                                    self.pizzaHelp.hidden = true
+                                    self.furnitureHelp.hidden = true
+                                    self.ticketHelp.hidden = true
+                                    self.helperFoot.hidden = true
                                     self.finishReceivingMessage()
                                     self.setupMessages()
                                 }
@@ -296,12 +304,15 @@ class HomeViewController: JSQMessagesViewController, UIImagePickerControllerDele
                         }
                     }
                 }.onFailure { error in
+                    print("messages")
                     self.setupMessages()
                 }
             } else {
+                print("messages")
                 self.setupMessages()
             }
         }.onFailure { error in
+            print("messages")
             self.setupMessages()
         }
         
