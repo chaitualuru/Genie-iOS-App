@@ -20,6 +20,8 @@ class MobileViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet var verificationCodeSent: UILabel!
     @IBOutlet var resendVerificationCode: UIButton!
     @IBOutlet var cancelVerification: UIButton!
+    @IBOutlet var darkLoadingView: UIView!
+    
     var ref: Firebase!
     
     var activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView()
@@ -55,6 +57,7 @@ class MobileViewController: UIViewController, UITextFieldDelegate {
         self.activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.Gray
         self.view.addSubview(activityIndicator)
         self.activityIndicator.startAnimating()
+        self.darkLoadingView.hidden = false
         UIApplication.sharedApplication().beginIgnoringInteractionEvents()
         VerifyClient.checkPinCode(self.verificationCode.text!)
     }
@@ -84,6 +87,7 @@ class MobileViewController: UIViewController, UITextFieldDelegate {
                 },
                 onError: { (error: VerifyError) in
                     self.activityIndicator.stopAnimating()
+                    self.darkLoadingView.hidden = true
                     UIApplication.sharedApplication().endIgnoringInteractionEvents()
                     switch error {
                         /** Number is invalid. Either:
@@ -276,14 +280,13 @@ class MobileViewController: UIViewController, UITextFieldDelegate {
     
     func verifiedMobile() {
         self.activityIndicator.stopAnimating()
+        self.darkLoadingView.hidden = true
         UIApplication.sharedApplication().endIgnoringInteractionEvents()
         self.ref = Firebase(url: "https://getgenie.firebaseio.com/")
         self.user = self.ref.authData
         let uid = self.user?.uid
         let userRef = Firebase(url: "https://getgenie.firebaseio.com/users/" + uid!)
-        print("this happened")
         let mobile = ["mobile_number": self.mobileNumber.text!]
-        print("reached here")
         userRef.updateChildValues(mobile)
         self.presentViewController(MySwipeVC(), animated: true, completion: nil)
     }
