@@ -134,7 +134,7 @@
                                 </constraints>
                             </view>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="genie.png" translatesAutoresizingMaskIntoConstraints="NO" id="rmO-Mg-3uW">
-                                <rect key="frame" x="278" y="91.5" width="44" height="55"/>
+                                <rect key="frame" x="278" y="93.5" width="44" height="55"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="44" id="7Zt-oO-ffa"/>
                                     <constraint firstAttribute="height" constant="55" id="Aaq-Bq-Bbz"/>
@@ -147,31 +147,31 @@
                                 </variation>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y4I-Na-gFH">
-                                <rect key="frame" x="0.0" y="181.5" width="600" height="20.5"/>
+                                <rect key="frame" x="0.0" y="183.5" width="600" height="20.5"/>
                                 <fontDescription key="fontDescription" name="SFUIText-Medium" family="SF UI Text" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="username" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jJY-px-yrm">
-                                <rect key="frame" x="0.0" y="206.5" width="600" height="18"/>
+                                <rect key="frame" x="0.0" y="208.5" width="600" height="18"/>
                                 <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="15"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="circle.png" translatesAutoresizingMaskIntoConstraints="NO" id="6hc-sk-HbA">
-                                <rect key="frame" x="255" y="70" width="90" height="90"/>
+                                <rect key="frame" x="255" y="72" width="90" height="90"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="90" id="pHh-DW-Ber"/>
                                     <constraint firstAttribute="width" constant="90" id="vhY-cA-1JB"/>
                                 </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9p4-oy-lab">
-                                <rect key="frame" x="560" y="40" width="20" height="20"/>
+                                <rect key="frame" x="558" y="40" width="22" height="22"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="20" id="3h6-mH-Daf"/>
+                                    <constraint firstAttribute="height" constant="22" id="3h6-mH-Daf"/>
                                     <constraint firstAttribute="width" secondItem="9p4-oy-lab" secondAttribute="height" multiplier="9:11" id="GFN-D7-M1z"/>
                                     <constraint firstAttribute="width" constant="20" id="USx-9e-4qZ"/>
-                                    <constraint firstAttribute="width" constant="20" id="riy-L2-JIw"/>
+                                    <constraint firstAttribute="width" constant="22" id="riy-L2-JIw"/>
                                     <constraint firstAttribute="height" constant="45" id="tdw-ig-tiF"/>
                                 </constraints>
                                 <state key="normal" backgroundImage="logout.png">
@@ -552,7 +552,7 @@
                                                 </constraints>
                                                 <color key="textColor" red="0.1215686275" green="0.12941176469999999" blue="0.14117647059999999" alpha="1" colorSpace="calibratedRGB"/>
                                                 <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="15"/>
-                                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
+                                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress"/>
                                             </textField>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xeq-j1-Fk6">
                                                 <rect key="frame" x="45" y="10" width="115" height="21"/>
@@ -1515,7 +1515,7 @@ Check back soon!</string>
                                 </constraints>
                                 <color key="textColor" red="0.1215686275" green="0.12941176469999999" blue="0.14117647059999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="15"/>
-                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Password" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TO1-2L-9nQ">
                                 <rect key="frame" x="45" y="161" width="83" height="21"/>

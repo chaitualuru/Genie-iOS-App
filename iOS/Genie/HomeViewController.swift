@@ -263,52 +263,56 @@ class HomeViewController: JSQMessagesViewController, UIImagePickerControllerDele
         textCache.fetch(key: "uid").onSuccess { uid in
             if uid == self.senderId {
                 self.textCache.fetch(key: "allMessageIds").onSuccess { data in
-                    let allMessageIds = data.componentsSeparatedByString(",")
-                    for var index = 0; index < allMessageIds.count; ++index  {
-                        let id = allMessageIds[index]
-                        self.textCache.fetch(key: id).onSuccess { data in
-                            let messageComponents = data.componentsSeparatedByString(" ~|~ ")
-                            let messageId = id
-                            var message: Message!
-                            let text = messageComponents[0]
-                            let timestamp : NSTimeInterval = (messageComponents[3] as NSString).doubleValue
-                            let date = NSDate(timeIntervalSince1970: timestamp/1000)
-                            let sentByUser = NSString(string: messageComponents[2]).boolValue
-                            let isMediaMessage = NSString(string: messageComponents[1]).boolValue
-                            var sender = "notUser"
-                            
-                            if sentByUser {
-                                sender = self.senderId
-                            }
-                            if isMediaMessage {
-                                self.imageCache.fetch(key: id).onSuccess { image in
-                                    let photoItem = JSQPhotoMediaItem(image: image)
-                                    message = Message(messageId: messageId, text: text, sentByUser: sentByUser, senderId: sender, senderDisplayName: self.senderDisplayName, date: date, isMediaMessage: isMediaMessage, media: photoItem)
-                                    self.messages.insert(message, atIndex: 0)
+                    if data == "" {
+                        self.setupMessages()
+                    } else {
+                        let allMessageIds = data.componentsSeparatedByString(",")
+                        for var index = 0; index < allMessageIds.count; ++index  {
+                            let id = allMessageIds[index]
+                            self.textCache.fetch(key: id).onSuccess { data in
+                                let messageComponents = data.componentsSeparatedByString(" ~|~ ")
+                                let messageId = id
+                                var message: Message!
+                                let text = messageComponents[0]
+                                let timestamp : NSTimeInterval = (messageComponents[3] as NSString).doubleValue
+                                let date = NSDate(timeIntervalSince1970: timestamp/1000)
+                                let sentByUser = NSString(string: messageComponents[2]).boolValue
+                                let isMediaMessage = NSString(string: messageComponents[1]).boolValue
+                                var sender = "notUser"
+                                
+                                if sentByUser {
+                                    sender = self.senderId
+                                }
+                                if isMediaMessage {
+                                    self.imageCache.fetch(key: id).onSuccess { image in
+                                        let photoItem = JSQPhotoMediaItem(image: image)
+                                        message = Message(messageId: messageId, text: text, sentByUser: sentByUser, senderId: sender, senderDisplayName: self.senderDisplayName, date: date, isMediaMessage: isMediaMessage, media: photoItem)
+                                        self.messages.insert(message, atIndex: 0)
 
+                                        if (self.messages.count == allMessageIds.count - 1) {
+                                            self.messages.sortInPlace({ $0.date().timeIntervalSince1970 < $1.date().timeIntervalSince1970 })
+                                            self.finishReceivingMessage()
+                                            print("Cache Fetched")
+                                            self.pizzaHelp.hidden = true
+                                            self.furnitureHelp.hidden = true
+                                            self.ticketHelp.hidden = true
+                                            self.helperFoot.hidden = true
+                                            self.setupMessages()
+                                        }
+                                    }
+                                } else {
+                                    message = Message(messageId: messageId, text: text, sentByUser: sentByUser, senderId: sender, senderDisplayName: self.senderDisplayName, date: date, isMediaMessage: isMediaMessage, media: nil)
+                                    self.messages.insert(message, atIndex: 0)
                                     if (self.messages.count == allMessageIds.count - 1) {
-                                        self.messages.sortInPlace({ $0.date().timeIntervalSince1970 < $1.date().timeIntervalSince1970 })
-                                        self.finishReceivingMessage()
                                         print("Cache Fetched")
+                                        self.messages.sortInPlace({ $0.date().timeIntervalSince1970 < $1.date().timeIntervalSince1970 })
                                         self.pizzaHelp.hidden = true
                                         self.furnitureHelp.hidden = true
                                         self.ticketHelp.hidden = true
                                         self.helperFoot.hidden = true
+                                        self.finishReceivingMessage()
                                         self.setupMessages()
                                     }
-                                }
-                            } else {
-                                message = Message(messageId: messageId, text: text, sentByUser: sentByUser, senderId: sender, senderDisplayName: self.senderDisplayName, date: date, isMediaMessage: isMediaMessage, media: nil)
-                                self.messages.insert(message, atIndex: 0)
-                                if (self.messages.count == allMessageIds.count - 1) {
-                                    print("Cache Fetched")
-                                    self.messages.sortInPlace({ $0.date().timeIntervalSince1970 < $1.date().timeIntervalSince1970 })
-                                    self.pizzaHelp.hidden = true
-                                    self.furnitureHelp.hidden = true
-                                    self.ticketHelp.hidden = true
-                                    self.helperFoot.hidden = true
-                                    self.finishReceivingMessage()
-                                    self.setupMessages()
                                 }
                             }
                         }

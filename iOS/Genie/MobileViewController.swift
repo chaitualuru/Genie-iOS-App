@@ -25,6 +25,10 @@ class MobileViewController: UIViewController, UITextFieldDelegate {
     var loadOptionsTimer: NSTimer?
     var canResend = false
     var canCancel = false
+    var uid = ""
+    var emailAddress = ""
+    var password = ""
+    var username = ""
     
     var ref: Firebase!
     
@@ -225,6 +229,7 @@ class MobileViewController: UIViewController, UITextFieldDelegate {
                                 alertController.addAction(okAction)
                                 
                                 self.presentViewController(alertController, animated: true, completion: nil)
+                                self.cancel(self)
                                 
                                 /** The SDK revision is not supported anymore. */
                             case VerifyError.SDK_REVISION_NOT_SUPPORTED:
@@ -235,6 +240,7 @@ class MobileViewController: UIViewController, UITextFieldDelegate {
                                 alertController.addAction(okAction)
                                 
                                 self.presentViewController(alertController, animated: true, completion: nil)
+                                self.cancel(self)
                                 
                                 /** Current iOS OS version is not supported. */
                             case VerifyError.OS_NOT_SUPPORTED:
@@ -245,6 +251,7 @@ class MobileViewController: UIViewController, UITextFieldDelegate {
                                 alertController.addAction(okAction)
                                 
                                 self.presentViewController(alertController, animated: true, completion: nil)
+                                self.cancel(self)
                                 
                                 /** Generic internal error, the service might be down for the moment. Please try again later. */
                             case VerifyError.INTERNAL_ERROR:
@@ -255,6 +262,7 @@ class MobileViewController: UIViewController, UITextFieldDelegate {
                                 alertController.addAction(okAction)
                                 
                                 self.presentViewController(alertController, animated: true, completion: nil)
+                                self.cancel(self)
                                 
                                 /** This Nexmo Account has been barred from sending messages */
                             case VerifyError.ACCOUNT_BARRED:
@@ -265,6 +273,7 @@ class MobileViewController: UIViewController, UITextFieldDelegate {
                                 alertController.addAction(okAction)
                                 
                                 self.presentViewController(alertController, animated: true, completion: nil)
+                                self.cancel(self)
                                 
                             default:
                                 print("Unknown error. Please contact customer support.")
@@ -310,19 +319,48 @@ class MobileViewController: UIViewController, UITextFieldDelegate {
                 }, withCancelBlock: { error in
                     print(error.description)
             })
+            
+//            VerifyClient.getUserStatus(countryCode: "IN", number: self.mobileNumber.text!) { status, error in
+//                print("Reached here")
+//                if let error = error {
+//                    print(error)
+//                    return
+//                }
+//                
+//                print(status!)
+//            }
+            
         }
     }
     
     func verifiedMobile() {
-        self.activityIndicator.stopAnimating()
-        self.darkLoadingView.hidden = true
-        UIApplication.sharedApplication().endIgnoringInteractionEvents()
-        self.user = self.ref.authData
-        let uid = self.user?.uid
-        let userRef = Firebase(url: "https://getgenie.firebaseio.com/users/" + uid!)
-        let mobile = ["mobile_number": self.mobileNumber.text!]
-        userRef.updateChildValues(mobile)
-        self.presentViewController(MySwipeVC(), animated: true, completion: nil)
+        // signing in user ----------------------------------------------------------------------
+        
+        self.ref.authUser(self.emailAddress, password: self.password) {
+            error, authData in
+            if error != nil {
+                print("Logging in failed after successfully verifying mobile number")
+            } else {
+                print("Logged verified user in successfully:", authData.uid)
+                
+                // --------------------------------------------------------------------------------------
+                
+                
+                // storing user details -----------------------------------------------------------------
+                
+                let uidRef = self.ref.childByAppendingPath("users/" + self.uid)
+                
+                let newUser = ["first_name": "Name", "last_name": "", "mobile_number": self.mobileNumber.text!, "email_address": self.emailAddress, "username": self.username]
+                
+                uidRef.setValue(newUser)
+                
+                self.activityIndicator.stopAnimating()
+                self.darkLoadingView.hidden = true
+                UIApplication.sharedApplication().endIgnoringInteractionEvents()
+                
+                self.presentViewController(MySwipeVC(), animated: true, completion: nil)
+            }
+        }
     }
     
     @IBAction func cancel(sender: AnyObject) {
@@ -509,6 +547,7 @@ class MobileViewController: UIViewController, UITextFieldDelegate {
                                 alertController.addAction(okAction)
                                 
                                 self.presentViewController(alertController, animated: true, completion: nil)
+                                self.cancel(self)
                                 
                                 /** The SDK revision is not supported anymore. */
                             case VerifyError.SDK_REVISION_NOT_SUPPORTED:
@@ -519,6 +558,7 @@ class MobileViewController: UIViewController, UITextFieldDelegate {
                                 alertController.addAction(okAction)
                                 
                                 self.presentViewController(alertController, animated: true, completion: nil)
+                                self.cancel(self)
                                 
                                 /** Current iOS OS version is not supported. */
                             case VerifyError.OS_NOT_SUPPORTED:
@@ -529,6 +569,7 @@ class MobileViewController: UIViewController, UITextFieldDelegate {
                                 alertController.addAction(okAction)
                                 
                                 self.presentViewController(alertController, animated: true, completion: nil)
+                                self.cancel(self)
                                 
                                 /** Generic internal error, the service might be down for the moment. Please try again later. */
                             case VerifyError.INTERNAL_ERROR:
@@ -539,6 +580,7 @@ class MobileViewController: UIViewController, UITextFieldDelegate {
                                 alertController.addAction(okAction)
                                 
                                 self.presentViewController(alertController, animated: true, completion: nil)
+                                self.cancel(self)
                                 
                                 /** This Nexmo Account has been barred from sending messages */
                             case VerifyError.ACCOUNT_BARRED:
@@ -549,7 +591,7 @@ class MobileViewController: UIViewController, UITextFieldDelegate {
                                 alertController.addAction(okAction)
                                 
                                 self.presentViewController(alertController, animated: true, completion: nil)
-                                
+                                self.cancel(self)
                             default:
                                 print("Unknown error. Please contact customer support.")
                             }

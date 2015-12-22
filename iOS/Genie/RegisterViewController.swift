@@ -22,6 +22,7 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
     var activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView()
     var activeField: UITextField?
     var ref: Firebase!
+    var uid: String!
     
     override func viewWillDisappear(animated: Bool) {
         UIApplication.sharedApplication().statusBarStyle = UIStatusBarStyle.LightContent
@@ -166,33 +167,9 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
                                     }
                                 }
                             } else {
-                                let uid = result["uid"] as! String?
-                                print("Successfully created user with uid:" + uid!)
-                                // --------------------------------------------------------------------------------------
-                                
-                                
-                                // signing in user ----------------------------------------------------------------------
-                                
-                                self.ref.authUser(self.emailAddress.text, password: self.password.text) {
-                                    error, authData in
-                                    if error != nil {
-                                        print("Logging in failed after successfully registering")
-                                    } else {
-                                        print("Logged registered user in successfully:", authData.uid)
-                                        
-                                        // --------------------------------------------------------------------------------------
-                                        
-                                        
-                                        // storing user details -----------------------------------------------------------------
-                                        
-                                        let uidRef = self.ref.childByAppendingPath("users/" + uid!)
-                                        
-                                        let newUser = ["first_name": "Name", "last_name": "", "mobile_number": "Mobile Number", "email_address": self.emailAddress.text!, "username": self.username.text!]
-                                        
-                                        uidRef.setValue(newUser)
-                                        self.performSegueWithIdentifier("VERIFY", sender: result)
-                                    }
-                                }
+                                self.uid = result["uid"] as! String?
+                                print("Successfully created user with uid:" + self.uid!)
+                                self.performSegueWithIdentifier("VERIFY", sender: result)
                             }
                             
                             // --------------------------------------------------------------------------------------
@@ -219,6 +196,16 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
                 }, withCancelBlock: { error in
                     print(error.description)
             })
+        }
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "VERIFY" {
+            let destVC = segue.destinationViewController as! MobileViewController
+            destVC.uid = self.uid!
+            destVC.emailAddress = self.emailAddress.text!
+            destVC.password = self.password.text!
+            destVC.username = self.username.text!
         }
     }
     

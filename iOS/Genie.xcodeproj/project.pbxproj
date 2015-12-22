@@ -704,6 +704,7 @@
 				TargetAttributes = {
 					FF01A6F51B8980E800F54273 = {
 						CreatedOnToolsVersion = 7.0;
+						DevelopmentTeam = XP3T6Z4XJW;
 					};
 					FF01A70C1B8980E800F54273 = {
 						CreatedOnToolsVersion = 7.0;
@@ -1130,6 +1131,7 @@
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Genie/Genie-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -1152,6 +1154,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Genie/Genie-Bridging-Header.h";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
