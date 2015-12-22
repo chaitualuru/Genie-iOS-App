@@ -22,7 +22,6 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
     var activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView()
     var activeField: UITextField?
     var ref: Firebase!
-    var uid: String!
     
     override func viewWillDisappear(animated: Bool) {
         UIApplication.sharedApplication().statusBarStyle = UIStatusBarStyle.LightContent
@@ -141,43 +140,29 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
             let usersRef = self.ref.childByAppendingPath("users")
             usersRef.queryOrderedByChild("username").queryEqualToValue(self.username.text).observeSingleEventOfType(.Value, withBlock: { snapshot in
                 if snapshot.value is NSNull {
-                    self.ref.createUser(self.emailAddress.text!, password: self.password.text!,
-                        withValueCompletionBlock: { error, result in
-                            if error != nil {
-                                if let errorCode = FAuthenticationError(rawValue: error.code) {
-                                    switch (errorCode) {
-                                    case .EmailTaken:
-                                        let alertController = UIAlertController(title: "", message: "The specified email address is already in use.", preferredStyle: .Alert)
-                                        
-                                        let okAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
-                                        
-                                        alertController.addAction(okAction)
-                                        
-                                        self.presentViewController(alertController, animated: true, completion: nil)
-                                    case .InvalidEmail:
-                                        let alertController = UIAlertController(title: "", message: "The specified email address is invalid.", preferredStyle: .Alert)
-                                        
-                                        let okAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
-                                        
-                                        alertController.addAction(okAction)
-                                        
-                                        self.presentViewController(alertController, animated: true, completion: nil)
-                                    default:
-                                        print("Error creating user:", error)
-                                    }
-                                }
-                            } else {
-                                self.uid = result["uid"] as! String?
-                                print("Successfully created user with uid:" + self.uid!)
-                                self.performSegueWithIdentifier("VERIFY", sender: result)
-                            }
+                    usersRef.queryOrderedByChild("email_address").queryEqualToValue(self.emailAddress.text).observeSingleEventOfType(.Value, withBlock: { snapshot in
+                        if snapshot.value is NSNull {
+                            self.darkLoadingView.hidden = true
+                            self.activityIndicator.stopAnimating()
+                            UIApplication.sharedApplication().endIgnoringInteractionEvents()
+                            self.performSegueWithIdentifier("VERIFY", sender: self)
+                        }
+                        else {
+                            let alertController = UIAlertController(title: "", message: "The specified email address is already in use.", preferredStyle: .Alert)
                             
-                            // --------------------------------------------------------------------------------------
+                            let okAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
+                            
+                            alertController.addAction(okAction)
                             
                             self.darkLoadingView.hidden = true
                             self.activityIndicator.stopAnimating()
                             UIApplication.sharedApplication().endIgnoringInteractionEvents()
-                    })
+                            
+                            self.presentViewController(alertController, animated: true, completion: nil)
+                        }
+                        }, withCancelBlock: { error in
+                            print(error.description)
+                        })
                 }
                 else {
                     let alertController = UIAlertController(title: "", message: "The specified username is already in use.", preferredStyle: .Alert)
@@ -186,11 +171,11 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
                     
                     alertController.addAction(okAction)
                     
-                    self.presentViewController(alertController, animated: true, completion: nil)
-                    
                     self.darkLoadingView.hidden = true
                     self.activityIndicator.stopAnimating()
                     UIApplication.sharedApplication().endIgnoringInteractionEvents()
+                    
+                    self.presentViewController(alertController, animated: true, completion: nil)
                 }
                 
                 }, withCancelBlock: { error in
@@ -202,7 +187,6 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "VERIFY" {
             let destVC = segue.destinationViewController as! MobileViewController
-            destVC.uid = self.uid!
             destVC.emailAddress = self.emailAddress.text!
             destVC.password = self.password.text!
             destVC.username = self.username.text!
