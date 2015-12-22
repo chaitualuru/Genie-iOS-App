@@ -25,7 +25,6 @@ class MobileViewController: UIViewController, UITextFieldDelegate {
     var loadOptionsTimer: NSTimer?
     var canResend = false
     var canCancel = false
-    var uid = ""
     var emailAddress = ""
     var password = ""
     var username = ""
@@ -64,10 +63,10 @@ class MobileViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func verifyCode(sender: AnyObject) {
         self.activityIndicator = UIActivityIndicatorView(frame: CGRectMake(0, 0, 50, 50))
-        self.activityIndicator.color = UIColor.whiteColor()
         self.activityIndicator.center = self.view.center
         self.activityIndicator.hidesWhenStopped = true
         self.activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.Gray
+        self.activityIndicator.color = UIColor.whiteColor()
         self.view.addSubview(activityIndicator)
         self.activityIndicator.startAnimating()
         self.darkLoadingView.hidden = false
@@ -312,59 +311,109 @@ class MobileViewController: UIViewController, UITextFieldDelegate {
                     let okAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
                     alertController.addAction(okAction)
                     self.presentViewController(alertController, animated: true, completion: nil)
+                    
                     self.darkLoadingView.hidden = true
                     self.activityIndicator.stopAnimating()
                     UIApplication.sharedApplication().endIgnoringInteractionEvents()
+                    
                 }
                 }, withCancelBlock: { error in
                     print(error.description)
             })
-            
-//            VerifyClient.getUserStatus(countryCode: "IN", number: self.mobileNumber.text!) { status, error in
-//                print("Reached here")
-//                if let error = error {
-//                    print(error)
-//                    return
-//                }
-//                
-//                print(status!)
-//            }
-            
         }
     }
     
     func verifiedMobile() {
-        // signing in user ----------------------------------------------------------------------
         
-        self.ref.authUser(self.emailAddress, password: self.password) {
-            error, authData in
-            if error != nil {
-                print("Logging in failed after successfully verifying mobile number")
-            } else {
-                print("Logged verified user in successfully:", authData.uid)
-                
-                // --------------------------------------------------------------------------------------
-                
-                
-                // storing user details -----------------------------------------------------------------
-                
-                let uidRef = self.ref.childByAppendingPath("users/" + self.uid)
-                
-                let newUser = ["first_name": "Name", "last_name": "", "mobile_number": self.mobileNumber.text!, "email_address": self.emailAddress, "username": self.username]
-                
-                uidRef.setValue(newUser)
-                
-                self.activityIndicator.stopAnimating()
-                self.darkLoadingView.hidden = true
-                UIApplication.sharedApplication().endIgnoringInteractionEvents()
-                
-                self.presentViewController(MySwipeVC(), animated: true, completion: nil)
-            }
-        }
+        self.ref.createUser(self.emailAddress, password: self.password,
+            withValueCompletionBlock: { error, result in
+                if error != nil {
+                    if let errorCode = FAuthenticationError(rawValue: error.code) {
+                        
+                        self.activityIndicator.stopAnimating()
+                        self.darkLoadingView.hidden = true
+                        UIApplication.sharedApplication().endIgnoringInteractionEvents()
+                        
+                        switch (errorCode) {
+                        case .EmailTaken:
+                            let alertController = UIAlertController(title: "", message: "The specified email address is already in use.", preferredStyle: .Alert)
+                            
+                            let okAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
+                            
+                            alertController.addAction(okAction)
+                            
+                            self.presentViewController(alertController, animated: true, completion: nil)
+                        case .InvalidEmail:
+                            let alertController = UIAlertController(title: "", message: "The specified email address is invalid.", preferredStyle: .Alert)
+                            
+                            let okAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
+                            
+                            alertController.addAction(okAction)
+                            
+                            self.presentViewController(alertController, animated: true, completion: nil)
+                        default:
+                            print("Error creating user:", error)
+                        }
+                    }
+                } else {
+                    let uid = result["uid"] as! String?
+                    print("Successfully created user with uid:" + uid!)
+                    // signing in user ----------------------------------------------------------------------
+                    
+                    self.ref.authUser(self.emailAddress, password: self.password) {
+                        error, authData in
+                        if error != nil {
+                            
+                            self.activityIndicator.stopAnimating()
+                            self.darkLoadingView.hidden = true
+                            UIApplication.sharedApplication().endIgnoringInteractionEvents()
+                            
+                            print("Logging in failed after successfully verifying mobile number")
+                            
+                            let alertController = UIAlertController(title: "", message: "Login failed. Please try again.", preferredStyle: .Alert)
+                            
+                            let okAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
+                            
+                            alertController.addAction(okAction)
+                            
+                            self.presentViewController(alertController, animated: true, completion: nil)
+                            
+                        } else {
+                            print("Logged verified user in successfully:", authData.uid)
+                            
+                            // --------------------------------------------------------------------------------------
+                            
+                            
+                            // storing user details -----------------------------------------------------------------
+                            
+                            let uidRef = self.ref.childByAppendingPath("users/" + uid!)
+                            
+                            let newUser = ["first_name": "Name", "last_name": "", "mobile_number": self.mobileNumber.text!, "email_address": self.emailAddress, "username": self.username]
+                            
+                            uidRef.setValue(newUser)
+                            
+                            self.activityIndicator.stopAnimating()
+                            self.darkLoadingView.hidden = true
+                            UIApplication.sharedApplication().endIgnoringInteractionEvents()
+                            
+                            self.presentViewController(MySwipeVC(), animated: true, completion: nil)
+                        }
+                    }
+                }
+        })
     }
     
     @IBAction func cancel(sender: AnyObject) {
         if self.canCancel {
+            self.activityIndicator = UIActivityIndicatorView(frame: CGRectMake(0, 0, 50, 50))
+            self.activityIndicator.center = self.view.center
+            self.activityIndicator.hidesWhenStopped = true
+            self.activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.Gray
+            self.activityIndicator.color = UIColor.whiteColor()
+            self.view.addSubview(activityIndicator)
+            self.activityIndicator.startAnimating()
+            self.darkLoadingView.hidden = false
+            UIApplication.sharedApplication().beginIgnoringInteractionEvents()
             self.canCancel = false
             VerifyClient.cancelVerification({error in
                 if let error = error {
@@ -372,6 +421,10 @@ class MobileViewController: UIViewController, UITextFieldDelegate {
                 }
                 
                 print("cancelled verification request")
+                
+                self.activityIndicator.stopAnimating()
+                self.darkLoadingView.hidden = true
+                UIApplication.sharedApplication().endIgnoringInteractionEvents()
                 
                 UIView.transitionWithView(self.next, duration: 1.0, options: UIViewAnimationOptions.TransitionCrossDissolve, animations: nil, completion: nil)
                 self.next.hidden = false
