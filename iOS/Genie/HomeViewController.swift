@@ -330,7 +330,7 @@ class HomeViewController: JSQMessagesViewController, UIImagePickerControllerDele
             self.setupMessages()
         }
         
-        let cacheSetTimer = NSTimer.scheduledTimerWithTimeInterval(15.0, target: self, selector: Selector("cacheMessages"), userInfo: nil, repeats: true)
+        NSTimer.scheduledTimerWithTimeInterval(15.0, target: self, selector: Selector("cacheMessages"), userInfo: nil, repeats: true)
     }
     
     override func collectionView(collectionView: JSQMessagesCollectionView!, didTapCellAtIndexPath indexPath: NSIndexPath!, touchLocation: CGPoint) {
@@ -364,12 +364,13 @@ class HomeViewController: JSQMessagesViewController, UIImagePickerControllerDele
             var counter = 0
             
             let lastMsg = messages[0]
+            
             //Disable Automatic Scrolling -----------------------------------------------------------
             self.automaticallyScrollsToMostRecentMessage = false
-            
             self.messagesRef.queryOrderedByChild("timestamp").queryEndingAtValue(lastMsg.date().timeIntervalSince1970 * 1000).queryLimitedToLast(10).observeEventType(.ChildAdded, withBlock: {
                 (snapshot) in
                 if snapshot != nil {
+                    print("snapshot not nil")
                     let messageId = snapshot.key
                     let text = snapshot.value["text"] as? String
                     let timestamp = snapshot.value["timestamp"] as? NSTimeInterval
@@ -403,6 +404,7 @@ class HomeViewController: JSQMessagesViewController, UIImagePickerControllerDele
                         else {
                             message = Message(messageId: messageId, text: text, sentByUser: sentByUser, senderId: sender, senderDisplayName: self.senderDisplayName, date: date, isMediaMessage: isMediaMessage, media: nil)
                         }
+                        
                         if message.messageId() == lastMsg.messageId() {
                             self.collectionView!.pullToRefreshView.stopAnimating()
                         } else {
@@ -410,7 +412,10 @@ class HomeViewController: JSQMessagesViewController, UIImagePickerControllerDele
                             counter = counter + 1
                         }
                     }
-                
+                }
+                else {
+                    print("snapshot nil")
+                    self.collectionView!.pullToRefreshView.stopAnimating()
                 }
                 dispatch_async(dispatch_get_main_queue(), {
                     self.automaticallyScrollsToMostRecentMessage = true
@@ -422,9 +427,13 @@ class HomeViewController: JSQMessagesViewController, UIImagePickerControllerDele
                         alertController.addAction(okAction)
                         
                         self.presentViewController(alertController, animated: true, completion: nil)
+                    } else {
+                        self.collectionView!.pullToRefreshView.stopAnimating()
                     }
                 })
                 self.finishReceivingMessageAnimated(false)
+            }, withCancelBlock: {error in
+                print(error)
             })
         } else {
             let alertController = UIAlertController(title: "", message: "No messages.", preferredStyle: .Alert)
@@ -564,13 +573,14 @@ class HomeViewController: JSQMessagesViewController, UIImagePickerControllerDele
     }
 
     func sendMessage(text: String!) {
+        let tstamp = FirebaseServerValue.timestamp()
         if let attachment = self.currentAttachment {
             let imageData = UIImageJPEGRepresentation(attachment, 0.5)
             let imageString = imageData!.base64EncodedStringWithOptions(NSDataBase64EncodingOptions.Encoding64CharacterLineLength)
             
             self.messagesRef.childByAutoId().setValue([
                 "text": text,
-                "timestamp": FirebaseServerValue.timestamp(),
+                "timestamp": tstamp,
                 "sent_by_user": true,
                 "deleted_by_user": false,
                 "is_media_message": true,
@@ -580,7 +590,7 @@ class HomeViewController: JSQMessagesViewController, UIImagePickerControllerDele
         else {
             self.messagesRef.childByAutoId().setValue([
                 "text": text,
-                "timestamp": FirebaseServerValue.timestamp(),
+                "timestamp": tstamp,
                 "sent_by_user": true,
                 "deleted_by_user": false,
                 "is_media_message": false
