@@ -33,7 +33,7 @@ class Order : NSObject {
     }
     
     func date() -> NSDate! {
-        return NSDate(timeIntervalSince1970: self.timestamp_/1000)
+        return NSDate(timeIntervalSince1970: self.timestamp_)
     }
     
     func timestamp() -> NSTimeInterval! {

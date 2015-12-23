@@ -56,7 +56,7 @@ class HomeViewController: JSQMessagesViewController, UIImagePickerControllerDele
                 let media = message.media() as! JSQPhotoMediaItem
                 imageCache.set(value: media.image, key: message.messageId())
             }
-            let timestamp = message.date().timeIntervalSince1970 * 1000
+            let timestamp = message.date().timeIntervalSince1970
             
             textCache.set(value: message.text() + " ~|~ " + String(message.isMediaMessage()) + " ~|~ " + String(message.sentByUser()!) + " ~|~ " + String(timestamp), key: message.messageId())
             
@@ -117,6 +117,7 @@ class HomeViewController: JSQMessagesViewController, UIImagePickerControllerDele
                 let sendButton: UIButton = UIButton(type: UIButtonType.Custom)
                 sendButton.setImage(sendImage, forState: UIControlState.Normal)
                 conview.rightBarButtonItem = sendButton
+//                conview.rightBarButtonItemWidth = 
             }
         }
         
@@ -275,7 +276,7 @@ class HomeViewController: JSQMessagesViewController, UIImagePickerControllerDele
                                 var message: Message!
                                 let text = messageComponents[0]
                                 let timestamp : NSTimeInterval = (messageComponents[3] as NSString).doubleValue
-                                let date = NSDate(timeIntervalSince1970: timestamp/1000)
+                                let date = NSDate(timeIntervalSince1970: timestamp)
                                 let sentByUser = NSString(string: messageComponents[2]).boolValue
                                 let isMediaMessage = NSString(string: messageComponents[1]).boolValue
                                 var sender = "notUser"
@@ -367,14 +368,14 @@ class HomeViewController: JSQMessagesViewController, UIImagePickerControllerDele
             
             //Disable Automatic Scrolling -----------------------------------------------------------
             self.automaticallyScrollsToMostRecentMessage = false
-            self.messagesRef.queryOrderedByChild("timestamp").queryEndingAtValue(lastMsg.date().timeIntervalSince1970 * 1000).queryLimitedToLast(10).observeEventType(.ChildAdded, withBlock: {
+            self.messagesRef.queryOrderedByChild("timestamp").queryEndingAtValue(lastMsg.date().timeIntervalSince1970).queryLimitedToLast(10).observeEventType(.ChildAdded, withBlock: {
                 (snapshot) in
                 if snapshot != nil {
                     print("snapshot not nil")
                     let messageId = snapshot.key
                     let text = snapshot.value["text"] as? String
                     let timestamp = snapshot.value["timestamp"] as? NSTimeInterval
-                    let date = NSDate(timeIntervalSince1970: timestamp!/1000)
+                    let date = NSDate(timeIntervalSince1970: timestamp!)
                     let sentByUser = snapshot.value["sent_by_user"] as! Bool
                     let deletedByUser = snapshot.value["deleted_by_user"] as! Bool
                     let isMediaMessage = snapshot.value["is_media_message"] as! Bool
@@ -505,7 +506,7 @@ class HomeViewController: JSQMessagesViewController, UIImagePickerControllerDele
             if (messageExists == false) {
                 let text = snapshot.value["text"] as! String
                 let timestamp = snapshot.value["timestamp"] as! NSTimeInterval
-                let date = NSDate(timeIntervalSince1970: timestamp/1000)
+                let date = NSDate(timeIntervalSince1970: timestamp)
                 let sentByUser = snapshot.value["sent_by_user"] as! Bool
                 let deletedByUser = snapshot.value["deleted_by_user"] as! Bool
                 let isMediaMessage = snapshot.value["is_media_message"] as! Bool
@@ -573,7 +574,7 @@ class HomeViewController: JSQMessagesViewController, UIImagePickerControllerDele
     }
 
     func sendMessage(text: String!) {
-        let tstamp = FirebaseServerValue.timestamp()
+        let tstamp = Int(NSDate().timeIntervalSince1970)
         if let attachment = self.currentAttachment {
             let imageData = UIImageJPEGRepresentation(attachment, 0.5)
             let imageString = imageData!.base64EncodedStringWithOptions(NSDataBase64EncodingOptions.Encoding64CharacterLineLength)
