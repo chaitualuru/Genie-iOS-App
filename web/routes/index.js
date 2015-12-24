@@ -5,8 +5,13 @@ module.exports = function (app, ref, server) {
 	var bcrypt = require('bcrypt'), SALT_WORK_FACTOR = 10;
 	var mRef = new Firebase(baseURL + "/messages");
 	var msgRef = {};
-	var activeRequests;
+	var userRef = {};
+	var activeRequests = {};
 	var io = require('socket.io')(server);
+	//------------------------------------------- LANDING -------------------------------------------------------
+
+	//------------------------------------------- LANDING PAGE --------------------------------------------------
+
 
 	//------------------------------------------- REGISTER --------------------------------------------------
 	app.get('/register', function (req, res) {
@@ -106,36 +111,54 @@ module.exports = function (app, ref, server) {
 			res.redirect('/');
 		}
 		else {
-			var mRef = new Firebase(baseURL + "/messages");
+			activeRequests = {};
+			var usersRef = new Firebase(baseURL + "/users/");
 
-		    mRef.on("value", function (snapshot) {
-				activeRequests = [];
-				var messages = snapshot.val();
-
-			  	for (var msg_id in messages) {
-			  		var message = messages[msg_id];
-			  		if (message['serviced'] == 0) {
-			  			var keys = Object.keys(message);
-			  			var active = {
-			  				message: message[keys[keys.length - 2]].text, 
-			  				id: msg_id, 
-			  				timestamp: message[keys[keys.length - 2]].timestamp
-			  			}
-			  			if (active.message == "")
-			  				active.message = "Image";
-						activeRequests.push(active);
-			  		}
-			  	}
-			  	// console.log(activeRequests);
-			}, function(error) {
-				console.log(error);
-			});
+			usersRef.on("value", function (snapshot) {
+				var users = snapshot.val();
+				for (uid in users) {
+					var mRef = new Firebase(baseURL + "/messages/" + uid);
+		  			mRef.limitToLast(1).on("value", function (snapshot) {
+		  				var message = snapshot.val();
+		  				if (snapshot.val() != null) {
+		  					var user_id = snapshot.ref().toString();
+		  					user_id = user_id.split("/");
+		  					user_id = user_id[user_id.length - 1];
+		  					var userRef = new Firebase(baseURL + "/users/" + user_id);
+		  					for (mid in message) {
+			  					userRef.once("value", function (snapshot) {
+			  						var user = snapshot.val();
+			  						if (user.serviced == 0) {
+							  			var active = {
+							  				message: message[mid].text, 
+							  				id: user_id, 
+							  				timestamp: message[mid].timestamp
+							  			}
+							  			if (active.message == "") {
+							  				active.message = "Image."
+							  			}
+							  			activeRequests[user_id] = active;
+							  		} else {
+							  			delete activeRequests[user_id];
+							  		}
+		  						});
+			  				}
+						}
+					}, function(error) {
+						console.log(error);
+					});
+		  		}
+	  		});
 			res.render('home');
 		}
 	});
 
 	app.get('/activeRequests', function (req, res) {
-		res.send(activeRequests);
+		var requests = [];
+		for (item in activeRequests) {
+			requests.push(activeRequests[item]);
+		}
+		res.send(requests);
 	});
 	//-------------------------------------- ACTIVE REQUESTS END --------------------------------------------
 
@@ -144,9 +167,10 @@ module.exports = function (app, ref, server) {
 	//-------------------------------------- MESSAGING ------------------------------------------------------
 	io.on('connection', function(socket) {
 		socket.on("id", function (msg_id) {
+			userRef[msg_id] = new Firebase(baseURL + "/users/" + msg_id);
+			userRef[msg_id].update({serviced: -1});
 			console.log("User Id: " + msg_id);
 			msgRef[msg_id] = new Firebase(baseURL + "/messages/" + msg_id);
-			msgRef[msg_id].update({serviced: -1});
 			msgRef[msg_id].on("child_added", function (snapshot) {
 				var msg = snapshot.val();
 				socket.emit(msg_id, msg);
@@ -214,22 +238,22 @@ module.exports = function (app, ref, server) {
 		}
 	});
 
-	app.get('/denyRequest/:msg_id', function (req, res) {
+	app.get('/denyRequest/:user_id', function (req, res) {
 		if (!req.session.uid) {
 			res.redirect('/'); 
 		} else {
-			var msgRef = new Firebase(baseURL + "/messages/" + req.params.msg_id);
-			msgRef.update({serviced: 1});
+			var usersRef = new Firebase(baseURL + "/users/" + req.params.user_id);
+			usersRef.update({serviced: 1});
 			res.send({code: 200, message: "OK"});
 		}
 	});
 
-	app.get('/completeRequest/:msg_id', function (req, res) {
+	app.get('/completeRequest/:user_id', function (req, res) {
 		if (!req.session.uid) {
 			res.redirect('/');
 		} else {
-			var msgRef = new Firebase(baseURL + "/messages/" + req.params.msg_id);
-			msgRef.update({serviced: 1});
+			var usersRef = new Firebase(baseURL + "/users/" + req.params.user_id);
+			usersRef.update({serviced: 1});
 			res.send({code: 200, message: "OK"});
 		}
 	});
@@ -238,6 +262,61 @@ module.exports = function (app, ref, server) {
 
 
 	//--------------------------------------------- ORDERS --------------------------------------------------
-	
+	app.post('/send/orders/:user_id', function (req, res) {
+		if (!req.session.uid) {
+			res.redirect('/'); 
+		} else {
+			var orderRef = new Firebase(baseURL + "/orders/" + req.params.user_id);
+			var order = req.body;
+			order.associated_employee_id = req.session.uid;
+			order.timestamp = parseInt(order.timestamp);
+			orderRef.push(order, function (error) {
+				if (error) {
+					res.send({code: 400, message: error});
+				} else {
+					res.send({code: 200, message: "OK"});
+				}
+			});
+		}	
+	});
+
+	app.post('/update/order/:user_id/:order_id', function (req, res) {
+		if (!req.session.uid) {
+			res.redirect('/'); 
+		} else {
+			var orderRef = new Firebase(baseURL + "/orders/" + req.params.user_id + "/" + req.params.order_id);
+			var order = req.body;
+			order.associated_employee_id = req.session.uid;
+			order.timestamp = parseInt(order.timestamp);
+			orderRef.update(order);
+			res.send({code: 200, message: "OK"});
+		}	
+	});
+
+	app.get('/orders/:user_id', function (req, res) {
+		if (!req.session.uid) {
+			res.redirect('/'); 
+		} else {
+			var orderRef = new Firebase(baseURL + "/orders/" + req.params.user_id);
+			orderRef.once("value", function (data){
+				var allOrders = [];
+				var orders = data.val();
+				for (item in orders) {
+					var order = {
+						order_id: item,
+						category: orders[item].category,
+						status: orders[item].status,
+						description: orders[item].description,
+						timestamp: orders[item].timestamp,
+						company: orders[item].company
+					}
+					allOrders.push(order);
+				}
+				allOrders.reverse();
+				res.send(allOrders);
+			});
+		}
+	});
+
 	//--------------------------------------------- ORDERS END ----------------------------------------------
 }

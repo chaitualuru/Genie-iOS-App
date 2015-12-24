@@ -7,7 +7,7 @@ function compare(a, b) {
 }
 
 function getAgoTime (timediff) {
-	timediff = timediff / 1000;
+	timediff = timediff;
 	if (timediff > 86400) {
 		days = timediff / 86400;
 		return parseInt(days) + "days ago";
@@ -29,7 +29,7 @@ function update () {
         $.each(requests, function (idx, request) {
         	$("#requests").append(
         		"<div class='row activeRequests'><p class='left'>" + request.message + 
-        		"</p><p class='right timestamp'>" + getAgoTime(Date.now() - request.timestamp) + "</p><br /></br /><a target='_blank' href='/messages/" + request.id + "' class='btn btn-primary'>Serve Request</a></div>");
+        		"</p><p class='right timestamp'>" + getAgoTime(Date.now()/1000 - request.timestamp) + "</p><br /></br /><a target='_blank' href='/messages/" + request.id + "' class='btn btn-primary'>Serve Request</a></div>");
         });
     }});
 }

@@ -8,10 +8,11 @@
     	</div>
     	<button type="button" id="completeRequest" class="btn btn-success navbar-btn navbar-right" style="margin-right: 10px;">Complete Request</button>
     	<button type="button" id="denyRequest" class="btn btn-danger navbar-btn navbar-right" style="margin-right: 10px;">Deny Request</button>
+    	<button type="button" id="placeOrderModal" class="btn btn-primary navbar-btn navbar-right" style="margin-right: 10px;">Place Order</button>
   	</div>
 </nav>
 
-<!-- Large modal -->
+<!-- Image Preview modal -->
 <div class="modal fade modal-image" id="modal-image" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
@@ -20,13 +21,146 @@
   </div>
 </div>
 
+<!-- Orders modal -->
+<div class="modal fade" id="modal-order" tabindex="-1" role="dialog" 
+     aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <button type="button" class="close" 
+                   data-dismiss="modal">
+                       <span aria-hidden="true">&times;</span>
+                       <span class="sr-only">Close</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">
+                    Order Placement
+                </h4>
+            </div>
+            
+            <!-- Modal Body -->
+            <div class="modal-body">
+                <div class="form-horizontal">
+                 	<div class="form-group">
+                    	<label  class="col-sm-2 control-label" for="company">Company</label>
+                    	<div class="col-sm-10">
+                        	<input type="text" class="form-control" id="company" placeholder="Company"/>
+                    	</div>
+                  	</div>
+                  	<div class="form-group">
+                    	<label class="col-sm-2 control-label" for="description" >Description</label>
+                    	<div class="col-sm-10">
+                        	<input type="text" class="form-control" id="description" placeholder="Description"/>
+                    	</div>
+                  	</div>
+                  	<div class="form-group">
+                    	<label class="col-sm-2 control-label" for="category" >Category</label>
+                    	<div class="col-sm-10">
+                        	<select id="category">
+	                        	<option value="booking">Bookings</option>
+								<option value="food">Food</option>
+								<option value="health">Health</option>
+								<option value="home">Home</option>
+							  	<option value="recharge">Recharge</option>
+							  	<option value="shopping">Shopping</option>
+							</select>
+		            	</div>
+                  	</div>
+                  	<div class="form-group">
+                    	<label class="col-sm-2 control-label" for="status" >Status</label>
+                    	<div class="col-sm-10">
+                        	<select id="status">
+	                        	<option value="ordered">Ordered</option>
+								<option value="processing">Processing</option>
+								<option value="complete">Complete</option>
+							</select>
+		            	</div>
+                  	</div>
+	              	<div class="form-group">
+                    	<div class="col-sm-offset-2 col-sm-10">
+                      		<button type="submit" class="btn btn-primary" id="placeOrder">Place Order</button>
+                    	</div>
+                  	</div>
+                </div>    
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Orders Status Changing Modal -->
+<div class="modal fade" id="modal-order-update" tabindex="-1" role="dialog" 
+     aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <button type="button" class="close" 
+                   data-dismiss="modal">
+                       <span aria-hidden="true">&times;</span>
+                       <span class="sr-only">Close</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">
+                    Order Update
+                </h4>
+            </div>
+            
+            <!-- Modal Body -->
+            <div class="modal-body">
+                <div class="form-horizontal">
+                 	<div class="form-group">
+                    	<label  class="col-sm-2 control-label" for="company-update">Company</label>
+                    	<div class="col-sm-10">
+                        	<input type="text" class="form-control" id="company-update" placeholder="Company"/>
+                    	</div>
+                  	</div>
+                  	<div class="form-group">
+                    	<label class="col-sm-2 control-label" for="description-update" >Description</label>
+                    	<div class="col-sm-10">
+                        	<input type="text" class="form-control" id="description-update" placeholder="Description"/>
+                    	</div>
+                  	</div>
+                  	<div class="form-group">
+                    	<label class="col-sm-2 control-label" for="category-update" >Category</label>
+                    	<div class="col-sm-10">
+                        	<select id="category-update">
+	                        	<option value="booking">Bookings</option>
+								<option value="food">Food</option>
+								<option value="health">Health</option>
+								<option value="home">Home</option>
+							  	<option value="recharge">Recharge</option>
+							  	<option value="shopping">Shopping</option>
+							</select>
+		            	</div>
+                  	</div>
+                  	<div class="form-group">
+                    	<label class="col-sm-2 control-label" for="status-update" >Status</label>
+                    	<div class="col-sm-10">
+                        	<select id="status-update">
+	                        	<option value="ordered">Ordered</option>
+								<option value="processing">Processing</option>
+								<option value="complete">Complete</option>
+							</select>
+		            	</div>
+                  	</div>
+	              	<div class="form-group">
+                    	<div class="col-sm-offset-2 col-sm-10">
+                      		<button type="submit" class="btn btn-primary" id="updateOrder">Update Order</button>
+                    	</div>
+                  	</div>
+                </div>    
+            </div>
+        </div>
+    </div>
+</div>
+
+
 <div class="container">
 	<div class="row">
 		<div class="col-md-8 border-solid">
-			<div id="message-box" style="height: 30em; overflow: scroll;">
-				
+			<div id="message-box" style="height: 35em; overflow-y: scroll; overflow-x: hidden">
+				<!-- Message filled in here -->
 			</div>
-			<div id="message-input" class="padding-md border-top">
+			<div id="message-input" class="padding-md border-top margin-top">
 				<div class="row">
 					<div class="col-md-10">
 						<input type="text" style="width: 100%" id="message_input" class="form-control" name="message" placeholder="Type your message here..." >
@@ -40,15 +174,17 @@
 				</div>
 			</div>
 		</div>
-		<div id="user-profile" class="col-md-3 border-solid" style="margin-left: 5px;">
-			<br />
-			<center>
-				<img src="/images/blank_profile.png" style="height: 76px; width: 76px;" alt="" class="img-circle" id="user-profile" />
-			</center>
-			<br />
-			<h5>Name:</h5><h4><small id="user-name"></small></h4>
-			<h5>Email:</h5><h4><small id="user-email"></small></h4>
-			<h5>Mobile:</h5><h4><small id="user-mobile"></small></h4>
+		<div class="col-md-3 border-solid" style="margin-left: 5px;">
+			<div id="user-profile" style="height: 13em;">
+				<br />
+				<h5>Name:</h5><h4><small id="user-name"></small></h4>
+				<h5>Email:</h5><h4><small id="user-email"></small></h4>
+				<h5>Mobile:</h5><h4><small id="user-mobile"></small></h4>
+			</div>
+			<hr >
+			<center><h5>Orders</h5></center>
+			<div id="orders" style="height: 25em; overflow-y: scroll">
+			</div>
 		</div>
 	</div>
 	<script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
