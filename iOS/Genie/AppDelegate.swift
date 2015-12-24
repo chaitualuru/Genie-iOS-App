@@ -25,7 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // setup Nexmo --------------------------------------------------------------------------
 
-        NexmoClient.start(applicationId: "8767af7d-6d2a-4cf4-b2ca-fe65d0f9027b", sharedSecretKey: "8db3434fc820340")
+        NexmoClient.start(applicationId: "0c3da667-60bf-4867-ba07-7c86b8362a82", sharedSecretKey: "f0f3633f999aaf2")
         
         // --------------------------------------------------------------------------------------
         
