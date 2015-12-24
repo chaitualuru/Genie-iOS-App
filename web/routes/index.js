@@ -10,6 +10,10 @@ module.exports = function (app, ref, server) {
 	var io = require('socket.io')(server);
 	//------------------------------------------- LANDING -------------------------------------------------------
 
+	app.get('/', function (req, res) {
+		res.render('landing', { layout: false })
+	});
+
 	//------------------------------------------- LANDING PAGE --------------------------------------------------
 
 
@@ -36,7 +40,7 @@ module.exports = function (app, ref, server) {
 								console.error(err);
 							} else {
 								console.log("Employee Created.");
-				    			res.redirect('/');
+				    			res.redirect('/auth');
 							}
 						});
 			        }
@@ -49,7 +53,7 @@ module.exports = function (app, ref, server) {
 
 
 	//------------------------------------------- LOGIN -----------------------------------------------------
-	app.get('/', function (req, res) {
+	app.get('/auth', function (req, res) {
 		if (req.session.uid)
 			res.redirect('home');
 		else 
@@ -108,7 +112,7 @@ module.exports = function (app, ref, server) {
 	//-------------------------------------- ACTIVE REQUESTS ------------------------------------------------
 	app.get('/home', function (req, res) {
 		if (!req.session.uid) {
-			res.redirect('/');
+			res.redirect('/auth');
 		}
 		else {
 			activeRequests = {};
@@ -182,7 +186,7 @@ module.exports = function (app, ref, server) {
 
 	app.get('/messages/:msg_id', function (req, res) {
 		if (!req.session.uid) {
-			res.redirect('/');
+			res.redirect('/auth');
 		} else {
 			res.render('messaging');
 		}
@@ -190,7 +194,7 @@ module.exports = function (app, ref, server) {
 
 	app.post('/send/messages/:msg_id', function (req, res) {
 		if (!req.session.uid) {
-			res.redirect('/'); 
+			res.redirect('/auth'); 
 		} else {
 			var msgRef = new Firebase(baseURL + "/messages/" + req.params.msg_id);
 			var response, userFlag, newMessage;
@@ -229,7 +233,7 @@ module.exports = function (app, ref, server) {
 
 	app.get('/users/:user_id', function (req, res) {
 		if (!req.session.uid) {
-			res.redirect('/'); 
+			res.redirect('/auth'); 
 		} else {
 			var userRef = new Firebase(baseURL + "/users/" + req.params.user_id);
 			userRef.once("value", function (user) {
@@ -240,7 +244,7 @@ module.exports = function (app, ref, server) {
 
 	app.get('/denyRequest/:user_id', function (req, res) {
 		if (!req.session.uid) {
-			res.redirect('/'); 
+			res.redirect('/auth'); 
 		} else {
 			var usersRef = new Firebase(baseURL + "/users/" + req.params.user_id);
 			usersRef.update({serviced: 1});
@@ -250,7 +254,7 @@ module.exports = function (app, ref, server) {
 
 	app.get('/completeRequest/:user_id', function (req, res) {
 		if (!req.session.uid) {
-			res.redirect('/');
+			res.redirect('/auth');
 		} else {
 			var usersRef = new Firebase(baseURL + "/users/" + req.params.user_id);
 			usersRef.update({serviced: 1});
@@ -264,7 +268,7 @@ module.exports = function (app, ref, server) {
 	//--------------------------------------------- ORDERS --------------------------------------------------
 	app.post('/send/orders/:user_id', function (req, res) {
 		if (!req.session.uid) {
-			res.redirect('/'); 
+			res.redirect('/auth'); 
 		} else {
 			var orderRef = new Firebase(baseURL + "/orders/" + req.params.user_id);
 			var order = req.body;
@@ -282,7 +286,7 @@ module.exports = function (app, ref, server) {
 
 	app.post('/update/order/:user_id/:order_id', function (req, res) {
 		if (!req.session.uid) {
-			res.redirect('/'); 
+			res.redirect('/auth'); 
 		} else {
 			var orderRef = new Firebase(baseURL + "/orders/" + req.params.user_id + "/" + req.params.order_id);
 			var order = req.body;
@@ -295,7 +299,7 @@ module.exports = function (app, ref, server) {
 
 	app.get('/orders/:user_id', function (req, res) {
 		if (!req.session.uid) {
-			res.redirect('/'); 
+			res.redirect('/auth'); 
 		} else {
 			var orderRef = new Firebase(baseURL + "/orders/" + req.params.user_id);
 			orderRef.once("value", function (data){
