@@ -10,8 +10,8 @@ var mongoose = require('mongoose');
 app.use(cookieParser());
 app.use(session({secret: 'vQZ4mv5d2NNCSwmDrWPB2ork5NfAYtke3Qx2iBHW'}));
 
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json({limit: '50mb'}));
+app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
 
 app.engine('handlebars', exphbs({defaultLayout: 'main'}));
 app.set('view engine', 'handlebars');

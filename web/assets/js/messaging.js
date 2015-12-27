@@ -2,7 +2,8 @@ var url = window.location.pathname.split('/');
 var user_id = url[2];
 var user_name = "";
 var uploadedFileContents;
-var playsound = false;
+var playsound = true;
+var toUpdateOrder;
 
 $("#denyRequest").click(function () {
 	$.ajax({url: "/denyRequest/" + user_id, success: function(response) {
@@ -42,7 +43,7 @@ function sendMessage () {
 			is_media_message: true, 
 			media: uploadedFileContents.split(",")[1],
 			text: "", 
-			timestamp: Date.now()
+			timestamp: parseInt(Date.now() / 1000)
 		}; 
 	} else {
 		message = {
@@ -50,23 +51,110 @@ function sendMessage () {
 			deleted_by_user: false, 
 			is_media_message: false, 
 			text: $("#message_input").val(), 
-			timestamp: Date.now()
+			timestamp: parseInt(Date.now() / 1000)
 		};
 	}
-	$.ajax({
-		type: "POST",
-		url: "/send/messages/" + user_id,
-		data: message,
-		success: function (response){
-			if (response.code == 200) {
-				$("#message_input").val("");
-				$('#uploadFile').val("");
-				console.log("Uploaded");
-			} else {
-				alert(response.message);
+	if ((message.text != "" && !message.is_media_message) || (message.is_media_message)) {
+		$.ajax({
+			type: "POST",
+			url: "/send/messages/" + user_id,
+			data: message,
+			success: function (response){
+				if (response.code == 200) {
+					$("#message_input").val("");
+					$('#uploadFile').val("");
+					console.log("Uploaded");
+				} else {
+					alert(response.message);
+				}
 			}
+		});
+	}
+}
+
+function showOrderModal () {
+	$('#modal-order').modal('show');
+}
+
+function getOrders () {
+	$('#orders').empty();
+	$.ajax({url: "/orders/" + user_id, success: function (orders){
+		for (idx in orders) {
+			var order = orders[idx];
+			var date = new Date(order.timestamp * 1000);
+			date = String(date);
+			date = date.split(" ");
+			date = date[1] + " " + date[2] + ", " + date[3] + " | " + date[4];
+			$("#orders").append("<div class='order-item'>" + order.description + " | " + order.company + " | " + order.category + "<br>" + date  + "  <strong>" + order.status + "</strong> <button type='button' class='btn btn-xs btn-primary' onclick='updateOrderModal({order_id: \"" + order.order_id + "\", status: \"" + order.status + "\", category: \"" + order.category +"\", description: \"" + order.description + "\", company: \"" + order.company + "\"})'>Edit</button><div><hr>");
 		}
-	});
+	}});
+}
+
+function placeOrder () {
+	var order = {
+		company: $("#company").val(),
+		description: $("#description").val(),
+		timestamp: parseInt(Date.now() / 1000),
+		associated_employee_id: "",
+		status: $("#status").val(),
+		category: $("#category").val()
+	}
+	if (order.company && order.description && order.category && order.status) {
+		$.ajax({
+			type: "POST",
+			url: "/send/orders/" + user_id,
+			data: order,
+			success: function (response){
+				if (response.code == 200) {
+					$('#modal-order').modal('toggle');
+					getOrders();
+				} else {
+					alert(response.message);
+				}
+			}
+		});
+	} else {
+		alert("Please fill all fields!");
+	}
+}
+
+function updateOrderModal (order) {
+	$('#modal-order-update').modal('show');
+	$("#company-update").val(order.company);
+	$("#description-update").val(order.description);
+	$("#status-update").val(order.status);
+	$("#category-update").val(order.category)
+
+	toUpdateOrder = order.order_id;
+}
+
+function updateOrder () {
+	var order = {
+		company: $("#company-update").val(),
+		description: $("#description-update").val(),
+		timestamp: parseInt(Date.now() / 1000),
+		associated_employee_id: "",
+		status: $("#status-update").val(),
+		category: $("#category-update").val()
+	}
+
+	if (order.company && order.description && order.category && order.status) {
+		$.ajax({
+			type: "POST",
+			url: "/update/order/" + user_id + "/" + toUpdateOrder,
+			data: order,
+			success: function (response){
+				if (response.code == 200) {
+					$('#modal-order-update').modal('toggle');
+					getOrders();
+				} else {
+					alert(response.message);
+				}
+			}
+		});
+	} else {
+		alert("Please fill all fields!");
+	}
 }
 
 function getUserProfile() {
@@ -75,7 +163,6 @@ function getUserProfile() {
 		$('#user-email').text(user.email_address);
 		$('#user-mobile').text(user.mobile_number);
 		user_name = user.first_name;
-		console.log(user_name);
 		getNewMessages(false);
 	}});
 }
@@ -91,7 +178,7 @@ function getNewMessages(playsound) {
 		iosocket.emit('id', user_id);
 		iosocket.on(user_id, function(message) {
 			if (message.timestamp) {
-				var date = new Date(message.timestamp);
+				var date = new Date(message.timestamp * 1000);
 				date = date.toGMTString();
 				date = date.split(' ');
 				date = date[1] + " " + date[2] + ", " + date[4];
@@ -118,10 +205,20 @@ function getNewMessages(playsound) {
 			        }
 		        }
 		    }
+		    playsound = true
 		    $("#message-box").animate({ scrollTop: $('#message-box').prop("scrollHeight")}, 100);
 		});
 	});
 }
 getUserProfile();
+getOrders();
 document.getElementById('uploadFile').addEventListener('change', readSingleFile, false);
+$("#message_input").keyup(function(event){
+    if(event.keyCode == 13){
+        $("#sendMessage").click();
+    }
+});
 $("#sendMessage").click(sendMessage);
+$("#placeOrderModal").click(showOrderModal);
+$("#placeOrder").click(placeOrder);
+$("#updateOrder").click(updateOrder);

@@ -13,7 +13,11 @@
 }
 
 .padding-md {
-	padding: 15px !important;
+	padding: 10px !important;
+}
+
+.margin-top {
+	margin-top: 10px;
 }
 
 .left {
@@ -34,8 +38,19 @@
 
 .msg-box-user {
 	font-weight: bold;
+	margin-bottom: 1px;
+	margin-top: 1px;
+}
+#orders {
+	font-size: 12px;
+}
+
+#message-box::-webkit-scrollbar { 
+    display: none; 
 }
 
 .msg-box-employee {
 	color: #999999;
+	margin-bottom: 1px;
+	margin-top: 1px;
 }
