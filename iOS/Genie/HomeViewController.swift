@@ -549,7 +549,7 @@ class HomeViewController: JSQMessagesViewController, UIImagePickerControllerDele
                         message = Message(messageId: messageId, text: text, sentByUser: sentByUser, senderId: sender, senderDisplayName: self.senderDisplayName, date: date, isMediaMessage: isMediaMessage, media: nil)
                     }
                     self.messages.append(message)
-                    
+                
                     let settings = UIApplication.sharedApplication().currentUserNotificationSettings()
                     
                     if (UIApplication.sharedApplication().applicationState == UIApplicationState.Background) {

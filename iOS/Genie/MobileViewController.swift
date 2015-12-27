@@ -401,7 +401,7 @@ class MobileViewController: UIViewController, UITextFieldDelegate {
                             
                             let uidRef = self.ref.childByAppendingPath("users/" + uid!)
                             
-                            let newUser = ["first_name": "Name", "last_name": "", "mobile_number": self.mobileNumber.text!, "email_address": self.emailAddress, "username": self.username, "serviced": 1]
+                            let newUser = ["first_name": "~|~", "last_name": "", "mobile_number": self.mobileNumber.text!, "email_address": self.emailAddress, "username": self.username, "serviced": 1]
                             
                             uidRef.setValue(newUser)
                             

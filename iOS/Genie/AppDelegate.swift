@@ -21,8 +21,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
         
-//        UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.LightContent, animated: true)
-        
         // setup Nexmo --------------------------------------------------------------------------
 
         NexmoClient.start(applicationId: "0c3da667-60bf-4867-ba07-7c86b8362a82", sharedSecretKey: "f0f3633f999aaf2")

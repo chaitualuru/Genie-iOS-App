@@ -47,6 +47,12 @@ class ProfileViewController: UIViewController {
             self.username.text = snapshot.value.objectForKey("username") as? String
             self.userMobile.text = self.mobileNumber
             self.userEmail.text = self.emailAddress
+            if snapshot.value["first_name"] as! String != "~|~" {
+                self.fullName.hidden = false
+            }
+            else {
+                self.fullName.hidden = true
+            }
             }, withCancelBlock: { error in
                 print(error.description)
         })
