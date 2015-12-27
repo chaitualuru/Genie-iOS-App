@@ -19,6 +19,7 @@ class ProfileViewController: UIViewController {
 
     @IBOutlet weak var userMobile: UILabel!
     @IBOutlet weak var userEmail: UILabel!
+    @IBOutlet var navBar: UINavigationBar!
 
     @IBOutlet weak var profileImgTop: NSLayoutConstraint!
     
@@ -49,6 +50,19 @@ class ProfileViewController: UIViewController {
             }, withCancelBlock: { error in
                 print(error.description)
         })
+        
+        // Handling Navigation Bar --------------------------------------------------------------
+        
+        let navItem = UINavigationItem(title: "")
+        self.navBar.pushNavigationItem(navItem, animated: true)
+        self.navBar.setBackgroundImage(UIImage(), forBarMetrics: .Default)
+        self.navBar.shadowImage = UIImage()
+
+
+        navItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "cancel.png"), landscapeImagePhone: UIImage(named: "cancel.png"), style: UIBarButtonItemStyle.Plain, target: self, action: "closeProfileVC:")
+        self.navBar.barTintColor = UIColor(red: (98/255.0), green: (90/255.0), blue: (151/255.0), alpha: 1.0)
+        
+        // --------------------------------------------------------------------------------------
 
         // Dismiss keyboard on tap --------------------------------------------------------------
         
@@ -68,7 +82,7 @@ class ProfileViewController: UIViewController {
         performSegueWithIdentifier("SIGN_OUT", sender: nil)
     }
     
-    @IBAction func closeProfileVC(sender: UIButton) {
+    func closeProfileVC(sender: UIButton) {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     

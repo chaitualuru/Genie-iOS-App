@@ -12,6 +12,7 @@ import Firebase
 
 class MobileViewController: UIViewController, UITextFieldDelegate {
 
+    @IBOutlet var codeSent: UILabel!
     @IBOutlet var mobileNumber: UITextField!
     @IBOutlet var verificationCode: UITextField!
     @IBOutlet var verifyNumber: UILabel!
@@ -21,8 +22,10 @@ class MobileViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet var resendVerificationCode: UIButton!
     @IBOutlet var cancelVerification: UIButton!
     @IBOutlet var darkLoadingView: UIView!
+
     var resendTimer: NSTimer?
     var loadOptionsTimer: NSTimer?
+    var codeSentTimer: NSTimer?
     var canResend = false
     var canCancel = false
     var emailAddress = ""
@@ -286,6 +289,11 @@ class MobileViewController: UIViewController, UITextFieldDelegate {
                     UIView.transitionWithView(self.next, duration: 0.2, options: UIViewAnimationOptions.TransitionCrossDissolve, animations: nil, completion: nil)
                     self.next.hidden = true
                     
+                    
+                    UIView.transitionWithView(self.codeSent, duration: 1.0, options: .TransitionCrossDissolve, animations: nil, completion: nil)
+                    self.codeSent.hidden = false
+                    NSTimer.scheduledTimerWithTimeInterval(5.0, target: self, selector: "sentCode", userInfo: nil, repeats: false)
+                    
                     UIView.transitionWithView(self.verificationCode, duration: 1.0, options: UIViewAnimationOptions.TransitionCrossDissolve, animations: nil, completion: nil)
                     self.verificationCode.hidden = false
                     
@@ -321,6 +329,11 @@ class MobileViewController: UIViewController, UITextFieldDelegate {
                     print(error.description)
             })
         }
+    }
+    
+    func sentCode() {
+        UIView.transitionWithView(self.codeSent, duration: 0.2, options: .TransitionCrossDissolve, animations: nil, completion: nil)
+        self.codeSent.hidden = true
     }
     
     func verifiedMobile() {
@@ -439,11 +452,14 @@ class MobileViewController: UIViewController, UITextFieldDelegate {
                 UIView.transitionWithView(self.verify, duration: 0.5, options: UIViewAnimationOptions.TransitionCrossDissolve, animations: nil, completion: nil)
                 self.verify.hidden = true
                 
-                UIView.transitionWithView(self.resendVerificationCode, duration: 0.5, options: UIViewAnimationOptions.TransitionCrossDissolve, animations: nil, completion: nil)
+                UIView.transitionWithView(self.resendVerificationCode, duration: 0.5, options: .TransitionCrossDissolve, animations: nil, completion: nil)
                 self.resendVerificationCode.hidden = true
                 
                 UIView.transitionWithView(self.mobileNumber, duration: 1.0, options: UIViewAnimationOptions.TransitionCrossDissolve, animations: nil, completion: nil)
                 self.mobileNumber.hidden = false
+                
+                UIView.transitionWithView(self.codeSent, duration: 0.5, options: .TransitionCrossDissolve, animations: nil, completion: nil)
+                self.codeSent.hidden = true
                 
                 UIView.transitionWithView(self.verifyNumber, duration: 1.0, options: UIViewAnimationOptions.TransitionCrossDissolve, animations: nil, completion: nil)
                 self.verifyNumber.hidden = false

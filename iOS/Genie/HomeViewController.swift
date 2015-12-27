@@ -91,7 +91,13 @@ class HomeViewController: JSQMessagesViewController, UIImagePickerControllerDele
         
         let mobileNumberRef = ref.childByAppendingPath("users/" + senderId + "/mobile_number")
         mobileNumberRef.observeEventType(.Value, withBlock: { snapshot in
-            self.mobileNumber = snapshot.value as! String
+            if snapshot.value is NSNull {
+                print("could not get mobile number")
+            }
+            else {
+                self.mobileNumber = snapshot.value as! String
+            }
+            
             }, withCancelBlock: { error in
                 print(error.description)
         })
@@ -117,7 +123,6 @@ class HomeViewController: JSQMessagesViewController, UIImagePickerControllerDele
                 let sendButton: UIButton = UIButton(type: UIButtonType.Custom)
                 sendButton.setImage(sendImage, forState: UIControlState.Normal)
                 conview.rightBarButtonItem = sendButton
-//                conview.rightBarButtonItemWidth = 
             }
         }
         
@@ -131,7 +136,7 @@ class HomeViewController: JSQMessagesViewController, UIImagePickerControllerDele
                 if let conview = toolbar.contentView {
                     conview.backgroundColor = UIColor.whiteColor()
                     if let textView = conview.textView {
-                        textView.text = homeVCwishDescription
+                        textView.placeHolder = homeVCwishDescription
                     }
                     conview.rightBarButtonItem?.enabled = true
                 }
@@ -197,8 +202,8 @@ class HomeViewController: JSQMessagesViewController, UIImagePickerControllerDele
         self.helperFoot.lineBreakMode = NSLineBreakMode.ByWordWrapping
         self.helperFoot.font = UIFont(name: "SFUIText-Medium", size: 15.5)
         self.helperFoot.textAlignment = NSTextAlignment.Center
-        let mainString = "Swipe right for more!"
-        let range = (mainString as NSString).rangeOfString("Swipe right for more!")
+        let mainString = "Swipe left for more!"
+        let range = (mainString as NSString).rangeOfString("Swipe left for more!")
         let attributedString = NSMutableAttributedString(string:mainString)
         attributedString.addAttribute(NSForegroundColorAttributeName, value: UIColor(red: 52/255.0, green: 73/255.0, blue: 94/255.0, alpha: 1.0), range: range)
         self.helperFoot.attributedText = attributedString
@@ -597,25 +602,23 @@ class HomeViewController: JSQMessagesViewController, UIImagePickerControllerDele
                 "is_media_message": false
                 ])
         }
+        
+        
         var isServiced: UInt!
         let userRef = self.ref.childByAppendingPath("users/" + self.senderId)
-        userRef.observeEventType(.Value, withBlock: { snapshot in
-             isServiced = snapshot.value["serviced"] as! UInt
+        userRef.observeSingleEventOfType(.Value, withBlock: { snapshot in
+            isServiced = snapshot.value["serviced"] as! UInt
+            if isServiced != nil {
+                if isServiced == 1 {
+                    print("setting", isServiced)
+                    userRef.updateChildValues([
+                        "serviced": 0
+                        ])
+                }
+            }
             }, withCancelBlock: { error in
                 print(error.description)
         })
-        if isServiced != nil {
-            if isServiced == 1 {
-                userRef.updateChildValues([
-                    "serviced": 0
-                    ])
-            }
-        }
-        else {
-            userRef.updateChildValues([
-                    "serviced": 0
-                ])
-        }
     }
     
     override func didPressSendButton(button: UIButton!, withMessageText text: String!, senderId: String!, senderDisplayName: String!, date: NSDate!) {
