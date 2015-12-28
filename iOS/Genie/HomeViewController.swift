@@ -136,7 +136,10 @@ class HomeViewController: JSQMessagesViewController, UIImagePickerControllerDele
                 if let conview = toolbar.contentView {
                     conview.backgroundColor = UIColor.whiteColor()
                     if let textView = conview.textView {
-                        textView.placeHolder = homeVCwishDescription
+                        if homeVCwishDescription == "" {
+                            textView.placeHolder = "Ask us for anything!"
+                        }
+                        textView.text = homeVCwishDescription
                     }
                     conview.rightBarButtonItem?.enabled = true
                 }
