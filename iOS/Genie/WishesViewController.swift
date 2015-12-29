@@ -15,27 +15,27 @@ class WishesViewController: UITableViewController {
     var selectedHeading = []
     
     
-    let foodDescription = ["I would like to order a medium barbecue pizza from Dominos", "Can you give me the menu for Biryani House?", "Show me some reviews of Indigo Deli.", "I would like the recipe for homemade Gulab Jamun", "Where can I find the best chinese food nearby?", "Ask us anything!"]
+    let foodDescription = ["I would like to order a medium barbecue pizza from Dominos.", "Can you give me the menu for Biryani House?", "Show me some reviews of Indigo Deli.", "I would like the recipe for homemade Gulab Jamun", "Where can I find the best chinese food nearby?", "Ask us anything!"]
     let foodFiller = ["I want to order ", "I want the menu for ", "Show me reviews of ", "I want the recipe for ", "Where can I find ", ""]
     let foodHeading = ["Order", "Menu", "Reviews/Ratings", "Recipes", "Recommendations", "Other"]
     
-    let healthDescription = ["I would like my prescription delivered", "I want an anti-perspirant deodorant", "What treats should I buy my dog today?", "Make an appointment with an Orthopedic doctor near me", "Can you send me medium size diapers for my daughter?", "Ask us anything!"]
-    let healthFiller = ["I want ", "I want ", "I want ", "Make an appointment for ", "I want ", ""]
+    let healthDescription = ["I would like my prescription delivered.", "I want an anti-perspirant deodorant.", "What treats should I buy my dog today?", "Make an appointment with an Orthopedic doctor near me.", "Can you send me medium size diapers for my daughter?", "Ask us anything!"]
+    let healthFiller = ["I want ", "I want ", "What should I buy for ", "Make an appointment for ", "Can you send me ", ""]
     let healthHeading = ["Medicine", "Personal Care", "Pet Care", "Doctor Appointment", "Baby Care", "Other"]
 
-    let homeDescription = ["I would like a plumber to fix the shower", "Can you book a cleaner for later today?", "Find me an electrician to set up the wiring for my house", "I want to get my clothes picked up for dry cleaning", "I need an exterminator for bed bugs", "Ask us anything!"]
+    let homeDescription = ["I would like a plumber to fix the shower.", "Can you book a cleaner for later today?", "Find me an electrician to set up the wiring for my house.", "I want to get my clothes picked up for dry cleaning.", "I need an exterminator for bed bugs.", "Ask us anything!"]
     let homeFiller = ["I want a plumber ", "I want a cleaner ", "I want an electrician ", "I want ", "I want an extreminator ", ""]
     let homeHeading = ["Plumber", "Cleaner", "Electrician", "Laundry", "Pest Control", "Other"]
     
-    let bookingDescription = ["I need a cab to pick me up in Cuffe Parade right now", "Can you book me a flight to Bengaluru on the 29th?", "I want to buy 2 tickets for today's show of Dilwale", "Find and book a hotel near BKC for next week", "Reserve a table for 4 at Peshawari for dinner tonight", "Ask us anything!"]
-    let bookingFiller = ["I want a cab to ", "Can you book ", "I want to buy ", "Reserve ", "Recommend a ", ""]
+    let bookingDescription = ["I need a cab to pick me up in Cuffe Parade right now.", "Can you book me a flight to Bengaluru on the 29th?", "I want to buy 2 tickets for today's show of Dilwale.", "Find a hotel near BKC for next week.", "Reserve a table for 4 at Peshawari for dinner tonight.", "Ask us anything!"]
+    let bookingFiller = ["I want a cab to ", "Can you book ", "I want to buy ", "Recommend a ", "Reserve ", ""]
     let bookingHeading = ["Cab", "Travel", "Movie", "Hotel", "Food and Nightlife", "Other"]
     
-    let rechargeDescription = ["Can you recharge my Airtel plan with 300 rupees?", "Need to top-up my Dish TV service", "I want to recharge my Tata Photon plan", "Pay my Reliance Energy bill that is due later today", "My ICICI premium needs to be paid today", "Ask us anything!"]
-    let rechargeFiller = ["Recharge ", "Top-Up ", "Recharge ", "Pay ", "Pay ", ""]
-    let rechargeHeading = ["Phone", "Television", "Internet and Landline", "Electricity and Gas", "Insurance", "Other"]
+    let financeDescription = ["Can you recharge my Airtel plan with 300 rupees?", "Need to top-up my Dish TV service.", "I want to recharge my Tata Photon plan.", "Pay my Reliance Energy bill that is due later today.", "My ICICI premium needs to be paid today.", "Ask us anything!"]
+    let financeFiller = ["Recharge ", "Top-Up ", "Recharge ", "Pay ", "Pay ", ""]
+    let financeHeading = ["Phone", "Television", "Internet and Landline", "Electricity and Gas", "Insurance", "Other"]
     
-    let shoppingDescription = ["Can you send me some milk, cheese and eggs?", "I want a bouquet of Tulips delivered to my wife's office", "Need some AA batteries picked up", "I need to buy a new television. Any recommendations?", "I would like a package couriered to Delhi tomorrow", "Ask us anything!"]
+    let shoppingDescription = ["Can you send me some milk, cheese and eggs?", "I want a bouquet of Tulips delivered to my wife's office.", "Need some AA batteries picked up.", "I need to buy a new television. Any recommendations?", "I would like a package couriered to Delhi tomorrow.", "Ask us anything!"]
     let shoppingFiller = ["I want to buy ", " I want to buy ", "I want to buy ", "I want to buy ", "I want to ship ", ""]
     let shoppingHeading = ["Groceries", "Flowers", "General Store", "Electronics", "Parcel", "Other"]
     
@@ -63,11 +63,11 @@ class WishesViewController: UITableViewController {
                 selectedFiller = homeFiller
                 self.navigationItem.title = "Home"
                 break
-            case "recharge":
-                selectedHeading = rechargeHeading
-                selectedDescription = rechargeDescription
-                selectedFiller = rechargeFiller
-                self.navigationItem.title = "Recharge"
+            case "finance":
+                selectedHeading = financeHeading
+                selectedDescription = financeDescription
+                selectedFiller = financeFiller
+                self.navigationItem.title = "Finance"
                 break
             case "booking":
                 selectedHeading = bookingHeading

@@ -138,8 +138,10 @@ class HomeViewController: JSQMessagesViewController, UIImagePickerControllerDele
                     if let textView = conview.textView {
                         if homeVCwishDescription == "" {
                             textView.placeHolder = "Ask us for anything!"
+                            textView.becomeFirstResponder()
                         }
                         textView.text = homeVCwishDescription
+                        textView.becomeFirstResponder()
                     }
                     conview.rightBarButtonItem?.enabled = true
                 }

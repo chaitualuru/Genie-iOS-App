@@ -33,7 +33,7 @@ class DiscoverViewController: UIViewController {
     }
 
     @IBAction func rechargeSelected(sender: UIButton) {
-        category = "recharge"
+        category = "finance"
         performSegueWithIdentifier("WISHES", sender: nil)
     }
     
