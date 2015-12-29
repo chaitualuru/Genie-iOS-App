@@ -8,13 +8,29 @@ module.exports = function (app, ref, server) {
 	var userRef = {};
 	var activeRequests = {};
 	var io = require('socket.io')(server);
-	//------------------------------------------- LANDING -------------------------------------------------------
 
+	//------------------------------------------- LANDING -------------------------------------------------------
 	app.get('/', function (req, res) {
 		res.render('landing', { layout: false })
 	});
-
 	//------------------------------------------- LANDING PAGE --------------------------------------------------
+
+
+
+	//------------------------------------------- INVITE REGISTRATION -------------------------------------------
+	app.post('/registerForInvite', function (req, res) {
+		var betaUser = new BetaUsers(req.body);
+		betaUser.save(function (err, result) {
+			if (err){
+				res.send({code: 400, message: err});
+			} else {
+				console.log("Beta User Registered.");
+    			res.send({code: 200, message: "Beta User Registered"});
+			}
+		});
+	});
+	//------------------------------------------- LANDING PAGE --------------------------------------------------
+
 
 
 	//------------------------------------------- REGISTER --------------------------------------------------
