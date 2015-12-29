@@ -6,6 +6,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<!--[if lte IE 8]><script src="/js/ie/html5shiv.js"></script><![endif]-->
 		<link rel="stylesheet" href="/css/landing.css" />
+		<link rel="stylesheet" href="/css/reset.css" />
 		<!--[if lte IE 9]><link rel="stylesheet" href="/css/ie9.css" /><![endif]-->
 		<!--[if lte IE 8]><link rel="stylesheet" href="/css/ie8.css" /><![endif]-->
 		<link rel="apple-touch-icon-precomposed" sizes="57x57" href="/favicon/apple-touch-icon-57x57.png" />
@@ -31,18 +32,34 @@
 
 	</head>
 	<body>
-
+		<button class="cd-popup-trigger" id="modal-betaRegister" style="display: none;"></button>
+		<div class="cd-popup" role="alert">
+			<div class="cd-popup-container">
+				<p id="emailRequestMessage"style="color: gray">Thank you! You'll get a beta invite soon.</p>
+				<a href="" class="cd-buttons">OK</a>
+			</div> <!-- cd-popup-container -->
+		</div> 
 		<!-- Wrapper -->
 			<div id="wrapper">
 				<!-- Intro -->
 					<section id="intro" class="wrapper style1 fullscreen fade-up">
 						<img src="images/logo.png" id="logo">
+						<div id="android">
+							<i class="fa fa-android fa-lg" style="padding-right: 5px;"></i>
+							Coming Soon
+						</div>
 						<div class="inner1">
 							<h1>Your next wish is just a text away</h1>
 							<p>Genie is an iPhone app that assists you in completing<br> your daily tasks on the go.</p>
-							<form>
+							<!-- <form> -->
 								<input type="email" value="" class="text" id="email" placeholder="Enter email address" required="">
-							</form>
+								<button type="submit" value="" class="btn trans-btn" id="sendEmail" onclick="registerForInvite()">
+									<i class="fa fa-play fa-3x"></i>
+								</button>
+							<!-- </form> -->
+						</div>
+						<div class="inner2">
+							<h3>Launching in Mumbai</h3>
 						</div>
 						<ul class="actions">
 							<li><a href="#one" class="button scrolly"><img src="images/down.png" id="down"></a></li>
@@ -71,7 +88,7 @@
 								<section>
 									<span class="icon major fa-search"></span>
 									<h3>Deal Discovery</h3>
-									<p>Looking for the next sale on electronics and discount on flight tickets? <br>Find the best deals and trending products out there, that fit your needs..</p>
+									<p>Looking for the next sale on electronics and discount on flight tickets? <br>Find the best deals and trending products out there, that fit your needs.</p>
 								</section>
 								<section>
 									<span class="icon major fa-black-tie"></span>
@@ -115,8 +132,11 @@
 
 		<!-- Scripts -->
 			<script src="/js/jquery.min.js"></script>
+			<script src="/js/main.js"></script>
+			<script src="/js/modernizr.js"></script>
 			<script src="/js/jquery.scrollex.min.js"></script>
 			<script src="/js/jquery.scrolly.min.js"></script>
+			<script src="/js/jquery.animate-colors-min.js"></script>
 			<script src="/js/skel.min.js"></script>
 			<script src="/js/util.js"></script>
 			<!--[if lte IE 8]><script src="/js/ie/respond.min.js"></script><![endif]-->

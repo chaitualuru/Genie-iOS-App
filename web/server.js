@@ -32,6 +32,7 @@ require('./config/credentials.js')(app, mongoose);
 require('./routes/index.js')(app, ref, server);
 
 Employees = require('./models/employees.js');
+BetaUsers = require('./models/betaUsers.js');
 
 // --------------------------------- Authenticate the server to Firebase ------------------------------------
 function authenticate () {
