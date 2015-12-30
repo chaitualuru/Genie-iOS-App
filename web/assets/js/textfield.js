@@ -6,7 +6,6 @@ function registerForInvite () {
 	var email = $("#email").val();
 	if (validateEmail(email)) {
 		$("#email").css("border-color", "#00ff00");
-		$("#email").animate({ 'borderColor': '#ffffff' }, 4000);
 		$.ajax({
 			type: "POST",
 			url: "/registerForInvite/",
@@ -27,7 +26,7 @@ function registerForInvite () {
 		});
 	} else {
 		$("#email").css("border-color", "red");
-		$("#email").animate({ 'borderColor': '#ffffff' }, 4000);
+		$("#email").css("border-width", "2px");
 	}
 }
 

@@ -2190,7 +2190,7 @@
 		color: inherit;
 		display: block;
 		outline: 0;
-		padding: 0 1em;
+		padding: 0 0.5em;
 		text-decoration: none;
 		width: 100%;
 	}
@@ -3048,7 +3048,7 @@
 	}
 
 		.wrapper > .inner1 {
-			padding: 6em 5em 3em 5em;
+			padding: 0em 5em 3em 5em;
 			max-width: 100%;
 			width: 75em;
 		}
@@ -3056,7 +3056,7 @@
 			@media screen and (max-width: 1680px) {
 
 				.wrapper > .inner1 {
-					padding: 6em 4em 2em 4em;
+					padding: 2em 4em 2em 4em;
 				}
 
 			}
@@ -3461,20 +3461,46 @@
 		#android {
 			position: absolute;
 			float: right;
-			top: 20px;
+			border-radius: 30px;
+			top: 19px;
 			right: 25px;
 			font-size: 16px;
 			vertical-align: middle;	
 			color: white;
-			padding: 10px 15px 10px 15px;
+			padding: 7px 13px 7px 13px;
 			border: 1px solid white;
-			-webkit-transition: color 0.3s ease, background 0.3s ease, box-shadow 0.3s ease, border 0.3s ease;
+			-webkit-transition: color 0.2s ease, background 0.2s ease, box-shadow 0.2s ease, border 0.2s ease;
 		}
 
-		#android:hover {
+/*		#android:hover {
 			background: white;
 			color: black;
-			-webkit-transition: color 0.3s ease, background 0.3s ease, box-shadow 0.3s ease, border 0.3s ease;
+			-webkit-transition: color 0.2s ease, background 0.2s ease, box-shadow 0.2s ease, border 0.2s ease;
+		}*/
+
+		#soon {
+			position: relative;
+			top: -4px;
+			-webkit-transition: color 0.2s ease, background 0.2s ease, box-shadow 0.2s ease, border 0.2s ease;
+		}
+
+		#send {
+			/*position: relative;*/
+			margin-top: 8px;
+			-webkit-transition: all 0.2s ease;	
+			-moz-transition: all 0.2s ease; /* Firefox */
+			-ms-transition: all 0.2s ease; /* IE 9 */
+			-o-transition: all 0.2s ease; /* Opera */
+			transition: all 0.2s ease;
+		}
+
+		#send:hover {
+			-webkit-transition: all 0.2s ease;	
+			-moz-transition: all 0.2s ease; /* Firefox */
+			-ms-transition: all 0.2s ease; /* IE 9 */
+			-o-transition: all 0.2s ease; /* Opera */
+			transition: all 0.2s ease;
+			transform:scale(1.25);
 		}
 
 		#down {
@@ -3512,8 +3538,16 @@
 			outline: 0;
 			border: 0;
 			background: transparent;
-			border-bottom: 1px solid white;
+			border-bottom: 1px solid rgba(255,255,255,0.55);
 			border-radius: 0px;
+		}
+
+		#solution {
+			color: #ffffff;
+		}
+
+		#location {
+			color: #ffffff;
 		}
 
 			@media screen and (max-width: 980px) {
