@@ -30,10 +30,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // setup remote notifications --------------------------------------------------------------
         switch(getMajorSystemVersion()) {
         case 7:
-            application.registerForRemoteNotificationTypes([.Alert, .Badge, .Sound])
+            application.registerForRemoteNotificationTypes([.Alert, .Sound])
             application.registerForRemoteNotifications()
         default:
-            let notificationSettings = UIUserNotificationSettings(forTypes: [.Alert, .Badge, .Sound], categories: nil)
+            let notificationSettings = UIUserNotificationSettings(forTypes: [.Alert, .Sound], categories: nil)
             application.registerUserNotificationSettings(notificationSettings)
             application.registerForRemoteNotifications()
         }

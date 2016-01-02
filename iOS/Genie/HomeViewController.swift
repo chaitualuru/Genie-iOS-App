@@ -35,9 +35,9 @@ class HomeViewController: JSQMessagesViewController, UIImagePickerControllerDele
     var incomingBubble = JSQMessagesBubbleImageFactory().incomingMessagesBubbleImageWithColor(UIColor.jsq_messageBubbleLightGrayColor())
     var outgoingBubble = JSQMessagesBubbleImageFactory().outgoingMessagesBubbleImageWithColor(UIColor(red: (98/255.0), green: (90/255.0), blue: (151/255.0), alpha: 0.8))
     
-    var pizzaHelp: UILabel!
+    var appointmentHelp: UILabel!
     var furnitureHelp: UILabel!
-    var ticketHelp: UILabel!
+    var reminderHelp: UILabel!
     var helperFoot: UILabel!
     var firstMessageRead: Bool!
     let imageCache = Shared.imageCache
@@ -84,7 +84,13 @@ class HomeViewController: JSQMessagesViewController, UIImagePickerControllerDele
         
         let firstNameRef = ref.childByAppendingPath("users/" + senderId + "/first_name")
         firstNameRef.observeEventType(.Value, withBlock: { snapshot in
-            self.senderDisplayName = snapshot.value as! String
+            if snapshot.value is NSNull {
+                print("could not get first name")
+            }
+            else {
+                self.senderDisplayName = snapshot.value as! String
+            }
+            
             }, withCancelBlock: { error in
                 print(error.description)
         })
@@ -153,21 +159,21 @@ class HomeViewController: JSQMessagesViewController, UIImagePickerControllerDele
         
         // Helper Labels ------------------------------------------------------------------------
         
-        self.pizzaHelp = UILabel()
-        self.pizzaHelp.translatesAutoresizingMaskIntoConstraints = false
-        self.pizzaHelp.numberOfLines = 0
-        self.pizzaHelp.font = UIFont(name: "SFUIText-Regular", size: 15.0)
-        self.pizzaHelp.textAlignment = NSTextAlignment.Center
-        self.pizzaHelp.textColor = UIColor.lightGrayColor()
-        self.pizzaHelp.text = "Book me an appointment with a Dentist."
-        self.pizzaHelp.sizeToFit()
-        self.view.addSubview(pizzaHelp)
-        let pizzaHelpxCenterConstraint = NSLayoutConstraint(item: self.pizzaHelp, attribute: .CenterX, relatedBy: .Equal, toItem: self.view, attribute: .CenterX, multiplier: 1, constant: 0)
-        let pizzaHelpyCenterConstraint = NSLayoutConstraint(item: self.pizzaHelp, attribute: .CenterY, relatedBy: .Equal, toItem: self.view, attribute: .CenterY, multiplier: 1, constant: -44)
-        let pizzaHelpWidthConstraint = NSLayoutConstraint(item: self.pizzaHelp, attribute: .Width, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant:self.pizzaHelp.frame.width)
-        let pizzaHelpHeightConstraint = NSLayoutConstraint(item: self.pizzaHelp, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant:self.pizzaHelp.frame.height)
-        self.view.addConstraints([pizzaHelpHeightConstraint, pizzaHelpWidthConstraint, pizzaHelpxCenterConstraint, pizzaHelpyCenterConstraint])
-        self.view.insertSubview(self.pizzaHelp, belowSubview: (inputToolbar)!)
+        self.appointmentHelp = UILabel()
+        self.appointmentHelp.translatesAutoresizingMaskIntoConstraints = false
+        self.appointmentHelp.numberOfLines = 0
+        self.appointmentHelp.font = UIFont(name: "SFUIText-Regular", size: 15.0)
+        self.appointmentHelp.textAlignment = NSTextAlignment.Center
+        self.appointmentHelp.textColor = UIColor.lightGrayColor()
+        self.appointmentHelp.text = "Book me an appointment with a Dentist."
+        self.appointmentHelp.sizeToFit()
+        self.view.addSubview(appointmentHelp)
+        let appointmentHelpxCenterConstraint = NSLayoutConstraint(item: self.appointmentHelp, attribute: .CenterX, relatedBy: .Equal, toItem: self.view, attribute: .CenterX, multiplier: 1, constant: 0)
+        let appointmentHelpyCenterConstraint = NSLayoutConstraint(item: self.appointmentHelp, attribute: .CenterY, relatedBy: .Equal, toItem: self.view, attribute: .CenterY, multiplier: 1, constant: -44)
+        let appointmentHelpWidthConstraint = NSLayoutConstraint(item: self.appointmentHelp, attribute: .Width, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant:self.appointmentHelp.frame.width)
+        let appointmentHelpHeightConstraint = NSLayoutConstraint(item: self.appointmentHelp, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant:self.appointmentHelp.frame.height)
+        self.view.addConstraints([appointmentHelpHeightConstraint, appointmentHelpWidthConstraint, appointmentHelpxCenterConstraint, appointmentHelpyCenterConstraint])
+        self.view.insertSubview(self.appointmentHelp, belowSubview: (inputToolbar)!)
         
         self.furnitureHelp = UILabel()
         self.furnitureHelp.translatesAutoresizingMaskIntoConstraints = false
@@ -181,25 +187,25 @@ class HomeViewController: JSQMessagesViewController, UIImagePickerControllerDele
         let furnitureHelpxCenterConstraint = NSLayoutConstraint(item: self.furnitureHelp, attribute: .CenterX, relatedBy: .Equal, toItem: self.view, attribute: .CenterX, multiplier: 1, constant: 0)
         let furnitureHelpWidthConstraint = NSLayoutConstraint(item: self.furnitureHelp, attribute: .Width, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant:self.furnitureHelp.frame.width)
         let furnitureHelpHeightConstraint = NSLayoutConstraint(item: self.furnitureHelp, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant:self.furnitureHelp.frame.height)
-        let furnitureHelpyConstraint = NSLayoutConstraint(item: self.furnitureHelp, attribute: NSLayoutAttribute.Bottom, relatedBy: NSLayoutRelation.Equal, toItem: self.pizzaHelp, attribute: NSLayoutAttribute.Top, multiplier: 1.0, constant: -10)
+        let furnitureHelpyConstraint = NSLayoutConstraint(item: self.furnitureHelp, attribute: NSLayoutAttribute.Bottom, relatedBy: NSLayoutRelation.Equal, toItem: self.appointmentHelp, attribute: NSLayoutAttribute.Top, multiplier: 1.0, constant: -10)
         self.view.addConstraints([furnitureHelpxCenterConstraint, furnitureHelpyConstraint, furnitureHelpHeightConstraint, furnitureHelpWidthConstraint])
         self.view.insertSubview(self.furnitureHelp, belowSubview: (inputToolbar)!)
         
-        self.ticketHelp = UILabel()
-        self.ticketHelp.translatesAutoresizingMaskIntoConstraints = false
-        self.ticketHelp.numberOfLines = 0
-        self.ticketHelp.font = UIFont(name: "SFUIText-Regular", size: 15.0)
-        self.ticketHelp.textAlignment = NSTextAlignment.Center
-        self.ticketHelp.textColor = UIColor.lightGrayColor()
-        self.ticketHelp.text = "Remind me to pay my credit card bill."
-        self.ticketHelp.sizeToFit()
-        self.view.addSubview(self.ticketHelp)
-        let ticketHelpxCenterConstraint = NSLayoutConstraint(item: self.ticketHelp, attribute: .CenterX, relatedBy: .Equal, toItem: self.view, attribute: .CenterX, multiplier: 1, constant: 0)
-        let ticketHelpWidthConstraint = NSLayoutConstraint(item: self.ticketHelp, attribute: .Width, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant:self.ticketHelp.frame.width)
-        let ticketHelpHeightConstraint = NSLayoutConstraint(item: self.ticketHelp, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant:self.ticketHelp.frame.height)
-        let ticketHelpyConstraint = NSLayoutConstraint(item: self.ticketHelp, attribute: NSLayoutAttribute.Top, relatedBy: NSLayoutRelation.Equal, toItem: self.pizzaHelp, attribute: NSLayoutAttribute.Bottom, multiplier: 1.0, constant: 10)
-        self.view.addConstraints([ticketHelpxCenterConstraint, ticketHelpyConstraint, ticketHelpHeightConstraint, ticketHelpWidthConstraint])
-        self.view.insertSubview(self.ticketHelp, belowSubview: (inputToolbar)!)
+        self.reminderHelp = UILabel()
+        self.reminderHelp.translatesAutoresizingMaskIntoConstraints = false
+        self.reminderHelp.numberOfLines = 0
+        self.reminderHelp.font = UIFont(name: "SFUIText-Regular", size: 15.0)
+        self.reminderHelp.textAlignment = NSTextAlignment.Center
+        self.reminderHelp.textColor = UIColor.lightGrayColor()
+        self.reminderHelp.text = "Remind me to pay my credit card bill."
+        self.reminderHelp.sizeToFit()
+        self.view.addSubview(self.reminderHelp)
+        let reminderHelpxCenterConstraint = NSLayoutConstraint(item: self.reminderHelp, attribute: .CenterX, relatedBy: .Equal, toItem: self.view, attribute: .CenterX, multiplier: 1, constant: 0)
+        let reminderHelpWidthConstraint = NSLayoutConstraint(item: self.reminderHelp, attribute: .Width, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant:self.reminderHelp.frame.width)
+        let reminderHelpHeightConstraint = NSLayoutConstraint(item: self.reminderHelp, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant:self.reminderHelp.frame.height)
+        let reminderHelpyConstraint = NSLayoutConstraint(item: self.reminderHelp, attribute: NSLayoutAttribute.Top, relatedBy: NSLayoutRelation.Equal, toItem: self.appointmentHelp, attribute: NSLayoutAttribute.Bottom, multiplier: 1.0, constant: 10)
+        self.view.addConstraints([reminderHelpxCenterConstraint, reminderHelpyConstraint, reminderHelpHeightConstraint, reminderHelpWidthConstraint])
+        self.view.insertSubview(self.reminderHelp, belowSubview: (inputToolbar)!)
         
         self.helperFoot = UILabel()
         self.helperFoot.translatesAutoresizingMaskIntoConstraints = false
@@ -217,14 +223,14 @@ class HomeViewController: JSQMessagesViewController, UIImagePickerControllerDele
         self.view.addSubview(self.helperFoot)
         let helperFootxCenterConstraint = NSLayoutConstraint(item: self.helperFoot, attribute: .CenterX, relatedBy: .Equal, toItem: self.view, attribute: .CenterX, multiplier: 1, constant: 0)
         let helperFootWidthConstraint = NSLayoutConstraint(item: self.helperFoot, attribute: .Width, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant:250)
-        let helperFootyConstraint = NSLayoutConstraint(item: self.helperFoot, attribute: NSLayoutAttribute.Top, relatedBy: NSLayoutRelation.Equal, toItem: self.pizzaHelp, attribute: NSLayoutAttribute.Bottom, multiplier: 1.0, constant: 40)
+        let helperFootyConstraint = NSLayoutConstraint(item: self.helperFoot, attribute: NSLayoutAttribute.Top, relatedBy: NSLayoutRelation.Equal, toItem: self.appointmentHelp, attribute: NSLayoutAttribute.Bottom, multiplier: 1.0, constant: 40)
         self.view.addConstraints([helperFootxCenterConstraint, helperFootWidthConstraint, helperFootyConstraint])
         self.view.insertSubview(self.helperFoot, belowSubview: (inputToolbar)!)
 
         helperFoot.hidden = false
-        pizzaHelp.hidden = false
+        appointmentHelp.hidden = false
         furnitureHelp.hidden = false
-        ticketHelp.hidden = false
+        reminderHelp.hidden = false
         
         // --------------------------------------------------------------------------------------
         
@@ -304,9 +310,9 @@ class HomeViewController: JSQMessagesViewController, UIImagePickerControllerDele
                                             self.messages.sortInPlace({ $0.date().timeIntervalSince1970 < $1.date().timeIntervalSince1970 })
                                             self.finishReceivingMessage()
                                             print("Cache Fetched")
-                                            self.pizzaHelp.hidden = true
+                                            self.appointmentHelp.hidden = true
                                             self.furnitureHelp.hidden = true
-                                            self.ticketHelp.hidden = true
+                                            self.reminderHelp.hidden = true
                                             self.helperFoot.hidden = true
                                             self.setupMessages()
                                         }
@@ -317,9 +323,9 @@ class HomeViewController: JSQMessagesViewController, UIImagePickerControllerDele
                                     if (self.messages.count == allMessageIds.count - 1) {
                                         print("Cache Fetched")
                                         self.messages.sortInPlace({ $0.date().timeIntervalSince1970 < $1.date().timeIntervalSince1970 })
-                                        self.pizzaHelp.hidden = true
+                                        self.appointmentHelp.hidden = true
                                         self.furnitureHelp.hidden = true
-                                        self.ticketHelp.hidden = true
+                                        self.reminderHelp.hidden = true
                                         self.helperFoot.hidden = true
                                         self.finishReceivingMessage()
                                         self.setupMessages()
@@ -378,10 +384,9 @@ class HomeViewController: JSQMessagesViewController, UIImagePickerControllerDele
             
             //Disable Automatic Scrolling -----------------------------------------------------------
             self.automaticallyScrollsToMostRecentMessage = false
-            self.messagesRef.queryOrderedByChild("timestamp").queryEndingAtValue(lastMsg.date().timeIntervalSince1970).queryLimitedToLast(10).observeEventType(.ChildAdded, withBlock: {
+            self.messagesRef.queryOrderedByChild("timestamp").queryEndingAtValue(lastMsg.date().timeIntervalSince1970).queryLimitedToLast(20).observeEventType(.ChildAdded, withBlock: {
                 (snapshot) in
                 if snapshot != nil {
-                    print("snapshot not nil")
                     let messageId = snapshot.key
                     let text = snapshot.value["text"] as? String
                     let timestamp = snapshot.value["timestamp"] as? NSTimeInterval
@@ -495,15 +500,15 @@ class HomeViewController: JSQMessagesViewController, UIImagePickerControllerDele
         self.messagesRef = ref.childByAppendingPath("messages/" + self.senderId)
         
         if self.messages.count == 0 {
-            self.pizzaHelp.hidden = false
+            self.appointmentHelp.hidden = false
             self.furnitureHelp.hidden = false
-            self.ticketHelp.hidden = false
+            self.reminderHelp.hidden = false
             self.helperFoot.hidden = false
         }
         
         self.collectionView!.collectionViewLayout.springinessEnabled = false
 
-        self.getMessagesHandle = self.messagesRef.queryLimitedToLast(14).observeEventType(FEventType.ChildAdded, withBlock: {
+        self.getMessagesHandle = self.messagesRef.queryLimitedToLast(20).observeEventType(FEventType.ChildAdded, withBlock: {
             (snapshot) in
             let messageId = snapshot.key
             var messageExists = false
@@ -554,29 +559,12 @@ class HomeViewController: JSQMessagesViewController, UIImagePickerControllerDele
                         message = Message(messageId: messageId, text: text, sentByUser: sentByUser, senderId: sender, senderDisplayName: self.senderDisplayName, date: date, isMediaMessage: isMediaMessage, media: nil)
                     }
                     self.messages.append(message)
-                
-//                    let settings = UIApplication.sharedApplication().currentUserNotificationSettings()
-//                    
-//                    if (UIApplication.sharedApplication().applicationState == UIApplicationState.Background) {
-//                        if settings!.types == .None {
-//                            let ac = UIAlertController(title: "Can't schedule", message: "Either we don't have permission to schedule notifications, or we haven't asked yet.", preferredStyle: .Alert)
-//                            ac.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
-//                            self.presentViewController(ac, animated: true, completion: nil)
-//                            return
-//                        }
-//                        
-//                        let notification = UILocalNotification()
-//                        notification.fireDate = NSDate(timeIntervalSinceNow: 1)
-//                        notification.alertBody = message.text()
-//                        notification.soundName = UILocalNotificationDefaultSoundName
-//                        UIApplication.sharedApplication().scheduleLocalNotification(notification)
-//                    }
                 }
             }
             if self.messages.count > 0 {
-                self.pizzaHelp.hidden = true
+                self.appointmentHelp.hidden = true
                 self.furnitureHelp.hidden = true
-                self.ticketHelp.hidden = true
+                self.reminderHelp.hidden = true
                 self.helperFoot.hidden = true
             }
             self.finishReceivingMessage()
@@ -615,7 +603,6 @@ class HomeViewController: JSQMessagesViewController, UIImagePickerControllerDele
             isServiced = snapshot.value["serviced"] as! UInt
             if isServiced != nil {
                 if isServiced == 1 {
-                    print("setting", isServiced)
                     userRef.updateChildValues([
                         "serviced": 0
                         ])
@@ -754,9 +741,9 @@ class HomeViewController: JSQMessagesViewController, UIImagePickerControllerDele
         collectionView.deleteItemsAtIndexPaths([indexPath])
 
         if self.messages.count == 0 {
-            self.pizzaHelp.hidden = false
+            self.appointmentHelp.hidden = false
             self.furnitureHelp.hidden = false
-            self.ticketHelp.hidden = false
+            self.reminderHelp.hidden = false
             self.helperFoot.hidden = false
         }
     }
