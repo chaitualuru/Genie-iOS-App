@@ -126,12 +126,12 @@
 		FFCE45661C28750D008C21F4 /* logout@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = FFCE45631C28750D008C21F4 /* logout@1x.png */; };
 		FFCE45671C28750D008C21F4 /* logout@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FFCE45641C28750D008C21F4 /* logout@2x.png */; };
 		FFCE45681C28750D008C21F4 /* logout@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = FFCE45651C28750D008C21F4 /* logout@3x.png */; };
-		FFD27F1F1C2962C800842832 /* VerifyIosSdk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FFD27F1A1C2962BC00842832 /* VerifyIosSdk.framework */; };
-		FFD27F201C2962C800842832 /* VerifyIosSdk.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = FFD27F1A1C2962BC00842832 /* VerifyIosSdk.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		FFD27F231C2962C800842832 /* RequestSigning.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FFD27F1C1C2962BC00842832 /* RequestSigning.framework */; };
-		FFD27F241C2962C800842832 /* RequestSigning.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = FFD27F1C1C2962BC00842832 /* RequestSigning.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		FFD27F271C2962C800842832 /* DeviceProperties.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FFD27F1E1C2962BC00842832 /* DeviceProperties.framework */; };
-		FFD27F281C2962C800842832 /* DeviceProperties.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = FFD27F1E1C2962BC00842832 /* DeviceProperties.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		FFD005401C3865EA00C18993 /* VerifyIosSdk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FFD0053B1C3865E400C18993 /* VerifyIosSdk.framework */; };
+		FFD005411C3865EA00C18993 /* VerifyIosSdk.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = FFD0053B1C3865E400C18993 /* VerifyIosSdk.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		FFD005441C3865EA00C18993 /* RequestSigning.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FFD0053D1C3865E400C18993 /* RequestSigning.framework */; };
+		FFD005451C3865EA00C18993 /* RequestSigning.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = FFD0053D1C3865E400C18993 /* RequestSigning.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		FFD005481C3865EA00C18993 /* DeviceProperties.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FFD0053F1C3865E400C18993 /* DeviceProperties.framework */; };
+		FFD005491C3865EA00C18993 /* DeviceProperties.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = FFD0053F1C3865E400C18993 /* DeviceProperties.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		FFD5B7FA1C31F2ED00A2D90B /* finance@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = FFD5B7F71C31F2ED00A2D90B /* finance@1x.png */; };
 		FFD5B7FB1C31F2ED00A2D90B /* finance@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FFD5B7F81C31F2ED00A2D90B /* finance@2x.png */; };
 		FFD5B7FC1C31F2ED00A2D90B /* finance@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = FFD5B7F91C31F2ED00A2D90B /* finance@3x.png */; };
@@ -162,44 +162,44 @@
 			remoteGlobalIDString = FF01A6F51B8980E800F54273;
 			remoteInfo = Genie;
 		};
-		FFD27F191C2962BC00842832 /* PBXContainerItemProxy */ = {
+		FFD0053A1C3865E400C18993 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = FFD27F131C2962BC00842832 /* VerifyIosSdk.xcodeproj */;
+			containerPortal = FFD005341C3865E400C18993 /* VerifyIosSdk.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 2ABA3AB91B6166A800EB4842;
 			remoteInfo = VerifyIosSdk;
 		};
-		FFD27F1B1C2962BC00842832 /* PBXContainerItemProxy */ = {
+		FFD0053C1C3865E400C18993 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = FFD27F131C2962BC00842832 /* VerifyIosSdk.xcodeproj */;
+			containerPortal = FFD005341C3865E400C18993 /* VerifyIosSdk.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 2A6B60761B67A04B005378E0;
 			remoteInfo = RequestSigning;
 		};
-		FFD27F1D1C2962BC00842832 /* PBXContainerItemProxy */ = {
+		FFD0053E1C3865E400C18993 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = FFD27F131C2962BC00842832 /* VerifyIosSdk.xcodeproj */;
+			containerPortal = FFD005341C3865E400C18993 /* VerifyIosSdk.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 2A6B60981B67A078005378E0;
 			remoteInfo = DeviceProperties;
 		};
-		FFD27F211C2962C800842832 /* PBXContainerItemProxy */ = {
+		FFD005421C3865EA00C18993 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = FFD27F131C2962BC00842832 /* VerifyIosSdk.xcodeproj */;
+			containerPortal = FFD005341C3865E400C18993 /* VerifyIosSdk.xcodeproj */;
 			proxyType = 1;
 			remoteGlobalIDString = 2ABA3AB81B6166A800EB4842;
 			remoteInfo = VerifyIosSdk;
 		};
-		FFD27F251C2962C800842832 /* PBXContainerItemProxy */ = {
+		FFD005461C3865EA00C18993 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = FFD27F131C2962BC00842832 /* VerifyIosSdk.xcodeproj */;
+			containerPortal = FFD005341C3865E400C18993 /* VerifyIosSdk.xcodeproj */;
 			proxyType = 1;
 			remoteGlobalIDString = 2A6B60751B67A04B005378E0;
 			remoteInfo = RequestSigning;
 		};
-		FFD27F291C2962C800842832 /* PBXContainerItemProxy */ = {
+		FFD0054A1C3865EA00C18993 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = FFD27F131C2962BC00842832 /* VerifyIosSdk.xcodeproj */;
+			containerPortal = FFD005341C3865E400C18993 /* VerifyIosSdk.xcodeproj */;
 			proxyType = 1;
 			remoteGlobalIDString = 2A6B60971B67A078005378E0;
 			remoteInfo = DeviceProperties;
@@ -207,15 +207,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		FF5DD53E1BA5B0FC0003BB76 /* Embed Frameworks */ = {
+		FFD0054C1C3865EA00C18993 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				FFD27F241C2962C800842832 /* RequestSigning.framework in Embed Frameworks */,
-				FFD27F201C2962C800842832 /* VerifyIosSdk.framework in Embed Frameworks */,
-				FFD27F281C2962C800842832 /* DeviceProperties.framework in Embed Frameworks */,
+				FFD005451C3865EA00C18993 /* RequestSigning.framework in Embed Frameworks */,
+				FFD005411C3865EA00C18993 /* VerifyIosSdk.framework in Embed Frameworks */,
+				FFD005491C3865EA00C18993 /* DeviceProperties.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -357,7 +357,7 @@
 		FFCE45631C28750D008C21F4 /* logout@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logout@1x.png"; sourceTree = "<group>"; };
 		FFCE45641C28750D008C21F4 /* logout@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logout@2x.png"; sourceTree = "<group>"; };
 		FFCE45651C28750D008C21F4 /* logout@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logout@3x.png"; sourceTree = "<group>"; };
-		FFD27F131C2962BC00842832 /* VerifyIosSdk.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = VerifyIosSdk.xcodeproj; path = "../../../../verify-ios-sdk/VerifyIosSdk.xcodeproj"; sourceTree = "<group>"; };
+		FFD005341C3865E400C18993 /* VerifyIosSdk.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = VerifyIosSdk.xcodeproj; path = "../../../../Downloads/verify-ios-sdk-master/VerifyIosSdk.xcodeproj"; sourceTree = "<group>"; };
 		FFD5B7F71C31F2ED00A2D90B /* finance@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "finance@1x.png"; sourceTree = "<group>"; };
 		FFD5B7F81C31F2ED00A2D90B /* finance@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "finance@2x.png"; sourceTree = "<group>"; };
 		FFD5B7F91C31F2ED00A2D90B /* finance@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "finance@3x.png"; sourceTree = "<group>"; };
@@ -378,10 +378,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FFD27F1F1C2962C800842832 /* VerifyIosSdk.framework in Frameworks */,
-				FFD27F231C2962C800842832 /* RequestSigning.framework in Frameworks */,
+				FFD005401C3865EA00C18993 /* VerifyIosSdk.framework in Frameworks */,
+				FFD005441C3865EA00C18993 /* RequestSigning.framework in Frameworks */,
 				ACBF36ECF20473CBC6C31204 /* Pods.framework in Frameworks */,
-				FFD27F271C2962C800842832 /* DeviceProperties.framework in Frameworks */,
+				FFD005481C3865EA00C18993 /* DeviceProperties.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -437,7 +437,7 @@
 		FF01A6ED1B8980E800F54273 = {
 			isa = PBXGroup;
 			children = (
-				FFD27F131C2962BC00842832 /* VerifyIosSdk.xcodeproj */,
+				FFD005341C3865E400C18993 /* VerifyIosSdk.xcodeproj */,
 				FF01A6F81B8980E800F54273 /* Genie */,
 				FF01A7101B8980E800F54273 /* GenieTests */,
 				FF01A71B1B8980E800F54273 /* GenieUITests */,
@@ -636,12 +636,12 @@
 			name = Images;
 			sourceTree = "<group>";
 		};
-		FFD27F141C2962BC00842832 /* Products */ = {
+		FFD005351C3865E400C18993 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				FFD27F1A1C2962BC00842832 /* VerifyIosSdk.framework */,
-				FFD27F1C1C2962BC00842832 /* RequestSigning.framework */,
-				FFD27F1E1C2962BC00842832 /* DeviceProperties.framework */,
+				FFD0053B1C3865E400C18993 /* VerifyIosSdk.framework */,
+				FFD0053D1C3865E400C18993 /* RequestSigning.framework */,
+				FFD0053F1C3865E400C18993 /* DeviceProperties.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -659,14 +659,14 @@
 				FF01A6F41B8980E800F54273 /* Resources */,
 				D40B7CC3FB116469DC9C8D1D /* Copy Pods Resources */,
 				A8785C59D14E5082DC5EF523 /* Embed Pods Frameworks */,
-				FF5DD53E1BA5B0FC0003BB76 /* Embed Frameworks */,
+				FFD0054C1C3865EA00C18993 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				FFD27F221C2962C800842832 /* PBXTargetDependency */,
-				FFD27F261C2962C800842832 /* PBXTargetDependency */,
-				FFD27F2A1C2962C800842832 /* PBXTargetDependency */,
+				FFD005431C3865EA00C18993 /* PBXTargetDependency */,
+				FFD005471C3865EA00C18993 /* PBXTargetDependency */,
+				FFD0054B1C3865EA00C18993 /* PBXTargetDependency */,
 			);
 			name = Genie;
 			productName = Genie;
@@ -755,8 +755,8 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = FFD27F141C2962BC00842832 /* Products */;
-					ProjectRef = FFD27F131C2962BC00842832 /* VerifyIosSdk.xcodeproj */;
+					ProductGroup = FFD005351C3865E400C18993 /* Products */;
+					ProjectRef = FFD005341C3865E400C18993 /* VerifyIosSdk.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -769,25 +769,25 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		FFD27F1A1C2962BC00842832 /* VerifyIosSdk.framework */ = {
+		FFD0053B1C3865E400C18993 /* VerifyIosSdk.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
 			path = VerifyIosSdk.framework;
-			remoteRef = FFD27F191C2962BC00842832 /* PBXContainerItemProxy */;
+			remoteRef = FFD0053A1C3865E400C18993 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		FFD27F1C1C2962BC00842832 /* RequestSigning.framework */ = {
+		FFD0053D1C3865E400C18993 /* RequestSigning.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
 			path = RequestSigning.framework;
-			remoteRef = FFD27F1B1C2962BC00842832 /* PBXContainerItemProxy */;
+			remoteRef = FFD0053C1C3865E400C18993 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		FFD27F1E1C2962BC00842832 /* DeviceProperties.framework */ = {
+		FFD0053F1C3865E400C18993 /* DeviceProperties.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
 			path = DeviceProperties.framework;
-			remoteRef = FFD27F1D1C2962BC00842832 /* PBXContainerItemProxy */;
+			remoteRef = FFD0053E1C3865E400C18993 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -1030,20 +1030,20 @@
 			target = FF01A6F51B8980E800F54273 /* Genie */;
 			targetProxy = FF01A7191B8980E800F54273 /* PBXContainerItemProxy */;
 		};
-		FFD27F221C2962C800842832 /* PBXTargetDependency */ = {
+		FFD005431C3865EA00C18993 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = VerifyIosSdk;
-			targetProxy = FFD27F211C2962C800842832 /* PBXContainerItemProxy */;
+			targetProxy = FFD005421C3865EA00C18993 /* PBXContainerItemProxy */;
 		};
-		FFD27F261C2962C800842832 /* PBXTargetDependency */ = {
+		FFD005471C3865EA00C18993 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = RequestSigning;
-			targetProxy = FFD27F251C2962C800842832 /* PBXContainerItemProxy */;
+			targetProxy = FFD005461C3865EA00C18993 /* PBXContainerItemProxy */;
 		};
-		FFD27F2A1C2962C800842832 /* PBXTargetDependency */ = {
+		FFD0054B1C3865EA00C18993 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = DeviceProperties;
-			targetProxy = FFD27F291C2962C800842832 /* PBXContainerItemProxy */;
+			targetProxy = FFD0054A1C3865EA00C18993 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
