@@ -99,7 +99,7 @@ class MobileViewController: UIViewController, UITextFieldDelegate {
         }
         else {
             let usersRef = self.ref.childByAppendingPath("users")
-            usersRef.queryOrderedByChild("mobile_number").queryEqualToValue(self.mobileNumber.text).observeSingleEventOfType(.Value, withBlock: { snapshot in
+            usersRef.queryOrderedByChild("mobile_number").queryEqualToValue(self.storedNumber).observeSingleEventOfType(.Value, withBlock: { snapshot in
                 if snapshot.value is NSNull {
                     VerifyClient.getVerifiedUser(countryCode: "IN", phoneNumber: self.storedNumber,
                         onVerifyInProgress: {
@@ -401,7 +401,11 @@ class MobileViewController: UIViewController, UITextFieldDelegate {
                             
                             let uidRef = self.ref.childByAppendingPath("users/" + uid!)
                             
-                            let newUser = ["first_name": "~|~", "last_name": "", "mobile_number": self.mobileNumber.text!, "email_address": self.emailAddress, "username": self.username, "serviced": 1]
+                            // application_state | 1: Active; 0: Inactive; -1: Background, Suspended; -2: Not Running
+                            
+                            let newUser = ["first_name": "~|~", "last_name": "", "mobile_number": self.storedNumber, "email_address": self.emailAddress, "username": self.username, "serviced": 1, "application_state": 1]
+                            
+                            self.storedNumber = ""
                             
                             uidRef.setValue(newUser)
                             
@@ -457,6 +461,7 @@ class MobileViewController: UIViewController, UITextFieldDelegate {
                 
                 UIView.transitionWithView(self.mobileNumber, duration: 1.0, options: UIViewAnimationOptions.TransitionCrossDissolve, animations: nil, completion: nil)
                 self.mobileNumber.hidden = false
+                self.mobileNumber.text = ""
                 
                 UIView.transitionWithView(self.codeSent, duration: 0.5, options: .TransitionCrossDissolve, animations: nil, completion: nil)
                 self.codeSent.hidden = true

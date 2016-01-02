@@ -159,7 +159,7 @@ class HomeViewController: JSQMessagesViewController, UIImagePickerControllerDele
         self.pizzaHelp.font = UIFont(name: "SFUIText-Regular", size: 15.0)
         self.pizzaHelp.textAlignment = NSTextAlignment.Center
         self.pizzaHelp.textColor = UIColor.lightGrayColor()
-        self.pizzaHelp.text = "Can you order me some pizza?"
+        self.pizzaHelp.text = "Book me an appointment with a Dentist."
         self.pizzaHelp.sizeToFit()
         self.view.addSubview(pizzaHelp)
         let pizzaHelpxCenterConstraint = NSLayoutConstraint(item: self.pizzaHelp, attribute: .CenterX, relatedBy: .Equal, toItem: self.view, attribute: .CenterX, multiplier: 1, constant: 0)
@@ -175,7 +175,7 @@ class HomeViewController: JSQMessagesViewController, UIImagePickerControllerDele
         self.furnitureHelp.font = UIFont(name: "SFUIText-Regular", size: 15.0)
         self.furnitureHelp.textAlignment = NSTextAlignment.Center
         self.furnitureHelp.textColor = UIColor.lightGrayColor()
-        self.furnitureHelp.text = "Where can I find furniture for my house?"
+        self.furnitureHelp.text = "I need a side table for my new apartment."
         self.furnitureHelp.sizeToFit()
         self.view.addSubview(self.furnitureHelp)
         let furnitureHelpxCenterConstraint = NSLayoutConstraint(item: self.furnitureHelp, attribute: .CenterX, relatedBy: .Equal, toItem: self.view, attribute: .CenterX, multiplier: 1, constant: 0)
@@ -191,7 +191,7 @@ class HomeViewController: JSQMessagesViewController, UIImagePickerControllerDele
         self.ticketHelp.font = UIFont(name: "SFUIText-Regular", size: 15.0)
         self.ticketHelp.textAlignment = NSTextAlignment.Center
         self.ticketHelp.textColor = UIColor.lightGrayColor()
-        self.ticketHelp.text = "I would like to book movie tickets!"
+        self.ticketHelp.text = "Remind me to pay my credit card bill."
         self.ticketHelp.sizeToFit()
         self.view.addSubview(self.ticketHelp)
         let ticketHelpxCenterConstraint = NSLayoutConstraint(item: self.ticketHelp, attribute: .CenterX, relatedBy: .Equal, toItem: self.view, attribute: .CenterX, multiplier: 1, constant: 0)
@@ -555,22 +555,22 @@ class HomeViewController: JSQMessagesViewController, UIImagePickerControllerDele
                     }
                     self.messages.append(message)
                 
-                    let settings = UIApplication.sharedApplication().currentUserNotificationSettings()
-                    
-                    if (UIApplication.sharedApplication().applicationState == UIApplicationState.Background) {
-                        if settings!.types == .None {
-                            let ac = UIAlertController(title: "Can't schedule", message: "Either we don't have permission to schedule notifications, or we haven't asked yet.", preferredStyle: .Alert)
-                            ac.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
-                            self.presentViewController(ac, animated: true, completion: nil)
-                            return
-                        }
-                        
-                        let notification = UILocalNotification()
-                        notification.fireDate = NSDate(timeIntervalSinceNow: 1)
-                        notification.alertBody = message.text()
-                        notification.soundName = UILocalNotificationDefaultSoundName
-                        UIApplication.sharedApplication().scheduleLocalNotification(notification)
-                    }
+//                    let settings = UIApplication.sharedApplication().currentUserNotificationSettings()
+//                    
+//                    if (UIApplication.sharedApplication().applicationState == UIApplicationState.Background) {
+//                        if settings!.types == .None {
+//                            let ac = UIAlertController(title: "Can't schedule", message: "Either we don't have permission to schedule notifications, or we haven't asked yet.", preferredStyle: .Alert)
+//                            ac.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
+//                            self.presentViewController(ac, animated: true, completion: nil)
+//                            return
+//                        }
+//                        
+//                        let notification = UILocalNotification()
+//                        notification.fireDate = NSDate(timeIntervalSinceNow: 1)
+//                        notification.alertBody = message.text()
+//                        notification.soundName = UILocalNotificationDefaultSoundName
+//                        UIApplication.sharedApplication().scheduleLocalNotification(notification)
+//                    }
                 }
             }
             if self.messages.count > 0 {

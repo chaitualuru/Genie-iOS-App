@@ -27,9 +27,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // --------------------------------------------------------------------------------------
         
-        // set local notifications --------------------------------------------------------------
-        let notificationSettings = UIUserNotificationSettings(forTypes: UIUserNotificationType.Sound, categories: nil)
-        application.registerUserNotificationSettings(notificationSettings)
+        // setup remote notifications --------------------------------------------------------------
+        switch(getMajorSystemVersion()) {
+        case 7:
+            application.registerForRemoteNotificationTypes([.Alert, .Badge, .Sound])
+            application.registerForRemoteNotifications()
+        default:
+            let notificationSettings = UIUserNotificationSettings(forTypes: [.Alert, .Badge, .Sound], categories: nil)
+            application.registerUserNotificationSettings(notificationSettings)
+            application.registerForRemoteNotifications()
+        }
         // --------------------------------------------------------------------------------------
         
         
@@ -53,29 +60,84 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         return true
     }
+    
+    // successfully registered for push
+    func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
+        let trimEnds = deviceToken.description.stringByTrimmingCharactersInSet(NSCharacterSet(charactersInString: "<>"))
+        let cleanToken = trimEnds.stringByReplacingOccurrencesOfString(" ", withString: "")
+        print(cleanToken)
+        
+        if self.ref.authData != nil {
+            let userRef = self.ref.childByAppendingPath("users/" + self.ref.authData.uid)
+            userRef.updateChildValues([
+                "device_token": cleanToken
+                ])
+        }
+    }
+    
+    // Failed to register for Push
+    func application(application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: NSError) {
+        
+        NSLog("Failed to get token; error: %@", error) //Log an error for debugging purposes, user doesn't need to know
+    }
 
     func applicationWillResignActive(application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
+        if self.ref.authData != nil {
+            let userRef = self.ref.childByAppendingPath("users/" + self.ref.authData.uid)
+            userRef.updateChildValues([
+                "application_state": 0
+                ])
+        }
     }
 
     func applicationDidEnterBackground(application: UIApplication) {
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
+        if self.ref.authData != nil {
+            let userRef = self.ref.childByAppendingPath("users/" + self.ref.authData.uid)
+            userRef.updateChildValues([
+                "application_state": -1
+                ])
+        }
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
     }
 
     func applicationWillEnterForeground(application: UIApplication) {
         // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
+        if self.ref.authData != nil {
+            let userRef = self.ref.childByAppendingPath("users/" + self.ref.authData.uid)
+            userRef.updateChildValues([
+                "application_state": 0
+                ])
+        }
     }
 
     func applicationDidBecomeActive(application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+        if self.ref.authData != nil {
+            let userRef = self.ref.childByAppendingPath("users/" + self.ref.authData.uid)
+            userRef.updateChildValues([
+                "application_state": 1
+            ])
+        }
     }
 
     func applicationWillTerminate(application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+        if self.ref.authData != nil {
+            let userRef = self.ref.childByAppendingPath("users/" + self.ref.authData.uid)
+            userRef.updateChildValues([
+                "application_state": -2
+                ])
+        }
+        
         // Saves changes in the application's managed object context before the application terminates.
         self.saveContext()
+    }
+    
+    func getMajorSystemVersion() -> Int {
+        return Int(UIDevice.currentDevice().systemVersion.componentsSeparatedByString(".")[0])!
     }
 
     // MARK: - Core Data stack
