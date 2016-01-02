@@ -159,7 +159,7 @@ class HomeViewController: JSQMessagesViewController, UIImagePickerControllerDele
         self.pizzaHelp.font = UIFont(name: "SFUIText-Regular", size: 15.0)
         self.pizzaHelp.textAlignment = NSTextAlignment.Center
         self.pizzaHelp.textColor = UIColor.lightGrayColor()
-        self.pizzaHelp.text = "Can you order me some pizza?"
+        self.pizzaHelp.text = "Book me an appointment with a Dentist."
         self.pizzaHelp.sizeToFit()
         self.view.addSubview(pizzaHelp)
         let pizzaHelpxCenterConstraint = NSLayoutConstraint(item: self.pizzaHelp, attribute: .CenterX, relatedBy: .Equal, toItem: self.view, attribute: .CenterX, multiplier: 1, constant: 0)
@@ -175,7 +175,7 @@ class HomeViewController: JSQMessagesViewController, UIImagePickerControllerDele
         self.furnitureHelp.font = UIFont(name: "SFUIText-Regular", size: 15.0)
         self.furnitureHelp.textAlignment = NSTextAlignment.Center
         self.furnitureHelp.textColor = UIColor.lightGrayColor()
-        self.furnitureHelp.text = "Where can I find furniture for my house?"
+        self.furnitureHelp.text = "I need a side table for my new apartment."
         self.furnitureHelp.sizeToFit()
         self.view.addSubview(self.furnitureHelp)
         let furnitureHelpxCenterConstraint = NSLayoutConstraint(item: self.furnitureHelp, attribute: .CenterX, relatedBy: .Equal, toItem: self.view, attribute: .CenterX, multiplier: 1, constant: 0)
@@ -191,7 +191,7 @@ class HomeViewController: JSQMessagesViewController, UIImagePickerControllerDele
         self.ticketHelp.font = UIFont(name: "SFUIText-Regular", size: 15.0)
         self.ticketHelp.textAlignment = NSTextAlignment.Center
         self.ticketHelp.textColor = UIColor.lightGrayColor()
-        self.ticketHelp.text = "I would like to book movie tickets!"
+        self.ticketHelp.text = "Remind me to pay my credit card bill."
         self.ticketHelp.sizeToFit()
         self.view.addSubview(self.ticketHelp)
         let ticketHelpxCenterConstraint = NSLayoutConstraint(item: self.ticketHelp, attribute: .CenterX, relatedBy: .Equal, toItem: self.view, attribute: .CenterX, multiplier: 1, constant: 0)

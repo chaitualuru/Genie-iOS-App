@@ -723,6 +723,14 @@
 					FF01A6F51B8980E800F54273 = {
 						CreatedOnToolsVersion = 7.0;
 						DevelopmentTeam = XP3T6Z4XJW;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 					FF01A70C1B8980E800F54273 = {
 						CreatedOnToolsVersion = 7.0;
