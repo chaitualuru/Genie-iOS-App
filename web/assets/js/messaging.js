@@ -15,7 +15,9 @@ $("#denyRequest").click(function () {
 
 $("#completeRequest").click(function () {
 	$.ajax({url: "/completeRequest/" + user_id, success: function(response) {
+		console.log(response);
 		if (response.code == 200) {
+			console.log("Yes");
 			window.close();
 		}
 	}});
@@ -178,8 +180,7 @@ function getNewMessages(playsound) {
 		iosocket.emit('id', user_id);
 		iosocket.on(user_id, function(message) {
 			if (message.timestamp) {
-				var date = new Date(message.timestamp * 1000);
-				date = date.toGMTString();
+				var date = String(new Date(message.timestamp * 1000));
 				date = date.split(' ');
 				date = date[1] + " " + date[2] + ", " + date[4];
 				if (message.sent_by_user == true) {

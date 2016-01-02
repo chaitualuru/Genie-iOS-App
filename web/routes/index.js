@@ -1,4 +1,5 @@
 module.exports = function (app, ref, server) {
+	var path = require('path');
 	var baseURL = "https://getgenie.firebaseio.com"
 	var Firebase = require('firebase');
 	var Handlebars = require('handlebars');
@@ -9,6 +10,11 @@ module.exports = function (app, ref, server) {
 	var activeRequests = {};
 	var apn = require('apn');
 	var io = require('socket.io')(server);
+	var options = {
+    	"cert": path.join(__dirname, "/cert.pem"),
+	    "key":  path.join(__dirname, "/key.pem")
+	}
+	var apnConnection = new apn.Connection(options);
 
 	//------------------------------------------- LANDING -------------------------------------------------------
 	app.get('/', function (req, res) {
@@ -215,18 +221,18 @@ module.exports = function (app, ref, server) {
 			res.redirect('/auth'); 
 		} else {
 			var msgRef = new Firebase(baseURL + "/messages/" + req.params.msg_id);
-			var userRef = new Firebase(baseURL + "/messages/" + req.params.msg_id);
+			var userRef = new Firebase(baseURL + "/users/" + req.params.msg_id);
 			userRef.once("value", function (snapshot) {
 				var user = snapshot.val();
 				if (user.application_state != 1) {
+					console.log(user.device_token);
 					var myDevice = new apn.Device(user.device_token);
 					var notification = new apn.Notification();
 
 					notification.expiry = Math.floor(Date.now() / 1000) + 3600; // Expires 1 hour from now.
-					notification.badge = 3;
 					notification.sound = "default";
-					notification.alert = "\uD83D\uDCE7 \u2709 You have a new message";
-					notification.payload = {'messageFrom': 'Caroline'};
+					notification.alert = req.body.text;
+					notification.payload = {'messageFrom': 'Employee'};
 
 					apnConnection.pushNotification(notification, myDevice);
 				}
