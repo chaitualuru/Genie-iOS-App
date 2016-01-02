@@ -24,9 +24,19 @@ function getAgoTime (timediff) {
 
 function update () {
     $.ajax({url: "/activeRequests", success: function(requests){
+    	console.log(requests);
+    	var prevReqs = []
+    	$('.activeRequests a').each(function(idx, elem) {
+		    var url = $(this).attr('href');
+		    prevReqs.push(url.split("/")[2]);
+		});
     	$("#requests").empty();
     	requests.sort(compare);
         $.each(requests, function (idx, request) {
+        	if (prevReqs.indexOf(request.id) == -1) {
+	    		var audio = new Audio('/sounds/new_request.mp3');
+				audio.play();
+	    	}
         	$("#requests").append(
         		"<div class='row activeRequests'><p class='left'>" + request.message + 
         		"</p><p class='right timestamp'>" + getAgoTime(Date.now()/1000 - request.timestamp) + "</p><br /></br /><a target='_blank' href='/messages/" + request.id + "' class='btn btn-primary'>Serve Request</a></div>");

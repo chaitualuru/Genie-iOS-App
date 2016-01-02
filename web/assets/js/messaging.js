@@ -206,7 +206,7 @@ function getNewMessages(playsound) {
 		        }
 		    }
 		    playsound = true
-		    $("#message-box").animate({ scrollTop: $('#message-box').prop("scrollHeight")}, 100);
+		    $('#message-box').scrollTop($('#message-box')[0].scrollHeight);
 		});
 	});
 }

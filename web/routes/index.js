@@ -7,6 +7,7 @@ module.exports = function (app, ref, server) {
 	var msgRef = {};
 	var userRef = {};
 	var activeRequests = {};
+	var apn = require('apn');
 	var io = require('socket.io')(server);
 
 	//------------------------------------------- LANDING -------------------------------------------------------
@@ -191,6 +192,7 @@ module.exports = function (app, ref, server) {
 			userRef[msg_id].update({serviced: -1});
 			console.log("User Id: " + msg_id);
 			msgRef[msg_id] = new Firebase(baseURL + "/messages/" + msg_id);
+			// Add query details to limit the number of messages initially loaded.
 			msgRef[msg_id].on("child_added", function (snapshot) {
 				var msg = snapshot.val();
 				socket.emit(msg_id, msg);
@@ -213,6 +215,22 @@ module.exports = function (app, ref, server) {
 			res.redirect('/auth'); 
 		} else {
 			var msgRef = new Firebase(baseURL + "/messages/" + req.params.msg_id);
+			var userRef = new Firebase(baseURL + "/messages/" + req.params.msg_id);
+			userRef.once("value", function (snapshot) {
+				var user = snapshot.val();
+				if (user.application_state != 1) {
+					var myDevice = new apn.Device(user.device_token);
+					var notification = new apn.Notification();
+
+					notification.expiry = Math.floor(Date.now() / 1000) + 3600; // Expires 1 hour from now.
+					notification.badge = 3;
+					notification.sound = "default";
+					notification.alert = "\uD83D\uDCE7 \u2709 You have a new message";
+					notification.payload = {'messageFrom': 'Caroline'};
+
+					apnConnection.pushNotification(notification, myDevice);
+				}
+			});
 			var response, userFlag, newMessage;
 			if (req.body.sent_by_user == "false")
 				userFlag = false;
