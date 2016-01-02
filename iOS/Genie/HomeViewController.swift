@@ -555,22 +555,22 @@ class HomeViewController: JSQMessagesViewController, UIImagePickerControllerDele
                     }
                     self.messages.append(message)
                 
-                    let settings = UIApplication.sharedApplication().currentUserNotificationSettings()
-                    
-                    if (UIApplication.sharedApplication().applicationState == UIApplicationState.Background) {
-                        if settings!.types == .None {
-                            let ac = UIAlertController(title: "Can't schedule", message: "Either we don't have permission to schedule notifications, or we haven't asked yet.", preferredStyle: .Alert)
-                            ac.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
-                            self.presentViewController(ac, animated: true, completion: nil)
-                            return
-                        }
-                        
-                        let notification = UILocalNotification()
-                        notification.fireDate = NSDate(timeIntervalSinceNow: 1)
-                        notification.alertBody = message.text()
-                        notification.soundName = UILocalNotificationDefaultSoundName
-                        UIApplication.sharedApplication().scheduleLocalNotification(notification)
-                    }
+//                    let settings = UIApplication.sharedApplication().currentUserNotificationSettings()
+//                    
+//                    if (UIApplication.sharedApplication().applicationState == UIApplicationState.Background) {
+//                        if settings!.types == .None {
+//                            let ac = UIAlertController(title: "Can't schedule", message: "Either we don't have permission to schedule notifications, or we haven't asked yet.", preferredStyle: .Alert)
+//                            ac.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
+//                            self.presentViewController(ac, animated: true, completion: nil)
+//                            return
+//                        }
+//                        
+//                        let notification = UILocalNotification()
+//                        notification.fireDate = NSDate(timeIntervalSinceNow: 1)
+//                        notification.alertBody = message.text()
+//                        notification.soundName = UILocalNotificationDefaultSoundName
+//                        UIApplication.sharedApplication().scheduleLocalNotification(notification)
+//                    }
                 }
             }
             if self.messages.count > 0 {
