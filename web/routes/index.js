@@ -231,7 +231,12 @@ module.exports = function (app, ref, server) {
 
 					notification.expiry = Math.floor(Date.now() / 1000) + 3600; // Expires 1 hour from now.
 					notification.sound = "default";
-					notification.alert = req.body.text;
+					if (req.body.is_media_message == "true") {
+						notification.alert = "You received an image.";
+					}
+					else {
+						notification.alert = req.body.text;
+					}
 					notification.payload = {'messageFrom': 'Employee'};
 
 					apnConnection.pushNotification(notification, myDevice);
