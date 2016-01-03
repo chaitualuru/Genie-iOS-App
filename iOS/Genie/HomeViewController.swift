@@ -111,6 +111,18 @@ class HomeViewController: JSQMessagesViewController, UIImagePickerControllerDele
         imagePicker.delegate = self
         self.firstMessageRead = true
         
+        // setup remote notifications --------------------------------------------------------------
+        switch(getMajorSystemVersion()) {
+        case 7:
+            UIApplication.sharedApplication().registerForRemoteNotificationTypes([.Alert, .Sound])
+            UIApplication.sharedApplication().registerForRemoteNotifications()
+        default:
+            let notificationSettings = UIUserNotificationSettings(forTypes: [.Alert, .Sound], categories: nil)
+            UIApplication.sharedApplication().registerUserNotificationSettings(notificationSettings)
+            UIApplication.sharedApplication().registerForRemoteNotifications()
+        }
+        // --------------------------------------------------------------------------------------
+        
         // Setting up Input Bar -----------------------------------------------------------------
         
         if let toolbar = inputToolbar {
@@ -309,7 +321,7 @@ class HomeViewController: JSQMessagesViewController, UIImagePickerControllerDele
                                         if (self.messages.count == allMessageIds.count - 1) {
                                             self.messages.sortInPlace({ $0.date().timeIntervalSince1970 < $1.date().timeIntervalSince1970 })
                                             self.finishReceivingMessage()
-                                            print("Cache Fetched")
+//                                            print("Cache Fetched")
                                             self.appointmentHelp.hidden = true
                                             self.furnitureHelp.hidden = true
                                             self.reminderHelp.hidden = true
@@ -321,7 +333,7 @@ class HomeViewController: JSQMessagesViewController, UIImagePickerControllerDele
                                     message = Message(messageId: messageId, text: text, sentByUser: sentByUser, senderId: sender, senderDisplayName: self.senderDisplayName, date: date, isMediaMessage: isMediaMessage, media: nil)
                                     self.messages.insert(message, atIndex: 0)
                                     if (self.messages.count == allMessageIds.count - 1) {
-                                        print("Cache Fetched")
+//                                        print("Cache Fetched")
                                         self.messages.sortInPlace({ $0.date().timeIntervalSince1970 < $1.date().timeIntervalSince1970 })
                                         self.appointmentHelp.hidden = true
                                         self.furnitureHelp.hidden = true
@@ -350,6 +362,10 @@ class HomeViewController: JSQMessagesViewController, UIImagePickerControllerDele
         NSTimer.scheduledTimerWithTimeInterval(15.0, target: self, selector: Selector("cacheMessages"), userInfo: nil, repeats: true)
     }
     
+    func getMajorSystemVersion() -> Int {
+        return Int(UIDevice.currentDevice().systemVersion.componentsSeparatedByString(".")[0])!
+    }
+    
     override func collectionView(collectionView: JSQMessagesCollectionView!, didTapCellAtIndexPath indexPath: NSIndexPath!, touchLocation: CGPoint) {
         dismissKeyboard()
     }
@@ -374,7 +390,7 @@ class HomeViewController: JSQMessagesViewController, UIImagePickerControllerDele
     // Load Earlier Messages --------------------------------------------------------------------
     func loadMore() {
         if self.messages.count > 0 {
-            print("Loading earlier messages")
+//            print("Loading earlier messages")
             
             self.collectionView!.collectionViewLayout.springinessEnabled = false
             self.collectionView!.pullToRefreshView.startAnimating()
@@ -496,7 +512,7 @@ class HomeViewController: JSQMessagesViewController, UIImagePickerControllerDele
     }
 
     func setupMessages() {
-        print("Setting up messages")
+//        print("Setting up messages")
         self.messagesRef = ref.childByAppendingPath("messages/" + self.senderId)
         
         if self.messages.count == 0 {
