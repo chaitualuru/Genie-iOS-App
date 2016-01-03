@@ -586,6 +586,16 @@ class HomeViewController: JSQMessagesViewController, UIImagePickerControllerDele
             self.finishReceivingMessage()
         })
     }
+    
+    func getJSON(urlToRequest: String) -> NSData {
+        return NSData(contentsOfURL: NSURL(string: urlToRequest)!)!
+    }
+    
+    func parseJSON(inputData: NSData) -> Int {
+        let timestampDictionary: NSDictionary = try! NSJSONSerialization.JSONObjectWithData(inputData, options: NSJSONReadingOptions.MutableContainers) as! NSDictionary
+        
+        return timestampDictionary["timestamp"] as! Int
+    }
 
     func sendMessage(text: String!) {
         let tstamp = Int(NSDate().timeIntervalSince1970)
