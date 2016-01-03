@@ -27,19 +27,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // --------------------------------------------------------------------------------------
         
-        // setup remote notifications --------------------------------------------------------------
-        switch(getMajorSystemVersion()) {
-        case 7:
-            application.registerForRemoteNotificationTypes([.Alert, .Sound])
-            application.registerForRemoteNotifications()
-        default:
-            let notificationSettings = UIUserNotificationSettings(forTypes: [.Alert, .Sound], categories: nil)
-            application.registerUserNotificationSettings(notificationSettings)
-            application.registerForRemoteNotifications()
-        }
-        // --------------------------------------------------------------------------------------
-        
-        
         // set initial view controller ----------------------------------------------------------
         if self.ref.authData != nil {
 //            print("user authenticated: ", self.ref.authData, "loading home view")

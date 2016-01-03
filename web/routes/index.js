@@ -12,7 +12,8 @@ module.exports = function (app, ref, server) {
 	var io = require('socket.io')(server);
 	var options = {
     	"cert": path.join(__dirname, "/cert.pem"),
-	    "key":  path.join(__dirname, "/key.pem")
+	    "key":  path.join(__dirname, "/key.pem"),
+	    "production": true
 	}
 	var apnConnection = new apn.Connection(options);
 
