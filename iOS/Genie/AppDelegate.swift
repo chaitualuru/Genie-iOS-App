@@ -42,14 +42,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // set initial view controller ----------------------------------------------------------
         if self.ref.authData != nil {
-            print("user authenticated: ", self.ref.authData, "loading home view")
+//            print("user authenticated: ", self.ref.authData, "loading home view")
         
             window = UIWindow(frame: UIScreen.mainScreen().bounds)
             window!.rootViewController = MySwipeVC()
             window!.makeKeyAndVisible()
         }
         else {
-            print("No user signed in, loading intro view")
+//            print("No user signed in, loading intro view")
 
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             self.window?.rootViewController = storyboard.instantiateViewControllerWithIdentifier("entryView")
@@ -65,7 +65,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
         let trimEnds = deviceToken.description.stringByTrimmingCharactersInSet(NSCharacterSet(charactersInString: "<>"))
         let cleanToken = trimEnds.stringByReplacingOccurrencesOfString(" ", withString: "")
-        print(cleanToken)
         
         if self.ref.authData != nil {
             let userRef = self.ref.childByAppendingPath("users/" + self.ref.authData.uid)
