@@ -2,7 +2,7 @@ var url = window.location.pathname.split('/');
 var user_id = url[2];
 var user_name = "";
 var uploadedFileContents;
-var playsound = true;
+var playsound = false;
 var toUpdateOrder;
 
 $("#denyRequest").click(function () {
@@ -206,10 +206,10 @@ function getNewMessages(playsound) {
 			        }
 		        }
 		    }
-		    playsound = true
 		    $('#message-box').scrollTop($('#message-box')[0].scrollHeight);
 		});
 	});
+    playsound = true
 }
 getUserProfile();
 getOrders();
