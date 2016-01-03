@@ -30,6 +30,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // set initial view controller ----------------------------------------------------------
         if self.ref.authData != nil {
 //            print("user authenticated: ", self.ref.authData, "loading home view")
+            
+            // setup remote notifications --------------------------------------------------------------
+            switch(getMajorSystemVersion()) {
+            case 7:
+                application.registerForRemoteNotificationTypes([.Alert, .Sound])
+                application.registerForRemoteNotifications()
+            default:
+                let notificationSettings = UIUserNotificationSettings(forTypes: [.Alert, .Sound], categories: nil)
+                application.registerUserNotificationSettings(notificationSettings)
+                application.registerForRemoteNotifications()
+            }
+            // --------------------------------------------------------------------------------------
         
             window = UIWindow(frame: UIScreen.mainScreen().bounds)
             window!.rootViewController = MySwipeVC()
