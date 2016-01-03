@@ -25,7 +25,7 @@ module.exports = function (app, ref, server) {
 
 	//------------------------------------------- TIMESTAMP -----------------------------------------------------
 	app.get('/timestamp', function (req, res) {
-		res.send(Math.floor(Date.now() / 1000));
+		res.send({timestamp: Math.floor(Date.now() / 1000)});
 	});
 	//------------------------------------------- TIMESTAMP END--------------------------------------------------
 
