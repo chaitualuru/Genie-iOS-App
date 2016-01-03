@@ -111,6 +111,18 @@ class HomeViewController: JSQMessagesViewController, UIImagePickerControllerDele
         imagePicker.delegate = self
         self.firstMessageRead = true
         
+        // setup remote notifications --------------------------------------------------------------
+        switch(getMajorSystemVersion()) {
+        case 7:
+            UIApplication.sharedApplication().registerForRemoteNotificationTypes([.Alert, .Sound])
+            UIApplication.sharedApplication().registerForRemoteNotifications()
+        default:
+            let notificationSettings = UIUserNotificationSettings(forTypes: [.Alert, .Sound], categories: nil)
+            UIApplication.sharedApplication().registerUserNotificationSettings(notificationSettings)
+            UIApplication.sharedApplication().registerForRemoteNotifications()
+        }
+        // --------------------------------------------------------------------------------------
+        
         // Setting up Input Bar -----------------------------------------------------------------
         
         if let toolbar = inputToolbar {
@@ -348,6 +360,10 @@ class HomeViewController: JSQMessagesViewController, UIImagePickerControllerDele
         }
         
         NSTimer.scheduledTimerWithTimeInterval(15.0, target: self, selector: Selector("cacheMessages"), userInfo: nil, repeats: true)
+    }
+    
+    func getMajorSystemVersion() -> Int {
+        return Int(UIDevice.currentDevice().systemVersion.componentsSeparatedByString(".")[0])!
     }
     
     override func collectionView(collectionView: JSQMessagesCollectionView!, didTapCellAtIndexPath indexPath: NSIndexPath!, touchLocation: CGPoint) {
