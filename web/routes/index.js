@@ -12,7 +12,8 @@ module.exports = function (app, ref, server) {
 	var io = require('socket.io')(server);
 	var options = {
     	"cert": path.join(__dirname, "/cert.pem"),
-	    "key":  path.join(__dirname, "/key.pem")
+	    "key":  path.join(__dirname, "/key.pem"),
+	    "production": true
 	}
 	var apnConnection = new apn.Connection(options);
 
@@ -20,8 +21,13 @@ module.exports = function (app, ref, server) {
 	app.get('/', function (req, res) {
 		res.render('landing', { layout: false })
 	});
-	//------------------------------------------- LANDING PAGE --------------------------------------------------
+	//------------------------------------------- LANDING END --------------------------------------------------
 
+	//------------------------------------------- TIMESTAMP -----------------------------------------------------
+	app.get('/timestamp', function (req, res) {
+		res.send(Math.floor(Date.now() / 1000));
+	});
+	//------------------------------------------- TIMESTAMP END--------------------------------------------------
 
 
 	//------------------------------------------- INVITE REGISTRATION -------------------------------------------
@@ -36,7 +42,7 @@ module.exports = function (app, ref, server) {
 			}
 		});
 	});
-	//------------------------------------------- LANDING PAGE --------------------------------------------------
+	//------------------------------------------- NVITE REGISTRATION END ----------------------------------------
 
 
 
@@ -253,7 +259,7 @@ module.exports = function (app, ref, server) {
 					'text': req.body.text,
 					'deleted_by_user': false,
 					'is_media_message': false,
-					'timestamp': parseInt(req.body.timestamp)
+					'timestamp': Math.floor(Date.now() / 1000)
 				}
 			}
 			else {
@@ -263,7 +269,7 @@ module.exports = function (app, ref, server) {
 					'deleted_by_user': false,
 					'is_media_message': true,
 					'media': req.body.media,
-					'timestamp': parseInt(req.body.timestamp)
+					'timestamp': Math.floor(Date.now() / 1000)
 				}
 			}
 			msgRef.push(newMessage, function (error) {
@@ -318,7 +324,7 @@ module.exports = function (app, ref, server) {
 			var orderRef = new Firebase(baseURL + "/orders/" + req.params.user_id);
 			var order = req.body;
 			order.associated_employee_id = req.session.uid;
-			order.timestamp = parseInt(order.timestamp);
+			order.timestamp = Math.floor(Date.now() / 1000);
 			orderRef.push(order, function (error) {
 				if (error) {
 					res.send({code: 400, message: error});
@@ -336,7 +342,7 @@ module.exports = function (app, ref, server) {
 			var orderRef = new Firebase(baseURL + "/orders/" + req.params.user_id + "/" + req.params.order_id);
 			var order = req.body;
 			order.associated_employee_id = req.session.uid;
-			order.timestamp = parseInt(order.timestamp);
+			order.timestamp = Math.floor(Date.now() / 1000);
 			orderRef.update(order);
 			res.send({code: 200, message: "OK"});
 		}	
