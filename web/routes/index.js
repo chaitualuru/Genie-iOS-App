@@ -17,6 +17,10 @@ module.exports = function (app, ref, server) {
 	}
 	var apnConnection = new apn.Connection(options);
 
+	var wit = require('node-wit');
+	var fs = require('fs');
+	var ACCESS_TOKEN = "LJCHYD3NUSCOBFN44QXDNIV6B5ZCN7DC";
+
 	//------------------------------------------- LANDING -------------------------------------------------------
 	app.get('/', function (req, res) {
 		res.render('landing', { layout: false })
@@ -207,6 +211,15 @@ module.exports = function (app, ref, server) {
 			// Add query details to limit the number of messages initially loaded.
 			msgRef[msg_id].on("child_added", function (snapshot) {
 				var msg = snapshot.val();
+
+				console.log("Sending text to Wit.AI");
+
+				wit.captureTextIntent(ACCESS_TOKEN, msg.text, function (err, res) {
+				    console.log("Response from Wit for text input: ");
+				    if (err) console.log("Error: ", err);
+				    console.log(JSON.stringify(res, null, " "));
+				});
+
 				socket.emit(msg_id, msg);
 			}, function(error) {
 				console.log(error);
