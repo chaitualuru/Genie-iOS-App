@@ -20,7 +20,7 @@ module.exports = function (app, ref, server) {
 	//------------------------------------------- INITIALIZING API.AI -------------------------------------------
 
 	var apiai = require('apiai');
-	var app = apiai("093c594e52e14c6dbec2ca878ef68cbe", "90b030eb-d6c1-489d-946d-ccb3d1087bf9");
+	var apiaiApp = apiai("093c594e52e14c6dbec2ca878ef68cbe", "90b030eb-d6c1-489d-946d-ccb3d1087bf9");
 	
 	//-----------------------------------------------------------------------------------------------------------
 
@@ -215,17 +215,17 @@ module.exports = function (app, ref, server) {
 			msgRef[msg_id].on("child_added", function (snapshot) {
 				var msg = snapshot.val();
 
-				var request = app.textRequest(msg.text);
+				var apiaiRequest = apiaiApp.textRequest(msg.text);
 
-				request.on('response', function(response) {
+				apiaiRequest.on('response', function(response) {
 				    console.log(response);
 				});
 
-				request.on('error', function(error) {
+				apiaiRequest.on('error', function(error) {
 				    console.log(error);
 				});
 
-				request.end()
+				apiaiRequest.end()
 
 				socket.emit(msg_id, msg);
 			}, function(error) {
