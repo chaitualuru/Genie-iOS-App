@@ -1,3 +1,6 @@
+<style>
+  body {overflow: hidden; }
+</style>
 <nav class="navbar navbar-default">
   	<div class="container-fluid">
     	<div class="navbar-header">
@@ -17,6 +20,28 @@
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
     	<img src="" height="100%" width="100%" id="image-preview" />
+    </div>
+  </div>
+</div>
+
+<!-- User Name modal -->
+<div class="modal fade modal-user-name" id="modal-image" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content" style="padding: 20px;">
+      <label>Full Name:</label>
+      <input type="text" id="user_name_modal" name="name" placeholder="John Doe" />
+      <button onclick="sendName()">Submit</button>
+    </div>
+  </div>
+</div>
+
+<!-- User Name modal -->
+<div class="modal fade modal-user-address" id="modal-image" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content" style="padding: 20px;">
+      <label>Address:</label>
+      <textarea id="user_address_modal" name="address" style="width:100%"></textarea>
+      <button onclick="sendAddress()">Submit</button>
     </div>
   </div>
 </div>
@@ -58,13 +83,13 @@
                     	<div class="col-sm-10">
                         	<select id="category">
 	                        	<option value="booking">Bookings</option>
-								<option value="food">Food</option>
-								<option value="health">Health</option>
-								<option value="home">Home</option>
-							  	<option value="finance">Finance</option>
-							  	<option value="shopping">Shopping</option>
-							</select>
-		            	</div>
+            								<option value="food">Food</option>
+            								<option value="health">Health</option>
+            								<option value="home">Home</option>
+          							  	<option value="finance">Finance</option>
+          							  	<option value="shopping">Shopping</option>
+            							</select>
+    		            	</div>
                   	</div>
                   	<div class="form-group">
                     	<label class="col-sm-2 control-label" for="status" >Status</label>
@@ -124,13 +149,13 @@
                     	<div class="col-sm-10">
                         	<select id="category-update">
 	                        	<option value="booking">Bookings</option>
-								<option value="food">Food</option>
-								<option value="health">Health</option>
-								<option value="home">Home</option>
-							  	<option value="finance">Finance</option>
-							  	<option value="shopping">Shopping</option>
-							</select>
-		            	</div>
+            								<option value="food">Food</option>
+            								<option value="health">Health</option>
+            								<option value="home">Home</option>
+            							  <option value="finance">Finance</option>
+            							  <option value="shopping">Shopping</option>
+            							</select>
+      		            	</div>
                   	</div>
                   	<div class="form-group">
                     	<label class="col-sm-2 control-label" for="status-update" >Status</label>
@@ -175,15 +200,15 @@
 			</div>
 		</div>
 		<div class="col-md-3 border-solid" style="margin-left: 5px;">
-			<div id="user-profile" style="height: 13em;">
-				<br />
-				<h5>Name:</h5><h4><small id="user-name"></small></h4>
+			<div id="user-profile" style="height: 18em;">
+				<h5>Name:</h5><h4><small id="user-name"></small><button type='button' style="margin-left: 10px;" class='btn btn-xs btn-primary' onclick="setName()">Edit</button></h4>
 				<h5>Email:</h5><h4><small id="user-email"></small></h4>
 				<h5>Mobile:</h5><h4><small id="user-mobile"></small></h4>
+        <h5>Address:</h5><h4><small id="user-address"></h4></small><button type='button' class='btn btn-xs btn-primary' onclick="setAddress()">Edit</button>
 			</div>
 			<hr >
 			<center><h5>Orders</h5></center>
-			<div id="orders" style="height: 25em; overflow-y: scroll">
+			<div id="orders" style="height: 20em; overflow-y: scroll">
 			</div>
 		</div>
 	</div>

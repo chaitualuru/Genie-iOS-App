@@ -24,7 +24,6 @@ function getAgoTime (timediff) {
 
 function update () {
     $.ajax({url: "/activeRequests", success: function(requests){
-    	console.log(requests);
     	var prevReqs = []
     	$('.activeRequests a').each(function(idx, elem) {
 		    var url = $(this).attr('href');

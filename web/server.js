@@ -8,7 +8,12 @@ var mongoose = require('mongoose');
 
 
 app.use(cookieParser());
-app.use(session({secret: 'vQZ4mv5d2NNCSwmDrWPB2ork5NfAYtke3Qx2iBHW'}));
+app.use(session({
+	secret: 'vQZ4mv5d2NNCSwmDrWPB2ork5NfAYtke3Qx2iBHW',
+	cookie: { 
+		maxAge: 24 * 3600000
+	}
+}));
 
 app.use(bodyParser.json({limit: '50mb'}));
 app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));

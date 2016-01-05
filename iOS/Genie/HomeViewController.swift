@@ -77,6 +77,9 @@ class HomeViewController: JSQMessagesViewController, UIImagePickerControllerDele
         UIApplication.sharedApplication().statusBarStyle = UIStatusBarStyle.LightContent
         self.collectionView?.contentInset = UIEdgeInsetsMake(0, 0, 80, 0);
         
+        self.view.layer.borderWidth = 0.3
+        self.view.layer.borderColor = UIColor(red: (98/255.0), green: (90/255.0), blue: (151/255.0), alpha: 0.8).CGColor
+        
         self.ref = Firebase(url:"https://getgenie.firebaseio.com/")
         self.user = self.ref.authData
         self.senderId = self.user?.uid

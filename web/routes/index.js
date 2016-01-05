@@ -27,6 +27,7 @@ module.exports = function (app, ref, server) {
 	});
 	//------------------------------------------- LANDING END --------------------------------------------------
 
+
 	//------------------------------------------- TIMESTAMP -----------------------------------------------------
 	app.get('/timestamp', function (req, res) {
 		res.send({timestamp: Math.floor(Date.now() / 1000)});
@@ -209,15 +210,15 @@ module.exports = function (app, ref, server) {
 			console.log("User Id: " + msg_id);
 			msgRef[msg_id] = new Firebase(baseURL + "/messages/" + msg_id);
 			// Add query details to limit the number of messages initially loaded.
-			msgRef[msg_id].on("child_added", function (snapshot) {
+			msgRef[msg_id].orderByChild("timestamp").limitToLast(30).on("child_added", function (snapshot) {
 				var msg = snapshot.val();
 
-				console.log("Sending text to Wit.AI");
+				// console.log("Sending text to Wit.AI");
 
 				wit.captureTextIntent(ACCESS_TOKEN, msg.text, function (err, res) {
-				    console.log("Response from Wit for text input: ");
-				    if (err) console.log("Error: ", err);
-				    console.log(JSON.stringify(res, null, " "));
+				    // console.log("Response from Wit for text input: ");
+				    // if (err) console.log("Error: ", err);
+				    // console.log(JSON.stringify(res, null, " "));
 				});
 
 				socket.emit(msg_id, msg);
@@ -225,6 +226,24 @@ module.exports = function (app, ref, server) {
 				console.log(error);
 			});
 		});
+	});
+
+	app.get('/moreMessages/:user_id/:timestamp', function (req, res) {
+		if (!req.session.uid) {
+			res.redirect('/auth');
+		} else {
+			var mRef = new Firebase(baseURL + "/messages/" + req.params.user_id);
+			var messages = [];
+			mRef.orderByChild("timestamp").endAt(parseInt(req.params.timestamp)).limitToLast(20).once("value", function (snapshot) {
+				var msgs = snapshot.val();
+				for (item in msgs) {
+					var msg = msgs[item];
+					messages.push(msg);
+				}
+				messages.pop();
+				res.send(messages);
+			});
+		}
 	});
 
 	app.get('/messages/:msg_id', function (req, res) {
@@ -385,6 +404,40 @@ module.exports = function (app, ref, server) {
 			});
 		}
 	});
-
 	//--------------------------------------------- ORDERS END ----------------------------------------------
+
+
+
+	//--------------------------------------------- USER ENTITIES -------------------------------------------
+
+	app.post('/setUserName/:user_id', function (req, res) {
+		if (!req.session.uid) {
+			res.redirect('/auth'); 
+		} else {
+			var userRef = new Firebase(baseURL + "/users/" + req.params.user_id);
+			var name = req.body.full_name;
+			name = name.split(" ");
+			if (name.length < 2) { 
+				userRef.update({first_name: name[0], last_name: ""});
+			} else if (name.length >= 2) {
+				var firstName = name.splice(0, 1);
+				userRef.update({first_name: firstName[0], last_name: name.join(" ")});
+			}
+			res.send({code: 200, message: "OK"});
+		}	
+	});
+
+
+	app.post('/setUserAddress/:user_id', function (req, res) {
+		if (!req.session.uid) {
+			res.redirect('/auth'); 
+		} else {
+			var userRef = new Firebase(baseURL + "/users/" + req.params.user_id);
+			var address = req.body.address;
+			userRef.update({address: address});
+			res.send({code: 200, message: "OK"});
+		}
+	});
+
+	//--------------------------------------------- USER ENTITIES END ---------------------------------------
 }
