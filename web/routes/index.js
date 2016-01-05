@@ -218,9 +218,7 @@ module.exports = function (app, ref, server) {
 				var apiaiRequest = apiaiApp.textRequest(msg.text);
 
 				apiaiRequest.on('response', function(response) {
-					var result = response.getResult();
-					var action = result.getAction();
-					console.log(action);
+					console.log(response);
 				});
 
 				apiaiRequest.on('error', function(error) {
