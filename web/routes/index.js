@@ -17,9 +17,12 @@ module.exports = function (app, ref, server) {
 	}
 	var apnConnection = new apn.Connection(options);
 
-	var wit = require('node-wit');
-	var fs = require('fs');
-	var ACCESS_TOKEN = "LJCHYD3NUSCOBFN44QXDNIV6B5ZCN7DC";
+	//------------------------------------------- INITIALIZING API.AI -------------------------------------------
+
+	var apiai = require('apiai');
+	var app = apiai("093c594e52e14c6dbec2ca878ef68cbe", "90b030eb-d6c1-489d-946d-ccb3d1087bf9");
+	
+	//-----------------------------------------------------------------------------------------------------------
 
 	//------------------------------------------- LANDING -------------------------------------------------------
 	app.get('/', function (req, res) {
@@ -212,13 +215,17 @@ module.exports = function (app, ref, server) {
 			msgRef[msg_id].on("child_added", function (snapshot) {
 				var msg = snapshot.val();
 
-				console.log("Sending text to Wit.AI");
+				var request = app.textRequest(msg.text);
 
-				wit.captureTextIntent(ACCESS_TOKEN, msg.text, function (err, res) {
-				    console.log("Response from Wit for text input: ");
-				    if (err) console.log("Error: ", err);
-				    console.log(JSON.stringify(res, null, " "));
+				request.on('response', function(response) {
+				    console.log(response);
 				});
+
+				request.on('error', function(error) {
+				    console.log(error);
+				});
+
+				request.end()
 
 				socket.emit(msg_id, msg);
 			}, function(error) {
