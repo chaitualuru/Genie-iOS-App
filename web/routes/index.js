@@ -20,7 +20,7 @@ module.exports = function (app, ref, server) {
 	//------------------------------------------- INITIALIZING API.AI -------------------------------------------
 
 	var apiai = require('apiai');
-	var apiaiApp = apiai("093c594e52e14c6dbec2ca878ef68cbe", "90b030eb-d6c1-489d-946d-ccb3d1087bf9");
+	var apiaiApp = apiai("706a57de827344579aceec48361c8ce3", "90b030eb-d6c1-489d-946d-ccb3d1087bf9");
 	
 	//-----------------------------------------------------------------------------------------------------------
 
@@ -218,7 +218,9 @@ module.exports = function (app, ref, server) {
 				var apiaiRequest = apiaiApp.textRequest(msg.text);
 
 				apiaiRequest.on('response', function(response) {
-				    console.log(response);
+					var result = response.getResult();
+					var action = result.getAction();
+					console.log(action);
 				});
 
 				apiaiRequest.on('error', function(error) {
