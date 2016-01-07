@@ -86,14 +86,6 @@ class ProfileViewController: UIViewController {
     @IBAction func signOut(sender: UIButton) {
         self.ref.unauth()
         performSegueWithIdentifier("SIGN_OUT", sender: nil)
-        VerifyClient.logoutUser(countryCode: "US", number: self.mobileNumber, completionBlock: { error in
-            if let error = error {
-                // unable to logout user
-                print("could not logout nexmo : ", error)
-            }
-            
-            print("logged out nexmo user")
-        })
     }
     
     func closeProfileVC(sender: UIButton) {
