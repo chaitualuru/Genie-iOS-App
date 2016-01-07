@@ -53,6 +53,6 @@ function authenticate () {
 		}
 	});
 }
-authenticate();
+//authenticate();
 setInterval(authenticate, 23*60*60*1000);
 //------------------------------------- Authentication END --------------------------------------------------

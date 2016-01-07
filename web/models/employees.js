@@ -13,6 +13,10 @@ var employeesSchema = mongoose.Schema({
 		type: 'String',
 		required: true
 	},
+	timestamp: {
+		type: 'String',
+		required: true
+	},
 	approved: {
 		type: Boolean,
 		default: false

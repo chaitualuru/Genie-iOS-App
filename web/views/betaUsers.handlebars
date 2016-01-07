@@ -1,0 +1,50 @@
+<nav class="navbar navbar-default">
+  	<div class="container-fluid">
+    	<div class="navbar-header">
+      		<a class="navbar-brand" href="/auth">
+        		<img alt="Brand" src="/images/genie.png" width="25px" height="25px" />
+	    	</a>
+	    	<p class="navbar-text">Genie</p>
+    	</div>
+  	</div>
+</nav>
+<div class="container">
+	<center><h4>Beta User Requests</h4></center>
+	<table class="table table-hover table-bordered" style="vertical-align: middle">
+	    <thead>
+	    	<tr>
+	    		<th>S.No</th>
+		        <th>Email</th>
+		        <th>Date</th>
+		        <th>Sent</th>
+		        <th>Email Sent</th>
+		      </tr>
+	    </thead>
+	    <tbody>
+			{{#each users}}
+				<tr>
+				    <td>{{@index}}</td>
+				    <td>{{this.email}}</td>
+			        <td>{{this.timestamp}}</td>
+			        {{#if this.sent}}
+					    <td style="color: green" id="{{this.id}}"><strong>{{this.sent}}</strong></td>
+					    <td><button onclick="markSent('{{this.id}}')" id="button{{this.id}}" disabled="true">Yes</button></td>
+					{{else}}
+					    <td style="color: red" id="{{this.id}}"><strong>{{this.sent}}</strong></td>
+					    <td><button onclick="markSent('{{this.id}}')" id="button{{this.id}}">Yes</button></td>
+				  	{{/if}}
+			    </tr>
+		  	{{/each}}
+	  	</tbody>
+</div>
+<script type="text/javascript">	
+	function markSent(betaUserID) {
+		$.ajax({url: "/admin/betaUser/markSent/" + betaUserID, success: function(response) {
+			if (response == "OK") {
+				$('#button' + betaUserID).attr('disabled','true');
+				$('#' + betaUserID).css('color', 'green');
+				$('#' + betaUserID + " > strong").text('true');
+			}
+		}});
+	}
+</script>
