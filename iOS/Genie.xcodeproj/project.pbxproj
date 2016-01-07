@@ -26,6 +26,7 @@
 		FF01A7071B8980E800F54273 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FF01A7051B8980E800F54273 /* LaunchScreen.storyboard */; };
 		FF01A7121B8980E800F54273 /* GenieTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF01A7111B8980E800F54273 /* GenieTests.swift */; };
 		FF01A71D1B8980E800F54273 /* GenieUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF01A71C1B8980E800F54273 /* GenieUITests.swift */; };
+		FF05ACC41C3EF59000399864 /* Razorpay.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF05ACC31C3EF59000399864 /* Razorpay.framework */; };
 		FF166CA91C2C694E0070837D /* signout@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = FF166CA61C2C694E0070837D /* signout@1x.png */; };
 		FF166CAA1C2C694E0070837D /* signout@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FF166CA71C2C694E0070837D /* signout@2x.png */; };
 		FF166CAB1C2C694E0070837D /* signout@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = FF166CA81C2C694E0070837D /* signout@3x.png */; };
@@ -245,6 +246,7 @@
 		FF01A7181B8980E800F54273 /* GenieUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GenieUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FF01A71C1B8980E800F54273 /* GenieUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenieUITests.swift; sourceTree = "<group>"; };
 		FF01A71E1B8980E800F54273 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FF05ACC31C3EF59000399864 /* Razorpay.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Razorpay.framework; sourceTree = "<group>"; };
 		FF166CA61C2C694E0070837D /* signout@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "signout@1x.png"; sourceTree = "<group>"; };
 		FF166CA71C2C694E0070837D /* signout@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "signout@2x.png"; sourceTree = "<group>"; };
 		FF166CA81C2C694E0070837D /* signout@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "signout@3x.png"; sourceTree = "<group>"; };
@@ -379,6 +381,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BA03042D1C3AEB2600AB2A9D /* VerifyIosSdk.framework in Frameworks */,
+				FF05ACC41C3EF59000399864 /* Razorpay.framework in Frameworks */,
 				BA0304311C3AEB2600AB2A9D /* RequestSigning.framework in Frameworks */,
 				ACBF36ECF20473CBC6C31204 /* Pods.framework in Frameworks */,
 				BA0304351C3AEB2600AB2A9D /* DeviceProperties.framework in Frameworks */,
@@ -447,6 +450,7 @@
 		FF01A6ED1B8980E800F54273 = {
 			isa = PBXGroup;
 			children = (
+				FF05ACC31C3EF59000399864 /* Razorpay.framework */,
 				BA0304211C3AEB1700AB2A9D /* VerifyIosSdk.xcodeproj */,
 				FF01A6F81B8980E800F54273 /* Genie */,
 				FF01A7101B8980E800F54273 /* GenieTests */,
@@ -1153,7 +1157,10 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				ENABLE_BITCODE = NO;
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = Genie/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1177,7 +1184,10 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				ENABLE_BITCODE = NO;
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = Genie/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

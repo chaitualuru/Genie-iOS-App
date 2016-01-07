@@ -779,21 +779,6 @@ class HomeViewController: JSQMessagesViewController, UIImagePickerControllerDele
     
     // --------------------------------------------------------------------------------------
     
-    func logout(sender: UIBarButtonItem) {
-        ref.removeObserverWithHandle(getMessagesHandle)
-        ref.unauth()
-        print("logged out user")
-        performSegueWithIdentifier("LOGOUT", sender: self)
-        
-        VerifyClient.logoutUser(countryCode: "US", number: self.mobileNumber, completionBlock: { error in
-            if let error = error {
-                // unable to logout user
-                print("could not logout nexmo : ", error)
-            }
-            
-            print("logged out nexmo user")
-        })
-    }
     
     // Dismissing Keyboard ------------------------------------------------------------------
     
