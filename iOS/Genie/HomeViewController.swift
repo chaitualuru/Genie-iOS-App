@@ -643,7 +643,7 @@ class HomeViewController: JSQMessagesViewController, UIImagePickerControllerDele
     }
     
     override func didPressSendButton(button: UIButton!, withMessageText text: String!, senderId: String!, senderDisplayName: String!, date: NSDate!) {
-        JSQSystemSoundPlayer.jsq_playMessageSentSound()
+//        JSQSystemSoundPlayer.jsq_playMessageSentSound()
         if self.currentAttachment != nil {
             if text.isEmpty {
                 sendMessage(text)
@@ -775,6 +775,29 @@ class HomeViewController: JSQMessagesViewController, UIImagePickerControllerDele
             self.reminderHelp.hidden = false
             self.helperFoot.hidden = false
         }
+    }
+    
+    // --------------------------------------------------------------------------------------
+    
+    
+    // Razorpay -----------------------------------------------------------------------------
+    
+    func showCheckout(){
+        let checkout:RazorpayCheckout = RazorpayCheckout(key: "rzp_test_V3WnFxfPzRcrW9");
+        checkout.setDelegate(self);
+        let options = [
+            "amount" : "200" // and all other options
+        ]
+        checkout.open(options);
+    }
+    
+    // implement in delegate set through "checkout.setDelegate" above.
+    func onPaymentSuccess(payment_id: String){
+        print(payment_id);
+    }
+    
+    func onPaymentError(code: NSNumber, description: String){
+        print(description);
     }
     
     // --------------------------------------------------------------------------------------
