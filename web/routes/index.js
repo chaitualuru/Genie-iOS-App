@@ -21,7 +21,8 @@ module.exports = function (app, ref, server) {
 	//------------------------------------------- INITIALIZING API.AI ---------------------------------------
 
 	var apiai = require('apiai');
-	var apiApp = apiai("093c594e52e14c6dbec2ca878ef68cbe", "90b030eb-d6c1-489d-946d-ccb3d1087bf9");
+
+	var apiaiApp = apiai("093c594e52e14c6dbec2ca878ef68cbe", "90b030eb-d6c1-489d-946d-ccb3d1087bf9");
 	
 	//-------------------------------------------------------------------------------------------------------
 
@@ -263,17 +264,18 @@ module.exports = function (app, ref, server) {
 			msgRef[msg_id] = new Firebase(baseURL + "/messages/" + msg_id);
 			msgRef[msg_id].orderByChild("timestamp").limitToLast(30).on("child_added", function (snapshot) {
 				var msg = snapshot.val();
-				var request = apiApp.textRequest(msg.text);
 
-				request.on('response', function(response) {
-				    // console.log(response);
+				var apiaiRequest = apiaiApp.textRequest(msg.text);
+
+				apiaiRequest.on('response', function(response) {
+				    console.log(response);
 				});
 
-				request.on('error', function(error) {
-				    // console.log(error);
+				apiaiRequest.on('error', function(error) {
+				    console.log(error);
 				});
 
-				request.end()
+				apiaiRequest.end()
 
 				socket.emit(msg_id, msg);
 			}, function(error) {
