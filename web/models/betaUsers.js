@@ -8,6 +8,10 @@ var betaUsers = mongoose.Schema({
 	timestamp: {
 		type: 'String',
 		required: true
+	},
+	sent: {
+		type: Boolean,
+		default: false
 	}
 });
 

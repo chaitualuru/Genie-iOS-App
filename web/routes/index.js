@@ -10,6 +10,7 @@ module.exports = function (app, ref, server) {
 	var activeRequests = {};
 	var apn = require('apn');
 	var io = require('socket.io')(server);
+	var isServerDown = false;
 	var options = {
     	"cert": path.join(__dirname, "/cert.pem"),
 	    "key":  path.join(__dirname, "/key.pem"),
@@ -17,28 +18,61 @@ module.exports = function (app, ref, server) {
 	}
 	var apnConnection = new apn.Connection(options);
 
-	//------------------------------------------- INITIALIZING API.AI -------------------------------------------
+	//------------------------------------------- INITIALIZING API.AI ---------------------------------------
 
 	var apiai = require('apiai');
+
 	var apiaiApp = apiai("093c594e52e14c6dbec2ca878ef68cbe", "90b030eb-d6c1-489d-946d-ccb3d1087bf9");
 	
-	//-----------------------------------------------------------------------------------------------------------
+	//-------------------------------------------------------------------------------------------------------
 
-	//------------------------------------------- LANDING -------------------------------------------------------
+	//------------------------------------------- LANDING ---------------------------------------------------
 	app.get('/', function (req, res) {
-		res.render('landing', { layout: false })
+		res.render('landing', { layout: false });
 	});
-	//------------------------------------------- LANDING END --------------------------------------------------
+	//------------------------------------------- LANDING END -----------------------------------------------
 
 
-	//------------------------------------------- TIMESTAMP -----------------------------------------------------
+	//------------------------------------------- TIMESTAMP -------------------------------------------------
 	app.get('/timestamp', function (req, res) {
 		res.send({timestamp: Math.floor(Date.now() / 1000)});
 	});
-	//------------------------------------------- TIMESTAMP END--------------------------------------------------
+	//------------------------------------------- TIMESTAMP END----------------------------------------------
 
 
-	//------------------------------------------- INVITE REGISTRATION -------------------------------------------
+	//------------------------------------------- SERVER STATE ----------------------------------------------
+	app.post('/toggleServerAutomaticResponse', function  (req, res) {
+		if (!req.session.uid) {
+			res.redirect('/auth');
+		} else {
+			var serverState = new Firebase(baseURL);
+			if (req.body.changeTo == "start") {
+				serverState.update({serverAutomaticResponse: true});
+				isServerDown = true;
+			} else if (req.body.changeTo == "stop") {
+				serverState.update({serverAutomaticResponse: false});
+				isServerDown = false;
+			}
+			res.send({code: 200, message: "Success"});
+		}
+	});
+
+	app.get('/serverState', function (req, res) {
+		if (!req.session.uid) {
+			res.redirect('/auth');
+		} else {
+			var serverState = new Firebase(baseURL + "/serverAutomaticResponse");
+			serverState.once('value', function (snapshot) {
+				var state = snapshot.val();
+				isServerDown = state;
+				res.send({state: state});
+			});
+		}
+	})
+	//------------------------------------------- SERVER STATE END ------------------------------------------
+
+
+	//------------------------------------------- INVITE REGISTRATION ---------------------------------------
 	app.post('/registerForInvite', function (req, res) {
 		var betaUser = new BetaUsers(req.body);
 		betaUser.save(function (err, result) {
@@ -50,7 +84,7 @@ module.exports = function (app, ref, server) {
 			}
 		});
 	});
-	//------------------------------------------- NVITE REGISTRATION END ----------------------------------------
+	//------------------------------------------- INVITE REGISTRATION END -----------------------------------
 
 
 
@@ -72,6 +106,7 @@ module.exports = function (app, ref, server) {
 		            }
 		            else {
 			            employee.password = hash;
+			            employee.timestamp = Date.now()
 			            employee.save(function (err, result) {
 							if (err){
 								console.error(err);
@@ -110,7 +145,7 @@ module.exports = function (app, ref, server) {
 			            }
 			            else {
 			            	if (isMatch) {
-			            		if (employee.approved == false) {
+			            		if (employee.approved == true) {
 				            		console.log("Authenticated successfully.");
 					    			req.session['uid'] = employee.id;
 					    			res.redirect('home');
@@ -150,8 +185,7 @@ module.exports = function (app, ref, server) {
 	app.get('/home', function (req, res) {
 		if (!req.session.uid) {
 			res.redirect('/auth');
-		}
-		else {
+		} else {
 			activeRequests = {};
 			var usersRef = new Firebase(baseURL + "/users/");
 
@@ -159,31 +193,47 @@ module.exports = function (app, ref, server) {
 				var users = snapshot.val();
 				for (uid in users) {
 					var mRef = new Firebase(baseURL + "/messages/" + uid);
-		  			mRef.limitToLast(1).on("value", function (snapshot) {
+		  			mRef.limitToLast(1).on("child_added", function (snapshot) {
 		  				var message = snapshot.val();
 		  				if (snapshot.val() != null) {
-		  					var user_id = snapshot.ref().toString();
-		  					user_id = user_id.split("/");
-		  					user_id = user_id[user_id.length - 1];
+		  					var user_id = uid;
 		  					var userRef = new Firebase(baseURL + "/users/" + user_id);
-		  					for (mid in message) {
-			  					userRef.once("value", function (snapshot) {
-			  						var user = snapshot.val();
-			  						if (user.serviced == 0) {
-							  			var active = {
-							  				message: message[mid].text, 
-							  				id: user_id, 
-							  				timestamp: message[mid].timestamp
-							  			}
-							  			if (active.message == "") {
-							  				active.message = "Image."
-							  			}
+		  					userRef.once("value", function (snapshot) {
+		  						var user = snapshot.val();
+		  						if (user.serviced == 0) {
+						  			var active = {
+						  				message: message.text, 
+						  				id: user_id, 
+						  				timestamp: message.timestamp
+						  			}
+						  			if (active.message == "") {
+						  				active.message = "Image."
+						  			}
+						  			if (isServerDown) {
+						  				process.nextTick(function () {
+						  					var newMessage = {
+							  					'sent_by_user': false,
+												'text': "Sorry. We are not taking any requests a the moment.",
+												'deleted_by_user': false,
+												'is_media_message': false,
+												'timestamp': Math.floor(Date.now() / 1000)
+							  				}
+							  				var messageRef = new Firebase(baseURL + "/messages/" + user_id);
+							  				messageRef.push(newMessage, function(error) {
+							  					if (error){
+							  						console.log(error);
+							  					}
+						  						var usersRef = new Firebase(baseURL + "/users/" + user_id);
+												usersRef.update({serviced: 1});
+							  				});
+						  				});
+						  			} else {
 							  			activeRequests[user_id] = active;
-							  		} else {
-							  			delete activeRequests[user_id];
 							  		}
-		  						});
-			  				}
+						  		} else {
+						  			delete activeRequests[user_id];
+						  		}
+	  						});
 						}
 					}, function(error) {
 						console.log(error);
@@ -212,10 +262,8 @@ module.exports = function (app, ref, server) {
 			userRef[msg_id].update({serviced: -1});
 			console.log("User Id: " + msg_id);
 			msgRef[msg_id] = new Firebase(baseURL + "/messages/" + msg_id);
-			// Add query details to limit the number of messages initially loaded.
 			msgRef[msg_id].orderByChild("timestamp").limitToLast(30).on("child_added", function (snapshot) {
 				var msg = snapshot.val();
-
 
 				var apiaiRequest = apiaiApp.textRequest(msg.text);
 
@@ -448,4 +496,88 @@ module.exports = function (app, ref, server) {
 	});
 
 	//--------------------------------------------- USER ENTITIES END ---------------------------------------
+
+
+	//--------------------------------------------- ADMIN INTERFACE -----------------------------------------
+	app.get('/admin/betaUsers', function (req, res) {
+		if (!req.session.uid) {
+			res.redirect('/auth'); 
+		} else {
+			BetaUsers.find({}).sort('timestamp').exec(function(err, data) {
+				if (err) {
+					console.error(err);
+					res.send(err);
+				} else {
+					var users = [];
+					var done = [];
+					for (idx in data) {
+						var user = {};
+						var item = data[idx];
+						user['email'] = item['email'];
+						user['id'] = item.id;
+						user['timestamp'] = new Date(parseInt(item['timestamp']));
+						user['sent'] = false;
+						if (item['sent']) {
+							user['sent'] = true;
+							done.push(user);
+						} else {
+							users.push(user);
+						}
+					}
+					res.render('betaUsers', { users: users.concat(done) });
+				}
+			});
+		}
+	});
+
+	app.get('/admin/betaUser/markSent/:id', function (req, res) {
+		BetaUsers.update({ _id: req.params.id }, { sent: true }, function (err) {
+			if (err) {
+				res.send(err);
+			} else {
+				res.sendStatus(200);
+			}
+		});
+	});
+
+	app.get('/admin/employees', function (req, res) {
+		if (!req.session.uid) {
+			res.redirect('/auth'); 
+		} else {
+			Employees.find({}).sort('timestamp').exec(function(err, data) {
+				if (err) {
+					console.error(err);
+					res.send(err);
+				} else {
+					var employees = [];
+					for (idx in data) {
+						var employee = {};
+						var item = data[idx];
+						employee['email'] = item['email'];
+						employee['id'] = item.id;
+						employee['timestamp'] = new Date(parseInt(item['timestamp']));
+						if (!item.timestamp)
+							employee['timestamp'] = "-----";
+						employee['approved'] = false;
+						if (item['approved']) {
+							employee['approved'] = true;
+						}
+						employees.push(employee);
+					}
+					res.render('employees', { employees: employees });
+				}
+			});
+		}
+	});
+
+	app.get('/admin/approve/employee/:id', function (req, res) {
+		Employees.update({ _id: req.params.id }, { approved: true }, function (err) {
+			if (err) {
+				res.send(err);
+			} else {
+				res.sendStatus(200);
+			}
+		});
+	});
+	//------------------------------------------- ADMIN INTERFACE END ---------------------------------------
 }

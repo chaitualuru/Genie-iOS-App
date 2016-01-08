@@ -6,6 +6,41 @@ function compare(a, b) {
   	return 0;
 }
 
+function toggleServerAutomaticResponse () {
+	var state = $('#serverDownResponse').text().toLocaleLowerCase();
+	if (state == "start") {
+		$.ajax({
+			type: "POST",
+			url: "/toggleServerAutomaticResponse/",
+			data: {changeTo: "start"},
+			success: function (response){
+				if (response.code == 200) {
+					$('#serverDownResponse').text("Stop");
+					$('#serverDownResponse').addClass('btn-danger');
+					$('#serverDownResponse').removeClass('btn-success');
+				} else {
+					alert(response);
+				}
+			}
+		});
+	} else {
+		$.ajax({
+			type: "POST",
+			url: "/toggleServerAutomaticResponse/",
+			data: {changeTo: "stop"},
+			success: function (response){
+				if (response.code == 200) {
+					$('#serverDownResponse').text("Start");
+					$('#serverDownResponse').removeClass('btn-danger');
+					$('#serverDownResponse').addClass('btn-success');
+				} else {
+					alert(response);
+				}
+			}
+		});
+	}
+}
+
 function getAgoTime (timediff) {
 	timediff = timediff;
 	if (timediff > 86400) {
@@ -40,6 +75,18 @@ function update () {
         		"<div class='row activeRequests'><p class='left'>" + request.message + 
         		"</p><p class='right timestamp'>" + getAgoTime(Date.now()/1000 - request.timestamp) + "</p><br /></br /><a target='_blank' href='/messages/" + request.id + "' class='btn btn-primary'>Serve Request</a></div>");
         });
+    }});
+
+    $.ajax({url: "/serverState", success: function(serverDown){
+    	if (!serverDown.state) {
+    		$('#serverDownResponse').text("Start");
+			$('#serverDownResponse').removeClass('btn-danger');
+			$('#serverDownResponse').addClass('btn-success');
+    	} else {
+    		$('#serverDownResponse').text("Stop");
+			$('#serverDownResponse').addClass('btn-danger');
+			$('#serverDownResponse').removeClass('btn-success');
+    	}
     }});
 }
 update();
