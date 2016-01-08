@@ -787,6 +787,16 @@ class HomeViewController: JSQMessagesViewController, UIImagePickerControllerDele
         checkout.setDelegate(self);
         let options = [
             "amount" : "200" // and all other options
+            "image": "https://url-to-image.png",
+            "name": "business or product name",
+            "description": "purchase description",
+            "prefill" : {
+                "email": "pranav@razorpay.com",
+                "contact": "8879524924"
+            },
+            "theme": {
+                "color": "#F37254"
+            }
         ]
         checkout.open(options);
     }
