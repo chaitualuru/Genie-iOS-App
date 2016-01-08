@@ -786,17 +786,17 @@ class HomeViewController: JSQMessagesViewController, UIImagePickerControllerDele
         let checkout:RazorpayCheckout = RazorpayCheckout(key: "rzp_test_V3WnFxfPzRcrW9");
         checkout.setDelegate(self);
         let options = [
-            "amount" : "200" // and all other options
-            "image": "https://url-to-image.png",
+            "amount" : "200",
+            "image": "",
             "name": "business or product name",
             "description": "purchase description",
-            "prefill" : {
+            "prefill" : [
                 "email": "pranav@razorpay.com",
                 "contact": "8879524924"
-            },
-            "theme": {
+            ],
+            "theme": [
                 "color": "#F37254"
-            }
+            ]
         ]
         checkout.open(options);
     }
