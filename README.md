@@ -1,2 +1,1 @@
-# Genie
-Genie - Your personal assistant!
+# Genie - iOS App
