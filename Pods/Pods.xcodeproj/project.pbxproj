@@ -113,6 +113,7 @@
 		AD22077E11389C72AD925E1F1CF02470 /* JSQMessagesCollectionViewFlowLayoutInvalidationContext.m in Sources */ = {isa = PBXBuildFile; fileRef = B0D6FD117E0AC3A40E04AE61A65ADB97 /* JSQMessagesCollectionViewFlowLayoutInvalidationContext.m */; };
 		B04EE8B900DCD3BA267B5982EC491AED /* SVIndefiniteAnimatedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AC4B3EDC68FA222CF4CB55499A35CF2 /* SVIndefiniteAnimatedView.m */; };
 		B7A5631C159D984A15A07FA2D4C568FC /* UIImageView+Haneke.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173D1C5E044427B89459FE1CC1DC7455 /* UIImageView+Haneke.swift */; };
+		BA12F5BA1C42A78F0078E285 /* EZAccess.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA12F5B91C42A78F0078E285 /* EZAccess.xib */; };
 		BA3D5A52613922E9EA80E9CBA360D798 /* JSQMessagesCollectionViewFlowLayoutInvalidationContext.h in Headers */ = {isa = PBXBuildFile; fileRef = 2A4E818DDDC136D7A9B1E5FC7E043300 /* JSQMessagesCollectionViewFlowLayoutInvalidationContext.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		BB23DC074FE293E21D141A093B212295 /* JSQMessagesLoadEarlierHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = ECA7335D25895A54D480A355E8594056 /* JSQMessagesLoadEarlierHeaderView.m */; };
 		BD05C6BCE78006D10C4E42FE09955F0B /* HanekeSwift-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F101199986137295F0E1628EE5CAB80 /* HanekeSwift-dummy.m */; };
@@ -348,6 +349,7 @@
 		B6043B9D027A77E11232AAFEA9B7FF24 /* NSHTTPURLResponse+Haneke.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "NSHTTPURLResponse+Haneke.swift"; path = "Haneke/NSHTTPURLResponse+Haneke.swift"; sourceTree = "<group>"; };
 		B725C0EFE3FF828FDA8B84A1EA84C457 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B959612CC13F81BDEA691C61C09CC0AC /* JSQMessage.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = JSQMessage.h; path = JSQMessagesViewController/Model/JSQMessage.h; sourceTree = "<group>"; };
+		BA12F5B91C42A78F0078E285 /* EZAccess.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EZAccess.xib; sourceTree = "<group>"; };
 		BA6428E9F66FD5A23C0A2E06ED26CD2F /* Podfile */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		BC6CDB8593528503088DA10D417828CD /* NSFileManager+Haneke.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "NSFileManager+Haneke.swift"; path = "Haneke/NSFileManager+Haneke.swift"; sourceTree = "<group>"; };
 		BC7A444E13E0AAB8E06FDB97D290F37B /* JSQSystemSoundPlayer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = JSQSystemSoundPlayer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -726,6 +728,7 @@
 			children = (
 				44A97CF9ADFBE04A6726764E96E7D862 /* JSQMessagesAssets.bundle */,
 				AAC2937B5C02733E06EAFF8A470AEEDD /* JSQMessagesCollectionViewCellIncoming.xib */,
+				BA12F5B91C42A78F0078E285 /* EZAccess.xib */,
 				13E3E51678315F72EE4C0B9ADDDF72C1 /* JSQMessagesCollectionViewCellOutgoing.xib */,
 				B07EA61213120BE4227C1BF2A0F74B5F /* JSQMessagesLoadEarlierHeaderView.xib */,
 				2A91D29FDDF6F5205179A925729C55C3 /* JSQMessagesToolbarContentView.xib */,
@@ -1106,6 +1109,7 @@
 				63CFEA322C10442E2BABCA1397C9A883 /* JSQMessagesLoadEarlierHeaderView.xib in Resources */,
 				FD3A9FD5451AE8EF63FB0B1EB3BCC490 /* JSQMessagesToolbarContentView.xib in Resources */,
 				6332E8EE75E81C87DAF1C1C2D09DADCF /* JSQMessagesTypingIndicatorFooterView.xib in Resources */,
+				BA12F5BA1C42A78F0078E285 /* EZAccess.xib in Resources */,
 				10F05991DE9204430DFC0023AF91716B /* JSQMessagesViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
