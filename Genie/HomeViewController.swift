@@ -672,6 +672,7 @@ class HomeViewController: JSQMessagesViewController, UIImagePickerControllerDele
             self.sendMessage(text)
             self.finishSendingMessage()
         }
+//        showCheckout()
     }
     
     override func didPressAccessoryButton(sender: UIButton!) {
@@ -795,6 +796,7 @@ class HomeViewController: JSQMessagesViewController, UIImagePickerControllerDele
                 "contact": "8879524924"
             ],
             "theme": [
+//                "color": "#F37254"
 //                "color": "#625A97"
                 "color": "#3A365A"
             ]
