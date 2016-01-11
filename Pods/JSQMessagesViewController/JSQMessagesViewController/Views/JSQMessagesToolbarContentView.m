@@ -35,6 +35,15 @@ const CGFloat kJSQMessagesToolbarContentViewHorizontalSpacingDefault = 8.0f;
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *leftHorizontalSpacingConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *rightHorizontalSpacingConstraint;
+@property (weak, nonatomic) IBOutlet UIButton *financeButton;
+@property (weak, nonatomic) IBOutlet UIButton *bookingButton;
+@property (weak, nonatomic) IBOutlet UIButton *healthButton;
+@property (weak, nonatomic) IBOutlet UIButton *homeButton;
+@property (weak, nonatomic) IBOutlet UIButton *foodButton;
+@property (weak, nonatomic) IBOutlet UIButton *shoppingButton;
+@property (weak, nonatomic) IBOutlet UIButton *normalKeyboardButton;
+- (IBAction)customKeyboardShow:(UIButton *)sender;
+
 
 @end
 
@@ -43,6 +52,7 @@ const CGFloat kJSQMessagesToolbarContentViewHorizontalSpacingDefault = 8.0f;
 @implementation JSQMessagesToolbarContentView
 
 #pragma mark - Class methods
+
 
 + (UINib *)nib
 {
@@ -60,7 +70,22 @@ const CGFloat kJSQMessagesToolbarContentViewHorizontalSpacingDefault = 8.0f;
 
     self.leftHorizontalSpacingConstraint.constant = kJSQMessagesToolbarContentViewHorizontalSpacingDefault;
     self.rightHorizontalSpacingConstraint.constant = kJSQMessagesToolbarContentViewHorizontalSpacingDefault;
+    
+    UIImage *finance = [UIImage imageNamed:@"finance.png"];
+    UIImage *booking = [UIImage imageNamed:@"booking.png"];
+    UIImage *health = [UIImage imageNamed:@"health.png"];
+    UIImage *home = [UIImage imageNamed:@"home.png"];
+    UIImage *shopping = [UIImage imageNamed:@"shopping.png"];
+    UIImage *food = [UIImage imageNamed:@"food.png"];
 
+    [self.financeButton setImage:finance forState:UIControlStateNormal];
+    [self.bookingButton setImage:booking forState:UIControlStateNormal];
+    [self.healthButton setImage:health forState:UIControlStateNormal];
+    [self.homeButton setImage:home forState:UIControlStateNormal];
+    [self.shoppingButton setImage:shopping forState:UIControlStateNormal];
+    [self.foodButton setImage:food forState:UIControlStateNormal];
+    
+    
     self.backgroundColor = [UIColor clearColor];
 }
 
@@ -176,4 +201,11 @@ const CGFloat kJSQMessagesToolbarContentViewHorizontalSpacingDefault = 8.0f;
     [self.textView setNeedsDisplay];
 }
 
+- (IBAction)customKeyboardShow:(UIButton *)sender {
+    UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, 160)];
+    view.backgroundColor = [UIColor grayColor];
+    
+    self.textView.inputAccessoryView = view;
+    [self.textView becomeFirstResponder];
+}
 @end
