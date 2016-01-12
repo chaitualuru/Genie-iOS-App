@@ -21,7 +21,7 @@
                     </constraints>
                 </view>
                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dm4-NT-mvr" customClass="JSQMessagesComposerTextView">
-                    <rect key="frame" x="50" y="8" width="204" height="38.5"/>
+                    <rect key="frame" x="50" y="8" width="204" height="29.5"/>
                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -34,69 +34,88 @@
                         <constraint firstAttribute="width" constant="50" id="yde-S9-dHe"/>
                     </constraints>
                 </view>
-                <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MoR-qU-nos">
-                    <rect key="frame" x="95" y="62" width="18" height="14"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MoR-qU-nos">
+                    <rect key="frame" x="105" y="53" width="24" height="24"/>
                     <constraints>
-                        <constraint firstAttribute="width" secondItem="MoR-qU-nos" secondAttribute="height" multiplier="19:15" id="6hJ-vY-fWS"/>
+                        <constraint firstAttribute="width" secondItem="MoR-qU-nos" secondAttribute="height" multiplier="1:1" id="6hJ-vY-fWS"/>
                     </constraints>
                     <color key="tintColor" red="0.38431372549999998" green="0.35294117650000001" blue="0.59215686270000001" alpha="1" colorSpace="calibratedRGB"/>
-                    <state key="normal" image="booking.png">
+                    <state key="normal">
                         <color key="titleColor" red="0.38431372549999998" green="0.35294117650000001" blue="0.59215686270000001" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
+                    <connections>
+                        <action selector="customKeyboardShow:" destination="1" eventType="touchUpInside" id="utB-jF-Bh1"/>
+                    </connections>
                 </button>
-                <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dVV-A5-aGu">
-                    <rect key="frame" x="143" y="62" width="17.5" height="14"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dVV-A5-aGu">
+                    <rect key="frame" x="149" y="53.5" width="24" height="24"/>
                     <constraints>
-                        <constraint firstAttribute="width" secondItem="dVV-A5-aGu" secondAttribute="height" multiplier="19:15" id="r2C-G1-We2"/>
+                        <constraint firstAttribute="width" secondItem="dVV-A5-aGu" secondAttribute="height" multiplier="1:1" id="r2C-G1-We2"/>
                     </constraints>
                     <color key="tintColor" red="0.38431372549999998" green="0.35294117650000001" blue="0.59215686270000001" alpha="1" colorSpace="calibratedRGB"/>
-                    <state key="normal" title="He" image="health.png">
+                    <state key="normal">
                         <color key="titleColor" red="0.38431372549999998" green="0.35294117650000001" blue="0.59215686270000001" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
+                    <connections>
+                        <action selector="customKeyboardShow:" destination="1" eventType="touchUpInside" id="uxv-gI-ZP0"/>
+                    </connections>
                 </button>
-                <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CTz-IO-rY4">
-                    <rect key="frame" x="191" y="62" width="18" height="14"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CTz-IO-rY4">
+                    <rect key="frame" x="193" y="53" width="24" height="24"/>
                     <constraints>
-                        <constraint firstAttribute="width" secondItem="CTz-IO-rY4" secondAttribute="height" multiplier="19:15" id="HVD-y8-6eb"/>
+                        <constraint firstAttribute="width" secondItem="CTz-IO-rY4" secondAttribute="height" multiplier="1:1" id="HVD-y8-6eb"/>
                     </constraints>
                     <color key="tintColor" red="0.38431372549999998" green="0.35294117650000001" blue="0.59215686270000001" alpha="1" colorSpace="calibratedRGB"/>
-                    <state key="normal" title="H" image="home.png">
+                    <state key="normal">
                         <color key="titleColor" red="0.38431372549999998" green="0.35294117650000001" blue="0.59215686270000001" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
+                    <connections>
+                        <action selector="customKeyboardShow:" destination="1" eventType="touchUpInside" id="HEm-la-ijI"/>
+                    </connections>
                 </button>
-                <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dHI-DD-sby">
-                    <rect key="frame" x="287" y="62" width="18" height="14"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dHI-DD-sby">
+                    <rect key="frame" x="281" y="55.5" width="24" height="19"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="dHI-DD-sby" secondAttribute="height" multiplier="19:15" id="9fp-me-hNb"/>
                     </constraints>
                     <color key="tintColor" red="0.38431372549999998" green="0.35294117650000001" blue="0.59215686270000001" alpha="1" colorSpace="calibratedRGB"/>
-                    <state key="normal" title="S" image="shopping.png">
+                    <state key="normal">
                         <color key="titleColor" red="0.38431372549999998" green="0.35294117650000001" blue="0.59215686270000001" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
+                    <connections>
+                        <action selector="customKeyboardShow:" destination="1" eventType="touchUpInside" id="fTi-Kv-cxH"/>
+                    </connections>
                 </button>
-                <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zJN-HU-NRC">
-                    <rect key="frame" x="239" y="63" width="18" height="14"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zJN-HU-NRC">
+                    <rect key="frame" x="237" y="55.5" width="24" height="19"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="zJN-HU-NRC" secondAttribute="height" multiplier="19:15" id="213-if-Ydr"/>
                     </constraints>
                     <color key="tintColor" red="0.38431372549999998" green="0.35294117650000001" blue="0.59215686270000001" alpha="1" colorSpace="calibratedRGB"/>
-                    <state key="normal" image="food.png">
+                    <state key="normal">
                         <color key="titleColor" red="0.38431372549999998" green="0.35294117650000001" blue="0.59215686270000001" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
+                    <connections>
+                        <action selector="customKeyboardShow:" destination="1" eventType="touchUpInside" id="vtf-JP-T6X"/>
+                    </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vJe-EK-aCE">
-                    <rect key="frame" x="48" y="62" width="17.5" height="14"/>
+                    <rect key="frame" x="60" y="55.5" width="24.5" height="19"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="vJe-EK-aCE" secondAttribute="height" multiplier="19:15" id="8MC-LP-qsj"/>
                     </constraints>
-                    <state key="normal" image="finance.png"/>
                     <connections>
                         <action selector="customKeyboardShow:" destination="1" eventType="touchUpInside" id="FT6-Fy-Amj"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DdZ-5f-leb">
-                    <rect key="frame" x="16" y="62" width="18" height="14"/>
-                    <state key="normal" image="bubble_min.png"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DdZ-5f-leb">
+                    <rect key="frame" x="16" y="53" width="24" height="24"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="DdZ-5f-leb" secondAttribute="height" multiplier="1:1" id="fjE-qP-FZf"/>
+                    </constraints>
+                    <state key="normal">
+                        <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
                     <connections>
                         <action selector="normalKeyboardShow:" destination="1" eventType="touchUpInside" id="KxW-tx-QP2"/>
                     </connections>
@@ -104,7 +123,7 @@
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="MoR-qU-nos" firstAttribute="leading" secondItem="vJe-EK-aCE" secondAttribute="trailing" constant="30" id="11S-nu-l4r"/>
+                <constraint firstItem="MoR-qU-nos" firstAttribute="leading" secondItem="vJe-EK-aCE" secondAttribute="trailing" constant="20" id="11S-nu-l4r"/>
                 <constraint firstItem="CTz-IO-rY4" firstAttribute="centerY" secondItem="dVV-A5-aGu" secondAttribute="centerY" id="4ia-x3-8mN"/>
                 <constraint firstItem="Myo-1S-Vg1" firstAttribute="leading" secondItem="dm4-NT-mvr" secondAttribute="trailing" constant="8" id="7Ld-5r-Hp3"/>
                 <constraint firstItem="dm4-NT-mvr" firstAttribute="top" secondItem="1" secondAttribute="top" constant="8" id="9Tz-Wq-xIf"/>
@@ -113,14 +132,13 @@
                 <constraint firstItem="MoR-qU-nos" firstAttribute="centerY" secondItem="vJe-EK-aCE" secondAttribute="centerY" id="AYq-BV-1zu"/>
                 <constraint firstItem="DdZ-5f-leb" firstAttribute="centerY" secondItem="vJe-EK-aCE" secondAttribute="centerY" id="CEe-el-PMC"/>
                 <constraint firstItem="LEq-G7-jGt" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="8" id="LAU-fo-GJJ"/>
-                <constraint firstItem="CTz-IO-rY4" firstAttribute="leading" secondItem="dVV-A5-aGu" secondAttribute="trailing" constant="30" id="Pty-Qa-8YT"/>
-                <constraint firstItem="zJN-HU-NRC" firstAttribute="leading" secondItem="CTz-IO-rY4" secondAttribute="trailing" constant="30" id="RbV-aa-Kax"/>
+                <constraint firstItem="CTz-IO-rY4" firstAttribute="leading" secondItem="dVV-A5-aGu" secondAttribute="trailing" constant="20" id="Pty-Qa-8YT"/>
+                <constraint firstItem="zJN-HU-NRC" firstAttribute="leading" secondItem="CTz-IO-rY4" secondAttribute="trailing" constant="20" id="RbV-aa-Kax"/>
                 <constraint firstItem="dVV-A5-aGu" firstAttribute="centerY" secondItem="MoR-qU-nos" secondAttribute="centerY" id="S4C-kf-uU3"/>
                 <constraint firstAttribute="trailing" secondItem="dHI-DD-sby" secondAttribute="trailing" constant="15" id="SAn-iv-5UN"/>
-                <constraint firstAttribute="bottom" secondItem="DdZ-5f-leb" secondAttribute="bottom" constant="11" id="ZQE-0K-eT4"/>
-                <constraint firstItem="DdZ-5f-leb" firstAttribute="top" secondItem="LEq-G7-jGt" secondAttribute="bottom" constant="24" id="ZQa-kz-VRj"/>
-                <constraint firstItem="dHI-DD-sby" firstAttribute="leading" secondItem="zJN-HU-NRC" secondAttribute="trailing" constant="30" id="bSF-XP-aBq"/>
-                <constraint firstItem="dVV-A5-aGu" firstAttribute="leading" secondItem="MoR-qU-nos" secondAttribute="trailing" constant="30" id="c07-hZ-i0n"/>
+                <constraint firstItem="DdZ-5f-leb" firstAttribute="top" secondItem="LEq-G7-jGt" secondAttribute="bottom" constant="15" id="ZQa-kz-VRj"/>
+                <constraint firstItem="dHI-DD-sby" firstAttribute="leading" secondItem="zJN-HU-NRC" secondAttribute="trailing" constant="20" id="bSF-XP-aBq"/>
+                <constraint firstItem="dVV-A5-aGu" firstAttribute="leading" secondItem="MoR-qU-nos" secondAttribute="trailing" constant="20" id="c07-hZ-i0n"/>
                 <constraint firstItem="LEq-G7-jGt" firstAttribute="top" secondItem="1" secondAttribute="top" constant="6" id="d1G-QX-82x"/>
                 <constraint firstAttribute="trailing" secondItem="Myo-1S-Vg1" secondAttribute="trailing" constant="8" id="ds6-61-GNv"/>
                 <constraint firstItem="DdZ-5f-leb" firstAttribute="width" secondItem="vJe-EK-aCE" secondAttribute="width" id="fE6-Ub-jtf"/>
@@ -131,7 +149,7 @@
                 <constraint firstItem="dm4-NT-mvr" firstAttribute="leading" secondItem="LEq-G7-jGt" secondAttribute="trailing" constant="8" id="owo-gB-gyR"/>
                 <constraint firstItem="dHI-DD-sby" firstAttribute="centerY" secondItem="zJN-HU-NRC" secondAttribute="centerY" id="qoj-if-aEU"/>
                 <constraint firstItem="CTz-IO-rY4" firstAttribute="width" secondItem="dVV-A5-aGu" secondAttribute="width" id="tJR-eJ-cNH"/>
-                <constraint firstItem="vJe-EK-aCE" firstAttribute="leading" secondItem="DdZ-5f-leb" secondAttribute="trailing" constant="14" id="uBv-N9-wrm"/>
+                <constraint firstItem="vJe-EK-aCE" firstAttribute="leading" secondItem="DdZ-5f-leb" secondAttribute="trailing" constant="20" id="uBv-N9-wrm"/>
                 <constraint firstItem="dVV-A5-aGu" firstAttribute="width" secondItem="MoR-qU-nos" secondAttribute="width" id="y7J-LP-w7v"/>
                 <constraint firstItem="DdZ-5f-leb" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="16" id="yAg-bU-DNC"/>
             </constraints>
@@ -156,13 +174,4 @@
             <point key="canvasLocation" x="233" y="688"/>
         </view>
     </objects>
-    <resources>
-        <image name="booking.png" width="75" height="75"/>
-        <image name="bubble_min.png" width="48" height="35"/>
-        <image name="finance.png" width="75" height="75"/>
-        <image name="food.png" width="75" height="75"/>
-        <image name="health.png" width="75" height="75"/>
-        <image name="home.png" width="75" height="75"/>
-        <image name="shopping.png" width="75" height="75"/>
-    </resources>
 </document>
