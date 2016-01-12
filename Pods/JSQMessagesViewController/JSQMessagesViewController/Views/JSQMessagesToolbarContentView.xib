@@ -74,9 +74,9 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dHI-DD-sby">
-                    <rect key="frame" x="281" y="55.5" width="24" height="19"/>
+                    <rect key="frame" x="281" y="53" width="24" height="24"/>
                     <constraints>
-                        <constraint firstAttribute="width" secondItem="dHI-DD-sby" secondAttribute="height" multiplier="19:15" id="9fp-me-hNb"/>
+                        <constraint firstAttribute="width" secondItem="dHI-DD-sby" secondAttribute="height" multiplier="1:1" id="9fp-me-hNb"/>
                     </constraints>
                     <color key="tintColor" red="0.38431372549999998" green="0.35294117650000001" blue="0.59215686270000001" alpha="1" colorSpace="calibratedRGB"/>
                     <state key="normal">
@@ -100,9 +100,9 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vJe-EK-aCE">
-                    <rect key="frame" x="60" y="55.5" width="24.5" height="19"/>
+                    <rect key="frame" x="60" y="53" width="24.5" height="24.5"/>
                     <constraints>
-                        <constraint firstAttribute="width" secondItem="vJe-EK-aCE" secondAttribute="height" multiplier="19:15" id="8MC-LP-qsj"/>
+                        <constraint firstAttribute="width" secondItem="vJe-EK-aCE" secondAttribute="height" multiplier="1:1" id="8MC-LP-qsj"/>
                     </constraints>
                     <connections>
                         <action selector="customKeyboardShow:" destination="1" eventType="touchUpInside" id="FT6-Fy-Amj"/>

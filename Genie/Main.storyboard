@@ -178,7 +178,7 @@
                                     </mask>
                                 </variation>
                             </button>
-                            <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="6DFAB19D-484B-4A8B-83B8-3A6E48DF8D15" translatesAutoresizingMaskIntoConstraints="NO" id="aPq-hy-SvK">
+                            <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="19EEAEA3-5A1B-4650-862B-4F4E3B734442" translatesAutoresizingMaskIntoConstraints="NO" id="aPq-hy-SvK">
                                 <rect key="frame" x="550" y="30" width="20" height="20"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="circle.png" translatesAutoresizingMaskIntoConstraints="NO" id="6hc-sk-HbA">
@@ -1745,7 +1745,7 @@ Check back soon!</string>
         </scene>
     </scenes>
     <resources>
-        <image name="6DFAB19D-484B-4A8B-83B8-3A6E48DF8D15" width="49" height="50">
+        <image name="19EEAEA3-5A1B-4650-862B-4F4E3B734442" width="49" height="50">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGOjtYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK0HCBEW
 GxwgISgrLjQ3VSRudWxs1AkKCwwNDg8QViRjbGFzc1xOU0ltYWdlRmxhZ3NWTlNSZXBzV05TQ29sb3KA
