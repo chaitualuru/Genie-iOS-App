@@ -35,6 +35,7 @@ const CGFloat kJSQMessagesToolbarContentViewHorizontalSpacingDefault = 8.0f;
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *leftHorizontalSpacingConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *rightHorizontalSpacingConstraint;
+
 @property (weak, nonatomic) IBOutlet UIButton *financeButton;
 @property (weak, nonatomic) IBOutlet UIButton *bookingButton;
 @property (weak, nonatomic) IBOutlet UIButton *healthButton;
@@ -42,6 +43,7 @@ const CGFloat kJSQMessagesToolbarContentViewHorizontalSpacingDefault = 8.0f;
 @property (weak, nonatomic) IBOutlet UIButton *foodButton;
 @property (weak, nonatomic) IBOutlet UIButton *shoppingButton;
 @property (weak, nonatomic) IBOutlet UIButton *keyboardButton;
+
 - (IBAction)customKeyboardShow:(UIButton *)sender;
 - (IBAction)normalKeyboardShow:(UIButton *)sender;
 
@@ -225,7 +227,7 @@ const CGFloat kJSQMessagesToolbarContentViewHorizontalSpacingDefault = 8.0f;
     UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, 160)];
     view.backgroundColor = [UIColor grayColor];
     
-    [self.textView resignFirstResponder];
+//    [self.textView resignFirstResponder];
     self.textView.inputView = view;
     [self.textView becomeFirstResponder];
     [self.textView reloadInputViews];
@@ -241,18 +243,17 @@ const CGFloat kJSQMessagesToolbarContentViewHorizontalSpacingDefault = 8.0f;
 }
 
 - (IBAction)normalKeyboardShow:(UIButton *)sender {
-    [self.textView resignFirstResponder];
+//    [self.textView resignFirstResponder];
     self.textView.inputView = nil;
     [self.textView becomeFirstResponder];
     [self.textView reloadInputViews];
-    NSArray* buttons = [NSArray arrayWithObjects:self.financeButton, self.bookingButton, self.healthButton, self.homeButton, self.foodButton, self.shoppingButton, self.keyboardButton, nil];
+    self.keyboardButton.selected = YES;
+    NSArray* buttons = [NSArray arrayWithObjects:self.financeButton, self.bookingButton, self.healthButton, self.homeButton, self.foodButton, self.shoppingButton, nil];
     for (UIButton* button in buttons) {
-        if (button == sender) {
-            button.selected = YES;
-        }
-        else {
-            button.selected = NO;
-        }
+        button.selected = NO;
     }
 }
+
+
+
 @end
