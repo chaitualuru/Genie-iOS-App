@@ -41,8 +41,9 @@ const CGFloat kJSQMessagesToolbarContentViewHorizontalSpacingDefault = 8.0f;
 @property (weak, nonatomic) IBOutlet UIButton *homeButton;
 @property (weak, nonatomic) IBOutlet UIButton *foodButton;
 @property (weak, nonatomic) IBOutlet UIButton *shoppingButton;
-@property (weak, nonatomic) IBOutlet UIButton *normalKeyboardButton;
+@property (weak, nonatomic) IBOutlet UIButton *keyboardButton;
 - (IBAction)customKeyboardShow:(UIButton *)sender;
+- (IBAction)normalKeyboardShow:(UIButton *)sender;
 
 
 @end
@@ -205,7 +206,16 @@ const CGFloat kJSQMessagesToolbarContentViewHorizontalSpacingDefault = 8.0f;
     UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, 160)];
     view.backgroundColor = [UIColor grayColor];
     
-    self.textView.inputAccessoryView = view;
-    [self.textView becomeFirstResponder];
+//    [self.textView resignFirstResponder];
+    self.textView.inputView = view;
+//    [self.textView becomeFirstResponder];
+    [self.textView reloadInputViews];
+}
+
+- (IBAction)normalKeyboardShow:(UIButton *)sender {
+//    [self.textView resignFirstResponder];
+    self.textView.inputView = nil;
+//    [self.textView becomeFirstResponder];
+    [self.textView reloadInputViews];
 }
 @end

@@ -75,7 +75,7 @@ class HomeViewController: JSQMessagesViewController, UIImagePickerControllerDele
     override func viewDidLoad() {
         super.viewDidLoad()
         UIApplication.sharedApplication().statusBarStyle = UIStatusBarStyle.LightContent
-        self.collectionView?.contentInset = UIEdgeInsetsMake(0, 0, 80, 0);
+        self.collectionView?.contentInset = UIEdgeInsetsMake(0, 0, 130, 0);
         
         self.view.layer.borderWidth = 0.3
         self.view.layer.borderColor = UIColor(red: (98/255.0), green: (90/255.0), blue: (151/255.0), alpha: 0.8).CGColor
@@ -133,7 +133,8 @@ class HomeViewController: JSQMessagesViewController, UIImagePickerControllerDele
                 conview.backgroundColor = UIColor.whiteColor()
                 if let texview = conview.textView {
                     texview.layer.borderWidth = 0
-                    texview.placeHolder = "Type a message"
+                    texview.placeHolder = "Type a message..."
+                    texview.placeHolderTextColor = UIColor(red: 202.0/255.0, green: 202.0/255.0, blue: 202.0/255.0, alpha: 1.0)
                     texview.font = UIFont(name: "SFUIText-Regular", size: 15.0)
                 }
                 if let rightbarbutton = conview.rightBarButtonItem {

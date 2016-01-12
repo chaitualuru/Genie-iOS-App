@@ -21,7 +21,7 @@
                     </constraints>
                 </view>
                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dm4-NT-mvr" customClass="JSQMessagesComposerTextView">
-                    <rect key="frame" x="50" y="8" width="204" height="38"/>
+                    <rect key="frame" x="50" y="8" width="204" height="38.5"/>
                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -35,7 +35,7 @@
                     </constraints>
                 </view>
                 <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MoR-qU-nos">
-                    <rect key="frame" x="95.5" y="62" width="18" height="14"/>
+                    <rect key="frame" x="95" y="62" width="18" height="14"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="MoR-qU-nos" secondAttribute="height" multiplier="19:15" id="6hJ-vY-fWS"/>
                     </constraints>
@@ -45,7 +45,7 @@
                     </state>
                 </button>
                 <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dVV-A5-aGu">
-                    <rect key="frame" x="143.5" y="62" width="17.5" height="14"/>
+                    <rect key="frame" x="143" y="62" width="17.5" height="14"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="dVV-A5-aGu" secondAttribute="height" multiplier="19:15" id="r2C-G1-We2"/>
                     </constraints>
@@ -75,7 +75,7 @@
                     </state>
                 </button>
                 <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zJN-HU-NRC">
-                    <rect key="frame" x="239" y="62.5" width="18" height="14"/>
+                    <rect key="frame" x="239" y="63" width="18" height="14"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="zJN-HU-NRC" secondAttribute="height" multiplier="19:15" id="213-if-Ydr"/>
                     </constraints>
@@ -94,16 +94,11 @@
                         <action selector="customKeyboardShow:" destination="1" eventType="touchUpInside" id="FT6-Fy-Amj"/>
                     </connections>
                 </button>
-                <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="69e-rQ-02f">
-                    <rect key="frame" x="10" y="56" width="18" height="27"/>
-                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="22"/>
-                    <color key="tintColor" red="0.38431372549999998" green="0.35294117650000001" blue="0.59215686270000001" alpha="1" colorSpace="calibratedRGB"/>
-                    <state key="normal" title="Aa">
-                        <color key="titleColor" red="0.38431372549999998" green="0.35294117650000001" blue="0.59215686270000001" alpha="1" colorSpace="calibratedRGB"/>
-                    </state>
+                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DdZ-5f-leb">
+                    <rect key="frame" x="16" y="62" width="18" height="14"/>
+                    <state key="normal" image="bubble_min.png"/>
                     <connections>
-                        <action selector="normalKeyboard:" destination="1" eventType="touchUpInside" id="o95-nc-Swr"/>
-                        <action selector="normalKeyboardButton:" destination="1" eventType="touchUpInside" id="ei7-SX-Ath"/>
+                        <action selector="normalKeyboardShow:" destination="1" eventType="touchUpInside" id="KxW-tx-QP2"/>
                     </connections>
                 </button>
             </subviews>
@@ -116,29 +111,29 @@
                 <constraint firstItem="dHI-DD-sby" firstAttribute="width" secondItem="zJN-HU-NRC" secondAttribute="width" id="9de-Pm-D3K"/>
                 <constraint firstItem="zJN-HU-NRC" firstAttribute="centerY" secondItem="CTz-IO-rY4" secondAttribute="centerY" id="9vi-LF-mu8"/>
                 <constraint firstItem="MoR-qU-nos" firstAttribute="centerY" secondItem="vJe-EK-aCE" secondAttribute="centerY" id="AYq-BV-1zu"/>
+                <constraint firstItem="DdZ-5f-leb" firstAttribute="centerY" secondItem="vJe-EK-aCE" secondAttribute="centerY" id="CEe-el-PMC"/>
                 <constraint firstItem="LEq-G7-jGt" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="8" id="LAU-fo-GJJ"/>
                 <constraint firstItem="CTz-IO-rY4" firstAttribute="leading" secondItem="dVV-A5-aGu" secondAttribute="trailing" constant="30" id="Pty-Qa-8YT"/>
                 <constraint firstItem="zJN-HU-NRC" firstAttribute="leading" secondItem="CTz-IO-rY4" secondAttribute="trailing" constant="30" id="RbV-aa-Kax"/>
                 <constraint firstItem="dVV-A5-aGu" firstAttribute="centerY" secondItem="MoR-qU-nos" secondAttribute="centerY" id="S4C-kf-uU3"/>
                 <constraint firstAttribute="trailing" secondItem="dHI-DD-sby" secondAttribute="trailing" constant="15" id="SAn-iv-5UN"/>
-                <constraint firstItem="vJe-EK-aCE" firstAttribute="leading" secondItem="69e-rQ-02f" secondAttribute="trailing" constant="20" id="Y61-j7-Ueb"/>
-                <constraint firstItem="vJe-EK-aCE" firstAttribute="width" secondItem="69e-rQ-02f" secondAttribute="width" id="YUI-Zq-QIt"/>
-                <constraint firstAttribute="bottom" secondItem="69e-rQ-02f" secondAttribute="bottom" constant="5" id="aef-gO-xp2"/>
+                <constraint firstAttribute="bottom" secondItem="DdZ-5f-leb" secondAttribute="bottom" constant="11" id="ZQE-0K-eT4"/>
+                <constraint firstItem="DdZ-5f-leb" firstAttribute="top" secondItem="LEq-G7-jGt" secondAttribute="bottom" constant="24" id="ZQa-kz-VRj"/>
                 <constraint firstItem="dHI-DD-sby" firstAttribute="leading" secondItem="zJN-HU-NRC" secondAttribute="trailing" constant="30" id="bSF-XP-aBq"/>
                 <constraint firstItem="dVV-A5-aGu" firstAttribute="leading" secondItem="MoR-qU-nos" secondAttribute="trailing" constant="30" id="c07-hZ-i0n"/>
-                <constraint firstItem="vJe-EK-aCE" firstAttribute="centerY" secondItem="69e-rQ-02f" secondAttribute="centerY" id="cmS-Xk-fcu"/>
                 <constraint firstItem="LEq-G7-jGt" firstAttribute="top" secondItem="1" secondAttribute="top" constant="6" id="d1G-QX-82x"/>
                 <constraint firstAttribute="trailing" secondItem="Myo-1S-Vg1" secondAttribute="trailing" constant="8" id="ds6-61-GNv"/>
-                <constraint firstItem="69e-rQ-02f" firstAttribute="top" secondItem="dm4-NT-mvr" secondAttribute="bottom" constant="10" id="fCc-Sa-SCv"/>
+                <constraint firstItem="DdZ-5f-leb" firstAttribute="width" secondItem="vJe-EK-aCE" secondAttribute="width" id="fE6-Ub-jtf"/>
                 <constraint firstItem="dVV-A5-aGu" firstAttribute="top" secondItem="dm4-NT-mvr" secondAttribute="bottom" constant="16" id="i5k-wo-6em"/>
                 <constraint firstItem="Myo-1S-Vg1" firstAttribute="top" secondItem="1" secondAttribute="top" constant="6" id="lOC-Mq-pBu"/>
                 <constraint firstItem="MoR-qU-nos" firstAttribute="width" secondItem="vJe-EK-aCE" secondAttribute="width" id="nPr-Qp-SDQ"/>
                 <constraint firstItem="zJN-HU-NRC" firstAttribute="width" secondItem="CTz-IO-rY4" secondAttribute="width" id="o0j-1Y-Z0k"/>
                 <constraint firstItem="dm4-NT-mvr" firstAttribute="leading" secondItem="LEq-G7-jGt" secondAttribute="trailing" constant="8" id="owo-gB-gyR"/>
                 <constraint firstItem="dHI-DD-sby" firstAttribute="centerY" secondItem="zJN-HU-NRC" secondAttribute="centerY" id="qoj-if-aEU"/>
-                <constraint firstItem="69e-rQ-02f" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="10" id="rTl-E2-3La"/>
                 <constraint firstItem="CTz-IO-rY4" firstAttribute="width" secondItem="dVV-A5-aGu" secondAttribute="width" id="tJR-eJ-cNH"/>
+                <constraint firstItem="vJe-EK-aCE" firstAttribute="leading" secondItem="DdZ-5f-leb" secondAttribute="trailing" constant="14" id="uBv-N9-wrm"/>
                 <constraint firstItem="dVV-A5-aGu" firstAttribute="width" secondItem="MoR-qU-nos" secondAttribute="width" id="y7J-LP-w7v"/>
+                <constraint firstItem="DdZ-5f-leb" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="16" id="yAg-bU-DNC"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
@@ -148,10 +143,10 @@
                 <outlet property="foodButton" destination="zJN-HU-NRC" id="zv3-vY-ReP"/>
                 <outlet property="healthButton" destination="dVV-A5-aGu" id="fKe-sj-eNJ"/>
                 <outlet property="homeButton" destination="CTz-IO-rY4" id="8za-SY-gkv"/>
+                <outlet property="keyboardButton" destination="DdZ-5f-leb" id="tnY-Ql-yAt"/>
                 <outlet property="leftBarButtonContainerView" destination="LEq-G7-jGt" id="F0V-4N-1Mo"/>
                 <outlet property="leftBarButtonContainerViewWidthConstraint" destination="eMy-Af-wwH" id="FI9-F2-2bN"/>
                 <outlet property="leftHorizontalSpacingConstraint" destination="LAU-fo-GJJ" id="X2c-BI-0Q4"/>
-                <outlet property="normalKeyboardButton" destination="69e-rQ-02f" id="dgM-LY-G2e"/>
                 <outlet property="rightBarButtonContainerView" destination="Myo-1S-Vg1" id="0SR-cw-EkD"/>
                 <outlet property="rightBarButtonContainerViewWidthConstraint" destination="yde-S9-dHe" id="WGu-df-M3L"/>
                 <outlet property="rightHorizontalSpacingConstraint" destination="ds6-61-GNv" id="ZQh-8M-QFs"/>
@@ -163,6 +158,7 @@
     </objects>
     <resources>
         <image name="booking.png" width="75" height="75"/>
+        <image name="bubble_min.png" width="48" height="35"/>
         <image name="finance.png" width="75" height="75"/>
         <image name="food.png" width="75" height="75"/>
         <image name="health.png" width="75" height="75"/>
