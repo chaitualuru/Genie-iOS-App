@@ -36,13 +36,7 @@ const CGFloat kJSQMessagesToolbarContentViewHorizontalSpacingDefault = 8.0f;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *leftHorizontalSpacingConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *rightHorizontalSpacingConstraint;
 
-@property (weak, nonatomic) IBOutlet UIButton *financeButton;
-@property (weak, nonatomic) IBOutlet UIButton *bookingButton;
-@property (weak, nonatomic) IBOutlet UIButton *healthButton;
-@property (weak, nonatomic) IBOutlet UIButton *homeButton;
-@property (weak, nonatomic) IBOutlet UIButton *foodButton;
-@property (weak, nonatomic) IBOutlet UIButton *shoppingButton;
-@property (weak, nonatomic) IBOutlet UIButton *keyboardButton;
+
 
 - (IBAction)customKeyboardShow:(UIButton *)sender;
 - (IBAction)normalKeyboardShow:(UIButton *)sender;

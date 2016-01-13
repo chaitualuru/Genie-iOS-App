@@ -719,7 +719,14 @@ static void * kJSQMessagesKeyValueObservingContext = &kJSQMessagesKeyValueObserv
     if (textView != self.inputToolbar.contentView.textView) {
         return;
     }
-
+    self.inputToolbar.contentView.foodButton.selected = NO;
+    self.inputToolbar.contentView.healthButton.selected = NO;
+    self.inputToolbar.contentView.homeButton.selected = NO;
+    self.inputToolbar.contentView.shoppingButton.selected = NO;
+    self.inputToolbar.contentView.keyboardButton.selected = NO;
+    self.inputToolbar.contentView.financeButton.selected = NO;
+    self.inputToolbar.contentView.bookingButton.selected = NO;
+    
     [textView resignFirstResponder];
 }
 
