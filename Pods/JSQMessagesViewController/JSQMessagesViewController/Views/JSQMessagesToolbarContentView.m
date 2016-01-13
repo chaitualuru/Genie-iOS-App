@@ -43,6 +43,8 @@ const CGFloat kJSQMessagesToolbarContentViewHorizontalSpacingDefault = 8.0f;
 
 @end
 
+CGRect keyboardFrameBeginRect;
+
 
 @implementation JSQMessagesToolbarContentView
 
@@ -101,8 +103,19 @@ const CGFloat kJSQMessagesToolbarContentViewHorizontalSpacingDefault = 8.0f;
     
     self.keyboardButton.selected = YES;
     
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardShown:)
+                                                 name:UIKeyboardDidShowNotification
+                                               object:nil];
+    
     
     self.backgroundColor = [UIColor clearColor];
+}
+
+
+- (void)keyboardShown:(NSNotification*)notification
+{
+    keyboardFrameBeginRect = [[[notification userInfo] objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue];
 }
 
 - (void)dealloc
@@ -218,7 +231,7 @@ const CGFloat kJSQMessagesToolbarContentViewHorizontalSpacingDefault = 8.0f;
 }
 
 - (IBAction)customKeyboardShow:(UIButton *)sender {
-    UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, 160)];
+    UIView *view = [[UIView alloc]initWithFrame:keyboardFrameBeginRect];
     view.backgroundColor = [UIColor grayColor];
     
 //    [self.textView resignFirstResponder];
