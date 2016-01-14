@@ -231,7 +231,22 @@ CGRect keyboardFrameBeginRect;
 }
 
 - (IBAction)customKeyboardShow:(UIButton *)sender {
-    UIView *view = [[UIView alloc]initWithFrame:keyboardFrameBeginRect];
+    static NSDictionary *keyboardHeights = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        keyboardHeights = @{
+                   @"667": [NSNumber numberWithInt:258], //iPhone 6
+                   @"736": [NSNumber numberWithInt:271], //iPhone 6 Plus
+                   @"568": [NSNumber numberWithInt:253], //iPhone 5s & 5
+                   @"480": [NSNumber numberWithInt:253] //iPhone 4s
+                   };
+    });
+    CGRect screenRect = [[UIScreen mainScreen] bounds];
+    CGFloat screenWidth = screenRect.size.width;
+    CGFloat screenHeight = screenRect.size.height;
+    int keyboardHeight = 253;
+    keyboardHeight = [[keyboardHeights objectForKey: [NSNumber numberWithFloat:screenHeight].stringValue] intValue];
+    UIView *view = [[UIView alloc]initWithFrame: CGRectMake(0, 0, screenWidth, keyboardHeight)];
     view.backgroundColor = [UIColor grayColor];
     
 //    [self.textView resignFirstResponder];
